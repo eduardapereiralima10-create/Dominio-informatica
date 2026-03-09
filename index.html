@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Domínio Informática</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f7fb;
+      color: #1f2937;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0b3d91, #1d4ed8);
+      color: white;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    header h1 {
+      margin: 0 0 10px;
+      font-size: 42px;
+    }
+
+    header p {
+      max-width: 800px;
+      margin: 0 auto 20px;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .botao {
+      display: inline-block;
+      background: #25d366;
+      color: white;
+      text-decoration: none;
+      padding: 14px 24px;
+      border-radius: 10px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 30px auto;
+      padding: 0 15px;
+    }
+
+    .secao {
+      background: white;
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .secao h2 {
+      margin-top: 0;
+      color: #0b3d91;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .card {
+      background: #f8fafc;
+      border: 1px solid #dbe4f0;
+      border-radius: 12px;
+      padding: 18px;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: #1d4ed8;
+      font-size: 18px;
+    }
+
+    .destaque {
+      background: #e8f0ff;
+      border-left: 5px solid #1d4ed8;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 15px;
+    }
+
+    footer {
+      background: #0f172a;
+      color: white;
+      text-align: center;
+      padding: 25px 20px;
+      margin-top: 30px;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 32px;
+      }
+
+      header p {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Domínio Informática</h1>
+    <p>
+      Soluções em automação comercial e informática para postos, restaurantes,
+      lojas, mercados e diversos tipos de negócios.
+    </p>
+    <a class="botao" href="https://wa.me/5594992627580" target="_blank">
+      Falar no WhatsApp
+    </a>
+  </header>
+
+  <div class="container">
+
+    <section class="secao">
+      <h2>Quem somos</h2>
+      <p>
+        A Domínio Informática atua com foco em automação comercial, oferecendo
+        produtos e soluções para empresas que buscam mais praticidade, controle
+        e eficiência no dia a dia.
+      </p>
+      <div class="destaque">
+        Somos representantes do sistema <strong>SRK</strong> e trabalhamos com
+        soluções para postos, restaurantes, lojas, mercados e outros segmentos.
+      </div>
+    </section>
+
+    <section class="secao">
+      <h2>Nossos serviços e soluções</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Automação comercial</h3>
+          <p>Soluções para lojas, mercados, restaurantes, postos e comércios em geral.</p>
+        </div>
+        <div class="card">
+          <h3>Sistema SRK</h3>
+          <p>Representação e suporte na implantação de soluções comerciais com o sistema SRK.</p>
+        </div>
+        <div class="card">
+          <h3>Venda de equipamentos</h3>
+          <p>Produtos e acessórios para automação, informática e rotina comercial.</p>
+        </div>
+        <div class="card">
+          <h3>Pedidos sob encomenda</h3>
+          <p>Também fazemos pedidos de produtos específicos, como checkout de mercado, notebook e outros itens.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao">
+      <h2>Produtos que você encontra aqui</h2>
+      <div class="grid">
+        <div class="card"><h3>Automação comercial</h3><p>Bobinas, etiquetas para balança e gôndolas, gavetas de dinheiro, leitores de código de barras de mão e de mercado.</p></div>
+        <div class="card"><h3>Informática</h3><p>Computadores, monitores, teclados, mouse, cabos, fontes, baterias, memórias, SSD e notebooks sob pedido.</p></div>
+        <div class="card"><h3>Impressão e escritório</h3><p>Papel Chamex, toners para impressora, tintas para impressora e impressoras.</p></div>
+        <div class="card"><h3>Outros itens</h3><p>Balanças, nobreaks, cadeiras para caixa, mouses gamers, fones de ouvido e caixas de som.</p></div>
+      </div>
+    </section>
+
+    <section class="secao">
+      <h2>Atendemos diversos segmentos</h2>
+      <div class="grid">
+        <div class="card"><h3>Mercados</h3><p>Soluções e produtos para operação de caixa, etiquetas, leitores e checkout.</p></div>
+        <div class="card"><h3>Restaurantes</h3><p>Automação e equipamentos para agilizar o atendimento e o controle.</p></div>
+        <div class="card"><h3>Postos</h3><p>Automação comercial para melhor gestão do negócio.</p></div>
+        <div class="card"><h3>Lojas em geral</h3><p>Equipamentos, suprimentos e soluções comerciais para o dia a dia.</p></div>
+      </div>
+    </section>
+
+    <section class="secao">
+      <h2>Contato</h2>
+      <p><strong>WhatsApp:</strong> (94) 99262-7580</p>
+      <p><strong>Instagram:</strong> @dominioinformatica2023</p>
+      <p><strong>Cidade:</strong> Ourilândia do Norte - PA</p>
+    </section>
+
+    <section class="secao">
+      <h2>Horário de funcionamento</h2>
+      <p><strong>Segunda a sexta:</strong> 08h às 18h</p>
+      <p><strong>Intervalo de almoço:</strong> 11h às 13h</p>
+      <p><strong>Sábado:</strong> 08h às 12h</p>
+    </section>
+
+  </div>
+
+  <footer>
+    <p>Domínio Informática - Automação comercial e informática em Ourilândia do Norte - PA</p>
+  </footer>
+
+</body>
+</html>
