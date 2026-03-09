@@ -4,203 +4,1076 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Domínio Informática</title>
+  <meta name="description" content="Automação comercial e informática para sua empresa em Ourilândia do Norte. Soluções para mercados, restaurantes, postos e lojas.">
   <style>
+    :root {
+      --azul: #11308c;
+      --azul-escuro: #0b1f66;
+      --laranja: #ff6a13;
+      --laranja-claro: #ff8a3d;
+      --branco: #ffffff;
+      --cinza: #f4f6fb;
+      --texto: #1f2937;
+      --borda: #dbe3f2;
+      --sombra: 0 10px 30px rgba(17, 48, 140, 0.10);
+      --raio: 18px;
+    }
+
     * {
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
+      scroll-behavior: smooth;
     }
 
     body {
-      margin: 0;
       font-family: Arial, sans-serif;
-      background: #f4f7fb;
-      color: #1f2937;
+      background: var(--cinza);
+      color: var(--texto);
     }
 
-    header {
-      background: linear-gradient(135deg, #0b3d91, #1d4ed8);
-      color: white;
-      text-align: center;
-      padding: 60px 20px;
-    }
-
-    header h1 {
-      margin: 0 0 10px;
-      font-size: 42px;
-    }
-
-    header p {
-      max-width: 800px;
-      margin: 0 auto 20px;
-      font-size: 18px;
-      line-height: 1.6;
-    }
-
-    .botao {
-      display: inline-block;
-      background: #25d366;
-      color: white;
+    a {
       text-decoration: none;
-      padding: 14px 24px;
-      border-radius: 10px;
-      font-weight: bold;
-      margin-top: 10px;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
     }
 
     .container {
-      max-width: 1100px;
-      margin: 30px auto;
-      padding: 0 15px;
+      width: min(1180px, 92%);
+      margin: 0 auto;
+    }
+
+    .topo {
+      background: var(--branco);
+      border-bottom: 1px solid #e6ebf5;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .topo-faixa {
+      background: linear-gradient(90deg, var(--azul), var(--azul-escuro));
+      color: white;
+      font-size: 14px;
+      padding: 10px 0;
+    }
+
+    .topo-faixa .container {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .topo-principal {
+      padding: 16px 0;
+    }
+
+    .topo-principal .container {
+      display: grid;
+      grid-template-columns: 220px 1fr auto auto;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .logo img {
+      max-height: 62px;
+      width: auto;
+    }
+
+    .busca {
+      background: #f3f6fc;
+      border: 2px solid #dfe7f5;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .busca input {
+      flex: 1;
+      border: none;
+      outline: none;
+      background: transparent;
+      padding: 15px 16px;
+      font-size: 15px;
+    }
+
+    .busca button {
+      border: none;
+      background: var(--laranja);
+      color: white;
+      padding: 15px 18px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .topo-icone {
+      background: #f3f6fc;
+      border: 2px solid #dfe7f5;
+      border-radius: 14px;
+      padding: 14px 18px;
+      font-weight: bold;
+      color: var(--azul);
+      min-width: 110px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .menu {
+      background: var(--azul);
+    }
+
+    .menu .container {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      padding: 14px 0;
+    }
+
+    .menu a {
+      color: white;
+      font-weight: bold;
+      white-space: nowrap;
+      font-size: 15px;
+      opacity: 0.95;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, var(--azul), var(--azul-escuro));
+      color: white;
+      padding: 52px 0 34px;
+      overflow: hidden;
+    }
+
+    .hero .container {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .hero-texto h1 {
+      font-size: 48px;
+      line-height: 1.05;
+      margin-bottom: 18px;
+    }
+
+    .hero-texto p {
+      font-size: 19px;
+      max-width: 620px;
+      line-height: 1.6;
+      opacity: 0.98;
+    }
+
+    .hero-botoes {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 22px;
+      border-radius: 12px;
+      font-weight: bold;
+      transition: 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-laranja {
+      background: var(--laranja);
+      color: white;
+    }
+
+    .btn-branco {
+      background: white;
+      color: var(--azul);
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 24px;
+      padding: 24px;
+      display: grid;
+      grid-template-columns: 1fr 210px;
+      gap: 10px;
+      align-items: center;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.15);
+    }
+
+    .hero-card h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .hero-card p {
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+
+    .hero-card .cupom {
+      display: inline-block;
+      background: var(--laranja);
+      color: white;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-weight: bold;
+    }
+
+    .hero-card img {
+      width: 100%;
+      max-width: 180px;
+      margin-left: auto;
+      filter: drop-shadow(0 10px 25px rgba(0,0,0,0.25));
     }
 
     .secao {
-      background: white;
-      border-radius: 16px;
-      padding: 25px;
-      margin-bottom: 25px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      padding: 34px 0;
     }
 
-    .secao h2 {
-      margin-top: 0;
-      color: #0b3d91;
+    .titulo-secao {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 20px;
     }
 
-    .grid {
+    .titulo-secao h2 {
+      font-size: 30px;
+      color: var(--azul);
+    }
+
+    .titulo-secao p {
+      color: #5f6b85;
+      font-size: 15px;
+    }
+
+    .grade-categorias,
+    .grade-solucoes,
+    .grade-produtos {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 15px;
-      margin-top: 20px;
+      gap: 18px;
+    }
+
+    .grade-categorias {
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+
+    .grade-solucoes {
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .grade-produtos {
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     }
 
     .card {
-      background: #f8fafc;
-      border: 1px solid #dbe4f0;
-      border-radius: 12px;
-      padding: 18px;
+      background: white;
+      border: 1px solid var(--borda);
+      border-radius: var(--raio);
+      box-shadow: var(--sombra);
     }
 
-    .card h3 {
-      margin-top: 0;
-      color: #1d4ed8;
-      font-size: 18px;
+    .categoria {
+      padding: 22px;
+      transition: 0.2s ease;
     }
 
-    .destaque {
-      background: #e8f0ff;
-      border-left: 5px solid #1d4ed8;
-      padding: 15px;
+    .categoria:hover,
+    .solucao:hover,
+    .produto:hover {
+      transform: translateY(-4px);
+    }
+
+    .icone-cat {
+      width: 54px;
+      height: 54px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #edf3ff, #fff2ea);
+      display: grid;
+      place-items: center;
+      font-size: 26px;
+      margin-bottom: 14px;
+    }
+
+    .categoria h3 {
+      color: var(--azul);
+      margin-bottom: 8px;
+      font-size: 20px;
+    }
+
+    .categoria p {
+      color: #68748d;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .solucao {
+      padding: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: bold;
+      color: var(--azul);
+      background: #edf2ff;
+      border-radius: 999px;
+      padding: 8px 12px;
+      margin-bottom: 12px;
+    }
+
+    .solucao h3 {
+      color: var(--azul);
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .solucao p {
+      color: #5f6b85;
+      line-height: 1.6;
+      font-size: 15px;
+      margin-bottom: 14px;
+    }
+
+    .solucao ul {
+      list-style: none;
+      display: grid;
+      gap: 8px;
+      margin-bottom: 18px;
+      color: #31415f;
+      font-size: 14px;
+    }
+
+    .solucao ul li::before {
+      content: "✓ ";
+      color: var(--laranja);
+      font-weight: bold;
+    }
+
+    .acoes-card {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .mini-btn {
+      display: inline-block;
+      padding: 11px 14px;
       border-radius: 10px;
-      margin-top: 15px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .mini-btn.azul {
+      background: var(--azul);
+      color: white;
+    }
+
+    .mini-btn.laranja {
+      background: #fff1e8;
+      color: var(--laranja);
+      border: 1px solid #ffd5be;
+    }
+
+    .produto {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .produto-topo {
+      height: 170px;
+      background: linear-gradient(135deg, #eef4ff, #fff5ef);
+      display: grid;
+      place-items: center;
+      font-size: 52px;
+    }
+
+    .produto-info {
+      padding: 20px;
+    }
+
+    .produto-info h3 {
+      color: var(--azul);
+      font-size: 19px;
+      margin-bottom: 8px;
+    }
+
+    .produto-info p {
+      color: #66748d;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 14px;
+    }
+
+    .produto-acoes {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .faixa-destaque {
+      background: linear-gradient(90deg, var(--laranja), var(--laranja-claro));
+      color: white;
+      border-radius: 22px;
+      padding: 24px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      align-items: center;
+      box-shadow: 0 15px 35px rgba(255,106,19,0.25);
+    }
+
+    .faixa-destaque h3 {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .faixa-destaque p {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .contato-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .contato-card {
+      padding: 24px;
+    }
+
+    .contato-card h3 {
+      color: var(--azul);
+      margin-bottom: 12px;
+      font-size: 24px;
+    }
+
+    .contato-card p {
+      color: #5f6b85;
+      line-height: 1.7;
+      margin-bottom: 8px;
     }
 
     footer {
-      background: #0f172a;
+      background: #091640;
       color: white;
-      text-align: center;
-      padding: 25px 20px;
       margin-top: 30px;
+      padding: 30px 0;
     }
 
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 32px;
+    footer .container {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .assistente {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 1200;
+    }
+
+    .assistente-botao {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: white;
+      color: var(--azul);
+      border: 2px solid #d9e2f3;
+      box-shadow: 0 12px 30px rgba(17,48,140,0.18);
+      border-radius: 999px;
+      padding: 10px 16px 10px 10px;
+      cursor: pointer;
+      max-width: 260px;
+    }
+
+    .assistente-botao img {
+      width: 54px;
+      height: 54px;
+      object-fit: contain;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #eef4ff, #fff2ea);
+      padding: 4px;
+    }
+
+    .assistente-botao strong {
+      display: block;
+      font-size: 15px;
+    }
+
+    .assistente-botao span {
+      display: block;
+      font-size: 13px;
+      color: #66748d;
+    }
+
+    .painel-ajuda {
+      position: absolute;
+      right: 0;
+      bottom: 78px;
+      width: 300px;
+      background: white;
+      border: 1px solid #dfe6f4;
+      border-radius: 20px;
+      box-shadow: 0 18px 50px rgba(17,48,140,0.20);
+      padding: 18px;
+      display: none;
+    }
+
+    .painel-ajuda.ativo {
+      display: block;
+    }
+
+    .painel-ajuda h4 {
+      color: var(--azul);
+      margin-bottom: 12px;
+      font-size: 20px;
+    }
+
+    .painel-ajuda a {
+      display: block;
+      background: #f6f8fd;
+      border: 1px solid #e2e8f5;
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin-bottom: 10px;
+      color: #364663;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #eef3ff;
+      color: var(--azul);
+      border-radius: 999px;
+      padding: 7px 12px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 980px) {
+      .topo-principal .container {
+        grid-template-columns: 1fr;
       }
 
-      header p {
-        font-size: 16px;
+      .hero .container,
+      .contato-box,
+      .faixa-destaque {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-texto h1 {
+        font-size: 38px;
+      }
+
+      .hero-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero-card img {
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .topo-faixa .container {
+        font-size: 13px;
+      }
+
+      .hero {
+        padding-top: 34px;
+      }
+
+      .hero-texto h1 {
+        font-size: 31px;
+      }
+
+      .titulo-secao h2 {
+        font-size: 24px;
+      }
+
+      .assistente {
+        right: 12px;
+        bottom: 12px;
+      }
+
+      .assistente-botao {
+        max-width: 220px;
+      }
+
+      .painel-ajuda {
+        width: 270px;
       }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>Domínio Informática</h1>
-    <p>
-      Soluções em automação comercial e informática para postos, restaurantes,
-      lojas, mercados e diversos tipos de negócios.
-    </p>
-    <a class="botao" href="https://wa.me/5594992627580" target="_blank">
-      Falar no WhatsApp
-    </a>
+  <header class="topo">
+    <div class="topo-faixa">
+      <div class="container">
+        <div>Automação comercial e informática para sua empresa</div>
+        <div>WhatsApp: (94) 99262-7580 • Ourilândia do Norte - PA</div>
+      </div>
+    </div>
+
+    <div class="topo-principal">
+      <div class="container">
+        <a href="#" class="logo">
+          <img src="logo-dominio.png" alt="Domínio Informática">
+        </a>
+
+        <div class="busca">
+          <input type="text" id="campoBusca" placeholder="Busque por mouse, impressora, bobina, roteador...">
+          <button onclick="buscarProduto()">Buscar</button>
+        </div>
+
+        <div class="topo-icone" onclick="abrirCarrinho()">🛒 Carrinho</div>
+        <a class="topo-icone" href="https://wa.me/5594992627580" target="_blank">💬 Atendimento</a>
+      </div>
+    </div>
+
+    <nav class="menu">
+      <div class="container">
+        <a href="#inicio">Início</a>
+        <a href="#automacao">Automação Comercial</a>
+        <a href="#categorias">Categorias</a>
+        <a href="#destaques">Destaques</a>
+        <a href="#contato">Contato</a>
+      </div>
+    </nav>
   </header>
 
-  <div class="container">
+  <section class="hero" id="inicio">
+    <div class="container">
+      <div class="hero-texto">
+        <span class="badge">Tecnologia • Automação • Informática</span>
+        <h1>Automação comercial e informática para sua empresa</h1>
+        <p>
+          Soluções para mercados, restaurantes, postos e lojas, além de produtos
+          de informática, rede, impressão, periféricos e automação comercial.
+        </p>
 
-    <section class="secao">
-      <h2>Quem somos</h2>
-      <p>
-        A Domínio Informática atua com foco em automação comercial, oferecendo
-        produtos e soluções para empresas que buscam mais praticidade, controle
-        e eficiência no dia a dia.
-      </p>
-      <div class="destaque">
-        Somos representantes do sistema <strong>SRK</strong> e trabalhamos com
-        soluções para postos, restaurantes, lojas, mercados e outros segmentos.
-      </div>
-    </section>
-
-    <section class="secao">
-      <h2>Nossos serviços e soluções</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>Automação comercial</h3>
-          <p>Soluções para lojas, mercados, restaurantes, postos e comércios em geral.</p>
-        </div>
-        <div class="card">
-          <h3>Sistema SRK</h3>
-          <p>Representação e suporte na implantação de soluções comerciais com o sistema SRK.</p>
-        </div>
-        <div class="card">
-          <h3>Venda de equipamentos</h3>
-          <p>Produtos e acessórios para automação, informática e rotina comercial.</p>
-        </div>
-        <div class="card">
-          <h3>Pedidos sob encomenda</h3>
-          <p>Também fazemos pedidos de produtos específicos, como checkout de mercado, notebook e outros itens.</p>
+        <div class="hero-botoes">
+          <a href="#automacao" class="btn btn-laranja">Ver soluções</a>
+          <a href="https://wa.me/5594992627580" target="_blank" class="btn btn-branco">Falar no WhatsApp</a>
         </div>
       </div>
-    </section>
 
-    <section class="secao">
-      <h2>Produtos que você encontra aqui</h2>
-      <div class="grid">
-        <div class="card"><h3>Automação comercial</h3><p>Bobinas, etiquetas para balança e gôndolas, gavetas de dinheiro, leitores de código de barras de mão e de mercado.</p></div>
-        <div class="card"><h3>Informática</h3><p>Computadores, monitores, teclados, mouse, cabos, fontes, baterias, memórias, SSD e notebooks sob pedido.</p></div>
-        <div class="card"><h3>Impressão e escritório</h3><p>Papel Chamex, toners para impressora, tintas para impressora e impressoras.</p></div>
-        <div class="card"><h3>Outros itens</h3><p>Balanças, nobreaks, cadeiras para caixa, mouses gamers, fones de ouvido e caixas de som.</p></div>
+      <div class="hero-card">
+        <div>
+          <h2>DomBot chegou na área 🤖</h2>
+          <p>
+            Seu assistente da Domínio Informática. Veja soluções, descubra produtos
+            e fale com a loja rapidinho.
+          </p>
+          <span class="cupom">Clique no DomBot no canto para pedir ajuda</span>
+        </div>
+        <img src="dombot.png" alt="DomBot segurando notebook">
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="secao">
-      <h2>Atendemos diversos segmentos</h2>
-      <div class="grid">
-        <div class="card"><h3>Mercados</h3><p>Soluções e produtos para operação de caixa, etiquetas, leitores e checkout.</p></div>
-        <div class="card"><h3>Restaurantes</h3><p>Automação e equipamentos para agilizar o atendimento e o controle.</p></div>
-        <div class="card"><h3>Postos</h3><p>Automação comercial para melhor gestão do negócio.</p></div>
-        <div class="card"><h3>Lojas em geral</h3><p>Equipamentos, suprimentos e soluções comerciais para o dia a dia.</p></div>
+  <section class="secao" id="automacao">
+    <div class="container">
+      <div class="titulo-secao">
+        <div>
+          <h2>Soluções para o seu negócio</h2>
+          <p>Escolha o sistema ideal para cada tipo de empresa</p>
+        </div>
       </div>
-    </section>
 
-    <section class="secao">
-      <h2>Contato</h2>
-      <p><strong>WhatsApp:</strong> (94) 99262-7580</p>
-      <p><strong>Instagram:</strong> @dominioinformatica2023</p>
-      <p><strong>Cidade:</strong> Ourilândia do Norte - PA</p>
-    </section>
+      <div class="grade-solucoes">
+        <div class="card solucao" id="easy-sac">
+          <span class="tag">Mercados</span>
+          <h3>EasySAC</h3>
+          <p>Automação comercial para mercados com mais controle, organização e agilidade no atendimento.</p>
+          <ul>
+            <li>Frente de caixa</li>
+            <li>Controle de estoque</li>
+            <li>Balança e etiquetas</li>
+            <li>Gestão de vendas</li>
+          </ul>
+          <div class="acoes-card">
+            <a href="#detalhe-easysac" class="mini-btn azul">Saiba mais</a>
+            <a href="https://wa.me/5594992627580?text=Olá! Quero saber mais sobre o EasySAC." target="_blank" class="mini-btn laranja">Solicitar atendimento</a>
+          </div>
+        </div>
 
-    <section class="secao">
-      <h2>Horário de funcionamento</h2>
-      <p><strong>Segunda a sexta:</strong> 08h às 18h</p>
-      <p><strong>Intervalo de almoço:</strong> 11h às 13h</p>
-      <p><strong>Sábado:</strong> 08h às 12h</p>
-    </section>
+        <div class="card solucao" id="easy-chef">
+          <span class="tag">Restaurantes</span>
+          <h3>EasyChef</h3>
+          <p>Solução para restaurantes, lanchonetes e bares com foco em atendimento, mesas e pedidos.</p>
+          <ul>
+            <li>Controle de mesas</li>
+            <li>Pedidos e comandas</li>
+            <li>Agilidade no atendimento</li>
+            <li>Relatórios de vendas</li>
+          </ul>
+          <div class="acoes-card">
+            <a href="#detalhe-easychef" class="mini-btn azul">Saiba mais</a>
+            <a href="https://wa.me/5594992627580?text=Olá! Quero saber mais sobre o EasyChef." target="_blank" class="mini-btn laranja">Solicitar atendimento</a>
+          </div>
+        </div>
 
-  </div>
+        <div class="card solucao" id="easy-gas">
+          <span class="tag">Postos</span>
+          <h3>EasyGás</h3>
+          <p>Ferramenta voltada para postos, facilitando gestão, controle e automação do negócio.</p>
+          <ul>
+            <li>Controle operacional</li>
+            <li>Gestão de vendas</li>
+            <li>Organização financeira</li>
+            <li>Mais praticidade</li>
+          </ul>
+          <div class="acoes-card">
+            <a href="#detalhe-easygas" class="mini-btn azul">Saiba mais</a>
+            <a href="https://wa.me/5594992627580?text=Olá! Quero saber mais sobre o EasyGás." target="_blank" class="mini-btn laranja">Solicitar atendimento</a>
+          </div>
+        </div>
+
+        <div class="card solucao" id="easy-pdv">
+          <span class="tag">Lojas</span>
+          <h3>EasyPDV</h3>
+          <p>Sistema para lojas e comércios em geral com foco em caixa, vendas, produtos e clientes.</p>
+          <ul>
+            <li>Controle de vendas</li>
+            <li>Cadastro de produtos</li>
+            <li>Cadastro de clientes</li>
+            <li>Relatórios e gestão</li>
+          </ul>
+          <div class="acoes-card">
+            <a href="#detalhe-easypdv" class="mini-btn azul">Saiba mais</a>
+            <a href="https://wa.me/5594992627580?text=Olá! Quero saber mais sobre o EasyPDV." target="_blank" class="mini-btn laranja">Solicitar atendimento</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao" id="categorias">
+    <div class="container">
+      <div class="titulo-secao">
+        <div>
+          <h2>Categorias em destaque</h2>
+          <p>Os principais focos da Domínio Informática</p>
+        </div>
+      </div>
+
+      <div class="grade-categorias">
+        <div class="card categoria">
+          <div class="icone-cat">⚙️</div>
+          <h3>Automação</h3>
+          <p>Bobinas, etiquetas, balanças, leitores, impressoras térmicas e muito mais.</p>
+        </div>
+
+        <div class="card categoria">
+          <div class="icone-cat">💻</div>
+          <h3>Informática</h3>
+          <p>Teclados, mouse, computadores, monitores, SSD, memórias e acessórios.</p>
+        </div>
+
+        <div class="card categoria">
+          <div class="icone-cat">🌐</div>
+          <h3>Rede e Internet</h3>
+          <p>Roteadores, access points, switches, cabos e soluções de conectividade.</p>
+        </div>
+
+        <div class="card categoria">
+          <div class="icone-cat">🎮</div>
+          <h3>Gamer</h3>
+          <p>Mouse gamer, headset, mousepad e periféricos para setup.</p>
+        </div>
+
+        <div class="card categoria">
+          <div class="icone-cat">🖨️</div>
+          <h3>Impressão</h3>
+          <p>Impressoras, toners, tintas, papel e suprimentos para escritório.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao" id="destaques">
+    <div class="container">
+      <div class="titulo-secao">
+        <div>
+          <h2>Produtos em destaque</h2>
+          <p>Exemplos de itens que sua loja já trabalha</p>
+        </div>
+      </div>
+
+      <div class="grade-produtos">
+        <div class="card produto">
+          <div class="produto-topo">🧾</div>
+          <div class="produto-info">
+            <h3>Bobina térmica</h3>
+            <p>Ideal para automação comercial, cupons e operação de caixa.</p>
+            <div class="produto-acoes">
+              <button class="mini-btn azul" onclick="adicionarCarrinho('Bobina térmica')">Adicionar</button>
+              <a class="mini-btn laranja" href="https://wa.me/5594992627580?text=Olá! Quero saber o valor da bobina térmica." target="_blank">Consultar</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card produto">
+          <div class="produto-topo">🏷️</div>
+          <div class="produto-info">
+            <h3>Etiquetas para balança</h3>
+            <p>Etiquetas térmicas para automação e identificação de produtos.</p>
+            <div class="produto-acoes">
+              <button class="mini-btn azul" onclick="adicionarCarrinho('Etiquetas para balança')">Adicionar</button>
+              <a class="mini-btn laranja" href="https://wa.me/5594992627580?text=Olá! Quero saber o valor das etiquetas para balança." target="_blank">Consultar</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card produto">
+          <div class="produto-topo">⌨️</div>
+          <div class="produto-info">
+            <h3>Teclados e combos</h3>
+            <p>Teclados, kits com mouse e opções para escritório e uso diário.</p>
+            <div class="produto-acoes">
+              <button class="mini-btn azul" onclick="adicionarCarrinho('Teclados e combos')">Adicionar</button>
+              <a class="mini-btn laranja" href="https://wa.me/5594992627580?text=Olá! Quero ver os modelos de teclados e combos." target="_blank">Consultar</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card produto">
+          <div class="produto-topo">🖱️</div>
+          <div class="produto-info">
+            <h3>Mouse e mouse gamer</h3>
+            <p>Modelos para trabalho, setup gamer e uso do dia a dia.</p>
+            <div class="produto-acoes">
+              <button class="mini-btn azul" onclick="adicionarCarrinho('Mouse e mouse gamer')">Adicionar</button>
+              <a class="mini-btn laranja" href="https://wa.me/5594992627580?text=Olá! Quero ver os modelos de mouse e mouse gamer." target="_blank">Consultar</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card produto">
+          <div class="produto-topo">📶</div>
+          <div class="produto-info">
+            <h3>Roteadores e rede</h3>
+            <p>Roteadores, switch, access point e acessórios de rede.</p>
+            <div class="produto-acoes">
+              <button class="mini-btn azul" onclick="adicionarCarrinho('Roteadores e rede')">Adicionar</button>
+              <a class="mini-btn laranja" href="https://wa.me/5594992627580?text=Olá! Quero ver os produtos de rede e internet." target="_blank">Consultar</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card produto">
+          <div class="produto-topo">🖨️</div>
+          <div class="produto-info">
+            <h3>Impressoras e tintas</h3>
+            <p>Impressoras, toners, tintas e suprimentos para impressão.</p>
+            <div class="produto-acoes">
+              <button class="mini-btn azul" onclick="adicionarCarrinho('Impressoras e tintas')">Adicionar</button>
+              <a class="mini-btn laranja" href="https://wa.me/5594992627580?text=Olá! Quero ver impressoras, toners e tintas." target="_blank">Consultar</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao">
+    <div class="container">
+      <div class="faixa-destaque">
+        <div>
+          <h3>Monte seu pedido e finalize no WhatsApp</h3>
+          <p>
+            Adicione os itens ao carrinho e envie tudo direto para a Domínio Informática.
+          </p>
+        </div>
+        <div>
+          <a href="#" class="btn btn-branco" onclick="abrirCarrinho()">Ver carrinho</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao" id="detalhe-easysac">
+    <div class="container">
+      <div class="card contato-card">
+        <h3>EasySAC — solução para mercados</h3>
+        <p>Perfeito para mercados que precisam de mais controle no caixa, estoque, balança e vendas.</p>
+        <p><strong>Equipamentos que combinam:</strong> leitores, impressora térmica, etiquetas, balança, gaveta de dinheiro.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao" id="detalhe-easychef">
+    <div class="container">
+      <div class="card contato-card">
+        <h3>EasyChef — solução para restaurantes</h3>
+        <p>Ideal para pedidos, mesas, atendimento e organização da operação no dia a dia.</p>
+        <p><strong>Equipamentos que combinam:</strong> computador, monitor, impressora, teclado e mouse.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao" id="detalhe-easygas">
+    <div class="container">
+      <div class="card contato-card">
+        <h3>EasyGás — solução para postos</h3>
+        <p>Voltado para organização e controle do negócio, trazendo mais praticidade para a gestão.</p>
+        <p><strong>Equipamentos que combinam:</strong> computador, impressora e soluções de atendimento.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao" id="detalhe-easypdv">
+    <div class="container">
+      <div class="card contato-card">
+        <h3>EasyPDV — solução para lojas</h3>
+        <p>Excelente para comércios e lojas que precisam de caixa, cadastro de produtos, clientes e relatórios.</p>
+        <p><strong>Equipamentos que combinam:</strong> leitor, impressora, gaveta, nobreak e computador.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao" id="contato">
+    <div class="container">
+      <div class="titulo-secao">
+        <div>
+          <h2>Fale com a Domínio Informática</h2>
+          <p>Atendimento para empresas e clientes finais</p>
+        </div>
+      </div>
+
+      <div class="contato-box">
+        <div class="card contato-card">
+          <h3>Contato</h3>
+          <p><strong>WhatsApp:</strong> (94) 99262-7580</p>
+          <p><strong>Instagram:</strong> @dominioinformatica2023</p>
+          <p><strong>Cidade:</strong> Ourilândia do Norte - PA</p>
+          <p><strong>Horário:</strong> Segunda a sexta, 08h às 18h</p>
+          <p><strong>Almoço:</strong> 11h às 13h</p>
+          <p><strong>Sábado:</strong> 08h às 12h</p>
+        </div>
+
+        <div class="card contato-card">
+          <h3>Atendemos</h3>
+          <p>✅ Mercados</p>
+          <p>✅ Restaurantes</p>
+          <p>✅ Postos</p>
+          <p>✅ Lojas em geral</p>
+          <p>✅ Empresas e clientes finais</p>
+          <a href="https://wa.me/5594992627580?text=Olá! Quero atendimento da Domínio Informática." target="_blank" class="btn btn-laranja" style="margin-top:12px;">Chamar no WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <footer>
-    <p>Domínio Informática - Automação comercial e informática em Ourilândia do Norte - PA</p>
+    <div class="container">
+      <div>Domínio Informática • Automação comercial e informática</div>
+      <div>Ourilândia do Norte - PA</div>
+    </div>
   </footer>
 
+  <div class="assistente">
+    <div class="painel-ajuda" id="painelAjuda">
+      <h4>Olá! Eu sou o DomBot 🤖</h4>
+      <a href="#automacao">Ver automação comercial</a>
+      <a href="#destaques">Ver produtos em destaque</a>
+      <a href="https://wa.me/5594992627580?text=Olá! Preciso de ajuda para escolher produtos." target="_blank">Falar no WhatsApp</a>
+      <a href="#contato">Horário e contato</a>
+    </div>
+
+    <div class="assistente-botao" onclick="toggleAjuda()">
+      <img src="dombot.png" alt="DomBot">
+      <div>
+        <strong>Precisa de ajuda?</strong>
+        <span>Clique e fale com o DomBot</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let carrinho = [];
+
+    function adicionarCarrinho(produto) {
+      carrinho.push(produto);
+      alert(produto + " foi adicionado ao carrinho.");
+    }
+
+    function abrirCarrinho() {
+      if (carrinho.length === 0) {
+        alert("Seu carrinho está vazio por enquanto.");
+        return;
+      }
+
+      const itens = carrinho.map((item, index) => (index + 1) + ". " + item).join("%0A");
+      const mensagem = "Olá! Quero fazer um pedido:%0A%0A" + itens;
+      window.open("https://wa.me/5594992627580?text=" + mensagem, "_blank");
+    }
+
+    function toggleAjuda() {
+      document.getElementById("painelAjuda").classList.toggle("ativo");
+    }
+
+    function buscarProduto() {
+      const termo = document.getElementById("campoBusca").value.trim().toLowerCase();
+
+      if (!termo) {
+        alert("Digite algo para buscar.");
+        return;
+      }
+
+      const mapa = {
+        "bobina": "#destaques",
+        "etiqueta": "#destaques",
+        "mouse": "#destaques",
+        "teclado": "#destaques",
+        "impressora": "#destaques",
+        "roteador": "#categorias",
+        "rede": "#categorias",
+        "gamer": "#categorias",
+        "mercado": "#easy-sac",
+        "restaurante": "#easy-chef",
+        "posto": "#easy-gas",
+        "loja": "#easy-pdv",
+        "easychef": "#easy-chef",
+        "easysac": "#easy-sac",
+        "easygas": "#easy-gas",
+        "easypdv": "#easy-pdv"
+      };
+
+      for (const chave in mapa) {
+        if (termo.includes(chave)) {
+          window.location.href = mapa[chave];
+          return;
+        }
+      }
+
+      alert("Ainda não encontrei esse item na busca visual. Podemos melhorar isso depois com mais produtos cadastrados.");
+    }
+  </script>
 </body>
 </html>
