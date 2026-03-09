@@ -77,16 +77,21 @@
     }
 
     .header-main .container {
-      display: grid;
-      grid-template-columns: 320px 1fr auto auto;
-      gap: 14px;
-      align-items: center;
-    }
+  display: grid;
+  grid-template-columns: 420px 1fr auto auto;
+  gap: 14px;
+  align-items: center;
+}
 
-    .logo img {
-      max-height: 120px;
-      width: auto;
-    }
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  max-height: 150px;
+  width: auto;
+}
 
     .searchbar {
       display: flex;
@@ -152,12 +157,12 @@
       overflow: hidden;
     }
 
-    .hero .container {
-      display: grid;
-      grid-template-columns: 1.08fr 0.92fr;
-      gap: 22px;
-      align-items: center;
-    }
+   .hero .container {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+  gap: 24px;
+  align-items: center;
+}
 
     .badge {
       display: inline-block;
@@ -286,8 +291,9 @@
     }
 
     .grid-products {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: start;
+}
 
     .card {
       background: #fff;
@@ -394,20 +400,21 @@
       margin-bottom: 12px;
     }
 
-    .product-card {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
+   .product-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px;
+}
 
-    .product-top {
-      height: 150px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, #eef4ff, #fff3eb);
-      display: grid;
-      place-items: center;
-      font-size: 50px;
-    }
+   .product-top {
+  height: 110px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #eef4ff, #fff3eb);
+  display: grid;
+  place-items: center;
+  font-size: 38px;
+}
 
     .product-meta {
       display: grid;
