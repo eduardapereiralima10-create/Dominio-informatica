@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Domínio Informática</title>
-  <meta name="description" content="Automação comercial e informática para sua empresa em Ourilândia do Norte. Soluções para mercados, restaurantes, postos e lojas.">
+  <meta name="description" content="Automação comercial e informática em Ourilândia do Norte. Soluções para mercados, restaurantes e lojas." />
   <style>
     :root {
-      --azul: #11308c;
+      --azul: #12358f;
       --azul-escuro: #0b1f66;
-      --laranja: #ff6a13;
-      --laranja-claro: #ff8a3d;
+      --laranja: #ff6f1a;
+      --laranja-claro: #ff8f4d;
       --branco: #ffffff;
       --cinza: #f4f6fb;
-      --texto: #1f2937;
-      --borda: #dbe3f2;
-      --sombra: 0 10px 30px rgba(17, 48, 140, 0.10);
+      --texto: #23314d;
+      --borda: #dbe3f1;
+      --sombra: 0 10px 28px rgba(18, 53, 143, 0.10);
       --raio: 18px;
     }
 
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
+    }
+
+    html {
       scroll-behavior: smooth;
     }
 
@@ -38,8 +41,8 @@
     }
 
     img {
-      max-width: 100%;
       display: block;
+      max-width: 100%;
     }
 
     .container {
@@ -47,54 +50,53 @@
       margin: 0 auto;
     }
 
-    .topo {
-      background: var(--branco);
-      border-bottom: 1px solid #e6ebf5;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    .topo-faixa {
+    .topbar {
       background: linear-gradient(90deg, var(--azul), var(--azul-escuro));
-      color: white;
+      color: #fff;
       font-size: 14px;
-      padding: 10px 0;
     }
 
-    .topo-faixa .container {
+    .topbar .container {
       display: flex;
       justify-content: space-between;
-      gap: 20px;
+      gap: 18px;
+      padding: 10px 0;
       flex-wrap: wrap;
     }
 
-    .topo-principal {
-      padding: 16px 0;
+    .header {
+      background: #fff;
+      border-bottom: 1px solid #e6ebf5;
+      position: sticky;
+      top: 0;
+      z-index: 999;
     }
 
-    .topo-principal .container {
+    .header-main {
+      padding: 14px 0;
+    }
+
+    .header-main .container {
       display: grid;
-      grid-template-columns: 220px 1fr auto auto;
-      gap: 16px;
+      grid-template-columns: 320px 1fr auto auto;
+      gap: 14px;
       align-items: center;
     }
 
     .logo img {
-      max-height: 62px;
+      max-height: 120px;
       width: auto;
     }
 
-    .busca {
-      background: #f3f6fc;
-      border: 2px solid #dfe7f5;
-      border-radius: 14px;
+    .searchbar {
       display: flex;
-      align-items: center;
+      border: 2px solid #dbe3f1;
+      background: #f7f9fd;
+      border-radius: 14px;
       overflow: hidden;
     }
 
-    .busca input {
+    .searchbar input {
       flex: 1;
       border: none;
       outline: none;
@@ -103,24 +105,24 @@
       font-size: 15px;
     }
 
-    .busca button {
+    .searchbar button {
       border: none;
       background: var(--laranja);
-      color: white;
-      padding: 15px 18px;
-      cursor: pointer;
+      color: #fff;
+      padding: 0 18px;
       font-weight: bold;
+      cursor: pointer;
     }
 
-    .topo-icone {
-      background: #f3f6fc;
-      border: 2px solid #dfe7f5;
-      border-radius: 14px;
-      padding: 14px 18px;
-      font-weight: bold;
+    .header-btn {
+      border: 2px solid #dbe3f1;
+      background: #f7f9fd;
       color: var(--azul);
-      min-width: 110px;
+      border-radius: 14px;
+      padding: 14px 16px;
+      font-weight: bold;
       text-align: center;
+      min-width: 110px;
       cursor: pointer;
     }
 
@@ -132,49 +134,60 @@
       display: flex;
       gap: 20px;
       overflow-x: auto;
-      padding: 14px 0;
+      padding: 13px 0;
     }
 
     .menu a {
-      color: white;
-      font-weight: bold;
+      color: #fff;
       white-space: nowrap;
+      font-weight: bold;
+      opacity: 0.96;
       font-size: 15px;
-      opacity: 0.95;
     }
 
     .hero {
       background: linear-gradient(135deg, var(--azul), var(--azul-escuro));
-      color: white;
-      padding: 52px 0 34px;
+      color: #fff;
+      padding: 44px 0 34px;
       overflow: hidden;
     }
 
     .hero .container {
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 28px;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 22px;
       align-items: center;
     }
 
-    .hero-texto h1 {
-      font-size: 48px;
-      line-height: 1.05;
-      margin-bottom: 18px;
+    .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 14px;
     }
 
-    .hero-texto p {
-      font-size: 19px;
+    .hero h1 {
+      font-size: 46px;
+      line-height: 1.08;
+      margin-bottom: 14px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      line-height: 1.65;
       max-width: 620px;
-      line-height: 1.6;
-      opacity: 0.98;
     }
 
-    .hero-botoes {
+    .hero-actions {
+      margin-top: 22px;
       display: flex;
-      gap: 14px;
+      gap: 12px;
       flex-wrap: wrap;
-      margin-top: 24px;
     }
 
     .btn {
@@ -189,26 +202,26 @@
       transform: translateY(-2px);
     }
 
-    .btn-laranja {
+    .btn-orange {
       background: var(--laranja);
-      color: white;
+      color: #fff;
     }
 
-    .btn-branco {
-      background: white;
+    .btn-white {
+      background: #fff;
       color: var(--azul);
     }
 
     .hero-card {
       background: rgba(255,255,255,0.10);
-      border: 1px solid rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.16);
       border-radius: 24px;
-      padding: 24px;
+      padding: 22px;
       display: grid;
-      grid-template-columns: 1fr 210px;
-      gap: 10px;
+      grid-template-columns: 1fr 180px;
       align-items: center;
-      box-shadow: 0 16px 40px rgba(0,0,0,0.15);
+      gap: 14px;
+      box-shadow: 0 18px 42px rgba(0,0,0,0.16);
     }
 
     .hero-card h2 {
@@ -219,448 +232,474 @@
     .hero-card p {
       font-size: 15px;
       line-height: 1.6;
-      margin-bottom: 14px;
+      margin-bottom: 10px;
     }
 
-    .hero-card .cupom {
+    .hero-card .tag {
       display: inline-block;
       background: var(--laranja);
-      color: white;
-      padding: 10px 14px;
+      padding: 10px 12px;
       border-radius: 10px;
+      font-size: 13px;
       font-weight: bold;
     }
 
     .hero-card img {
       width: 100%;
-      max-width: 180px;
+      max-width: 170px;
       margin-left: auto;
-      filter: drop-shadow(0 10px 25px rgba(0,0,0,0.25));
+      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.20));
     }
 
-    .secao {
+    .section {
       padding: 34px 0;
     }
 
-    .titulo-secao {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 20px;
+    .section-title {
+      margin-bottom: 18px;
     }
 
-    .titulo-secao h2 {
+    .section-title h2 {
       font-size: 30px;
       color: var(--azul);
+      margin-bottom: 6px;
     }
 
-    .titulo-secao p {
-      color: #5f6b85;
+    .section-title p {
+      color: #68748d;
       font-size: 15px;
     }
 
-    .grade-categorias,
-    .grade-solucoes,
-    .grade-produtos {
+    .grid-systems,
+    .grid-categories,
+    .grid-products {
       display: grid;
       gap: 18px;
     }
 
-    .grade-categorias {
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    .grid-systems {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
-    .grade-solucoes {
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    .grid-categories {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
     }
 
-    .grade-produtos {
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    .grid-products {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
     .card {
-      background: white;
+      background: #fff;
       border: 1px solid var(--borda);
       border-radius: var(--raio);
       box-shadow: var(--sombra);
     }
 
-    .categoria {
+    .system-card,
+    .category-card,
+    .product-card,
+    .info-card {
       padding: 22px;
-      transition: 0.2s ease;
     }
 
-    .categoria:hover,
-    .solucao:hover,
-    .produto:hover {
-      transform: translateY(-4px);
-    }
-
-    .icone-cat {
-      width: 54px;
-      height: 54px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, #edf3ff, #fff2ea);
-      display: grid;
-      place-items: center;
-      font-size: 26px;
-      margin-bottom: 14px;
-    }
-
-    .categoria h3 {
-      color: var(--azul);
-      margin-bottom: 8px;
-      font-size: 20px;
-    }
-
-    .categoria p {
-      color: #68748d;
-      font-size: 15px;
-      line-height: 1.5;
-    }
-
-    .solucao {
-      padding: 22px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .tag {
+    .system-badge,
+    .stock-badge {
       display: inline-block;
       font-size: 12px;
       font-weight: bold;
-      color: var(--azul);
-      background: #edf2ff;
       border-radius: 999px;
       padding: 8px 12px;
       margin-bottom: 12px;
     }
 
-    .solucao h3 {
+    .system-badge {
+      background: #eef3ff;
       color: var(--azul);
-      font-size: 24px;
-      margin-bottom: 10px;
     }
 
-    .solucao p {
-      color: #5f6b85;
+    .stock-badge {
+      background: #fff1e8;
+      color: var(--laranja);
+    }
+
+    .system-card h3,
+    .category-card h3,
+    .product-card h3,
+    .info-card h3 {
+      color: var(--azul);
+      margin-bottom: 10px;
+      font-size: 24px;
+    }
+
+    .system-card p,
+    .category-card p,
+    .product-card p,
+    .info-card p {
+      color: #66748d;
       line-height: 1.6;
       font-size: 15px;
-      margin-bottom: 14px;
     }
 
-    .solucao ul {
+    .system-card ul {
       list-style: none;
       display: grid;
       gap: 8px;
-      margin-bottom: 18px;
-      color: #31415f;
+      margin: 14px 0 18px;
+      color: #34425f;
       font-size: 14px;
     }
 
-    .solucao ul li::before {
+    .system-card ul li::before {
       content: "✓ ";
       color: var(--laranja);
       font-weight: bold;
     }
 
-    .acoes-card {
+    .actions {
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
     }
 
     .mini-btn {
-      display: inline-block;
-      padding: 11px 14px;
+      border: none;
       border-radius: 10px;
+      padding: 11px 14px;
       font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      display: inline-block;
+    }
+
+    .mini-blue {
+      background: var(--azul);
+      color: #fff;
+    }
+
+    .mini-light {
+      background: #fff1e8;
+      color: var(--laranja);
+      border: 1px solid #ffd3bb;
+    }
+
+    .category-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #eef4ff, #fff1e8);
+      display: grid;
+      place-items: center;
+      font-size: 26px;
+      margin-bottom: 12px;
+    }
+
+    .product-card {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .product-top {
+      height: 150px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #eef4ff, #fff3eb);
+      display: grid;
+      place-items: center;
+      font-size: 50px;
+    }
+
+    .product-meta {
+      display: grid;
+      gap: 10px;
+      font-size: 14px;
+      color: #495875;
+    }
+
+    .selector-group {
+      display: grid;
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .selector-group label {
+      font-size: 13px;
+      color: #60708c;
       font-weight: bold;
     }
 
-    .mini-btn.azul {
-      background: var(--azul);
-      color: white;
-    }
-
-    .mini-btn.laranja {
-      background: #fff1e8;
-      color: var(--laranja);
-      border: 1px solid #ffd5be;
-    }
-
-    .produto {
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .produto-topo {
-      height: 170px;
-      background: linear-gradient(135deg, #eef4ff, #fff5ef);
+    .selector-row {
       display: grid;
-      place-items: center;
-      font-size: 52px;
-    }
-
-    .produto-info {
-      padding: 20px;
-    }
-
-    .produto-info h3 {
-      color: var(--azul);
-      font-size: 19px;
-      margin-bottom: 8px;
-    }
-
-    .produto-info p {
-      color: #66748d;
-      font-size: 14px;
-      line-height: 1.5;
-      margin-bottom: 14px;
-    }
-
-    .produto-acoes {
-      display: flex;
+      grid-template-columns: 1fr 1fr;
       gap: 10px;
-      flex-wrap: wrap;
     }
 
-    .faixa-destaque {
-      background: linear-gradient(90deg, var(--laranja), var(--laranja-claro));
-      color: white;
-      border-radius: 22px;
-      padding: 24px;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 18px;
-      align-items: center;
-      box-shadow: 0 15px 35px rgba(255,106,19,0.25);
+    select,
+    input[type="number"],
+    input[type="text"],
+    textarea {
+      width: 100%;
+      border: 2px solid #dfe6f3;
+      background: #f8fafe;
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 14px;
+      outline: none;
     }
 
-    .faixa-destaque h3 {
-      font-size: 28px;
-      margin-bottom: 8px;
+    textarea {
+      min-height: 110px;
+      resize: vertical;
     }
 
-    .faixa-destaque p {
-      font-size: 16px;
-      line-height: 1.6;
-    }
-
-    .contato-box {
+    .request-box {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 18px;
     }
 
-    .contato-card {
+    .highlight {
+      background: linear-gradient(90deg, var(--laranja), var(--laranja-claro));
+      color: #fff;
+      border-radius: 22px;
       padding: 24px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 16px 38px rgba(255,111,26,0.22);
     }
 
-    .contato-card h3 {
-      color: var(--azul);
-      margin-bottom: 12px;
-      font-size: 24px;
-    }
-
-    .contato-card p {
-      color: #5f6b85;
-      line-height: 1.7;
+    .highlight h3 {
+      font-size: 28px;
       margin-bottom: 8px;
+    }
+
+    .highlight p {
+      font-size: 16px;
+      line-height: 1.6;
     }
 
     footer {
       background: #091640;
-      color: white;
-      margin-top: 30px;
-      padding: 30px 0;
+      color: #fff;
+      padding: 28px 0;
+      margin-top: 26px;
     }
 
     footer .container {
       display: flex;
       justify-content: space-between;
-      gap: 20px;
+      gap: 16px;
       flex-wrap: wrap;
     }
 
-    .assistente {
+    .assistant {
       position: fixed;
-      right: 18px;
-      bottom: 18px;
-      z-index: 1200;
+      right: 16px;
+      bottom: 16px;
+      z-index: 1000;
     }
 
-    .assistente-botao {
+    .assistant-btn {
+      background: #fff;
+      border: 2px solid #dbe3f1;
+      border-radius: 999px;
+      box-shadow: 0 12px 32px rgba(18, 53, 143, 0.16);
       display: flex;
       align-items: center;
       gap: 12px;
-      background: white;
-      color: var(--azul);
-      border: 2px solid #d9e2f3;
-      box-shadow: 0 12px 30px rgba(17,48,140,0.18);
-      border-radius: 999px;
-      padding: 10px 16px 10px 10px;
+      padding: 10px 15px 10px 10px;
       cursor: pointer;
       max-width: 260px;
     }
 
-    .assistente-botao img {
+    .assistant-btn img {
       width: 54px;
       height: 54px;
       object-fit: contain;
       border-radius: 50%;
-      background: linear-gradient(135deg, #eef4ff, #fff2ea);
+      background: linear-gradient(135deg, #eef4ff, #fff2e9);
       padding: 4px;
     }
 
-    .assistente-botao strong {
+    .assistant-btn strong {
       display: block;
+      color: var(--azul);
       font-size: 15px;
     }
 
-    .assistente-botao span {
+    .assistant-btn span {
       display: block;
+      color: #68748d;
       font-size: 13px;
-      color: #66748d;
     }
 
-    .painel-ajuda {
+    .assistant-panel {
       position: absolute;
       right: 0;
-      bottom: 78px;
-      width: 300px;
-      background: white;
-      border: 1px solid #dfe6f4;
+      bottom: 80px;
+      width: 320px;
+      background: #fff;
+      border: 1px solid #dfe6f3;
       border-radius: 20px;
-      box-shadow: 0 18px 50px rgba(17,48,140,0.20);
+      box-shadow: 0 20px 46px rgba(18, 53, 143, 0.18);
       padding: 18px;
       display: none;
     }
 
-    .painel-ajuda.ativo {
+    .assistant-panel.active {
       display: block;
     }
 
-    .painel-ajuda h4 {
+    .assistant-panel h4 {
       color: var(--azul);
       margin-bottom: 12px;
       font-size: 20px;
     }
 
-    .painel-ajuda a {
+    .assistant-option {
       display: block;
-      background: #f6f8fd;
-      border: 1px solid #e2e8f5;
+      width: 100%;
+      text-align: left;
+      border: 1px solid #e3e9f5;
+      background: #f8fafe;
       border-radius: 12px;
       padding: 12px 14px;
       margin-bottom: 10px;
-      color: #364663;
+      color: #34425f;
       font-weight: bold;
-      font-size: 14px;
+      cursor: pointer;
     }
 
-    .badge {
-      display: inline-block;
-      background: #eef3ff;
-      color: var(--azul);
-      border-radius: 999px;
-      padding: 7px 12px;
-      font-size: 12px;
-      font-weight: bold;
-      margin-bottom: 10px;
+    .assistant-text {
+      font-size: 13px;
+      color: #68748d;
+      line-height: 1.5;
+      margin-top: 8px;
     }
 
-    @media (max-width: 980px) {
-      .topo-principal .container {
+    @media (max-width: 1100px) {
+      .header-main .container {
+        grid-template-columns: 260px 1fr auto auto;
+      }
+
+      .grid-categories {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 900px) {
+      .header-main .container {
         grid-template-columns: 1fr;
       }
 
       .hero .container,
-      .contato-box,
-      .faixa-destaque {
+      .request-box,
+      .highlight {
         grid-template-columns: 1fr;
       }
 
-      .hero-texto h1 {
-        font-size: 38px;
+      .grid-systems,
+      .grid-products {
+        grid-template-columns: 1fr;
+      }
+
+      .grid-categories {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero h1 {
+        font-size: 36px;
+      }
+
+      .hero-card {
+        grid-template-columns: 1fr 150px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .topbar .container {
+        font-size: 13px;
+      }
+
+      .logo img {
+        max-height: 98px;
+      }
+
+      .hero {
+        padding-top: 32px;
+      }
+
+      .hero h1 {
+        font-size: 30px;
+      }
+
+      .hero p {
+        font-size: 16px;
       }
 
       .hero-card {
         grid-template-columns: 1fr;
-        text-align: center;
+        text-align: left;
       }
 
       .hero-card img {
         margin: 0 auto;
-      }
-    }
-
-    @media (max-width: 700px) {
-      .topo-faixa .container {
-        font-size: 13px;
+        max-width: 150px;
       }
 
-      .hero {
-        padding-top: 34px;
+      .grid-categories {
+        grid-template-columns: 1fr;
       }
 
-      .hero-texto h1 {
-        font-size: 31px;
+      .selector-row {
+        grid-template-columns: 1fr;
       }
 
-      .titulo-secao h2 {
-        font-size: 24px;
+      .assistant-panel {
+        width: 290px;
       }
 
-      .assistente {
-        right: 12px;
-        bottom: 12px;
-      }
-
-      .assistente-botao {
-        max-width: 220px;
-      }
-
-      .painel-ajuda {
-        width: 270px;
+      .assistant-btn {
+        max-width: 225px;
       }
     }
   </style>
 </head>
 <body>
 
-  <header class="topo">
-    <div class="topo-faixa">
-      <div class="container">
-        <div>Automação comercial e informática para sua empresa</div>
-        <div>WhatsApp: (94) 99262-7580 • Ourilândia do Norte - PA</div>
-      </div>
+  <div class="topbar">
+    <div class="container">
+      <div>Automação comercial e informática para sua empresa</div>
+      <div>WhatsApp: (94) 99262-7580 • Ourilândia do Norte - PA</div>
     </div>
+  </div>
 
-    <div class="topo-principal">
+  <header class="header">
+    <div class="header-main">
       <div class="container">
-        <a href="#" class="logo">
-          <img src="logo-dominio.png" alt="Domínio Informática">
+        <a href="index.html" class="logo">
+          <img src="logo-dominio.png" alt="Domínio Informática" />
         </a>
 
-        <div class="busca">
-          <input type="text" id="campoBusca" placeholder="Busque por mouse, impressora, bobina, roteador...">
-          <button onclick="buscarProduto()">Buscar</button>
+        <div class="searchbar">
+          <input type="text" id="searchInput" placeholder="Busque por bobina, toner, teclado, EasySAC..." />
+          <button onclick="buscarItem()">Buscar</button>
         </div>
 
-        <div class="topo-icone" onclick="abrirCarrinho()">🛒 Carrinho</div>
-        <a class="topo-icone" href="https://wa.me/5594992627580" target="_blank">💬 Atendimento</a>
+        <div class="header-btn" onclick="abrirCarrinho()">🛒 Carrinho</div>
+        <a class="header-btn" href="https://wa.me/5594992627580?text=Olá! Quero atendimento da Domínio Informática." target="_blank">💬 Atendimento</a>
       </div>
     </div>
 
     <nav class="menu">
       <div class="container">
         <a href="#inicio">Início</a>
-        <a href="#automacao">Automação Comercial</a>
+        <a href="#sistemas">Soluções</a>
         <a href="#categorias">Categorias</a>
-        <a href="#destaques">Destaques</a>
+        <a href="#produtos">Produtos</a>
+        <a href="#encomenda">Encomenda</a>
         <a href="#contato">Contato</a>
       </div>
     </nav>
@@ -668,323 +707,389 @@
 
   <section class="hero" id="inicio">
     <div class="container">
-      <div class="hero-texto">
-        <span class="badge">Tecnologia • Automação • Informática</span>
+      <div>
+        <span class="badge">Tecnologia • Automação • Estoque local</span>
         <h1>Automação comercial e informática para sua empresa</h1>
         <p>
-          Soluções para mercados, restaurantes, postos e lojas, além de produtos
-          de informática, rede, impressão, periféricos e automação comercial.
+          Soluções para mercados, restaurantes e lojas, além de produtos de informática,
+          impressão, automação comercial e acessórios para o seu dia a dia.
         </p>
 
-        <div class="hero-botoes">
-          <a href="#automacao" class="btn btn-laranja">Ver soluções</a>
-          <a href="https://wa.me/5594992627580" target="_blank" class="btn btn-branco">Falar no WhatsApp</a>
+        <div class="hero-actions">
+          <a href="#sistemas" class="btn btn-orange">Ver soluções</a>
+          <a href="#produtos" class="btn btn-white">Ver produtos</a>
         </div>
       </div>
 
       <div class="hero-card">
         <div>
-          <h2>DomBot chegou na área 🤖</h2>
+          <h2>DomBot chegou 🤖</h2>
           <p>
-            Seu assistente da Domínio Informática. Veja soluções, descubra produtos
-            e fale com a loja rapidinho.
+            Seu assistente da Domínio Informática. Tire dúvidas, encontre produtos
+            e fale com a loja com mais rapidez.
           </p>
-          <span class="cupom">Clique no DomBot no canto para pedir ajuda</span>
+          <span class="tag">Clique no DomBot no canto para começar</span>
         </div>
-        <img src="dombot.png" alt="DomBot segurando notebook">
+        <img src="dombot.png" alt="DomBot" />
       </div>
     </div>
   </section>
 
-  <section class="secao" id="automacao">
+  <section class="section" id="sistemas">
     <div class="container">
-      <div class="titulo-secao">
-        <div>
-          <h2>Soluções para o seu negócio</h2>
-          <p>Escolha o sistema ideal para cada tipo de empresa</p>
-        </div>
+      <div class="section-title">
+        <h2>Soluções para o seu negócio</h2>
+        <p>Clique e saiba mais sobre cada sistema na mesma aba</p>
       </div>
 
-      <div class="grade-solucoes">
-        <div class="card solucao" id="easy-sac">
-          <span class="tag">Mercados</span>
+      <div class="grid-systems">
+        <div class="card system-card">
+          <span class="system-badge">Mercados</span>
           <h3>EasySAC</h3>
-          <p>Automação comercial para mercados com mais controle, organização e agilidade no atendimento.</p>
+          <p>Automação comercial para mercados com foco em caixa, estoque, balança e gestão.</p>
           <ul>
             <li>Frente de caixa</li>
             <li>Controle de estoque</li>
             <li>Balança e etiquetas</li>
-            <li>Gestão de vendas</li>
+            <li>Relatórios e gestão</li>
           </ul>
-          <div class="acoes-card">
-            <a href="#detalhe-easysac" class="mini-btn azul">Saiba mais</a>
-            <a href="https://wa.me/5594992627580?text=Olá! Quero saber mais sobre o EasySAC." target="_blank" class="mini-btn laranja">Solicitar atendimento</a>
+          <div class="actions">
+            <a href="easysac.html" class="mini-btn mini-blue">Saiba mais</a>
+            <a href="https://wa.me/5594992627580?text=Olá! Quero saber mais sobre o EasySAC." target="_blank" class="mini-btn mini-light">Solicitar atendimento</a>
           </div>
         </div>
 
-        <div class="card solucao" id="easy-chef">
-          <span class="tag">Restaurantes</span>
+        <div class="card system-card">
+          <span class="system-badge">Restaurantes</span>
           <h3>EasyChef</h3>
-          <p>Solução para restaurantes, lanchonetes e bares com foco em atendimento, mesas e pedidos.</p>
+          <p>Solução para restaurantes, bares e lanchonetes com foco em pedidos, mesas e atendimento.</p>
           <ul>
             <li>Controle de mesas</li>
             <li>Pedidos e comandas</li>
             <li>Agilidade no atendimento</li>
             <li>Relatórios de vendas</li>
           </ul>
-          <div class="acoes-card">
-            <a href="#detalhe-easychef" class="mini-btn azul">Saiba mais</a>
-            <a href="https://wa.me/5594992627580?text=Olá! Quero saber mais sobre o EasyChef." target="_blank" class="mini-btn laranja">Solicitar atendimento</a>
+          <div class="actions">
+            <a href="easychef.html" class="mini-btn mini-blue">Saiba mais</a>
+            <a href="https://wa.me/5594992627580?text=Olá! Quero saber mais sobre o EasyChef." target="_blank" class="mini-btn mini-light">Solicitar atendimento</a>
           </div>
         </div>
 
-        <div class="card solucao" id="easy-gas">
-          <span class="tag">Postos</span>
-          <h3>EasyGás</h3>
-          <p>Ferramenta voltada para postos, facilitando gestão, controle e automação do negócio.</p>
-          <ul>
-            <li>Controle operacional</li>
-            <li>Gestão de vendas</li>
-            <li>Organização financeira</li>
-            <li>Mais praticidade</li>
-          </ul>
-          <div class="acoes-card">
-            <a href="#detalhe-easygas" class="mini-btn azul">Saiba mais</a>
-            <a href="https://wa.me/5594992627580?text=Olá! Quero saber mais sobre o EasyGás." target="_blank" class="mini-btn laranja">Solicitar atendimento</a>
-          </div>
-        </div>
-
-        <div class="card solucao" id="easy-pdv">
-          <span class="tag">Lojas</span>
+        <div class="card system-card">
+          <span class="system-badge">Lojas</span>
           <h3>EasyPDV</h3>
-          <p>Sistema para lojas e comércios em geral com foco em caixa, vendas, produtos e clientes.</p>
+          <p>Sistema para lojas e comércios com foco em vendas, cadastro de produtos e gestão do caixa.</p>
           <ul>
             <li>Controle de vendas</li>
             <li>Cadastro de produtos</li>
             <li>Cadastro de clientes</li>
-            <li>Relatórios e gestão</li>
+            <li>Relatórios e controle</li>
           </ul>
-          <div class="acoes-card">
-            <a href="#detalhe-easypdv" class="mini-btn azul">Saiba mais</a>
-            <a href="https://wa.me/5594992627580?text=Olá! Quero saber mais sobre o EasyPDV." target="_blank" class="mini-btn laranja">Solicitar atendimento</a>
+          <div class="actions">
+            <a href="easypdv.html" class="mini-btn mini-blue">Saiba mais</a>
+            <a href="https://wa.me/5594992627580?text=Olá! Quero saber mais sobre o EasyPDV." target="_blank" class="mini-btn mini-light">Solicitar atendimento</a>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="secao" id="categorias">
+  <section class="section" id="categorias">
     <div class="container">
-      <div class="titulo-secao">
-        <div>
-          <h2>Categorias em destaque</h2>
-          <p>Os principais focos da Domínio Informática</p>
-        </div>
+      <div class="section-title">
+        <h2>Categorias em destaque</h2>
+        <p>Os principais focos da Domínio Informática</p>
       </div>
 
-      <div class="grade-categorias">
-        <div class="card categoria">
-          <div class="icone-cat">⚙️</div>
+      <div class="grid-categories">
+        <div class="card category-card">
+          <div class="category-icon">⚙️</div>
           <h3>Automação</h3>
-          <p>Bobinas, etiquetas, balanças, leitores, impressoras térmicas e muito mais.</p>
+          <p>Bobinas, etiquetas, leitores, balanças, impressoras térmicas e suprimentos.</p>
         </div>
 
-        <div class="card categoria">
-          <div class="icone-cat">💻</div>
+        <div class="card category-card">
+          <div class="category-icon">💻</div>
           <h3>Informática</h3>
-          <p>Teclados, mouse, computadores, monitores, SSD, memórias e acessórios.</p>
+          <p>Computadores, teclados, mouse, monitores, SSD, memórias e acessórios.</p>
         </div>
 
-        <div class="card categoria">
-          <div class="icone-cat">🌐</div>
-          <h3>Rede e Internet</h3>
-          <p>Roteadores, access points, switches, cabos e soluções de conectividade.</p>
-        </div>
-
-        <div class="card categoria">
-          <div class="icone-cat">🎮</div>
-          <h3>Gamer</h3>
-          <p>Mouse gamer, headset, mousepad e periféricos para setup.</p>
-        </div>
-
-        <div class="card categoria">
-          <div class="icone-cat">🖨️</div>
+        <div class="card category-card">
+          <div class="category-icon">🖨️</div>
           <h3>Impressão</h3>
-          <p>Impressoras, toners, tintas, papel e suprimentos para escritório.</p>
+          <p>Impressoras, toners, tintas, formulários e suprimentos para escritório.</p>
+        </div>
+
+        <div class="card category-card">
+          <div class="category-icon">🌐</div>
+          <h3>Rede</h3>
+          <p>Roteadores, switch, access point, cabos e conectividade para empresas.</p>
+        </div>
+
+        <div class="card category-card">
+          <div class="category-icon">🎮</div>
+          <h3>Periféricos</h3>
+          <p>Mouse gamer, headset, teclado, mousepad e acessórios para setup.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="secao" id="destaques">
+  <section class="section" id="produtos">
     <div class="container">
-      <div class="titulo-secao">
-        <div>
-          <h2>Produtos em destaque</h2>
-          <p>Exemplos de itens que sua loja já trabalha</p>
-        </div>
+      <div class="section-title">
+        <h2>Produtos teste no site</h2>
+        <p>Sem preços por enquanto, com estoque e consulta direta</p>
       </div>
 
-      <div class="grade-produtos">
-        <div class="card produto">
-          <div class="produto-topo">🧾</div>
-          <div class="produto-info">
-            <h3>Bobina térmica</h3>
-            <p>Ideal para automação comercial, cupons e operação de caixa.</p>
-            <div class="produto-acoes">
-              <button class="mini-btn azul" onclick="adicionarCarrinho('Bobina térmica')">Adicionar</button>
-              <a class="mini-btn laranja" href="https://wa.me/5594992627580?text=Olá! Quero saber o valor da bobina térmica." target="_blank">Consultar</a>
+      <div class="grid-products">
+
+        <div class="card product-card">
+          <div class="product-top">🧾</div>
+          <span class="stock-badge">Estoque: 42 unidades • 6 caixas</span>
+          <h3>Bobina térmica para máquina de cartão</h3>
+          <p>Produto de teste para consulta, orçamento e organização de pedido pelo site.</p>
+
+          <div class="product-meta">
+            <div><strong>Venda:</strong> unidade e caixa</div>
+            <div><strong>Caixa:</strong> 30 unidades</div>
+          </div>
+
+          <div class="selector-group">
+            <label>Selecione</label>
+            <div class="selector-row">
+              <select id="tipo-bobina-cartao">
+                <option value="unidade">Unidade</option>
+                <option value="caixa">Caixa</option>
+              </select>
+              <input type="number" id="qtd-bobina-cartao" min="1" value="1" />
             </div>
+          </div>
+
+          <div class="actions">
+            <button class="mini-btn mini-blue" onclick="adicionarCarrinho('Bobina térmica para máquina de cartão','tipo-bobina-cartao','qtd-bobina-cartao')">Adicionar</button>
+            <a class="mini-btn mini-light" href="https://wa.me/5594992627580?text=Olá! Quero consultar a bobina térmica para máquina de cartão." target="_blank">Consultar</a>
           </div>
         </div>
 
-        <div class="card produto">
-          <div class="produto-topo">🏷️</div>
-          <div class="produto-info">
-            <h3>Etiquetas para balança</h3>
-            <p>Etiquetas térmicas para automação e identificação de produtos.</p>
-            <div class="produto-acoes">
-              <button class="mini-btn azul" onclick="adicionarCarrinho('Etiquetas para balança')">Adicionar</button>
-              <a class="mini-btn laranja" href="https://wa.me/5594992627580?text=Olá! Quero saber o valor das etiquetas para balança." target="_blank">Consultar</a>
+        <div class="card product-card">
+          <div class="product-top">🏷️</div>
+          <span class="stock-badge">Estoque: 28 unidades • 4 caixas</span>
+          <h3>Bobina de etiqueta</h3>
+          <p>Ideal para balança, identificação e automação comercial em mercados e lojas.</p>
+
+          <div class="product-meta">
+            <div><strong>Venda:</strong> unidade e caixa</div>
+            <div><strong>Caixa:</strong> 12 unidades</div>
+          </div>
+
+          <div class="selector-group">
+            <label>Selecione</label>
+            <div class="selector-row">
+              <select id="tipo-bobina-etiqueta">
+                <option value="unidade">Unidade</option>
+                <option value="caixa">Caixa</option>
+              </select>
+              <input type="number" id="qtd-bobina-etiqueta" min="1" value="1" />
             </div>
+          </div>
+
+          <div class="actions">
+            <button class="mini-btn mini-blue" onclick="adicionarCarrinho('Bobina de etiqueta','tipo-bobina-etiqueta','qtd-bobina-etiqueta')">Adicionar</button>
+            <a class="mini-btn mini-light" href="https://wa.me/5594992627580?text=Olá! Quero consultar a bobina de etiqueta." target="_blank">Consultar</a>
           </div>
         </div>
 
-        <div class="card produto">
-          <div class="produto-topo">⌨️</div>
-          <div class="produto-info">
-            <h3>Teclados e combos</h3>
-            <p>Teclados, kits com mouse e opções para escritório e uso diário.</p>
-            <div class="produto-acoes">
-              <button class="mini-btn azul" onclick="adicionarCarrinho('Teclados e combos')">Adicionar</button>
-              <a class="mini-btn laranja" href="https://wa.me/5594992627580?text=Olá! Quero ver os modelos de teclados e combos." target="_blank">Consultar</a>
+        <div class="card product-card">
+          <div class="product-top">🏪</div>
+          <span class="stock-badge">Estoque: 35 unidades • 5 caixas</span>
+          <h3>Bobina de gôndola</h3>
+          <p>Suprimento de teste para organização e exposição de produtos no comércio.</p>
+
+          <div class="product-meta">
+            <div><strong>Venda:</strong> unidade e caixa</div>
+            <div><strong>Caixa:</strong> 10 unidades</div>
+          </div>
+
+          <div class="selector-group">
+            <label>Selecione</label>
+            <div class="selector-row">
+              <select id="tipo-bobina-gondola">
+                <option value="unidade">Unidade</option>
+                <option value="caixa">Caixa</option>
+              </select>
+              <input type="number" id="qtd-bobina-gondola" min="1" value="1" />
             </div>
+          </div>
+
+          <div class="actions">
+            <button class="mini-btn mini-blue" onclick="adicionarCarrinho('Bobina de gôndola','tipo-bobina-gondola','qtd-bobina-gondola')">Adicionar</button>
+            <a class="mini-btn mini-light" href="https://wa.me/5594992627580?text=Olá! Quero consultar a bobina de gôndola." target="_blank">Consultar</a>
           </div>
         </div>
 
-        <div class="card produto">
-          <div class="produto-topo">🖱️</div>
-          <div class="produto-info">
-            <h3>Mouse e mouse gamer</h3>
-            <p>Modelos para trabalho, setup gamer e uso do dia a dia.</p>
-            <div class="produto-acoes">
-              <button class="mini-btn azul" onclick="adicionarCarrinho('Mouse e mouse gamer')">Adicionar</button>
-              <a class="mini-btn laranja" href="https://wa.me/5594992627580?text=Olá! Quero ver os modelos de mouse e mouse gamer." target="_blank">Consultar</a>
+        <div class="card product-card">
+          <div class="product-top">🖨️</div>
+          <span class="stock-badge">Estoque: 18 unidades • 3 caixas</span>
+          <h3>Bobina de impressora</h3>
+          <p>Item de teste para pedidos e consultas no site da Domínio Informática.</p>
+
+          <div class="product-meta">
+            <div><strong>Venda:</strong> unidade e caixa</div>
+            <div><strong>Caixa:</strong> 20 unidades</div>
+          </div>
+
+          <div class="selector-group">
+            <label>Selecione</label>
+            <div class="selector-row">
+              <select id="tipo-bobina-impressora">
+                <option value="unidade">Unidade</option>
+                <option value="caixa">Caixa</option>
+              </select>
+              <input type="number" id="qtd-bobina-impressora" min="1" value="1" />
             </div>
+          </div>
+
+          <div class="actions">
+            <button class="mini-btn mini-blue" onclick="adicionarCarrinho('Bobina de impressora','tipo-bobina-impressora','qtd-bobina-impressora')">Adicionar</button>
+            <a class="mini-btn mini-light" href="https://wa.me/5594992627580?text=Olá! Quero consultar a bobina de impressora." target="_blank">Consultar</a>
           </div>
         </div>
 
-        <div class="card produto">
-          <div class="produto-topo">📶</div>
-          <div class="produto-info">
-            <h3>Roteadores e rede</h3>
-            <p>Roteadores, switch, access point e acessórios de rede.</p>
-            <div class="produto-acoes">
-              <button class="mini-btn azul" onclick="adicionarCarrinho('Roteadores e rede')">Adicionar</button>
-              <a class="mini-btn laranja" href="https://wa.me/5594992627580?text=Olá! Quero ver os produtos de rede e internet." target="_blank">Consultar</a>
+        <div class="card product-card">
+          <div class="product-top">📄</div>
+          <span class="stock-badge">Estoque: 9 caixas</span>
+          <h3>Formulário contínuo</h3>
+          <p>Esse produto de teste é vendido somente em caixa.</p>
+
+          <div class="product-meta">
+            <div><strong>Venda:</strong> somente caixa</div>
+            <div><strong>Tipo:</strong> formulário contínuo</div>
+          </div>
+
+          <div class="selector-group">
+            <label>Quantidade de caixas</label>
+            <div class="selector-row">
+              <select disabled>
+                <option>Caixa</option>
+              </select>
+              <input type="number" id="qtd-formulario" min="1" value="1" />
             </div>
+          </div>
+
+          <div class="actions">
+            <button class="mini-btn mini-blue" onclick="adicionarCarrinhoCaixa('Formulário contínuo','qtd-formulario')">Adicionar</button>
+            <a class="mini-btn mini-light" href="https://wa.me/5594992627580?text=Olá! Quero consultar o formulário contínuo." target="_blank">Consultar</a>
           </div>
         </div>
 
-        <div class="card produto">
-          <div class="produto-topo">🖨️</div>
-          <div class="produto-info">
-            <h3>Impressoras e tintas</h3>
-            <p>Impressoras, toners, tintas e suprimentos para impressão.</p>
-            <div class="produto-acoes">
-              <button class="mini-btn azul" onclick="adicionarCarrinho('Impressoras e tintas')">Adicionar</button>
-              <a class="mini-btn laranja" href="https://wa.me/5594992627580?text=Olá! Quero ver impressoras, toners e tintas." target="_blank">Consultar</a>
+        <div class="card product-card">
+          <div class="product-top">🧴</div>
+          <span class="stock-badge">Estoque: 14 unidades</span>
+          <h3>Toner para impressora</h3>
+          <p>Produto de teste. Depois você pode incluir a regra de atacado a partir de 5 unidades.</p>
+
+          <div class="product-meta">
+            <div><strong>Venda:</strong> unidade</div>
+            <div><strong>Observação:</strong> consultar disponibilidade</div>
+          </div>
+
+          <div class="selector-group">
+            <label>Quantidade</label>
+            <div class="selector-row">
+              <select disabled>
+                <option>Unidade</option>
+              </select>
+              <input type="number" id="qtd-toner" min="1" value="1" />
             </div>
           </div>
+
+          <div class="actions">
+            <button class="mini-btn mini-blue" onclick="adicionarCarrinhoUnidade('Toner para impressora','qtd-toner')">Adicionar</button>
+            <a class="mini-btn mini-light" href="https://wa.me/5594992627580?text=Olá! Quero consultar o toner para impressora." target="_blank">Consultar</a>
+          </div>
         </div>
+
       </div>
     </div>
   </section>
 
-  <section class="secao">
+  <section class="section">
     <div class="container">
-      <div class="faixa-destaque">
+      <div class="highlight">
         <div>
           <h3>Monte seu pedido e finalize no WhatsApp</h3>
+          <p>Adicione os itens ao carrinho e envie sua solicitação direto para a loja.</p>
+        </div>
+        <div>
+          <a href="#" class="btn btn-white" onclick="abrirCarrinho()">Ver carrinho</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="encomenda">
+    <div class="container">
+      <div class="section-title">
+        <h2>Não encontrou o que queria?</h2>
+        <p>Peça aqui sua encomenda ou informe o produto que você procura</p>
+      </div>
+
+      <div class="request-box">
+        <div class="card info-card">
+          <h3>Faça sua encomenda</h3>
           <p>
-            Adicione os itens ao carrinho e envie tudo direto para a Domínio Informática.
+            Você pode informar o produto desejado e falar com a nossa equipe.
+            Isso ajuda a gente a entender o que está sendo mais procurado também.
           </p>
+          <br>
+          <input type="text" id="produto-encomenda" placeholder="Ex.: impressora X, notebook Y, checkout de mercado..." />
+          <br><br>
+          <textarea id="obs-encomenda" placeholder="Descreva melhor o que você precisa"></textarea>
+          <br>
+          <div class="actions">
+            <button class="mini-btn mini-blue" onclick="enviarEncomenda()">Enviar encomenda</button>
+          </div>
         </div>
-        <div>
-          <a href="#" class="btn btn-branco" onclick="abrirCarrinho()">Ver carrinho</a>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <section class="secao" id="detalhe-easysac">
-    <div class="container">
-      <div class="card contato-card">
-        <h3>EasySAC — solução para mercados</h3>
-        <p>Perfeito para mercados que precisam de mais controle no caixa, estoque, balança e vendas.</p>
-        <p><strong>Equipamentos que combinam:</strong> leitores, impressora térmica, etiquetas, balança, gaveta de dinheiro.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="secao" id="detalhe-easychef">
-    <div class="container">
-      <div class="card contato-card">
-        <h3>EasyChef — solução para restaurantes</h3>
-        <p>Ideal para pedidos, mesas, atendimento e organização da operação no dia a dia.</p>
-        <p><strong>Equipamentos que combinam:</strong> computador, monitor, impressora, teclado e mouse.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="secao" id="detalhe-easygas">
-    <div class="container">
-      <div class="card contato-card">
-        <h3>EasyGás — solução para postos</h3>
-        <p>Voltado para organização e controle do negócio, trazendo mais praticidade para a gestão.</p>
-        <p><strong>Equipamentos que combinam:</strong> computador, impressora e soluções de atendimento.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="secao" id="detalhe-easypdv">
-    <div class="container">
-      <div class="card contato-card">
-        <h3>EasyPDV — solução para lojas</h3>
-        <p>Excelente para comércios e lojas que precisam de caixa, cadastro de produtos, clientes e relatórios.</p>
-        <p><strong>Equipamentos que combinam:</strong> leitor, impressora, gaveta, nobreak e computador.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="secao" id="contato">
-    <div class="container">
-      <div class="titulo-secao">
-        <div>
-          <h2>Fale com a Domínio Informática</h2>
-          <p>Atendimento para empresas e clientes finais</p>
-        </div>
-      </div>
-
-      <div class="contato-box">
-        <div class="card contato-card">
-          <h3>Contato</h3>
+        <div class="card info-card">
+          <h3>Atendimento da loja</h3>
           <p><strong>WhatsApp:</strong> (94) 99262-7580</p>
           <p><strong>Instagram:</strong> @dominioinformatica2023</p>
           <p><strong>Cidade:</strong> Ourilândia do Norte - PA</p>
-          <p><strong>Horário:</strong> Segunda a sexta, 08h às 18h</p>
+          <p><strong>Segunda a sexta:</strong> 08h às 18h</p>
           <p><strong>Almoço:</strong> 11h às 13h</p>
           <p><strong>Sábado:</strong> 08h às 12h</p>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="card contato-card">
-          <h3>Atendemos</h3>
+  <section class="section" id="contato">
+    <div class="container">
+      <div class="section-title">
+        <h2>Fale com a Domínio Informática</h2>
+        <p>Atendimento para empresas e clientes finais</p>
+      </div>
+
+      <div class="request-box">
+        <div class="card info-card">
+          <h3>Contato rápido</h3>
+          <p>Se você precisar de ajuda com automação comercial, produtos ou orçamento, fale com a gente.</p>
+          <br>
+          <div class="actions">
+            <a class="mini-btn mini-blue" href="https://wa.me/5594992627580?text=Olá! Quero atendimento da Domínio Informática." target="_blank">Chamar no WhatsApp</a>
+            <a class="mini-btn mini-light" href="https://www.instagram.com/dominioinformatica2023" target="_blank">Abrir Instagram</a>
+          </div>
+        </div>
+
+        <div class="card info-card">
+          <h3>Segmentos atendidos</h3>
           <p>✅ Mercados</p>
           <p>✅ Restaurantes</p>
-          <p>✅ Postos</p>
           <p>✅ Lojas em geral</p>
-          <p>✅ Empresas e clientes finais</p>
-          <a href="https://wa.me/5594992627580?text=Olá! Quero atendimento da Domínio Informática." target="_blank" class="btn btn-laranja" style="margin-top:12px;">Chamar no WhatsApp</a>
+          <p>✅ Empresas</p>
+          <p>✅ Clientes finais</p>
         </div>
       </div>
     </div>
@@ -997,17 +1102,28 @@
     </div>
   </footer>
 
-  <div class="assistente">
-    <div class="painel-ajuda" id="painelAjuda">
+  <div class="assistant">
+    <div class="assistant-panel" id="assistantPanel">
       <h4>Olá! Eu sou o DomBot 🤖</h4>
-      <a href="#automacao">Ver automação comercial</a>
-      <a href="#destaques">Ver produtos em destaque</a>
-      <a href="https://wa.me/5594992627580?text=Olá! Preciso de ajuda para escolher produtos." target="_blank">Falar no WhatsApp</a>
-      <a href="#contato">Horário e contato</a>
+
+      <button class="assistant-option" onclick="window.location.href='easysac.html'">Quero ver solução para mercado</button>
+      <button class="assistant-option" onclick="window.location.href='easychef.html'">Quero ver solução para restaurante</button>
+      <button class="assistant-option" onclick="window.location.href='easypdv.html'">Quero ver solução para loja</button>
+      <button class="assistant-option" onclick="document.getElementById('produtos').scrollIntoView()">Quero ver produtos</button>
+      <button class="assistant-option" onclick="document.getElementById('encomenda').scrollIntoView()">Quero fazer encomenda</button>
+      <button class="assistant-option" onclick="window.open('https://wa.me/5594992627580?text=Olá! Preciso de ajuda da Domínio Informática.','_blank')">Quero falar no WhatsApp</button>
+
+      <div class="assistant-text">
+        Está com alguma dúvida? No próximo passo a gente pode transformar isso em perguntas frequentes reais do site.
+      </div>
+      <br>
+      <input type="text" id="duvidaCliente" placeholder="Escreva sua dúvida aqui" />
+      <br><br>
+      <button class="mini-btn mini-blue" onclick="enviarDuvida()">Enviar dúvida</button>
     </div>
 
-    <div class="assistente-botao" onclick="toggleAjuda()">
-      <img src="dombot.png" alt="DomBot">
+    <div class="assistant-btn" onclick="toggleAssistant()">
+      <img src="dombot.png" alt="DomBot" />
       <div>
         <strong>Precisa de ajuda?</strong>
         <span>Clique e fale com o DomBot</span>
@@ -1018,9 +1134,23 @@
   <script>
     let carrinho = [];
 
-    function adicionarCarrinho(produto) {
-      carrinho.push(produto);
-      alert(produto + " foi adicionado ao carrinho.");
+    function adicionarCarrinho(nome, tipoId, qtdId) {
+      const tipo = document.getElementById(tipoId).value;
+      const qtd = document.getElementById(qtdId).value;
+      carrinho.push({ nome, tipo, qtd });
+      alert(nome + " adicionado ao carrinho.");
+    }
+
+    function adicionarCarrinhoCaixa(nome, qtdId) {
+      const qtd = document.getElementById(qtdId).value;
+      carrinho.push({ nome, tipo: "caixa", qtd });
+      alert(nome + " adicionado ao carrinho.");
+    }
+
+    function adicionarCarrinhoUnidade(nome, qtdId) {
+      const qtd = document.getElementById(qtdId).value;
+      carrinho.push({ nome, tipo: "unidade", qtd });
+      alert(nome + " adicionado ao carrinho.");
     }
 
     function abrirCarrinho() {
@@ -1029,50 +1159,90 @@
         return;
       }
 
-      const itens = carrinho.map((item, index) => (index + 1) + ". " + item).join("%0A");
-      const mensagem = "Olá! Quero fazer um pedido:%0A%0A" + itens;
+      let mensagem = "Olá! Quero consultar estes itens:%0A%0A";
+      carrinho.forEach((item, i) => {
+        mensagem += (i + 1) + ". " + item.nome + "%0A";
+        mensagem += "Tipo: " + item.tipo + "%0A";
+        mensagem += "Quantidade: " + item.qtd + "%0A%0A";
+      });
+
       window.open("https://wa.me/5594992627580?text=" + mensagem, "_blank");
     }
 
-    function toggleAjuda() {
-      document.getElementById("painelAjuda").classList.toggle("ativo");
+    function enviarEncomenda() {
+      const produto = document.getElementById("produto-encomenda").value.trim();
+      const obs = document.getElementById("obs-encomenda").value.trim();
+
+      if (!produto) {
+        alert("Digite o produto que você procura.");
+        return;
+      }
+
+      let mensagem = "Olá! Quero fazer uma encomenda.%0A%0A";
+      mensagem += "Produto desejado: " + produto + "%0A";
+      if (obs) {
+        mensagem += "Observações: " + obs + "%0A";
+      }
+
+      window.open("https://wa.me/5594992627580?text=" + mensagem, "_blank");
     }
 
-    function buscarProduto() {
-      const termo = document.getElementById("campoBusca").value.trim().toLowerCase();
+    function toggleAssistant() {
+      document.getElementById("assistantPanel").classList.toggle("active");
+    }
+
+    function enviarDuvida() {
+      const duvida = document.getElementById("duvidaCliente").value.trim();
+
+      if (!duvida) {
+        alert("Escreva sua dúvida primeiro.");
+        return;
+      }
+
+      const mensagem = "Olá! Estou com esta dúvida no site:%0A%0A" + duvida;
+      window.open("https://wa.me/5594992627580?text=" + mensagem, "_blank");
+    }
+
+    function buscarItem() {
+      const termo = document.getElementById("searchInput").value.trim().toLowerCase();
 
       if (!termo) {
         alert("Digite algo para buscar.");
         return;
       }
 
-      const mapa = {
-        "bobina": "#destaques",
-        "etiqueta": "#destaques",
-        "mouse": "#destaques",
-        "teclado": "#destaques",
-        "impressora": "#destaques",
-        "roteador": "#categorias",
-        "rede": "#categorias",
-        "gamer": "#categorias",
-        "mercado": "#easy-sac",
-        "restaurante": "#easy-chef",
-        "posto": "#easy-gas",
-        "loja": "#easy-pdv",
-        "easychef": "#easy-chef",
-        "easysac": "#easy-sac",
-        "easygas": "#easy-gas",
-        "easypdv": "#easy-pdv"
-      };
-
-      for (const chave in mapa) {
-        if (termo.includes(chave)) {
-          window.location.href = mapa[chave];
-          return;
-        }
+      if (termo.includes("easysac") || termo.includes("mercado")) {
+        window.location.href = "easysac.html";
+        return;
       }
 
-      alert("Ainda não encontrei esse item na busca visual. Podemos melhorar isso depois com mais produtos cadastrados.");
+      if (termo.includes("easychef") || termo.includes("restaurante")) {
+        window.location.href = "easychef.html";
+        return;
+      }
+
+      if (termo.includes("easypdv") || termo.includes("loja")) {
+        window.location.href = "easypdv.html";
+        return;
+      }
+
+      if (
+        termo.includes("bobina") ||
+        termo.includes("toner") ||
+        termo.includes("formulário") ||
+        termo.includes("formulario") ||
+        termo.includes("etiqueta")
+      ) {
+        document.getElementById("produtos").scrollIntoView();
+        return;
+      }
+
+      if (termo.includes("encomenda") || termo.includes("pedido")) {
+        document.getElementById("encomenda").scrollIntoView();
+        return;
+      }
+
+      alert("Ainda não encontrei esse item na busca. Depois podemos deixar a busca mais avançada.");
     }
   </script>
 </body>
