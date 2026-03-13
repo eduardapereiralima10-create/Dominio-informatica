@@ -11,6 +11,7 @@
       --laranja:#ff6f1a;
       --cinza:#f4f6fb;
       --texto:#23314d;
+      --texto-suave:#5f6e8a;
       --borda:#dbe3f1;
       --raio:18px;
       --sombra:0 10px 28px rgba(18,53,143,.10);
@@ -21,7 +22,7 @@
     .container{width:min(1100px,92%);margin:0 auto}
     .top{background:#fff;border-bottom:1px solid #e7edf6}
     .top .container{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 0;flex-wrap:wrap}
-    .logo img{max-height:100px}
+    .logo img{max-height:120px;width:auto}
     .btn{display:inline-block;padding:12px 18px;border-radius:12px;font-weight:bold}
     .btn-blue{background:var(--azul);color:#fff}
     .btn-orange{background:var(--laranja);color:#fff}
@@ -33,17 +34,20 @@
     .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
     h2{color:var(--azul);font-size:28px;margin-bottom:14px}
     h3{color:var(--azul);font-size:22px;margin-bottom:10px}
-    p{line-height:1.7;color:#5f6e8a}
+    p{line-height:1.7;color:var(--texto-suave)}
     ul{margin-top:12px;display:grid;gap:8px;list-style:none;color:#334260}
     li::before{content:"✓ ";color:var(--laranja);font-weight:bold}
+    .mock-interface{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:14px}
+    .mock-screen{background:linear-gradient(135deg,#eef4ff,#fff2ea);border:1px solid #dfe6f3;border-radius:16px;padding:18px;min-height:150px}
+    .mock-screen strong{display:block;color:var(--azul);margin-bottom:8px}
     .faq-item{border:1px solid #e3e9f5;border-radius:14px;background:#f8fafe;margin-bottom:12px}
     .faq-q{padding:15px 16px;font-weight:bold;color:var(--azul);cursor:pointer}
     .faq-a{padding:0 16px 16px;display:none;color:#64748b;line-height:1.6}
     .faq-item.active .faq-a{display:block}
     @media (max-width:800px){
-      .grid{grid-template-columns:1fr}
+      .grid,.mock-interface{grid-template-columns:1fr}
       .hero h1{font-size:32px}
-      .logo img{max-height:90px}
+      .logo img{max-height:100px}
     }
   </style>
 </head>
@@ -61,7 +65,7 @@
   <section class="hero">
     <div class="container">
       <h1>EasySAC</h1>
-      <p>Automação comercial para mercados com mais controle, agilidade e organização no caixa, estoque, balança e gestão da operação.</p>
+      <p>Automação comercial para lojas com mais controle, organização de vendas, cadastro de produtos, clientes e gestão da operação.</p>
     </div>
   </section>
 
@@ -69,11 +73,7 @@
     <div class="container">
       <div class="card">
         <h2>Sobre o EasySAC</h2>
-        <p>
-          O EasySAC é ideal para mercados que precisam de uma solução mais completa
-          para organizar vendas, estoque, produtos e atendimento. Ele ajuda a deixar
-          a rotina mais prática e dá mais controle para o negócio.
-        </p>
+        <p>O EasySAC é ideal para lojas que precisam de uma solução para organizar vendas, produtos, clientes e atendimento, trazendo mais praticidade e controle para a rotina.</p>
       </div>
     </div>
   </section>
@@ -83,23 +83,37 @@
       <div class="card">
         <h3>Principais recursos</h3>
         <ul>
-          <li>Frente de caixa</li>
-          <li>Controle de estoque</li>
-          <li>Balança e etiquetas</li>
+          <li>Controle de vendas</li>
           <li>Cadastro de produtos</li>
-          <li>Relatórios e gestão</li>
+          <li>Cadastro de clientes</li>
+          <li>Relatórios gerenciais</li>
+          <li>Mais organização da rotina</li>
         </ul>
       </div>
 
       <div class="card">
-        <h3>Benefícios</h3>
+        <h3>Recursos e benefícios</h3>
         <ul>
-          <li>Mais agilidade no atendimento</li>
-          <li>Mais organização do estoque</li>
-          <li>Melhor controle da operação</li>
+          <li>Mais controle da operação</li>
+          <li>Atendimento mais organizado</li>
           <li>Mais praticidade no dia a dia</li>
-          <li>Suporte para automação do mercado</li>
+          <li>Mais visão do negócio</li>
+          <li>Melhor apoio para a gestão</li>
         </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="card">
+        <h2>Conheça a interface</h2>
+        <p>Depois vocês podem trocar esses blocos por prints reais do sistema.</p>
+        <div class="mock-interface">
+          <div class="mock-screen"><strong>Painel inicial</strong><span>Resumo da operação, vendas e controles principais.</span></div>
+          <div class="mock-screen"><strong>Cadastro e gestão</strong><span>Organização de produtos, clientes e rotina diária.</span></div>
+          <div class="mock-screen"><strong>Relatórios</strong><span>Visão mais clara do desempenho e da operação.</span></div>
+        </div>
       </div>
     </div>
   </section>
@@ -111,16 +125,16 @@
         <div class="grid">
           <div>
             <ul>
-              <li>Leitor de código de barras</li>
-              <li>Impressora térmica</li>
-              <li>Balança</li>
+              <li>Computador</li>
+              <li>Monitor</li>
+              <li>Teclado e mouse</li>
             </ul>
           </div>
           <div>
             <ul>
-              <li>Etiquetas térmicas</li>
-              <li>Bobinas</li>
-              <li>Gaveta de dinheiro</li>
+              <li>Impressora</li>
+              <li>Leitor de código de barras</li>
+              <li>Rede e internet</li>
             </ul>
           </div>
         </div>
@@ -135,17 +149,17 @@
 
         <div class="faq-item">
           <div class="faq-q" onclick="toggleFaq(this)">Para quem o EasySAC é indicado?</div>
-          <div class="faq-a">Para mercados que precisam de mais controle no caixa, estoque, balança e organização comercial.</div>
+          <div class="faq-a">Para lojas que precisam de mais controle nas vendas, produtos, clientes e atendimento.</div>
         </div>
 
         <div class="faq-item">
           <div class="faq-q" onclick="toggleFaq(this)">Posso usar com equipamentos de automação?</div>
-          <div class="faq-a">Sim. O sistema pode trabalhar junto com leitores, impressoras, balanças e outros equipamentos compatíveis.</div>
+          <div class="faq-a">Sim. A solução pode trabalhar com equipamentos compatíveis como leitor, impressora e itens de apoio.</div>
         </div>
 
         <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)">Como faço para saber se serve para meu negócio?</div>
-          <div class="faq-a">O melhor caminho é falar com a Domínio Informática para entender a sua necessidade e indicar a melhor solução.</div>
+          <div class="faq-q" onclick="toggleFaq(this)">Como saber se serve para meu negócio?</div>
+          <div class="faq-a">O melhor caminho é falar com a Domínio Informática para avaliar sua necessidade e indicar a melhor solução.</div>
         </div>
       </div>
     </div>
