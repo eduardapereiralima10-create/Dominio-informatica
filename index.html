@@ -4,678 +4,343 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Domínio Informática</title>
-  <meta name="description" content="Automação comercial e informática em Ourilândia do Norte. Soluções para mercados, restaurantes e lojas." />
+  <meta name="description" content="Automação comercial e informática para sua empresa em Ourilândia do Norte." />
   <style>
-    :root {
-      --azul: #12358f;
-      --azul-escuro: #0b1f66;
-      --laranja: #ff6f1a;
-      --laranja-claro: #ff8f4d;
-      --branco: #ffffff;
-      --cinza: #f4f6fb;
-      --texto: #23314d;
-      --borda: #dbe3f1;
-      --sombra: 0 10px 28px rgba(18, 53, 143, 0.10);
-      --raio: 18px;
+    :root{
+      --azul:#12358f;
+      --azul-escuro:#0b1f66;
+      --laranja:#ff6f1a;
+      --laranja-claro:#ff8f4d;
+      --branco:#ffffff;
+      --cinza:#f4f6fb;
+      --texto:#23314d;
+      --texto-suave:#66748d;
+      --borda:#dbe3f1;
+      --sombra:0 10px 28px rgba(18,53,143,.10);
+      --raio:18px;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:Arial,sans-serif;background:var(--cinza);color:var(--texto)}
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+    .container{width:min(1180px,92%);margin:0 auto}
+
+    .topbar{
+      background:linear-gradient(90deg,var(--azul),var(--azul-escuro));
+      color:#fff;
+      font-size:14px;
+    }
+    .topbar .container{
+      display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;
+      padding:10px 0;
     }
 
-    html {
-      scroll-behavior: smooth;
+    .header{
+      background:#fff;
+      border-bottom:1px solid #e6ebf5;
+      position:sticky;top:0;z-index:999;
+    }
+    .header-main{padding:14px 0}
+    .header-main .container{
+      display:grid;
+      grid-template-columns:380px minmax(0,1fr) 130px 130px;
+      gap:14px;
+      align-items:center;
+    }
+    .logo{display:flex;align-items:center}
+    .logo img{
+      max-height:165px;
+      width:auto;
     }
 
-    body {
-      font-family: Arial, sans-serif;
-      background: var(--cinza);
-      color: var(--texto);
+    .searchbar{
+      display:flex;
+      border:2px solid var(--borda);
+      background:#f7f9fd;
+      border-radius:14px;
+      overflow:hidden;
+      min-width:0;
+    }
+    .searchbar input{
+      flex:1;border:none;outline:none;background:transparent;
+      padding:15px 16px;font-size:15px;min-width:0;
+    }
+    .searchbar button{
+      border:none;background:var(--laranja);color:#fff;
+      padding:0 18px;font-weight:bold;cursor:pointer;
     }
 
-    a {
-      text-decoration: none;
-      color: inherit;
+    .header-btn{
+      border:2px solid var(--borda);
+      background:#f7f9fd;
+      color:var(--azul);
+      border-radius:14px;
+      padding:14px 12px;
+      font-weight:bold;
+      text-align:center;
+      cursor:pointer;
+      min-width:0;
     }
 
-    img {
-      display: block;
-      max-width: 100%;
+    .menu{background:var(--azul)}
+    .menu .container{
+      display:flex;gap:20px;overflow-x:auto;padding:13px 0;
+      scrollbar-width:none;
+    }
+    .menu .container::-webkit-scrollbar{display:none}
+    .menu a{
+      color:#fff;font-weight:bold;white-space:nowrap;font-size:15px;opacity:.96;
     }
 
-    .container {
-      width: min(1180px, 92%);
-      margin: 0 auto;
+    .hero{
+      background:linear-gradient(135deg,var(--azul),var(--azul-escuro));
+      color:#fff;
+      padding:42px 0 34px;
+      overflow:hidden;
+    }
+    .hero .container{
+      display:grid;
+      grid-template-columns:minmax(0,1.1fr) minmax(300px,.9fr);
+      gap:24px;
+      align-items:center;
+    }
+    .badge{
+      display:inline-block;
+      background:rgba(255,255,255,.14);
+      border:1px solid rgba(255,255,255,.18);
+      padding:8px 12px;border-radius:999px;
+      font-size:12px;font-weight:bold;margin-bottom:14px;
+    }
+    .hero h1{font-size:46px;line-height:1.08;margin-bottom:14px}
+    .hero p{font-size:18px;line-height:1.65;max-width:620px}
+    .hero-actions{margin-top:22px;display:flex;gap:12px;flex-wrap:wrap}
+    .btn{
+      display:inline-block;padding:14px 22px;border-radius:12px;font-weight:bold;
+      transition:.2s ease;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn-orange{background:var(--laranja);color:#fff}
+    .btn-white{background:#fff;color:var(--azul)}
+
+    .hero-card{
+      background:rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.16);
+      border-radius:24px;
+      padding:22px;
+      display:grid;
+      grid-template-columns:1fr 170px;
+      gap:14px;
+      align-items:center;
+      box-shadow:0 18px 42px rgba(0,0,0,.16);
+    }
+    .hero-card h2{font-size:24px;margin-bottom:10px}
+    .hero-card p{font-size:15px;line-height:1.6;margin-bottom:10px}
+    .hero-card .tag{
+      display:inline-block;background:var(--laranja);
+      padding:10px 12px;border-radius:10px;font-size:13px;font-weight:bold;
+    }
+    .hero-card .dombot-emoji{
+      width:170px;height:170px;border-radius:18px;
+      background:linear-gradient(135deg,#eef4ff,#fff2e9);
+      display:grid;place-items:center;font-size:84px;
+      margin-left:auto;
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.25);
     }
 
-    .topbar {
-      background: linear-gradient(90deg, var(--azul), var(--azul-escuro));
-      color: #fff;
-      font-size: 14px;
-    }
-
-    .topbar .container {
-      display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      padding: 10px 0;
-      flex-wrap: wrap;
-    }
-
-    .header {
-      background: #fff;
-      border-bottom: 1px solid #e6ebf5;
-      position: sticky;
-      top: 0;
-      z-index: 999;
-    }
-
-    .header-main {
-      padding: 14px 0;
-    }
-
-    .header-main .container {
-  display: grid;
-  grid-template-columns: 420px 1fr auto auto;
-  gap: 14px;
-  align-items: center;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-}
-
-.logo img {
-  max-height: 150px;
-  width: auto;
-}
-
-    .searchbar {
-      display: flex;
-      border: 2px solid #dbe3f1;
-      background: #f7f9fd;
-      border-radius: 14px;
-      overflow: hidden;
-    }
-
-    .searchbar input {
-      flex: 1;
-      border: none;
-      outline: none;
-      background: transparent;
-      padding: 15px 16px;
-      font-size: 15px;
-    }
-
-    .searchbar button {
-      border: none;
-      background: var(--laranja);
-      color: #fff;
-      padding: 0 18px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .header-btn {
-      border: 2px solid #dbe3f1;
-      background: #f7f9fd;
-      color: var(--azul);
-      border-radius: 14px;
-      padding: 14px 16px;
-      font-weight: bold;
-      text-align: center;
-      min-width: 110px;
-      cursor: pointer;
-    }
-
-    .menu {
-      background: var(--azul);
-    }
-
-    .menu .container {
-      display: flex;
-      gap: 20px;
-      overflow-x: auto;
-      padding: 13px 0;
-    }
-
-    .menu a {
-      color: #fff;
-      white-space: nowrap;
-      font-weight: bold;
-      opacity: 0.96;
-      font-size: 15px;
-    }
-
-    .hero {
-      background: linear-gradient(135deg, var(--azul), var(--azul-escuro));
-      color: #fff;
-      padding: 44px 0 34px;
-      overflow: hidden;
-    }
-
-   .hero .container {
-  display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
-  gap: 24px;
-  align-items: center;
-}
-
-    .badge {
-      display: inline-block;
-      background: rgba(255,255,255,0.14);
-      border: 1px solid rgba(255,255,255,0.18);
-      color: #fff;
-      padding: 8px 12px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: bold;
-      margin-bottom: 14px;
-    }
-
-    .hero h1 {
-      font-size: 46px;
-      line-height: 1.08;
-      margin-bottom: 14px;
-    }
-
-    .hero p {
-      font-size: 18px;
-      line-height: 1.65;
-      max-width: 620px;
-    }
-
-    .hero-actions {
-      margin-top: 22px;
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 14px 22px;
-      border-radius: 12px;
-      font-weight: bold;
-      transition: 0.2s ease;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-    }
-
-    .btn-orange {
-      background: var(--laranja);
-      color: #fff;
-    }
-
-    .btn-white {
-      background: #fff;
-      color: var(--azul);
-    }
-
-    .hero-card {
-      background: rgba(255,255,255,0.10);
-      border: 1px solid rgba(255,255,255,0.16);
-      border-radius: 24px;
-      padding: 22px;
-      display: grid;
-      grid-template-columns: 1fr 180px;
-      align-items: center;
-      gap: 14px;
-      box-shadow: 0 18px 42px rgba(0,0,0,0.16);
-    }
-
-    .hero-card h2 {
-      font-size: 24px;
-      margin-bottom: 10px;
-    }
-
-    .hero-card p {
-      font-size: 15px;
-      line-height: 1.6;
-      margin-bottom: 10px;
-    }
-
-    .hero-card .tag {
-      display: inline-block;
-      background: var(--laranja);
-      padding: 10px 12px;
-      border-radius: 10px;
-      font-size: 13px;
-      font-weight: bold;
-    }
-
-    .hero-card img {
-      width: 100%;
-      max-width: 170px;
-      margin-left: auto;
-      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.20));
-    }
-
-    .section {
-      padding: 34px 0;
-    }
-
-    .section-title {
-      margin-bottom: 18px;
-    }
-
-    .section-title h2 {
-      font-size: 30px;
-      color: var(--azul);
-      margin-bottom: 6px;
-    }
-
-    .section-title p {
-      color: #68748d;
-      font-size: 15px;
-    }
+    .section{padding:34px 0}
+    .section-title{margin-bottom:18px}
+    .section-title h2{font-size:30px;color:var(--azul);margin-bottom:6px}
+    .section-title p{color:var(--texto-suave);font-size:15px}
 
     .grid-systems,
     .grid-categories,
-    .grid-products {
-      display: grid;
-      gap: 18px;
+    .grid-products{
+      display:grid;gap:18px;
+    }
+    .grid-systems{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .grid-categories{grid-template-columns:repeat(5,minmax(0,1fr))}
+    .grid-products{grid-template-columns:repeat(3,minmax(0,1fr));align-items:start}
+
+    .card{
+      background:#fff;border:1px solid var(--borda);border-radius:var(--raio);
+      box-shadow:var(--sombra);
     }
 
-    .grid-systems {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+    .system-card,.category-card,.product-card,.info-card{padding:20px}
+    .system-badge,.stock-badge{
+      display:inline-block;font-size:12px;font-weight:bold;border-radius:999px;
+      padding:8px 12px;margin-bottom:12px;
+    }
+    .system-badge{background:#eef3ff;color:var(--azul)}
+    .stock-badge{background:#fff1e8;color:var(--laranja)}
+    .system-card h3,.category-card h3,.product-card h3,.info-card h3{
+      color:var(--azul);margin-bottom:10px;font-size:24px;
+    }
+    .system-card p,.category-card p,.product-card p,.info-card p{
+      color:var(--texto-suave);line-height:1.6;font-size:15px;
     }
 
-    .grid-categories {
-      grid-template-columns: repeat(5, minmax(0, 1fr));
+    .system-card ul{
+      list-style:none;display:grid;gap:8px;margin:14px 0 18px;
+      color:#34425f;font-size:14px;
+    }
+    .system-card ul li::before{
+      content:"✓ ";color:var(--laranja);font-weight:bold;
     }
 
-    .grid-products {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  align-items: start;
-}
+    .actions{display:flex;gap:10px;flex-wrap:wrap}
+    .mini-btn{
+      border:none;border-radius:10px;padding:11px 14px;
+      font-size:14px;font-weight:bold;cursor:pointer;display:inline-block;
+    }
+    .mini-blue{background:var(--azul);color:#fff}
+    .mini-light{background:#fff1e8;color:var(--laranja);border:1px solid #ffd3bb}
 
-    .card {
-      background: #fff;
-      border: 1px solid var(--borda);
-      border-radius: var(--raio);
-      box-shadow: var(--sombra);
+    .category-icon{
+      width:54px;height:54px;border-radius:14px;
+      background:linear-gradient(135deg,#eef4ff,#fff1e8);
+      display:grid;place-items:center;font-size:26px;margin-bottom:12px;
     }
 
-    .system-card,
-    .category-card,
-    .product-card,
-    .info-card {
-      padding: 22px;
+    .product-card{
+      display:flex;flex-direction:column;gap:12px;padding:18px;
+    }
+    .product-top{
+      height:108px;border-radius:14px;background:linear-gradient(135deg,#eef4ff,#fff3eb);
+      display:grid;place-items:center;font-size:38px;
+    }
+    .product-meta{
+      display:grid;gap:8px;font-size:14px;color:#495875;
+    }
+    .selector-group{display:grid;gap:10px;margin-top:4px}
+    .selector-group label{font-size:13px;color:#60708c;font-weight:bold}
+    .selector-row{
+      display:grid;grid-template-columns:1fr 1fr;gap:10px;
+    }
+    select,input[type="number"],input[type="text"],textarea{
+      width:100%;border:2px solid #dfe6f3;background:#f8fafe;border-radius:12px;
+      padding:12px 14px;font-size:14px;outline:none;
+    }
+    textarea{min-height:110px;resize:vertical}
+
+    .request-box{
+      display:grid;grid-template-columns:1fr 1fr;gap:18px;
     }
 
-    .system-badge,
-    .stock-badge {
-      display: inline-block;
-      font-size: 12px;
-      font-weight: bold;
-      border-radius: 999px;
-      padding: 8px 12px;
-      margin-bottom: 12px;
+    .highlight{
+      background:linear-gradient(90deg,var(--laranja),var(--laranja-claro));
+      color:#fff;border-radius:22px;padding:24px;
+      display:grid;grid-template-columns:1fr auto;align-items:center;gap:16px;
+      box-shadow:0 16px 38px rgba(255,111,26,.22);
+    }
+    .highlight h3{font-size:28px;margin-bottom:8px}
+    .highlight p{font-size:16px;line-height:1.6}
+
+    footer{
+      background:#091640;color:#fff;padding:28px 0;margin-top:26px;
+    }
+    footer .container{
+      display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
     }
 
-    .system-badge {
-      background: #eef3ff;
-      color: var(--azul);
+    .assistant{
+      position:fixed;right:16px;bottom:16px;z-index:1000;
     }
-
-    .stock-badge {
-      background: #fff1e8;
-      color: var(--laranja);
+    .assistant-btn{
+      background:#fff;border:2px solid var(--borda);border-radius:999px;
+      box-shadow:0 12px 32px rgba(18,53,143,.16);
+      display:flex;align-items:center;gap:12px;padding:10px 15px 10px 10px;
+      cursor:pointer;max-width:260px;
     }
-
-    .system-card h3,
-    .category-card h3,
-    .product-card h3,
-    .info-card h3 {
-      color: var(--azul);
-      margin-bottom: 10px;
-      font-size: 24px;
+    .assistant-avatar{
+      width:54px;height:54px;border-radius:50%;
+      background:linear-gradient(135deg,#eef4ff,#fff2e9);
+      display:grid;place-items:center;font-size:28px;
     }
+    .assistant-btn strong{display:block;color:var(--azul);font-size:15px}
+    .assistant-btn span{display:block;color:#68748d;font-size:13px}
 
-    .system-card p,
-    .category-card p,
-    .product-card p,
-    .info-card p {
-      color: #66748d;
-      line-height: 1.6;
-      font-size: 15px;
+    .assistant-panel{
+      position:absolute;right:0;bottom:80px;width:320px;background:#fff;
+      border:1px solid #dfe6f3;border-radius:20px;
+      box-shadow:0 20px 46px rgba(18,53,143,.18);
+      padding:18px;display:none;
     }
-
-    .system-card ul {
-      list-style: none;
-      display: grid;
-      gap: 8px;
-      margin: 14px 0 18px;
-      color: #34425f;
-      font-size: 14px;
+    .assistant-panel.active{display:block}
+    .assistant-panel h4{color:var(--azul);margin-bottom:12px;font-size:20px}
+    .assistant-option{
+      display:block;width:100%;text-align:left;border:1px solid #e3e9f5;background:#f8fafe;
+      border-radius:12px;padding:12px 14px;margin-bottom:10px;color:#34425f;font-weight:bold;cursor:pointer;
     }
+    .assistant-text{font-size:13px;color:#68748d;line-height:1.5;margin-top:8px}
 
-    .system-card ul li::before {
-      content: "✓ ";
-      color: var(--laranja);
-      font-weight: bold;
-    }
-
-    .actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .mini-btn {
-      border: none;
-      border-radius: 10px;
-      padding: 11px 14px;
-      font-size: 14px;
-      font-weight: bold;
-      cursor: pointer;
-      display: inline-block;
-    }
-
-    .mini-blue {
-      background: var(--azul);
-      color: #fff;
-    }
-
-    .mini-light {
-      background: #fff1e8;
-      color: var(--laranja);
-      border: 1px solid #ffd3bb;
-    }
-
-    .category-icon {
-      width: 54px;
-      height: 54px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, #eef4ff, #fff1e8);
-      display: grid;
-      place-items: center;
-      font-size: 26px;
-      margin-bottom: 12px;
-    }
-
-   .product-card {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 18px;
-}
-
-   .product-top {
-  height: 110px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, #eef4ff, #fff3eb);
-  display: grid;
-  place-items: center;
-  font-size: 38px;
-}
-
-    .product-meta {
-      display: grid;
-      gap: 10px;
-      font-size: 14px;
-      color: #495875;
-    }
-
-    .selector-group {
-      display: grid;
-      gap: 10px;
-      margin-top: 6px;
-    }
-
-    .selector-group label {
-      font-size: 13px;
-      color: #60708c;
-      font-weight: bold;
-    }
-
-    .selector-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-
-    select,
-    input[type="number"],
-    input[type="text"],
-    textarea {
-      width: 100%;
-      border: 2px solid #dfe6f3;
-      background: #f8fafe;
-      border-radius: 12px;
-      padding: 12px 14px;
-      font-size: 14px;
-      outline: none;
-    }
-
-    textarea {
-      min-height: 110px;
-      resize: vertical;
-    }
-
-    .request-box {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-    }
-
-    .highlight {
-      background: linear-gradient(90deg, var(--laranja), var(--laranja-claro));
-      color: #fff;
-      border-radius: 22px;
-      padding: 24px;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: center;
-      gap: 16px;
-      box-shadow: 0 16px 38px rgba(255,111,26,0.22);
-    }
-
-    .highlight h3 {
-      font-size: 28px;
-      margin-bottom: 8px;
-    }
-
-    .highlight p {
-      font-size: 16px;
-      line-height: 1.6;
-    }
-
-    footer {
-      background: #091640;
-      color: #fff;
-      padding: 28px 0;
-      margin-top: 26px;
-    }
-
-    footer .container {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .assistant {
-      position: fixed;
-      right: 16px;
-      bottom: 16px;
-      z-index: 1000;
-    }
-
-    .assistant-btn {
-      background: #fff;
-      border: 2px solid #dbe3f1;
-      border-radius: 999px;
-      box-shadow: 0 12px 32px rgba(18, 53, 143, 0.16);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 10px 15px 10px 10px;
-      cursor: pointer;
-      max-width: 260px;
-    }
-
-    .assistant-btn img {
-      width: 54px;
-      height: 54px;
-      object-fit: contain;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #eef4ff, #fff2e9);
-      padding: 4px;
-    }
-
-    .assistant-btn strong {
-      display: block;
-      color: var(--azul);
-      font-size: 15px;
-    }
-
-    .assistant-btn span {
-      display: block;
-      color: #68748d;
-      font-size: 13px;
-    }
-
-    .assistant-panel {
-      position: absolute;
-      right: 0;
-      bottom: 80px;
-      width: 320px;
-      background: #fff;
-      border: 1px solid #dfe6f3;
-      border-radius: 20px;
-      box-shadow: 0 20px 46px rgba(18, 53, 143, 0.18);
-      padding: 18px;
-      display: none;
-    }
-
-    .assistant-panel.active {
-      display: block;
-    }
-
-    .assistant-panel h4 {
-      color: var(--azul);
-      margin-bottom: 12px;
-      font-size: 20px;
-    }
-
-    .assistant-option {
-      display: block;
-      width: 100%;
-      text-align: left;
-      border: 1px solid #e3e9f5;
-      background: #f8fafe;
-      border-radius: 12px;
-      padding: 12px 14px;
-      margin-bottom: 10px;
-      color: #34425f;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .assistant-text {
-      font-size: 13px;
-      color: #68748d;
-      line-height: 1.5;
-      margin-top: 8px;
-    }
-
-    @media (max-width: 1100px) {
-      .header-main .container {
-        grid-template-columns: 260px 1fr auto auto;
+    @media (max-width:1100px){
+      .header-main .container{
+        grid-template-columns:300px minmax(0,1fr) 120px 120px;
       }
-
-      .grid-categories {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
+      .logo img{max-height:145px}
+      .grid-categories{grid-template-columns:repeat(3,minmax(0,1fr))}
     }
 
-    @media (max-width: 900px) {
-      .header-main .container {
-        grid-template-columns: 1fr;
+    @media (max-width:900px){
+      .header-main .container{
+        grid-template-columns:1fr;
+        gap:12px;
       }
-
+      .logo{justify-content:center}
+      .logo img{max-height:130px}
       .hero .container,
       .request-box,
-      .highlight {
-        grid-template-columns: 1fr;
+      .highlight{
+        grid-template-columns:1fr;
       }
-
       .grid-systems,
-      .grid-products {
-        grid-template-columns: 1fr;
+      .grid-products{
+        grid-template-columns:1fr;
       }
-
-      .grid-categories {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+      .grid-categories{
+        grid-template-columns:repeat(2,minmax(0,1fr));
       }
-
-      .hero h1 {
-        font-size: 36px;
+      .hero h1{font-size:34px}
+      .hero-card{
+        grid-template-columns:1fr 150px;
       }
-
-      .hero-card {
-        grid-template-columns: 1fr 150px;
-      }
+      .header-btn{min-width:0}
     }
 
-    @media (max-width: 640px) {
-      .topbar .container {
-        font-size: 13px;
+    @media (max-width:640px){
+      .topbar .container{font-size:13px;line-height:1.5}
+      .logo{justify-content:center}
+      .logo img{max-height:140px}
+      .searchbar input{padding:13px 14px;font-size:14px}
+      .searchbar button{padding:0 16px}
+      .header-main .container{gap:10px}
+      .header-btn{width:100%;padding:13px 14px}
+      .menu .container{gap:18px;padding:12px 0}
+      .hero{padding-top:28px}
+      .hero h1{font-size:29px;line-height:1.12}
+      .hero p{font-size:16px}
+      .hero-card{
+        grid-template-columns:1fr;
+        text-align:left;
+        padding:18px;
       }
-
-      .logo img {
-        max-height: 98px;
+      .hero-card .dombot-emoji{
+        margin:0 auto;
+        width:130px;height:130px;font-size:64px;
       }
-
-      .hero {
-        padding-top: 32px;
-      }
-
-      .hero h1 {
-        font-size: 30px;
-      }
-
-      .hero p {
-        font-size: 16px;
-      }
-
-      .hero-card {
-        grid-template-columns: 1fr;
-        text-align: left;
-      }
-
-      .hero-card img {
-        margin: 0 auto;
-        max-width: 150px;
-      }
-
-      .grid-categories {
-        grid-template-columns: 1fr;
-      }
-
-      .selector-row {
-        grid-template-columns: 1fr;
-      }
-
-      .assistant-panel {
-        width: 290px;
-      }
-
-      .assistant-btn {
-        max-width: 225px;
-      }
+      .grid-categories{grid-template-columns:1fr}
+      .product-card{padding:16px}
+      .product-top{height:95px;font-size:34px}
+      .selector-row{grid-template-columns:1fr}
+      .assistant-panel{width:290px}
+      .assistant-btn{max-width:230px}
     }
   </style>
 </head>
 <body>
-
   <div class="topbar">
     <div class="container">
       <div>Automação comercial e informática para sua empresa</div>
@@ -691,7 +356,7 @@
         </a>
 
         <div class="searchbar">
-          <input type="text" id="searchInput" placeholder="Busque por bobina, toner, teclado, EasySAC..." />
+          <input type="text" id="searchInput" placeholder="Busque por mouse, teclado, impressora, EasySAC..." />
           <button onclick="buscarItem()">Buscar</button>
         </div>
 
@@ -718,8 +383,8 @@
         <span class="badge">Tecnologia • Automação • Estoque local</span>
         <h1>Automação comercial e informática para sua empresa</h1>
         <p>
-          Soluções para mercados, restaurantes e lojas, além de produtos de informática,
-          impressão, automação comercial e acessórios para o seu dia a dia.
+          Soluções para lojas, restaurantes e mercados, além de produtos de informática,
+          impressão, automação comercial e acessórios para o dia a dia.
         </p>
 
         <div class="hero-actions">
@@ -737,7 +402,7 @@
           </p>
           <span class="tag">Clique no DomBot no canto para começar</span>
         </div>
-        <img src="dombot.png" alt="DomBot" />
+        <div class="dombot-emoji" aria-hidden="true">🤖</div>
       </div>
     </div>
   </section>
@@ -751,13 +416,13 @@
 
       <div class="grid-systems">
         <div class="card system-card">
-          <span class="system-badge">Mercados</span>
+          <span class="system-badge">Lojas</span>
           <h3>EasySAC</h3>
-          <p>Automação comercial para mercados com foco em caixa, estoque, balança e gestão.</p>
+          <p>Automação comercial para lojas com foco em vendas, cadastro, atendimento e organização da operação.</p>
           <ul>
-            <li>Frente de caixa</li>
-            <li>Controle de estoque</li>
-            <li>Balança e etiquetas</li>
+            <li>Controle de vendas</li>
+            <li>Cadastro de produtos</li>
+            <li>Cadastro de clientes</li>
             <li>Relatórios e gestão</li>
           </ul>
           <div class="actions">
@@ -783,13 +448,13 @@
         </div>
 
         <div class="card system-card">
-          <span class="system-badge">Lojas</span>
+          <span class="system-badge">Mercados</span>
           <h3>EasyPDV</h3>
-          <p>Sistema para lojas e comércios com foco em vendas, cadastro de produtos e gestão do caixa.</p>
+          <p>Solução para mercados com foco em frente de caixa, controle de estoque, produtos e rotina comercial.</p>
           <ul>
-            <li>Controle de vendas</li>
+            <li>Frente de caixa</li>
+            <li>Controle de estoque</li>
             <li>Cadastro de produtos</li>
-            <li>Cadastro de clientes</li>
             <li>Relatórios e controle</li>
           </ul>
           <div class="actions">
@@ -805,38 +470,38 @@
     <div class="container">
       <div class="section-title">
         <h2>Categorias em destaque</h2>
-        <p>Os principais focos da Domínio Informática</p>
+        <p>Depois vocês podem trocar os ícones por imagens reais</p>
       </div>
 
       <div class="grid-categories">
         <div class="card category-card">
           <div class="category-icon">⚙️</div>
           <h3>Automação</h3>
-          <p>Bobinas, etiquetas, leitores, balanças, impressoras térmicas e suprimentos.</p>
+          <p>Impressoras térmicas, etiquetas, leitores, balanças e suprimentos.</p>
         </div>
 
         <div class="card category-card">
-          <div class="category-icon">💻</div>
-          <h3>Informática</h3>
-          <p>Computadores, teclados, mouse, monitores, SSD, memórias e acessórios.</p>
+          <div class="category-icon">⌨️</div>
+          <h3>Teclados</h3>
+          <p>Teclados USB, combos e kits para escritório e uso diário.</p>
+        </div>
+
+        <div class="card category-card">
+          <div class="category-icon">🖱️</div>
+          <h3>Mouses</h3>
+          <p>Mouses com fio, sem fio e modelos gamer.</p>
         </div>
 
         <div class="card category-card">
           <div class="category-icon">🖨️</div>
           <h3>Impressão</h3>
-          <p>Impressoras, toners, tintas, formulários e suprimentos para escritório.</p>
-        </div>
-
-        <div class="card category-card">
-          <div class="category-icon">🌐</div>
-          <h3>Rede</h3>
-          <p>Roteadores, switch, access point, cabos e conectividade para empresas.</p>
+          <p>Impressoras térmicas, impressoras de etiquetas e não fiscais.</p>
         </div>
 
         <div class="card category-card">
           <div class="category-icon">🎮</div>
-          <h3>Periféricos</h3>
-          <p>Mouse gamer, headset, teclado, mousepad e acessórios para setup.</p>
+          <h3>Kits e gamer</h3>
+          <p>Kits teclado e mouse, inclusive opções gamer.</p>
         </div>
       </div>
     </div>
@@ -845,178 +510,142 @@
   <section class="section" id="produtos">
     <div class="container">
       <div class="section-title">
-        <h2>Produtos teste no site</h2>
-        <p>Sem preços por enquanto, com estoque e consulta direta</p>
+        <h2>Produtos adicionados por enquanto</h2>
+        <p>Catálogo inicial para testar como vai ficar no site</p>
       </div>
 
       <div class="grid-products">
-
         <div class="card product-card">
-          <div class="product-top">🧾</div>
-          <span class="stock-badge">Estoque: 42 unidades • 6 caixas</span>
-          <h3>Bobina térmica para máquina de cartão</h3>
-          <p>Produto de teste para consulta, orçamento e organização de pedido pelo site.</p>
-
+          <div class="product-top">🖱️</div>
+          <span class="stock-badge">Estoque: disponível</span>
+          <h3>Mouse Bright USB 0106 Preto</h3>
+          <p>Mouse USB para uso diário e escritório.</p>
           <div class="product-meta">
-            <div><strong>Venda:</strong> unidade e caixa</div>
-            <div><strong>Caixa:</strong> 30 unidades</div>
+            <div><strong>Venda:</strong> unidade</div>
+            <div><strong>Consulta:</strong> valor sob consulta</div>
           </div>
-
           <div class="selector-group">
-            <label>Selecione</label>
+            <label>Quantidade</label>
             <div class="selector-row">
-              <select id="tipo-bobina-cartao">
-                <option value="unidade">Unidade</option>
-                <option value="caixa">Caixa</option>
-              </select>
-              <input type="number" id="qtd-bobina-cartao" min="1" value="1" />
+              <select disabled><option>Unidade</option></select>
+              <input type="number" id="qtd-mouse-bright" min="1" value="1" />
             </div>
           </div>
-
           <div class="actions">
-            <button class="mini-btn mini-blue" onclick="adicionarCarrinho('Bobina térmica para máquina de cartão','tipo-bobina-cartao','qtd-bobina-cartao')">Adicionar</button>
-            <a class="mini-btn mini-light" href="https://wa.me/5594992627580?text=Olá! Quero consultar a bobina térmica para máquina de cartão." target="_blank">Consultar</a>
+            <button class="mini-btn mini-blue" onclick="adicionarCarrinhoUnidade('Mouse Bright USB 0106 Preto','qtd-mouse-bright')">Adicionar</button>
+            <a class="mini-btn mini-light" href="https://wa.me/5594992627580?text=Olá! Quero consultar o Mouse Bright USB 0106 Preto." target="_blank">Consultar</a>
           </div>
         </div>
 
         <div class="card product-card">
-          <div class="product-top">🏷️</div>
-          <span class="stock-badge">Estoque: 28 unidades • 4 caixas</span>
-          <h3>Bobina de etiqueta</h3>
-          <p>Ideal para balança, identificação e automação comercial em mercados e lojas.</p>
-
+          <div class="product-top">⌨️</div>
+          <span class="stock-badge">Estoque: disponível</span>
+          <h3>Teclado STD USB Fortrek SKL106</h3>
+          <p>Teclado USB para escritório e operação diária.</p>
           <div class="product-meta">
-            <div><strong>Venda:</strong> unidade e caixa</div>
-            <div><strong>Caixa:</strong> 12 unidades</div>
+            <div><strong>Venda:</strong> unidade</div>
+            <div><strong>Consulta:</strong> valor sob consulta</div>
           </div>
-
           <div class="selector-group">
-            <label>Selecione</label>
+            <label>Quantidade</label>
             <div class="selector-row">
-              <select id="tipo-bobina-etiqueta">
-                <option value="unidade">Unidade</option>
-                <option value="caixa">Caixa</option>
-              </select>
-              <input type="number" id="qtd-bobina-etiqueta" min="1" value="1" />
+              <select disabled><option>Unidade</option></select>
+              <input type="number" id="qtd-fortrek" min="1" value="1" />
             </div>
           </div>
-
           <div class="actions">
-            <button class="mini-btn mini-blue" onclick="adicionarCarrinho('Bobina de etiqueta','tipo-bobina-etiqueta','qtd-bobina-etiqueta')">Adicionar</button>
-            <a class="mini-btn mini-light" href="https://wa.me/5594992627580?text=Olá! Quero consultar a bobina de etiqueta." target="_blank">Consultar</a>
+            <button class="mini-btn mini-blue" onclick="adicionarCarrinhoUnidade('Teclado STD USB Fortrek SKL106','qtd-fortrek')">Adicionar</button>
+            <a class="mini-btn mini-light" href="https://wa.me/5594992627580?text=Olá! Quero consultar o Teclado STD USB Fortrek SKL106." target="_blank">Consultar</a>
           </div>
         </div>
 
         <div class="card product-card">
-          <div class="product-top">🏪</div>
-          <span class="stock-badge">Estoque: 35 unidades • 5 caixas</span>
-          <h3>Bobina de gôndola</h3>
-          <p>Suprimento de teste para organização e exposição de produtos no comércio.</p>
-
+          <div class="product-top">🖱️</div>
+          <span class="stock-badge">Estoque: disponível</span>
+          <h3>Mouse Kross USB KE-M108 Preto</h3>
+          <p>Mouse USB Kross para uso comum e rotinas comerciais.</p>
           <div class="product-meta">
-            <div><strong>Venda:</strong> unidade e caixa</div>
-            <div><strong>Caixa:</strong> 10 unidades</div>
+            <div><strong>Venda:</strong> unidade</div>
+            <div><strong>Consulta:</strong> valor sob consulta</div>
           </div>
-
           <div class="selector-group">
-            <label>Selecione</label>
+            <label>Quantidade</label>
             <div class="selector-row">
-              <select id="tipo-bobina-gondola">
-                <option value="unidade">Unidade</option>
-                <option value="caixa">Caixa</option>
-              </select>
-              <input type="number" id="qtd-bobina-gondola" min="1" value="1" />
+              <select disabled><option>Unidade</option></select>
+              <input type="number" id="qtd-kross-mouse" min="1" value="1" />
             </div>
           </div>
-
           <div class="actions">
-            <button class="mini-btn mini-blue" onclick="adicionarCarrinho('Bobina de gôndola','tipo-bobina-gondola','qtd-bobina-gondola')">Adicionar</button>
-            <a class="mini-btn mini-light" href="https://wa.me/5594992627580?text=Olá! Quero consultar a bobina de gôndola." target="_blank">Consultar</a>
+            <button class="mini-btn mini-blue" onclick="adicionarCarrinhoUnidade('Mouse Kross USB KE-M108 Preto','qtd-kross-mouse')">Adicionar</button>
+            <a class="mini-btn mini-light" href="https://wa.me/5594992627580?text=Olá! Quero consultar o Mouse Kross USB KE-M108 Preto." target="_blank">Consultar</a>
+          </div>
+        </div>
+
+        <div class="card product-card">
+          <div class="product-top">🧩</div>
+          <span class="stock-badge">Estoque: disponível</span>
+          <h3>Combo Kross Teclado e Mouse</h3>
+          <p>Combo com teclado e mouse com fio para setup e escritório.</p>
+          <div class="product-meta">
+            <div><strong>Venda:</strong> unidade</div>
+            <div><strong>Consulta:</strong> valor sob consulta</div>
+          </div>
+          <div class="selector-group">
+            <label>Quantidade</label>
+            <div class="selector-row">
+              <select disabled><option>Unidade</option></select>
+              <input type="number" id="qtd-combo-kross" min="1" value="1" />
+            </div>
+          </div>
+          <div class="actions">
+            <button class="mini-btn mini-blue" onclick="adicionarCarrinhoUnidade('Combo Kross Teclado e Mouse','qtd-combo-kross')">Adicionar</button>
+            <a class="mini-btn mini-light" href="https://wa.me/5594992627580?text=Olá! Quero consultar o Combo Kross Teclado e Mouse." target="_blank">Consultar</a>
           </div>
         </div>
 
         <div class="card product-card">
           <div class="product-top">🖨️</div>
-          <span class="stock-badge">Estoque: 18 unidades • 3 caixas</span>
-          <h3>Bobina de impressora</h3>
-          <p>Item de teste para pedidos e consultas no site da Domínio Informática.</p>
-
-          <div class="product-meta">
-            <div><strong>Venda:</strong> unidade e caixa</div>
-            <div><strong>Caixa:</strong> 20 unidades</div>
-          </div>
-
-          <div class="selector-group">
-            <label>Selecione</label>
-            <div class="selector-row">
-              <select id="tipo-bobina-impressora">
-                <option value="unidade">Unidade</option>
-                <option value="caixa">Caixa</option>
-              </select>
-              <input type="number" id="qtd-bobina-impressora" min="1" value="1" />
-            </div>
-          </div>
-
-          <div class="actions">
-            <button class="mini-btn mini-blue" onclick="adicionarCarrinho('Bobina de impressora','tipo-bobina-impressora','qtd-bobina-impressora')">Adicionar</button>
-            <a class="mini-btn mini-light" href="https://wa.me/5594992627580?text=Olá! Quero consultar a bobina de impressora." target="_blank">Consultar</a>
-          </div>
-        </div>
-
-        <div class="card product-card">
-          <div class="product-top">📄</div>
-          <span class="stock-badge">Estoque: 9 caixas</span>
-          <h3>Formulário contínuo</h3>
-          <p>Esse produto de teste é vendido somente em caixa.</p>
-
-          <div class="product-meta">
-            <div><strong>Venda:</strong> somente caixa</div>
-            <div><strong>Tipo:</strong> formulário contínuo</div>
-          </div>
-
-          <div class="selector-group">
-            <label>Quantidade de caixas</label>
-            <div class="selector-row">
-              <select disabled>
-                <option>Caixa</option>
-              </select>
-              <input type="number" id="qtd-formulario" min="1" value="1" />
-            </div>
-          </div>
-
-          <div class="actions">
-            <button class="mini-btn mini-blue" onclick="adicionarCarrinhoCaixa('Formulário contínuo','qtd-formulario')">Adicionar</button>
-            <a class="mini-btn mini-light" href="https://wa.me/5594992627580?text=Olá! Quero consultar o formulário contínuo." target="_blank">Consultar</a>
-          </div>
-        </div>
-
-        <div class="card product-card">
-          <div class="product-top">🧴</div>
-          <span class="stock-badge">Estoque: 14 unidades</span>
-          <h3>Toner para impressora</h3>
-          <p>Produto de teste. Depois você pode incluir a regra de atacado a partir de 5 unidades.</p>
-
+          <span class="stock-badge">Estoque: disponível</span>
+          <h3>Impressora Térmica Tanca TLP-300</h3>
+          <p>Impressora térmica para automação comercial.</p>
           <div class="product-meta">
             <div><strong>Venda:</strong> unidade</div>
-            <div><strong>Observação:</strong> consultar disponibilidade</div>
+            <div><strong>Consulta:</strong> valor sob consulta</div>
           </div>
-
           <div class="selector-group">
             <label>Quantidade</label>
             <div class="selector-row">
-              <select disabled>
-                <option>Unidade</option>
-              </select>
-              <input type="number" id="qtd-toner" min="1" value="1" />
+              <select disabled><option>Unidade</option></select>
+              <input type="number" id="qtd-tanca" min="1" value="1" />
             </div>
           </div>
-
           <div class="actions">
-            <button class="mini-btn mini-blue" onclick="adicionarCarrinhoUnidade('Toner para impressora','qtd-toner')">Adicionar</button>
-            <a class="mini-btn mini-light" href="https://wa.me/5594992627580?text=Olá! Quero consultar o toner para impressora." target="_blank">Consultar</a>
+            <button class="mini-btn mini-blue" onclick="adicionarCarrinhoUnidade('Impressora Térmica Tanca TLP-300','qtd-tanca')">Adicionar</button>
+            <a class="mini-btn mini-light" href="https://wa.me/5594992627580?text=Olá! Quero consultar a Impressora Térmica Tanca TLP-300." target="_blank">Consultar</a>
           </div>
         </div>
 
+        <div class="card product-card">
+          <div class="product-top">🏷️</div>
+          <span class="stock-badge">Estoque: disponível</span>
+          <h3>Impressora de Etiquetas Elgin L42PRO</h3>
+          <p>Impressora térmica de etiquetas para automação e identificação.</p>
+          <div class="product-meta">
+            <div><strong>Venda:</strong> unidade</div>
+            <div><strong>Consulta:</strong> valor sob consulta</div>
+          </div>
+          <div class="selector-group">
+            <label>Quantidade</label>
+            <div class="selector-row">
+              <select disabled><option>Unidade</option></select>
+              <input type="number" id="qtd-elgin" min="1" value="1" />
+            </div>
+          </div>
+          <div class="actions">
+            <button class="mini-btn mini-blue" onclick="adicionarCarrinhoUnidade('Impressora de Etiquetas Elgin L42PRO','qtd-elgin')">Adicionar</button>
+            <a class="mini-btn mini-light" href="https://wa.me/5594992627580?text=Olá! Quero consultar a Impressora de Etiquetas Elgin L42PRO." target="_blank">Consultar</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1047,10 +676,10 @@
           <h3>Faça sua encomenda</h3>
           <p>
             Você pode informar o produto desejado e falar com a nossa equipe.
-            Isso ajuda a gente a entender o que está sendo mais procurado também.
+            Isso ajuda a entender o que está sendo mais procurado.
           </p>
           <br>
-          <input type="text" id="produto-encomenda" placeholder="Ex.: impressora X, notebook Y, checkout de mercado..." />
+          <input type="text" id="produto-encomenda" placeholder="Ex.: notebook, checkout de mercado, leitor..." />
           <br><br>
           <textarea id="obs-encomenda" placeholder="Descreva melhor o que você precisa"></textarea>
           <br>
@@ -1112,16 +741,15 @@
   <div class="assistant">
     <div class="assistant-panel" id="assistantPanel">
       <h4>Olá! Eu sou o DomBot 🤖</h4>
-
-      <button class="assistant-option" onclick="window.location.href='easysac.html'">Quero ver solução para mercado</button>
+      <button class="assistant-option" onclick="window.location.href='easysac.html'">Quero ver solução para loja</button>
       <button class="assistant-option" onclick="window.location.href='easychef.html'">Quero ver solução para restaurante</button>
-      <button class="assistant-option" onclick="window.location.href='easypdv.html'">Quero ver solução para loja</button>
+      <button class="assistant-option" onclick="window.location.href='easypdv.html'">Quero ver solução para mercado</button>
       <button class="assistant-option" onclick="document.getElementById('produtos').scrollIntoView()">Quero ver produtos</button>
       <button class="assistant-option" onclick="document.getElementById('encomenda').scrollIntoView()">Quero fazer encomenda</button>
       <button class="assistant-option" onclick="window.open('https://wa.me/5594992627580?text=Olá! Preciso de ajuda da Domínio Informática.','_blank')">Quero falar no WhatsApp</button>
 
       <div class="assistant-text">
-        Está com alguma dúvida? No próximo passo a gente pode transformar isso em perguntas frequentes reais do site.
+        Está com alguma dúvida? Depois dá para transformar isso em perguntas frequentes reais do site.
       </div>
       <br>
       <input type="text" id="duvidaCliente" placeholder="Escreva sua dúvida aqui" />
@@ -1130,7 +758,7 @@
     </div>
 
     <div class="assistant-btn" onclick="toggleAssistant()">
-      <img src="dombot.png" alt="DomBot" />
+      <div class="assistant-avatar">🤖</div>
       <div>
         <strong>Precisa de ajuda?</strong>
         <span>Clique e fale com o DomBot</span>
@@ -1140,19 +768,6 @@
 
   <script>
     let carrinho = [];
-
-    function adicionarCarrinho(nome, tipoId, qtdId) {
-      const tipo = document.getElementById(tipoId).value;
-      const qtd = document.getElementById(qtdId).value;
-      carrinho.push({ nome, tipo, qtd });
-      alert(nome + " adicionado ao carrinho.");
-    }
-
-    function adicionarCarrinhoCaixa(nome, qtdId) {
-      const qtd = document.getElementById(qtdId).value;
-      carrinho.push({ nome, tipo: "caixa", qtd });
-      alert(nome + " adicionado ao carrinho.");
-    }
 
     function adicionarCarrinhoUnidade(nome, qtdId) {
       const qtd = document.getElementById(qtdId).value;
@@ -1218,7 +833,7 @@
         return;
       }
 
-      if (termo.includes("easysac") || termo.includes("mercado")) {
+      if (termo.includes("easysac") || termo.includes("loja")) {
         window.location.href = "easysac.html";
         return;
       }
@@ -1228,17 +843,17 @@
         return;
       }
 
-      if (termo.includes("easypdv") || termo.includes("loja")) {
+      if (termo.includes("easypdv") || termo.includes("mercado")) {
         window.location.href = "easypdv.html";
         return;
       }
 
       if (
-        termo.includes("bobina") ||
-        termo.includes("toner") ||
-        termo.includes("formulário") ||
-        termo.includes("formulario") ||
-        termo.includes("etiqueta")
+        termo.includes("mouse") ||
+        termo.includes("teclado") ||
+        termo.includes("impressora") ||
+        termo.includes("combo") ||
+        termo.includes("kit")
       ) {
         document.getElementById("produtos").scrollIntoView();
         return;
