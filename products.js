@@ -1,25 +1,24 @@
 const PRODUCTS = [
   {
-    code: "2928",
-    name: "Fone C/Mic Voicer Light CT662040BS PRE/PR C3T",
-    ref: "20BK",
-    price: 45.00,
-    stock: 7,
-    category: "Acessórios",
-    description: "Fone com microfone para uso diário, atendimento, escritório e multimídia.",
-    images: []
-  },
-  {
     code: "3899",
     name: "Mouse Bright USB 0106 Preto",
     ref: "BRIGHT",
     price: 15.00,
     stock: 4,
     category: "Mouses",
+    isNew: true,
+    sold: 0,
     description: "Mouse USB para escritório e uso diário.",
+    specs: {
+      "Tipo de mouse": "Convencional",
+      "Conexão": "Com fio",
+      "Tipo de sensor": "Óptico",
+      "Resolução": "1000 DPI",
+      "Cor": "Preto"
+    },
     images: [
       "mouse-bright-1.png",
-      "mouse-bright-2.jpg",
+      "mouse-bright-2.png",
       "mouse-bright-3.png",
       "mouse-bright-4.png"
     ]
@@ -31,12 +30,22 @@ const PRODUCTS = [
     price: 50.00,
     stock: 1,
     category: "Teclados",
+    isNew: true,
+    sold: 0,
     description: "Teclado USB Fortrek para digitação e operação diária.",
+    specs: {
+      "Tipo": "Teclado USB",
+      "Padrão": "ABNT2",
+      "Conexão": "Com fio",
+      "Cor": "Preto",
+      "Marca": "Fortrek"
+    },
     images: [
       "teclado-fortrek-1.png",
       "teclado-fortrek-2.png",
       "teclado-fortrek-3.png",
-      "teclado-fortrek-4.jpg"
+      "teclado-fortrek-4.png",
+      "teclado-fortrek-5.png"
     ]
   },
   {
@@ -46,11 +55,20 @@ const PRODUCTS = [
     price: 18.00,
     stock: 1,
     category: "Mouses",
+    isNew: true,
+    sold: 0,
     description: "Mouse USB com 1000 DPI para rotina comercial e escritório.",
+    specs: {
+      "Tipo de mouse": "Convencional",
+      "Conexão": "Com fio",
+      "Tipo de sensor": "Óptico",
+      "Resolução": "1000 DPI",
+      "Marca": "Movitec"
+    },
     images: [
-      "mouse-movitec-1.jpg",
-      "mouse-movitec-2.jpg",
-      "mouse-movitec-3.jpg"
+      "mouse-movitec-1.png",
+      "mouse-movitec-2.png",
+      "mouse-movitec-3.png"
     ]
   },
   {
@@ -60,7 +78,15 @@ const PRODUCTS = [
     price: 16.00,
     stock: 31,
     category: "Mouses",
+    isNew: true,
+    sold: 0,
     description: "Mouse USB Kross para uso comum e tarefas diárias.",
+    specs: {
+      "Tipo de mouse": "Convencional",
+      "Conexão": "Com fio",
+      "Cor": "Preto",
+      "Marca": "Kross"
+    },
     images: [
       "mouse-kross-1.png",
       "mouse-kross-2.png",
@@ -74,9 +100,17 @@ const PRODUCTS = [
     price: 16.00,
     stock: 2,
     category: "Mouses",
+    isNew: true,
+    sold: 0,
     description: "Mouse USB Maxprint para escritório e uso diário.",
+    specs: {
+      "Tipo de mouse": "Convencional",
+      "Conexão": "Com fio",
+      "Cor": "Preto",
+      "Marca": "Maxprint"
+    },
     images: [
-      "mouse-maxprint-1.jpg",
+      "mouse-maxprint-1.png",
       "mouse-maxprint-2.png",
       "mouse-maxprint-3.png"
     ]
@@ -88,11 +122,16 @@ const PRODUCTS = [
     price: 72.11,
     stock: 3,
     category: "Combos",
+    isNew: true,
+    sold: 0,
     description: "Combo teclado e mouse com fio para setup e escritório.",
-    images: [
-      "combo-kross-1.png",
-      "combo-kross-2.png"
-    ]
+    specs: {
+      "Tipo": "Combo teclado + mouse",
+      "Conexão": "Com fio",
+      "Cor": "Preto",
+      "Marca": "Kross"
+    },
+    images: []
   },
   {
     code: "5890",
@@ -101,11 +140,18 @@ const PRODUCTS = [
     price: 42.00,
     stock: 7,
     category: "Teclados",
+    isNew: true,
+    sold: 0,
     description: "Teclado multimídia C3Tech para escritório e operação diária.",
+    specs: {
+      "Tipo": "Teclado multimídia",
+      "Conexão": "Com fio",
+      "Padrão": "ABNT2",
+      "Cor": "Preto",
+      "Marca": "C3Tech"
+    },
     images: [
-      "teclado-m40-1.png",
-      "teclado-m40-2.png",
-      "teclado-m40-3.png"
+      "teclado-m40-1.png"
     ]
   },
   {
@@ -115,7 +161,15 @@ const PRODUCTS = [
     price: 25.00,
     stock: 4,
     category: "Mouses",
+    isNew: true,
+    sold: 0,
     description: "Mouse C3Tech com fio para uso diário e escritório.",
+    specs: {
+      "Tipo de mouse": "Convencional",
+      "Conexão": "Com fio",
+      "Cor": "Preto",
+      "Marca": "C3Tech"
+    },
     images: []
   },
   {
@@ -125,7 +179,14 @@ const PRODUCTS = [
     price: 1400.00,
     stock: 1,
     category: "Impressoras",
+    isNew: true,
+    sold: 0,
     description: "Impressora térmica para automação comercial.",
+    specs: {
+      "Tipo": "Impressora térmica",
+      "Marca": "Tanca",
+      "Modelo": "TLP-300"
+    },
     images: []
   },
   {
@@ -135,7 +196,14 @@ const PRODUCTS = [
     price: 2600.00,
     stock: 2,
     category: "Impressoras",
+    isNew: true,
+    sold: 0,
     description: "Impressora de etiquetas para automação e identificação.",
+    specs: {
+      "Tipo": "Impressora de etiquetas",
+      "Marca": "Elgin",
+      "Modelo": "L42PRO"
+    },
     images: []
   },
   {
@@ -145,7 +213,14 @@ const PRODUCTS = [
     price: 219.01,
     stock: 2,
     category: "Combos",
+    isNew: true,
+    sold: 0,
     description: "Kit sem fio teclado e mouse para escritório e uso diário.",
+    specs: {
+      "Tipo": "Kit teclado + mouse",
+      "Conexão": "Sem fio",
+      "Marca": "Lecoo"
+    },
     images: []
   },
   {
@@ -155,7 +230,14 @@ const PRODUCTS = [
     price: 85.60,
     stock: 2,
     category: "Teclados",
+    isNew: true,
+    sold: 0,
     description: "Teclado USB multimídia para operação e produtividade.",
+    specs: {
+      "Tipo": "Teclado multimídia",
+      "Conexão": "Com fio",
+      "Marca": "C3Tech"
+    },
     images: []
   },
   {
@@ -165,7 +247,14 @@ const PRODUCTS = [
     price: 35.00,
     stock: 12,
     category: "Teclados",
+    isNew: true,
+    sold: 0,
     description: "Teclado USB para uso diário e escritório.",
+    specs: {
+      "Tipo": "Teclado USB",
+      "Conexão": "Com fio",
+      "Marca": "C3Tech"
+    },
     images: []
   },
   {
@@ -175,7 +264,14 @@ const PRODUCTS = [
     price: 48.56,
     stock: 3,
     category: "Teclados",
+    isNew: true,
+    sold: 0,
     description: "Teclado compacto KMEX para uso diário.",
+    specs: {
+      "Tipo": "Teclado compacto",
+      "Conexão": "Com fio",
+      "Marca": "KMEX"
+    },
     images: []
   },
   {
@@ -185,7 +281,14 @@ const PRODUCTS = [
     price: 89.82,
     stock: 1,
     category: "Teclados",
+    isNew: true,
+    sold: 0,
     description: "Teclado Genius USB para produtividade e rotina comercial.",
+    specs: {
+      "Tipo": "Teclado USB",
+      "Conexão": "Com fio",
+      "Marca": "Genius"
+    },
     images: []
   },
   {
@@ -195,7 +298,15 @@ const PRODUCTS = [
     price: 39.72,
     stock: 2,
     category: "Mouses",
+    isNew: true,
+    sold: 0,
     description: "Mouse sem fio Vinik para escritório e mobilidade.",
+    specs: {
+      "Tipo de mouse": "Convencional",
+      "Conexão": "Sem fio",
+      "Resolução": "1200 DPI",
+      "Marca": "Vinik"
+    },
     images: []
   },
   {
@@ -205,7 +316,14 @@ const PRODUCTS = [
     price: 1350.00,
     stock: 2,
     category: "Impressoras",
+    isNew: true,
+    sold: 0,
     description: "Impressora Epson não fiscal para automação comercial.",
+    specs: {
+      "Tipo": "Impressora não fiscal",
+      "Marca": "Epson",
+      "Modelo": "TM-T20X-II"
+    },
     images: []
   },
   {
@@ -215,7 +333,14 @@ const PRODUCTS = [
     price: 35.00,
     stock: 58,
     category: "Mouses",
+    isNew: true,
+    sold: 0,
     description: "Mouse C3Tech com fio para rotina diária e operação.",
+    specs: {
+      "Tipo de mouse": "Convencional",
+      "Conexão": "Com fio",
+      "Marca": "C3Tech"
+    },
     images: []
   },
   {
@@ -225,7 +350,14 @@ const PRODUCTS = [
     price: 42.00,
     stock: 2,
     category: "Mouses",
+    isNew: true,
+    sold: 0,
     description: "Mouse sem fio Lecoo para escritório e mobilidade.",
+    specs: {
+      "Tipo de mouse": "Convencional",
+      "Conexão": "Sem fio",
+      "Marca": "Lecoo"
+    },
     images: []
   },
   {
@@ -235,7 +367,14 @@ const PRODUCTS = [
     price: 182.54,
     stock: 1,
     category: "Combos",
+    isNew: true,
+    sold: 0,
     description: "Kit gamer HP com teclado e mouse USB.",
+    specs: {
+      "Tipo": "Kit gamer",
+      "Conexão": "Com fio",
+      "Marca": "HP"
+    },
     images: []
   },
   {
@@ -245,7 +384,14 @@ const PRODUCTS = [
     price: 130.00,
     stock: 3,
     category: "Combos",
+    isNew: true,
+    sold: 0,
     description: "Kit sem fio C3Tech para produtividade e praticidade.",
+    specs: {
+      "Tipo": "Kit teclado + mouse",
+      "Conexão": "Sem fio",
+      "Marca": "C3Tech"
+    },
     images: []
   },
   {
@@ -255,7 +401,14 @@ const PRODUCTS = [
     price: 120.00,
     stock: 4,
     category: "Combos",
+    isNew: true,
+    sold: 0,
     description: "Kit gamer USB C3Tech para setup e uso diário.",
+    specs: {
+      "Tipo": "Kit gamer",
+      "Conexão": "Com fio",
+      "Marca": "C3Tech"
+    },
     images: []
   }
 ];
