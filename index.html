@@ -19,13 +19,12 @@
       --sombra:0 10px 28px rgba(18,53,143,.10);
       --raio:18px;
     }
-
     *{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
     body{font-family:Arial,sans-serif;background:var(--cinza);color:var(--texto)}
     a{text-decoration:none;color:inherit}
     img{max-width:100%;display:block}
-    .container{width:min(1180px,92%);margin:0 auto}
+    .container{width:min(1200px,92%);margin:0 auto}
 
     .topbar{
       background:linear-gradient(90deg,var(--azul),var(--azul-escuro));
@@ -50,103 +49,67 @@
       align-items:center;
     }
     .logo{display:flex;align-items:center}
-    .logo img{
-      max-height:165px;
-      width:auto;
-    }
+    .logo img{max-height:165px;width:auto}
 
     .searchbar{
-      display:flex;
-      border:2px solid var(--borda);
-      background:#f7f9fd;
-      border-radius:14px;
-      overflow:hidden;
-      min-width:0;
+      display:flex;border:2px solid var(--borda);background:#f7f9fd;border-radius:14px;
+      overflow:hidden;min-width:0;
     }
     .searchbar input{
-      flex:1;border:none;outline:none;background:transparent;
-      padding:15px 16px;font-size:15px;min-width:0;
+      flex:1;border:none;outline:none;background:transparent;padding:15px 16px;font-size:15px;min-width:0;
     }
     .searchbar button{
-      border:none;background:var(--laranja);color:#fff;
-      padding:0 18px;font-weight:bold;cursor:pointer;
+      border:none;background:var(--laranja);color:#fff;padding:0 18px;font-weight:bold;cursor:pointer;
     }
 
     .header-btn{
-      border:2px solid var(--borda);
-      background:#f7f9fd;
-      color:var(--azul);
-      border-radius:14px;
-      padding:14px 12px;
-      font-weight:bold;
-      text-align:center;
-      cursor:pointer;
-      min-width:0;
+      border:2px solid var(--borda);background:#f7f9fd;color:var(--azul);
+      border-radius:14px;padding:14px 12px;font-weight:bold;text-align:center;cursor:pointer;min-width:0;
     }
 
     .menu{background:var(--azul)}
     .menu .container{
-      display:flex;gap:20px;overflow-x:auto;padding:13px 0;
-      scrollbar-width:none;
+      display:flex;gap:20px;overflow-x:auto;padding:13px 0;scrollbar-width:none;
     }
     .menu .container::-webkit-scrollbar{display:none}
-    .menu a{
-      color:#fff;font-weight:bold;white-space:nowrap;font-size:15px;opacity:.96;
-    }
+    .menu a{color:#fff;font-weight:bold;white-space:nowrap;font-size:15px;opacity:.96}
 
     .hero{
       background:linear-gradient(135deg,var(--azul),var(--azul-escuro));
-      color:#fff;
-      padding:42px 0 34px;
-      overflow:hidden;
+      color:#fff;padding:42px 0 34px;overflow:hidden;
     }
     .hero .container{
-      display:grid;
-      grid-template-columns:minmax(0,1.1fr) minmax(300px,.9fr);
-      gap:24px;
-      align-items:center;
+      display:grid;grid-template-columns:minmax(0,1.1fr) minmax(300px,.9fr);
+      gap:24px;align-items:center;
     }
     .badge{
-      display:inline-block;
-      background:rgba(255,255,255,.14);
-      border:1px solid rgba(255,255,255,.18);
-      padding:8px 12px;border-radius:999px;
-      font-size:12px;font-weight:bold;margin-bottom:14px;
+      display:inline-block;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.18);
+      padding:8px 12px;border-radius:999px;font-size:12px;font-weight:bold;margin-bottom:14px;
     }
     .hero h1{font-size:46px;line-height:1.08;margin-bottom:14px}
     .hero p{font-size:18px;line-height:1.65;max-width:620px}
     .hero-actions{margin-top:22px;display:flex;gap:12px;flex-wrap:wrap}
     .btn{
-      display:inline-block;padding:14px 22px;border-radius:12px;font-weight:bold;
-      transition:.2s ease;
+      display:inline-block;padding:14px 22px;border-radius:12px;font-weight:bold;transition:.2s ease;
     }
     .btn:hover{transform:translateY(-2px)}
     .btn-orange{background:var(--laranja);color:#fff}
     .btn-white{background:#fff;color:var(--azul)}
 
     .hero-card{
-      background:rgba(255,255,255,.10);
-      border:1px solid rgba(255,255,255,.16);
-      border-radius:24px;
-      padding:22px;
-      display:grid;
-      grid-template-columns:1fr 170px;
-      gap:14px;
-      align-items:center;
-      box-shadow:0 18px 42px rgba(0,0,0,.16);
+      background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.16);
+      border-radius:24px;padding:22px;display:grid;grid-template-columns:1fr 170px;
+      gap:14px;align-items:center;box-shadow:0 18px 42px rgba(0,0,0,.16);
     }
     .hero-card h2{font-size:24px;margin-bottom:10px}
     .hero-card p{font-size:15px;line-height:1.6;margin-bottom:10px}
     .hero-card .tag{
-      display:inline-block;background:var(--laranja);
-      padding:10px 12px;border-radius:10px;font-size:13px;font-weight:bold;
+      display:inline-block;background:var(--laranja);padding:10px 12px;border-radius:10px;
+      font-size:13px;font-weight:bold;
     }
-    .hero-card .dombot-emoji{
-      width:170px;height:170px;border-radius:18px;
-      background:linear-gradient(135deg,#eef4ff,#fff2e9);
-      display:grid;place-items:center;font-size:84px;
+    .hero-card .dombot-image{
+      width:170px;height:170px;border-radius:18px;background:#fff;padding:10px;object-fit:contain;
       margin-left:auto;
-      box-shadow:inset 0 0 0 1px rgba(255,255,255,.25);
     }
 
     .section{padding:34px 0}
@@ -154,96 +117,63 @@
     .section-title h2{font-size:30px;color:var(--azul);margin-bottom:6px}
     .section-title p{color:var(--texto-suave);font-size:15px}
 
-    .grid-systems,
-    .grid-categories,
-    .grid-products{
+    .grid-systems,.grid-products{
       display:grid;gap:18px;
     }
     .grid-systems{grid-template-columns:repeat(3,minmax(0,1fr))}
-    .grid-categories{grid-template-columns:repeat(5,minmax(0,1fr))}
-    .grid-products{grid-template-columns:repeat(3,minmax(0,1fr));align-items:start}
+    .grid-products{grid-template-columns:repeat(4,minmax(0,1fr));align-items:start}
 
     .card{
-      background:#fff;border:1px solid var(--borda);border-radius:var(--raio);
-      box-shadow:var(--sombra);
+      background:#fff;border:1px solid var(--borda);border-radius:var(--raio);box-shadow:var(--sombra);
     }
 
-    .system-card,.category-card,.product-card,.info-card{padding:20px}
+    .system-card,.product-card,.info-card{padding:20px}
     .system-badge,.stock-badge{
-      display:inline-block;font-size:12px;font-weight:bold;border-radius:999px;
-      padding:8px 12px;margin-bottom:12px;
+      display:inline-block;font-size:12px;font-weight:bold;border-radius:999px;padding:8px 12px;margin-bottom:12px;
     }
     .system-badge{background:#eef3ff;color:var(--azul)}
     .stock-badge{background:#fff1e8;color:var(--laranja)}
-    .system-card h3,.category-card h3,.product-card h3,.info-card h3{
-      color:var(--azul);margin-bottom:10px;font-size:24px;
-    }
-    .system-card p,.category-card p,.product-card p,.info-card p{
-      color:var(--texto-suave);line-height:1.6;font-size:15px;
-    }
+    .system-card h3,.product-card h3,.info-card h3{color:var(--azul);margin-bottom:10px;font-size:22px}
+    .system-card p,.product-card p,.info-card p{color:var(--texto-suave);line-height:1.6;font-size:15px}
 
     .system-card ul{
-      list-style:none;display:grid;gap:8px;margin:14px 0 18px;
-      color:#34425f;font-size:14px;
+      list-style:none;display:grid;gap:8px;margin:14px 0 18px;color:#34425f;font-size:14px;
     }
-    .system-card ul li::before{
-      content:"✓ ";color:var(--laranja);font-weight:bold;
-    }
+    .system-card ul li::before{content:"✓ ";color:var(--laranja);font-weight:bold}
 
     .actions{display:flex;gap:10px;flex-wrap:wrap}
     .mini-btn{
-      border:none;border-radius:10px;padding:11px 14px;
-      font-size:14px;font-weight:bold;cursor:pointer;display:inline-block;
+      border:none;border-radius:10px;padding:11px 14px;font-size:14px;font-weight:bold;cursor:pointer;display:inline-block;
     }
     .mini-blue{background:var(--azul);color:#fff}
     .mini-light{background:#fff1e8;color:var(--laranja);border:1px solid #ffd3bb}
 
-    .category-icon{
-      width:54px;height:54px;border-radius:14px;
-      background:linear-gradient(135deg,#eef4ff,#fff1e8);
-      display:grid;place-items:center;font-size:26px;margin-bottom:12px;
+    .product-card{display:flex;flex-direction:column;gap:12px;padding:16px}
+    .product-thumb{
+      height:180px;border-radius:14px;background:linear-gradient(135deg,#eef4ff,#fff3eb);
+      display:grid;place-items:center;overflow:hidden;
     }
-
-    .product-card{
-      display:flex;flex-direction:column;gap:12px;padding:18px;
+    .product-thumb img{max-height:100%;max-width:100%;object-fit:contain}
+    .placeholder{
+      font-size:42px;color:var(--azul);
     }
-    .product-top{
-      height:108px;border-radius:14px;background:linear-gradient(135deg,#eef4ff,#fff3eb);
-      display:grid;place-items:center;font-size:38px;
-    }
-    .product-meta{
-      display:grid;gap:8px;font-size:14px;color:#495875;
-    }
-    .selector-group{display:grid;gap:10px;margin-top:4px}
-    .selector-group label{font-size:13px;color:#60708c;font-weight:bold}
-    .selector-row{
-      display:grid;grid-template-columns:1fr 1fr;gap:10px;
-    }
-    select,input[type="number"],input[type="text"],textarea{
-      width:100%;border:2px solid #dfe6f3;background:#f8fafe;border-radius:12px;
-      padding:12px 14px;font-size:14px;outline:none;
-    }
-    textarea{min-height:110px;resize:vertical}
+    .price{font-size:22px;font-weight:700;color:var(--azul)}
+    .code{font-size:13px;color:#7182a3}
+    .product-link{display:block}
+    .cart-badge{font-size:12px;color:#fff;background:var(--laranja);padding:4px 8px;border-radius:999px;margin-left:6px}
 
     .request-box{
       display:grid;grid-template-columns:1fr 1fr;gap:18px;
     }
-
-    .highlight{
-      background:linear-gradient(90deg,var(--laranja),var(--laranja-claro));
-      color:#fff;border-radius:22px;padding:24px;
-      display:grid;grid-template-columns:1fr auto;align-items:center;gap:16px;
-      box-shadow:0 16px 38px rgba(255,111,26,.22);
+    select,input[type="text"],textarea{
+      width:100%;border:2px solid #dfe6f3;background:#f8fafe;border-radius:12px;padding:12px 14px;font-size:14px;outline:none;
     }
-    .highlight h3{font-size:28px;margin-bottom:8px}
-    .highlight p{font-size:16px;line-height:1.6}
+    textarea{min-height:110px;resize:vertical}
 
     footer{
       background:#091640;color:#fff;padding:28px 0;margin-top:26px;
     }
-    footer .container{
-      display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
-    }
+    footer .container{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
     .assistant{
       position:fixed;right:16px;bottom:16px;z-index:1000;
@@ -254,19 +184,14 @@
       display:flex;align-items:center;gap:12px;padding:10px 15px 10px 10px;
       cursor:pointer;max-width:260px;
     }
-    .assistant-avatar{
-      width:54px;height:54px;border-radius:50%;
-      background:linear-gradient(135deg,#eef4ff,#fff2e9);
-      display:grid;place-items:center;font-size:28px;
+    .assistant-btn img{
+      width:54px;height:54px;border-radius:50%;object-fit:cover;background:#fff;
     }
     .assistant-btn strong{display:block;color:var(--azul);font-size:15px}
     .assistant-btn span{display:block;color:#68748d;font-size:13px}
-
     .assistant-panel{
-      position:absolute;right:0;bottom:80px;width:320px;background:#fff;
-      border:1px solid #dfe6f3;border-radius:20px;
-      box-shadow:0 20px 46px rgba(18,53,143,.18);
-      padding:18px;display:none;
+      position:absolute;right:0;bottom:80px;width:320px;background:#fff;border:1px solid #dfe6f3;
+      border-radius:20px;box-shadow:0 20px 46px rgba(18,53,143,.18);padding:18px;display:none;
     }
     .assistant-panel.active{display:block}
     .assistant-panel h4{color:var(--azul);margin-bottom:12px;font-size:20px}
@@ -274,42 +199,22 @@
       display:block;width:100%;text-align:left;border:1px solid #e3e9f5;background:#f8fafe;
       border-radius:12px;padding:12px 14px;margin-bottom:10px;color:#34425f;font-weight:bold;cursor:pointer;
     }
-    .assistant-text{font-size:13px;color:#68748d;line-height:1.5;margin-top:8px}
 
     @media (max-width:1100px){
-      .header-main .container{
-        grid-template-columns:300px minmax(0,1fr) 120px 120px;
-      }
+      .header-main .container{grid-template-columns:300px minmax(0,1fr) 120px 120px}
       .logo img{max-height:145px}
-      .grid-categories{grid-template-columns:repeat(3,minmax(0,1fr))}
+      .grid-products{grid-template-columns:repeat(3,minmax(0,1fr))}
     }
-
     @media (max-width:900px){
-      .header-main .container{
-        grid-template-columns:1fr;
-        gap:12px;
-      }
+      .header-main .container{grid-template-columns:1fr;gap:12px}
       .logo{justify-content:center}
       .logo img{max-height:130px}
-      .hero .container,
-      .request-box,
-      .highlight{
-        grid-template-columns:1fr;
-      }
-      .grid-systems,
-      .grid-products{
-        grid-template-columns:1fr;
-      }
-      .grid-categories{
-        grid-template-columns:repeat(2,minmax(0,1fr));
-      }
+      .hero .container,.request-box{grid-template-columns:1fr}
+      .grid-systems,.grid-products{grid-template-columns:1fr}
       .hero h1{font-size:34px}
-      .hero-card{
-        grid-template-columns:1fr 150px;
-      }
+      .hero-card{grid-template-columns:1fr 150px}
       .header-btn{min-width:0}
     }
-
     @media (max-width:640px){
       .topbar .container{font-size:13px;line-height:1.5}
       .logo{justify-content:center}
@@ -322,19 +227,8 @@
       .hero{padding-top:28px}
       .hero h1{font-size:29px;line-height:1.12}
       .hero p{font-size:16px}
-      .hero-card{
-        grid-template-columns:1fr;
-        text-align:left;
-        padding:18px;
-      }
-      .hero-card .dombot-emoji{
-        margin:0 auto;
-        width:130px;height:130px;font-size:64px;
-      }
-      .grid-categories{grid-template-columns:1fr}
-      .product-card{padding:16px}
-      .product-top{height:95px;font-size:34px}
-      .selector-row{grid-template-columns:1fr}
+      .hero-card{grid-template-columns:1fr;text-align:left;padding:18px}
+      .hero-card .dombot-image{margin:0 auto;width:130px;height:130px}
       .assistant-panel{width:290px}
       .assistant-btn{max-width:230px}
     }
@@ -357,10 +251,12 @@
 
         <div class="searchbar">
           <input type="text" id="searchInput" placeholder="Busque por mouse, teclado, impressora, EasySAC..." />
-          <button onclick="buscarItem()">Buscar</button>
+          <button onclick="searchProducts()">Buscar</button>
         </div>
 
-        <div class="header-btn" onclick="abrirCarrinho()">🛒 Carrinho</div>
+        <div class="header-btn" onclick="openCartWhatsApp()">
+          🛒 Carrinho <span class="cart-badge" id="cartCount">0</span>
+        </div>
         <a class="header-btn" href="https://wa.me/5594992627580?text=Olá! Quero atendimento da Domínio Informática." target="_blank">💬 Atendimento</a>
       </div>
     </div>
@@ -369,7 +265,6 @@
       <div class="container">
         <a href="#inicio">Início</a>
         <a href="#sistemas">Soluções</a>
-        <a href="#categorias">Categorias</a>
         <a href="#produtos">Produtos</a>
         <a href="#encomenda">Encomenda</a>
         <a href="#contato">Contato</a>
@@ -386,7 +281,6 @@
           Soluções para lojas, restaurantes e mercados, além de produtos de informática,
           impressão, automação comercial e acessórios para o dia a dia.
         </p>
-
         <div class="hero-actions">
           <a href="#sistemas" class="btn btn-orange">Ver soluções</a>
           <a href="#produtos" class="btn btn-white">Ver produtos</a>
@@ -395,14 +289,11 @@
 
       <div class="hero-card">
         <div>
-          <h2>DomBot chegou 🤖</h2>
-          <p>
-            Seu assistente da Domínio Informática. Tire dúvidas, encontre produtos
-            e fale com a loja com mais rapidez.
-          </p>
+          <h2>DomBot chegou</h2>
+          <p>Seu assistente da Domínio Informática. Tire dúvidas, encontre produtos e fale com a loja com mais rapidez.</p>
           <span class="tag">Clique no DomBot no canto para começar</span>
         </div>
-        <div class="dombot-emoji" aria-hidden="true">🤖</div>
+        <img src="dombot.png" alt="DomBot" class="dombot-image" />
       </div>
     </div>
   </section>
@@ -466,201 +357,14 @@
     </div>
   </section>
 
-  <section class="section" id="categorias">
-    <div class="container">
-      <div class="section-title">
-        <h2>Categorias em destaque</h2>
-        <p>Depois vocês podem trocar os ícones por imagens reais</p>
-      </div>
-
-      <div class="grid-categories">
-        <div class="card category-card">
-          <div class="category-icon">⚙️</div>
-          <h3>Automação</h3>
-          <p>Impressoras térmicas, etiquetas, leitores, balanças e suprimentos.</p>
-        </div>
-
-        <div class="card category-card">
-          <div class="category-icon">⌨️</div>
-          <h3>Teclados</h3>
-          <p>Teclados USB, combos e kits para escritório e uso diário.</p>
-        </div>
-
-        <div class="card category-card">
-          <div class="category-icon">🖱️</div>
-          <h3>Mouses</h3>
-          <p>Mouses com fio, sem fio e modelos gamer.</p>
-        </div>
-
-        <div class="card category-card">
-          <div class="category-icon">🖨️</div>
-          <h3>Impressão</h3>
-          <p>Impressoras térmicas, impressoras de etiquetas e não fiscais.</p>
-        </div>
-
-        <div class="card category-card">
-          <div class="category-icon">🎮</div>
-          <h3>Kits e gamer</h3>
-          <p>Kits teclado e mouse, inclusive opções gamer.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <section class="section" id="produtos">
     <div class="container">
       <div class="section-title">
-        <h2>Produtos adicionados por enquanto</h2>
-        <p>Catálogo inicial para testar como vai ficar no site</p>
+        <h2>Produtos da loja</h2>
+        <p>Clique no produto para abrir a página dele</p>
       </div>
 
-      <div class="grid-products">
-        <div class="card product-card">
-          <div class="product-top">🖱️</div>
-          <span class="stock-badge">Estoque: disponível</span>
-          <h3>Mouse Bright USB 0106 Preto</h3>
-          <p>Mouse USB para uso diário e escritório.</p>
-          <div class="product-meta">
-            <div><strong>Venda:</strong> unidade</div>
-            <div><strong>Consulta:</strong> valor sob consulta</div>
-          </div>
-          <div class="selector-group">
-            <label>Quantidade</label>
-            <div class="selector-row">
-              <select disabled><option>Unidade</option></select>
-              <input type="number" id="qtd-mouse-bright" min="1" value="1" />
-            </div>
-          </div>
-          <div class="actions">
-            <button class="mini-btn mini-blue" onclick="adicionarCarrinhoUnidade('Mouse Bright USB 0106 Preto','qtd-mouse-bright')">Adicionar</button>
-            <a class="mini-btn mini-light" href="https://wa.me/5594992627580?text=Olá! Quero consultar o Mouse Bright USB 0106 Preto." target="_blank">Consultar</a>
-          </div>
-        </div>
-
-        <div class="card product-card">
-          <div class="product-top">⌨️</div>
-          <span class="stock-badge">Estoque: disponível</span>
-          <h3>Teclado STD USB Fortrek SKL106</h3>
-          <p>Teclado USB para escritório e operação diária.</p>
-          <div class="product-meta">
-            <div><strong>Venda:</strong> unidade</div>
-            <div><strong>Consulta:</strong> valor sob consulta</div>
-          </div>
-          <div class="selector-group">
-            <label>Quantidade</label>
-            <div class="selector-row">
-              <select disabled><option>Unidade</option></select>
-              <input type="number" id="qtd-fortrek" min="1" value="1" />
-            </div>
-          </div>
-          <div class="actions">
-            <button class="mini-btn mini-blue" onclick="adicionarCarrinhoUnidade('Teclado STD USB Fortrek SKL106','qtd-fortrek')">Adicionar</button>
-            <a class="mini-btn mini-light" href="https://wa.me/5594992627580?text=Olá! Quero consultar o Teclado STD USB Fortrek SKL106." target="_blank">Consultar</a>
-          </div>
-        </div>
-
-        <div class="card product-card">
-          <div class="product-top">🖱️</div>
-          <span class="stock-badge">Estoque: disponível</span>
-          <h3>Mouse Kross USB KE-M108 Preto</h3>
-          <p>Mouse USB Kross para uso comum e rotinas comerciais.</p>
-          <div class="product-meta">
-            <div><strong>Venda:</strong> unidade</div>
-            <div><strong>Consulta:</strong> valor sob consulta</div>
-          </div>
-          <div class="selector-group">
-            <label>Quantidade</label>
-            <div class="selector-row">
-              <select disabled><option>Unidade</option></select>
-              <input type="number" id="qtd-kross-mouse" min="1" value="1" />
-            </div>
-          </div>
-          <div class="actions">
-            <button class="mini-btn mini-blue" onclick="adicionarCarrinhoUnidade('Mouse Kross USB KE-M108 Preto','qtd-kross-mouse')">Adicionar</button>
-            <a class="mini-btn mini-light" href="https://wa.me/5594992627580?text=Olá! Quero consultar o Mouse Kross USB KE-M108 Preto." target="_blank">Consultar</a>
-          </div>
-        </div>
-
-        <div class="card product-card">
-          <div class="product-top">🧩</div>
-          <span class="stock-badge">Estoque: disponível</span>
-          <h3>Combo Kross Teclado e Mouse</h3>
-          <p>Combo com teclado e mouse com fio para setup e escritório.</p>
-          <div class="product-meta">
-            <div><strong>Venda:</strong> unidade</div>
-            <div><strong>Consulta:</strong> valor sob consulta</div>
-          </div>
-          <div class="selector-group">
-            <label>Quantidade</label>
-            <div class="selector-row">
-              <select disabled><option>Unidade</option></select>
-              <input type="number" id="qtd-combo-kross" min="1" value="1" />
-            </div>
-          </div>
-          <div class="actions">
-            <button class="mini-btn mini-blue" onclick="adicionarCarrinhoUnidade('Combo Kross Teclado e Mouse','qtd-combo-kross')">Adicionar</button>
-            <a class="mini-btn mini-light" href="https://wa.me/5594992627580?text=Olá! Quero consultar o Combo Kross Teclado e Mouse." target="_blank">Consultar</a>
-          </div>
-        </div>
-
-        <div class="card product-card">
-          <div class="product-top">🖨️</div>
-          <span class="stock-badge">Estoque: disponível</span>
-          <h3>Impressora Térmica Tanca TLP-300</h3>
-          <p>Impressora térmica para automação comercial.</p>
-          <div class="product-meta">
-            <div><strong>Venda:</strong> unidade</div>
-            <div><strong>Consulta:</strong> valor sob consulta</div>
-          </div>
-          <div class="selector-group">
-            <label>Quantidade</label>
-            <div class="selector-row">
-              <select disabled><option>Unidade</option></select>
-              <input type="number" id="qtd-tanca" min="1" value="1" />
-            </div>
-          </div>
-          <div class="actions">
-            <button class="mini-btn mini-blue" onclick="adicionarCarrinhoUnidade('Impressora Térmica Tanca TLP-300','qtd-tanca')">Adicionar</button>
-            <a class="mini-btn mini-light" href="https://wa.me/5594992627580?text=Olá! Quero consultar a Impressora Térmica Tanca TLP-300." target="_blank">Consultar</a>
-          </div>
-        </div>
-
-        <div class="card product-card">
-          <div class="product-top">🏷️</div>
-          <span class="stock-badge">Estoque: disponível</span>
-          <h3>Impressora de Etiquetas Elgin L42PRO</h3>
-          <p>Impressora térmica de etiquetas para automação e identificação.</p>
-          <div class="product-meta">
-            <div><strong>Venda:</strong> unidade</div>
-            <div><strong>Consulta:</strong> valor sob consulta</div>
-          </div>
-          <div class="selector-group">
-            <label>Quantidade</label>
-            <div class="selector-row">
-              <select disabled><option>Unidade</option></select>
-              <input type="number" id="qtd-elgin" min="1" value="1" />
-            </div>
-          </div>
-          <div class="actions">
-            <button class="mini-btn mini-blue" onclick="adicionarCarrinhoUnidade('Impressora de Etiquetas Elgin L42PRO','qtd-elgin')">Adicionar</button>
-            <a class="mini-btn mini-light" href="https://wa.me/5594992627580?text=Olá! Quero consultar a Impressora de Etiquetas Elgin L42PRO." target="_blank">Consultar</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="highlight">
-        <div>
-          <h3>Monte seu pedido e finalize no WhatsApp</h3>
-          <p>Adicione os itens ao carrinho e envie sua solicitação direto para a loja.</p>
-        </div>
-        <div>
-          <a href="#" class="btn btn-white" onclick="abrirCarrinho()">Ver carrinho</a>
-        </div>
-      </div>
+      <div class="grid-products" id="productsGrid"></div>
     </div>
   </section>
 
@@ -674,10 +378,7 @@
       <div class="request-box">
         <div class="card info-card">
           <h3>Faça sua encomenda</h3>
-          <p>
-            Você pode informar o produto desejado e falar com a nossa equipe.
-            Isso ajuda a entender o que está sendo mais procurado.
-          </p>
+          <p>Você pode informar o produto desejado e falar com a nossa equipe.</p>
           <br>
           <input type="text" id="produto-encomenda" placeholder="Ex.: notebook, checkout de mercado, leitor..." />
           <br><br>
@@ -740,25 +441,17 @@
 
   <div class="assistant">
     <div class="assistant-panel" id="assistantPanel">
-      <h4>Olá! Eu sou o DomBot 🤖</h4>
+      <h4>Olá! Eu sou o DomBot</h4>
       <button class="assistant-option" onclick="window.location.href='easysac.html'">Quero ver solução para loja</button>
       <button class="assistant-option" onclick="window.location.href='easychef.html'">Quero ver solução para restaurante</button>
       <button class="assistant-option" onclick="window.location.href='easypdv.html'">Quero ver solução para mercado</button>
       <button class="assistant-option" onclick="document.getElementById('produtos').scrollIntoView()">Quero ver produtos</button>
       <button class="assistant-option" onclick="document.getElementById('encomenda').scrollIntoView()">Quero fazer encomenda</button>
       <button class="assistant-option" onclick="window.open('https://wa.me/5594992627580?text=Olá! Preciso de ajuda da Domínio Informática.','_blank')">Quero falar no WhatsApp</button>
-
-      <div class="assistant-text">
-        Está com alguma dúvida? Depois dá para transformar isso em perguntas frequentes reais do site.
-      </div>
-      <br>
-      <input type="text" id="duvidaCliente" placeholder="Escreva sua dúvida aqui" />
-      <br><br>
-      <button class="mini-btn mini-blue" onclick="enviarDuvida()">Enviar dúvida</button>
     </div>
 
     <div class="assistant-btn" onclick="toggleAssistant()">
-      <div class="assistant-avatar">🤖</div>
+      <img src="dombot.png" alt="DomBot" />
       <div>
         <strong>Precisa de ajuda?</strong>
         <span>Clique e fale com o DomBot</span>
@@ -766,29 +459,10 @@
     </div>
   </div>
 
+  <script src="products.js"></script>
   <script>
-    let carrinho = [];
-
-    function adicionarCarrinhoUnidade(nome, qtdId) {
-      const qtd = document.getElementById(qtdId).value;
-      carrinho.push({ nome, tipo: "unidade", qtd });
-      alert(nome + " adicionado ao carrinho.");
-    }
-
-    function abrirCarrinho() {
-      if (carrinho.length === 0) {
-        alert("Seu carrinho está vazio por enquanto.");
-        return;
-      }
-
-      let mensagem = "Olá! Quero consultar estes itens:%0A%0A";
-      carrinho.forEach((item, i) => {
-        mensagem += (i + 1) + ". " + item.nome + "%0A";
-        mensagem += "Tipo: " + item.tipo + "%0A";
-        mensagem += "Quantidade: " + item.qtd + "%0A%0A";
-      });
-
-      window.open("https://wa.me/5594992627580?text=" + mensagem, "_blank");
+    function toggleAssistant() {
+      document.getElementById("assistantPanel").classList.toggle("active");
     }
 
     function enviarEncomenda() {
@@ -802,70 +476,77 @@
 
       let mensagem = "Olá! Quero fazer uma encomenda.%0A%0A";
       mensagem += "Produto desejado: " + produto + "%0A";
-      if (obs) {
-        mensagem += "Observações: " + obs + "%0A";
-      }
+      if (obs) mensagem += "Observações: " + obs + "%0A";
 
       window.open("https://wa.me/5594992627580?text=" + mensagem, "_blank");
     }
 
-    function toggleAssistant() {
-      document.getElementById("assistantPanel").classList.toggle("active");
-    }
+    function searchProducts() {
+      const term = document.getElementById("searchInput").value.trim().toLowerCase();
 
-    function enviarDuvida() {
-      const duvida = document.getElementById("duvidaCliente").value.trim();
+      if (!term) return;
 
-      if (!duvida) {
-        alert("Escreva sua dúvida primeiro.");
+      const found = PRODUCTS.find(p =>
+        p.name.toLowerCase().includes(term) ||
+        p.code.includes(term) ||
+        p.ref.toLowerCase().includes(term)
+      );
+
+      if (found) {
+        window.location.href = "product.html?id=" + found.code;
         return;
       }
 
-      const mensagem = "Olá! Estou com esta dúvida no site:%0A%0A" + duvida;
-      window.open("https://wa.me/5594992627580?text=" + mensagem, "_blank");
-    }
-
-    function buscarItem() {
-      const termo = document.getElementById("searchInput").value.trim().toLowerCase();
-
-      if (!termo) {
-        alert("Digite algo para buscar.");
-        return;
-      }
-
-      if (termo.includes("easysac") || termo.includes("loja")) {
+      if (term.includes("easysac") || term.includes("loja")) {
         window.location.href = "easysac.html";
         return;
       }
-
-      if (termo.includes("easychef") || termo.includes("restaurante")) {
+      if (term.includes("easychef") || term.includes("restaurante")) {
         window.location.href = "easychef.html";
         return;
       }
-
-      if (termo.includes("easypdv") || termo.includes("mercado")) {
+      if (term.includes("easypdv") || term.includes("mercado")) {
         window.location.href = "easypdv.html";
         return;
       }
 
-      if (
-        termo.includes("mouse") ||
-        termo.includes("teclado") ||
-        termo.includes("impressora") ||
-        termo.includes("combo") ||
-        termo.includes("kit")
-      ) {
-        document.getElementById("produtos").scrollIntoView();
-        return;
-      }
-
-      if (termo.includes("encomenda") || termo.includes("pedido")) {
-        document.getElementById("encomenda").scrollIntoView();
-        return;
-      }
-
-      alert("Ainda não encontrei esse item na busca. Depois podemos deixar a busca mais avançada.");
+      alert("Nenhum resultado encontrado.");
     }
+
+    function renderProducts() {
+      const grid = document.getElementById("productsGrid");
+      grid.innerHTML = PRODUCTS.map(p => {
+        const mainImage = p.images && p.images.length ? `<img src="${p.images[0]}" alt="${p.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"><div class='placeholder' style='display:none'>📦</div>` : `<div class="placeholder">📦</div>`;
+        return `
+          <div class="card product-card">
+            <a class="product-link" href="product.html?id=${p.code}">
+              <div class="product-thumb">${mainImage}</div>
+            </a>
+            <span class="stock-badge">Estoque: ${p.stock} un</span>
+            <div class="code">Código: ${p.code}</div>
+            <a class="product-link" href="product.html?id=${p.code}">
+              <h3>${p.name}</h3>
+            </a>
+            <p>${p.description}</p>
+            <div class="price">${formatBRL(p.price)}</div>
+            <div class="actions">
+              <button class="mini-btn mini-blue" onclick="handleAdd('${p.code}')">Adicionar ao carrinho</button>
+              <a class="mini-btn mini-light" href="https://wa.me/5594992627580?text=Olá! Quero comprar ${encodeURIComponent(p.name)} - código ${p.code}." target="_blank">Comprar WhatsApp</a>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      document.getElementById("cartCount").textContent = cartCount();
+    }
+
+    function handleAdd(code) {
+      addToCart(code, 1);
+      document.getElementById("cartCount").textContent = cartCount();
+      alert("Produto adicionado ao carrinho.");
+    }
+
+    renderProducts();
   </script>
 </body>
 </html>
