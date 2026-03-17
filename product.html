@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Produto | Domínio Informática</title>
+  <style>
+    :root{
+      --azul:#12358f;
+      --azul-escuro:#0b1f66;
+      --laranja:#ff6f1a;
+      --cinza:#f4f6fb;
+      --texto:#23314d;
+      --texto-suave:#66748d;
+      --borda:#dbe3f1;
+      --sombra:0 10px 28px rgba(18,53,143,.10);
+      --raio:18px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Arial,sans-serif;background:var(--cinza);color:var(--texto)}
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+    .container{width:min(1200px,92%);margin:0 auto}
+    .top{background:#fff;border-bottom:1px solid #e7edf6}
+    .top .container{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 0;flex-wrap:wrap}
+    .logo img{max-height:120px;width:auto}
+    .btn{display:inline-block;padding:12px 18px;border-radius:12px;font-weight:bold}
+    .btn-blue{background:var(--azul);color:#fff}
+    .btn-orange{background:var(--laranja);color:#fff}
+    .section{padding:28px 0}
+    .card{background:#fff;border:1px solid var(--borda);border-radius:var(--raio);box-shadow:var(--sombra)}
+    .product-layout{display:grid;grid-template-columns:1.1fr .9fr;gap:20px;padding:22px}
+    .gallery{display:grid;grid-template-columns:100px 1fr;gap:14px}
+    .thumbs{display:grid;gap:10px;align-content:start}
+    .thumb{
+      border:2px solid var(--borda);border-radius:12px;background:#fff;padding:8px;cursor:pointer;height:88px;
+      display:grid;place-items:center;
+    }
+    .thumb img{max-height:100%;object-fit:contain}
+    .main-image{
+      border:1px solid var(--borda);border-radius:18px;background:linear-gradient(135deg,#eef4ff,#fff2ea);
+      min-height:420px;display:grid;place-items:center;overflow:hidden;position:relative;
+    }
+    .main-image img{
+      max-width:92%;max-height:92%;object-fit:contain;transition:transform .25s ease;
+    }
+    .main-image:hover img{transform:scale(1.25)}
+    .placeholder{font-size:76px;color:var(--azul)}
+    .info h1{font-size:34px;color:var(--azul);margin-bottom:8px}
+    .code{font-size:14px;color:#7182a3;margin-bottom:12px}
+    .price{font-size:34px;font-weight:700;color:var(--azul);margin:14px 0}
+    .stock{display:inline-block;background:#fff1e8;color:var(--laranja);font-size:13px;font-weight:bold;border-radius:999px;padding:8px 12px;margin-bottom:14px}
+    .desc{color:var(--texto-suave);line-height:1.7;margin-bottom:18px}
+    .qty{display:flex;gap:10px;align-items:center;margin-bottom:18px}
+    .qty input{
+      width:90px;border:2px solid #dfe6f3;background:#f8fafe;border-radius:12px;padding:12px 14px;font-size:14px;
+    }
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+    .specs{padding:22px}
+    .specs h2,.related h2{font-size:26px;color:var(--azul);margin-bottom:12px}
+    .spec-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .spec-item{background:#f8fafe;border:1px solid #e1e8f5;border-radius:14px;padding:14px}
+    .spec-item strong{display:block;color:var(--azul);margin-bottom:6px}
+    .related{padding:22px}
+    .related-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+    .product-card{padding:16px}
+    .product-thumb{
+      height:150px;border-radius:14px;background:linear-gradient(135deg,#eef4ff,#fff3eb);
+      display:grid;place-items:center;overflow:hidden;margin-bottom:12px;
+    }
+    .product-thumb img{max-height:100%;max-width:100%;object-fit:contain}
+    .mini-price{font-size:20px;color:var(--azul);font-weight:700;margin:8px 0}
+    @media (max-width:900px){
+      .product-layout{grid-template-columns:1fr}
+      .related-grid{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width:640px){
+      .gallery{grid-template-columns:1fr}
+      .thumbs{grid-template-columns:repeat(4,1fr)}
+      .main-image{min-height:300px}
+      .info h1{font-size:28px}
+      .spec-grid,.related-grid{grid-template-columns:1fr}
+      .logo img{max-height:100px}
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="container">
+      <a href="index.html" class="logo"><img src="logo-dominio.png" alt="Domínio Informática"></a>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a href="index.html" class="btn btn-blue">Voltar ao site</a>
+        <a href="#" class="btn btn-orange" onclick="openCartWhatsApp()">Carrinho</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <div class="card product-layout">
+        <div class="gallery">
+          <div class="thumbs" id="thumbs"></div>
+          <div class="main-image" id="mainImage"></div>
+        </div>
+
+        <div class="info">
+          <h1 id="name"></h1>
+          <div class="code" id="code"></div>
+          <div class="stock" id="stock"></div>
+          <div class="price" id="price"></div>
+          <p class="desc" id="description"></p>
+
+          <div class="qty">
+            <label for="qty"><strong>Quantidade</strong></label>
+            <input type="number" id="qty" min="1" value="1">
+          </div>
+
+          <div class="actions">
+            <button class="btn btn-blue" id="addBtn">Adicionar ao carrinho</button>
+            <a class="btn btn-orange" id="waBtn" target="_blank">Comprar no WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="card specs">
+        <h2>Especificações</h2>
+        <div class="spec-grid" id="specGrid"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="card related">
+        <h2>Produtos relacionados</h2>
+        <div class="related-grid" id="relatedGrid"></div>
+      </div>
+    </div>
+  </section>
+
+  <script src="products.js"></script>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+    const product = getProductByCode(id);
+
+    if (!product) {
+      document.body.innerHTML = '<div style="padding:40px;font-family:Arial"><h1>Produto não encontrado.</h1><p><a href="index.html">Voltar ao site</a></p></div>';
+    } else {
+      document.title = product.name + " | Domínio Informática";
+      document.getElementById("name").textContent = product.name;
+      document.getElementById("code").textContent = "Código: " + product.code + " • Referência: " + product.ref;
+      document.getElementById("stock").textContent = "Estoque: " + product.stock + " un";
+      document.getElementById("price").textContent = formatBRL(product.price);
+      document.getElementById("description").textContent = product.description;
+
+      const mainImage = document.getElementById("mainImage");
+      const thumbs = document.getElementById("thumbs");
+
+      function setMain(src) {
+        mainImage.innerHTML = `<img src="${src}" alt="${product.name}" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=placeholder>📦</div>';">`;
+      }
+
+      if (product.images && product.images.length) {
+        setMain(product.images[0]);
+        thumbs.innerHTML = product.images.map(src => `
+          <div class="thumb" onclick="setMain('${src}')">
+            <img src="${src}" alt="${product.name}" onerror="this.parentElement.style.display='none'">
+          </div>
+        `).join("");
+      } else {
+        mainImage.innerHTML = `<div class="placeholder">📦</div>`;
+      }
+
+      document.getElementById("addBtn").addEventListener("click", () => {
+        const qty = Math.max(1, parseInt(document.getElementById("qty").value || "1", 10));
+        addToCart(product.code, qty);
+        alert("Produto adicionado ao carrinho.");
+      });
+
+      document.getElementById("waBtn").href =
+        `https://wa.me/5594992627580?text=Olá! Quero comprar ${encodeURIComponent(product.name)} - código ${product.code}.`;
+
+      const specGrid = document.getElementById("specGrid");
+      specGrid.innerHTML = `
+        <div class="spec-item"><strong>Nome</strong><span>${product.name}</span></div>
+        <div class="spec-item"><strong>Código</strong><span>${product.code}</span></div>
+        <div class="spec-item"><strong>Referência</strong><span>${product.ref}</span></div>
+        <div class="spec-item"><strong>Categoria</strong><span>${product.category}</span></div>
+        <div class="spec-item"><strong>Preço</strong><span>${formatBRL(product.price)}</span></div>
+        <div class="spec-item"><strong>Estoque</strong><span>${product.stock} unidades</span></div>
+      `;
+
+      const related = PRODUCTS.filter(p => p.category === product.category && p.code !== product.code).slice(0, 4);
+      const relatedGrid = document.getElementById("relatedGrid");
+      relatedGrid.innerHTML = related.map(p => {
+        const img = p.images && p.images.length
+          ? `<img src="${p.images[0]}" alt="${p.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"><div class='placeholder' style='display:none'>📦</div>`
+          : `<div class="placeholder">📦</div>`;
+
+        return `
+          <a href="product.html?id=${p.code}" class="card product-card">
+            <div class="product-thumb">${img}</div>
+            <div class="code">Código: ${p.code}</div>
+            <h3 style="font-size:18px;color:#12358f">${p.name}</h3>
+            <div class="mini-price">${formatBRL(p.price)}</div>
+            <div style="color:#66748d;font-size:14px">Estoque: ${p.stock} un</div>
+          </a>
+        `;
+      }).join("");
+    }
+  </script>
+</body>
+</html>
