@@ -1,80 +1,88 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Produto | Domínio Informática</title>
   <style>
     :root{
       --azul:#12358f;
       --azul-escuro:#0b1f66;
       --laranja:#ff6f1a;
-      --branco:#ffffff;
       --cinza:#f4f6fb;
       --texto:#23314d;
-      --texto-suave:#66748d;
+      --texto-suave:#6c7b97;
       --borda:#dbe3f1;
-      --sombra:0 10px 28px rgba(18,53,143,.10);
+      --sombra:0 10px 28px rgba(18,53,143,.08);
       --raio:18px;
     }
     *{box-sizing:border-box;margin:0;padding:0}
     body{font-family:Arial,sans-serif;background:var(--cinza);color:var(--texto)}
     a{text-decoration:none;color:inherit}
-    img{max-width:100%;display:block}
-    .container{width:min(1200px,92%);margin:0 auto}
+    img{display:block;max-width:100%}
+    .container{width:min(1220px,92%);margin:0 auto}
 
-    .topbar{background:linear-gradient(90deg,var(--azul),var(--azul-escuro));color:#fff;font-size:14px}
+    .topbar{background:linear-gradient(90deg,var(--azul),var(--azul-escuro));color:#fff;font-size:13px}
     .topbar .container{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:8px 0}
 
-    .header{background:#fff;border-bottom:1px solid #e7edf6}
-    .header-main{padding:12px 0}
+    .header{background:#fff;border-bottom:1px solid #ebeff6}
+    .header-main{padding:10px 0}
     .header-main .container{
       display:grid;
-      grid-template-columns:300px 1fr 120px 120px 120px;
-      gap:12px;
+      grid-template-columns:220px 1fr auto auto auto auto;
+      gap:10px;
       align-items:center;
     }
-    .logo img{max-height:80px;width:auto}
+    .logo img{max-height:68px}
     .searchbar{
       display:flex;
+      min-width:0;
       border:2px solid var(--borda);
-      background:#f7f9fd;
       border-radius:14px;
       overflow:hidden;
-      min-width:0;
+      background:#f8fafe;
     }
     .searchbar input{
       flex:1;
+      min-width:0;
       border:none;
       outline:none;
       background:transparent;
-      padding:14px 16px;
-      font-size:15px;
-      min-width:0;
+      padding:13px 14px;
+      font-size:14px;
     }
     .searchbar button{
       border:none;
       background:var(--laranja);
       color:#fff;
-      padding:0 18px;
       font-weight:bold;
+      padding:0 18px;
       cursor:pointer;
     }
-    .header-btn{
+    .header-link{
       border:2px solid var(--borda);
-      background:#f7f9fd;
-      color:var(--azul);
+      background:#f8fafe;
       border-radius:14px;
-      padding:14px 10px;
-      font-weight:bold;
+      padding:12px 12px;
       text-align:center;
+      font-weight:bold;
+      color:var(--azul);
       cursor:pointer;
+      white-space:nowrap;
+      font-size:14px;
     }
     .menu{background:var(--azul)}
-    .menu .container{display:flex;gap:22px;overflow-x:auto;padding:12px 0}
-    .menu a{color:#fff;font-weight:bold;white-space:nowrap}
+    .menu .container{
+      display:flex;
+      gap:18px;
+      overflow:auto;
+      padding:11px 0;
+      scrollbar-width:none;
+    }
+    .menu .container::-webkit-scrollbar{display:none}
+    .menu a{color:#fff;font-weight:bold;white-space:nowrap;font-size:14px}
 
-    .section{padding:26px 0}
+    .section{padding:24px 0}
     .card{
       background:#fff;
       border:1px solid var(--borda);
@@ -84,57 +92,79 @@
 
     .product-layout{
       display:grid;
-      grid-template-columns:90px 1fr 420px;
+      grid-template-columns:86px minmax(0,1fr) 420px;
       gap:18px;
-      padding:22px;
+      padding:18px;
       align-items:start;
     }
+
     .thumbs{
       display:grid;
-      gap:10px;
+      gap:8px;
     }
+
     .thumb{
+      height:76px;
       border:2px solid var(--borda);
       border-radius:12px;
+      padding:6px;
       background:#fff;
-      padding:8px;
-      cursor:pointer;
-      height:84px;
       display:flex;
       align-items:center;
       justify-content:center;
       overflow:hidden;
+      cursor:pointer;
     }
+
     .thumb img{
       width:100%;
       height:100%;
       object-fit:contain;
     }
 
+    .image-stage{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) 270px;
+      gap:16px;
+      align-items:start;
+    }
+
     .main-image{
+      min-height:430px;
       border:1px solid var(--borda);
       border-radius:18px;
       background:#fff;
-      min-height:420px;
       display:flex;
       align-items:center;
       justify-content:center;
       overflow:hidden;
       position:relative;
-      padding:20px;
+      padding:16px;
+      cursor:zoom-in;
     }
+
     .main-image img{
       width:100%;
       height:100%;
-      max-width:100%;
-      max-height:520px;
+      max-height:420px;
       object-fit:contain;
       object-position:center;
-      transition:transform .25s ease;
     }
-    .main-image:hover img{
-      transform:scale(1.18);
+
+    .zoom-box{
+      min-height:430px;
+      border:1px solid var(--borda);
+      border-radius:18px;
+      background:#fff;
+      background-repeat:no-repeat;
+      background-size:180%;
+      display:none;
     }
+
+    .zoom-box.active{
+      display:block;
+    }
+
     .placeholder{
       font-size:76px;
       color:var(--azul);
@@ -143,187 +173,330 @@
     .buy-box{
       border:1px solid var(--borda);
       border-radius:18px;
-      padding:20px;
       background:#fff;
+      padding:18px;
     }
-    .tag-line{
-      font-size:14px;
-      color:#6c7b97;
+
+    .small-line{
+      font-size:13px;
+      color:#7a89a6;
+      margin-bottom:6px;
+    }
+
+    .badges{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-bottom:10px;
+    }
+
+    .badge{
+      display:inline-block;
+      padding:7px 11px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:bold;
+    }
+
+    .badge-green{background:#eefcf4;color:#198754}
+    .badge-orange{background:#fff1e8;color:var(--laranja)}
+    .badge-blue{background:#eef3ff;color:var(--azul)}
+
+    .title{
+      color:var(--azul);
+      font-size:24px;
+      line-height:1.25;
       margin-bottom:8px;
     }
-    .title{
-      font-size:24px;
-      color:var(--azul);
-      line-height:1.25;
-      margin-bottom:10px;
-    }
-    .code{
-      font-size:14px;
-      color:#7182a3;
-      margin-bottom:10px;
-    }
+
     .price{
-      font-size:40px;
-      font-weight:700;
       color:var(--azul);
-      margin:12px 0;
+      font-size:38px;
+      font-weight:700;
+      margin:10px 0;
     }
-    .stock{
-      font-size:14px;
-      color:#ff6f1a;
+
+    .price-line{
+      color:#198754;
+      font-size:13px;
       font-weight:bold;
       margin-bottom:12px;
     }
+
+    .stock{
+      color:var(--laranja);
+      font-size:14px;
+      font-weight:bold;
+      margin-bottom:10px;
+    }
+
     .desc{
       color:var(--texto-suave);
+      font-size:14px;
       line-height:1.7;
-      margin-bottom:16px;
+      margin-bottom:14px;
     }
+
     .qty-row{
       display:flex;
       align-items:center;
       gap:10px;
-      margin:12px 0 16px;
+      margin-bottom:12px;
     }
+
     .qty-row input{
-      width:90px;
+      width:86px;
       border:2px solid #dfe6f3;
       background:#f8fafe;
       border-radius:12px;
       padding:12px 14px;
       font-size:14px;
     }
+
     .btn{
       display:block;
       width:100%;
       border:none;
       border-radius:12px;
-      padding:14px 16px;
+      padding:13px 16px;
       font-weight:bold;
       font-size:15px;
-      cursor:pointer;
       text-align:center;
+      cursor:pointer;
       margin-top:10px;
     }
-    .btn-cart{background:var(--azul);color:#fff}
-    .btn-buy{background:var(--laranja);color:#fff}
-    .btn-whats{background:#25d366;color:#fff}
 
-    .details-grid{
-      display:grid;
-      grid-template-columns:1fr 320px;
-      gap:18px;
-      margin-top:20px;
-    }
-    .details-card,.side-card{padding:22px}
-    .details-card h2,.related h2{
-      font-size:28px;
-      color:var(--azul);
-      margin-bottom:12px;
-    }
-    .anchor-link{
+    .btn-orange{background:var(--laranja);color:#fff}
+    .btn-blue{background:var(--azul);color:#fff}
+    .btn-green{background:#25d366;color:#fff}
+
+    .payment-link{
       display:inline-block;
+      margin-top:10px;
       color:var(--laranja);
       font-weight:bold;
+      font-size:14px;
+      cursor:pointer;
+    }
+
+    .below-grid{
+      display:grid;
+      grid-template-columns:1fr 320px;
+      gap:16px;
+      margin-top:18px;
+    }
+
+    .details-card,.side-card,.related-card-wrap{
+      padding:18px;
+    }
+
+    .details-card h2,.related-title{
+      color:var(--azul);
+      font-size:26px;
       margin-bottom:12px;
     }
+
     .spec-grid{
       display:grid;
       grid-template-columns:repeat(2,1fr);
-      gap:14px;
-      margin-top:14px;
+      gap:12px;
+      margin-top:12px;
     }
+
     .spec-item{
-      background:#f8fafe;
       border:1px solid #e1e8f5;
+      background:#f8fafe;
       border-radius:14px;
       padding:14px;
     }
+
     .spec-item strong{
       display:block;
       color:var(--azul);
-      margin-bottom:6px;
-    }
-    .side-card p{
-      margin-bottom:10px;
-      color:var(--texto-suave);
-      line-height:1.6;
+      margin-bottom:5px;
     }
 
-    .related{padding:22px;margin-top:20px}
-    .related-grid{
+    .side-card p{
+      color:var(--texto-suave);
+      line-height:1.7;
+      margin-bottom:10px;
+      font-size:14px;
+    }
+
+    .gallery-bottom{
       display:grid;
       grid-template-columns:repeat(4,1fr);
-      gap:16px;
+      gap:12px;
+      margin-top:14px;
     }
-    .related-card{
+
+    .gallery-bottom .mini{
+      height:120px;
       border:1px solid var(--borda);
-      border-radius:16px;
-      padding:14px;
-      background:#fff;
-    }
-    .related-thumb{
-      height:150px;
       border-radius:14px;
       background:#fff;
-      border:1px solid #e7edf6;
+      padding:8px;
       display:flex;
       align-items:center;
       justify-content:center;
       overflow:hidden;
-      padding:10px;
-      margin-bottom:12px;
     }
+
+    .gallery-bottom .mini img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+    }
+
+    .related-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+      margin-top:14px;
+    }
+
+    .related-card{
+      border:1px solid var(--borda);
+      border-radius:16px;
+      padding:12px;
+      background:#fff;
+    }
+
+    .related-thumb{
+      height:140px;
+      border:1px solid #ebeff6;
+      border-radius:14px;
+      background:#fff;
+      padding:10px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      margin-bottom:10px;
+    }
+
     .related-thumb img{
       width:100%;
       height:100%;
       object-fit:contain;
     }
-    .mini-price{
-      font-size:20px;
+
+    .related-price{
       color:var(--azul);
+      font-size:18px;
       font-weight:700;
-      margin:8px 0;
+      margin-top:6px;
     }
 
-    @media (max-width: 1024px){
-      .header-main .container{grid-template-columns:220px 1fr 110px 110px 110px}
-      .product-layout{grid-template-columns:80px 1fr 360px}
-      .related-grid{grid-template-columns:repeat(3,1fr)}
+    .modal-backdrop{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.35);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:3000;
+      padding:16px;
     }
 
-    @media (max-width: 860px){
+    .modal-backdrop.open{
+      display:flex;
+    }
+
+    .modal{
+      width:min(520px,100%);
+      background:#fff;
+      border-radius:20px;
+      padding:20px;
+      box-shadow:0 25px 60px rgba(0,0,0,.18);
+    }
+
+    .modal h3{
+      color:var(--azul);
+      margin-bottom:10px;
+      font-size:22px;
+    }
+
+    .modal p{
+      color:var(--texto-suave);
+      line-height:1.7;
+      margin-bottom:10px;
+    }
+
+    .modal-close{
+      margin-top:10px;
+    }
+
+    @media (max-width:1100px){
+      .header-main .container{
+        grid-template-columns:180px 1fr auto auto auto auto;
+      }
+      .product-layout{
+        grid-template-columns:80px minmax(0,1fr) 350px;
+      }
+      .image-stage{
+        grid-template-columns:1fr;
+      }
+      .zoom-box{
+        min-height:240px;
+      }
+    }
+
+    @media (max-width:860px){
       .header-main .container{
         grid-template-columns:1fr;
       }
-      .logo{text-align:center}
-      .logo img{margin:0 auto;max-height:70px}
+      .logo img{
+        margin:0 auto;
+        max-height:60px;
+      }
       .product-layout{
         grid-template-columns:1fr;
       }
       .thumbs{
         grid-template-columns:repeat(5,1fr);
       }
-      .details-grid{
+      .below-grid{
         grid-template-columns:1fr;
+      }
+      .gallery-bottom{
+        grid-template-columns:repeat(2,1fr);
       }
       .related-grid{
         grid-template-columns:repeat(2,1fr);
       }
     }
 
-    @media (max-width: 640px){
+    @media (max-width:640px){
       .topbar{font-size:12px}
-      .header-main{padding:10px 0}
-      .logo img{max-height:56px}
+      .header-main{padding:8px 0}
+      .logo img{max-height:52px}
       .searchbar input{padding:12px 12px;font-size:14px}
-      .header-btn{padding:12px 10px;font-size:14px}
-      .menu .container{gap:16px;padding:10px 0}
-      .title{font-size:20px}
-      .price{font-size:32px}
-      .main-image{min-height:300px;padding:14px}
-      .spec-grid{grid-template-columns:1fr}
-      .related-grid{grid-template-columns:1fr}
+      .searchbar button{padding:0 14px}
+      .header-link{padding:11px 10px;font-size:13px}
+      .menu .container{gap:14px;padding:10px 0}
+      .main-image{
+        min-height:280px;
+        padding:12px;
+      }
+      .zoom-box{
+        display:none !important;
+      }
+      .title{
+        font-size:21px;
+      }
+      .price{
+        font-size:32px;
+      }
+      .spec-grid{
+        grid-template-columns:1fr;
+      }
+      .gallery-bottom{
+        grid-template-columns:1fr 1fr;
+      }
+      .related-grid{
+        grid-template-columns:1fr;
+      }
     }
   </style>
 </head>
@@ -338,18 +511,17 @@
   <header class="header">
     <div class="header-main">
       <div class="container">
-        <a href="index.html" class="logo">
-          <img src="logo-dominio.png" alt="Domínio Informática">
-        </a>
+        <a href="index.html" class="logo"><img src="logo-dominio.png" alt="Domínio Informática"></a>
 
         <div class="searchbar">
-          <input type="text" id="searchInput" placeholder="Busque por mouse, teclado, impressora, EasySAC...">
-          <button onclick="searchProducts()">Buscar</button>
+          <input type="text" id="searchInput" placeholder="Busque por produto, código ou referência...">
+          <button onclick="doSearch()">Buscar</button>
         </div>
 
-        <div class="header-btn" onclick="openCartWhatsApp()">🛒 Carrinho</div>
-        <a class="header-btn" href="index.html">🏠 Início</a>
-        <a class="header-btn" href="https://wa.me/5594992627580?text=Olá! Quero atendimento da Domínio Informática." target="_blank">💬 Atendimento</a>
+        <a class="header-link" href="#" onclick="alert('Área de conta em breve.')">Criar conta</a>
+        <a class="header-link" href="#" onclick="alert('Área de login em breve.')">Entrar</a>
+        <a class="header-link" href="cart.html">Carrinho</a>
+        <a class="header-link" href="https://wa.me/5594992627580?text=Olá! Quero atendimento da Domínio Informática." target="_blank">Atendimento</a>
       </div>
     </div>
 
@@ -358,7 +530,8 @@
         <a href="index.html#inicio">Início</a>
         <a href="index.html#sistemas">Soluções</a>
         <a href="index.html#produtos">Produtos</a>
-        <a href="index.html#contato">Contato</a>
+        <a href="index.html#encomenda">Encomenda</a>
+        <a href="cart.html">Carrinho</a>
       </div>
     </nav>
   </header>
@@ -368,163 +541,214 @@
       <div class="card product-layout">
         <div class="thumbs" id="thumbs"></div>
 
-        <div class="main-image" id="mainImage"></div>
+        <div class="image-stage">
+          <div class="main-image" id="mainImageBox">
+            <div class="placeholder">📦</div>
+          </div>
+          <div class="zoom-box" id="zoomBox"></div>
+        </div>
 
         <div class="buy-box">
-          <div class="tag-line" id="tagLine"></div>
+          <div class="small-line" id="smallLine"></div>
+
+          <div class="badges" id="badges"></div>
+
           <h1 class="title" id="title"></h1>
-          <div class="code" id="code"></div>
+          <div class="small-line" id="codeLine"></div>
           <div class="price" id="price"></div>
-          <div class="stock" id="stock"></div>
+          <div class="price-line" id="installmentLine"></div>
+          <div class="stock" id="stockLine"></div>
           <p class="desc" id="desc"></p>
-          <a href="#caracteristicas" class="anchor-link">Ver características</a>
 
           <div class="qty-row">
             <label for="qty"><strong>Quantidade</strong></label>
             <input type="number" id="qty" min="1" value="1">
           </div>
 
-          <button class="btn btn-buy" id="buyBtn">Comprar agora</button>
-          <button class="btn btn-cart" id="cartBtn">Adicionar ao carrinho</button>
-          <a class="btn btn-whats" id="waBtn" target="_blank">Comprar no WhatsApp</a>
+          <button class="btn btn-orange" id="buyNowBtn">Comprar agora</button>
+          <button class="btn btn-blue" id="addCartBtn">Adicionar ao carrinho</button>
+          <button class="btn btn-green" id="waBtn">Comprar no WhatsApp</button>
+
+          <div class="payment-link" onclick="openPaymentModal()">Ver meios de pagamento e opções</div>
         </div>
       </div>
 
-      <div class="details-grid">
-        <div class="card details-card" id="caracteristicas">
+      <div class="below-grid">
+        <div class="card details-card">
           <h2>Características do produto</h2>
           <p id="longDescription"></p>
           <div class="spec-grid" id="specGrid"></div>
+
+          <h2 style="margin-top:20px;">Fotos do produto</h2>
+          <div class="gallery-bottom" id="galleryBottom"></div>
         </div>
 
         <div class="card side-card">
-          <h2 style="font-size:24px">Informações</h2>
-          <p><strong>Retirada na loja</strong></p>
-          <p>Consulte disponibilidade pelo WhatsApp antes de sair.</p>
-          <p><strong>Estoque disponível</strong></p>
-          <p id="sideStock"></p>
-          <p><strong>Atendimento</strong></p>
-          <p>Fale com a Domínio Informática para tirar dúvidas e reservar seu produto.</p>
+          <h2 style="color:#12358f;font-size:24px;margin-bottom:12px;">Informações da compra</h2>
+          <p><strong>Vendido por:</strong> Domínio Informática</p>
+          <p><strong>Retirada:</strong> disponível na loja</p>
+          <p><strong>Entrega:</strong> disponível para pedidos em grande quantidade</p>
+          <p><strong>Pagamento:</strong> Pix, dinheiro, cartão ou combinar 2 meios</p>
+          <p><strong>Comprovante Pix:</strong> após pagar, envie no WhatsApp para confirmação</p>
         </div>
       </div>
 
-      <div class="card related">
-        <h2>Produtos relacionados</h2>
+      <div class="card related-card-wrap" style="margin-top:18px;">
+        <div class="related-title">Produtos relacionados</div>
         <div class="related-grid" id="relatedGrid"></div>
       </div>
     </div>
   </section>
 
+  <div class="modal-backdrop" id="paymentModal">
+    <div class="modal">
+      <h3>Meios de pagamento</h3>
+      <p><strong>Pix:</strong> pagamento à vista com confirmação por comprovante no WhatsApp.</p>
+      <p><strong>Dinheiro:</strong> pagamento presencial na retirada ou entrega.</p>
+      <p><strong>Cartão:</strong> 1x até 7x sem juros. De 8x a 12x com taxa da maquininha.</p>
+      <p><strong>Combinar 2 meios:</strong> ex.: parte no Pix e parte no cartão.</p>
+      <button class="btn btn-blue modal-close" onclick="closePaymentModal()">Fechar</button>
+    </div>
+  </div>
+
   <script src="products.js"></script>
   <script>
-    const params = new URLSearchParams(window.location.search);
+    const params = new URLSearchParams(location.search);
     const id = params.get("id");
     const product = getProductByCode(id);
 
-    function searchProducts() {
-      const term = document.getElementById("searchInput").value.trim().toLowerCase();
-      if (!term) return;
-
-      const found = PRODUCTS.find(p =>
-        p.name.toLowerCase().includes(term) ||
-        p.code.includes(term) ||
-        p.ref.toLowerCase().includes(term)
-      );
-
-      if (found) {
-        window.location.href = "product.html?id=" + found.code;
-        return;
-      }
-
-      if (term.includes("easysac") || term.includes("loja")) {
-        window.location.href = "easysac.html";
-        return;
-      }
-      if (term.includes("easychef") || term.includes("restaurante")) {
-        window.location.href = "easychef.html";
-        return;
-      }
-      if (term.includes("easypdv") || term.includes("mercado")) {
-        window.location.href = "easypdv.html";
-        return;
-      }
-
-      alert("Nenhum resultado encontrado.");
+    function doSearch() {
+      const q = document.getElementById("searchInput").value;
+      const found = searchProduct(q);
+      if (found) location.href = `product.html?id=${found.code}`;
+      else alert("Nenhum produto encontrado.");
     }
 
-    function setMainImage(src, name) {
-      const main = document.getElementById("mainImage");
-      main.innerHTML = `
-        <img src="${src}" alt="${name}" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=placeholder>📦</div>';">
-      `;
+    function openPaymentModal() {
+      document.getElementById("paymentModal").classList.add("open");
     }
 
-    if (!product) {
-      document.body.innerHTML = '<div style="padding:40px;font-family:Arial"><h1>Produto não encontrado.</h1><p><a href="index.html">Voltar ao site</a></p></div>';
-    } else {
-      document.title = product.name + " | Domínio Informática";
-      document.getElementById("tagLine").textContent = `${product.isNew ? "Novo" : ""}${product.sold ? " | +" + product.sold + " vendidos" : ""}`;
+    function closePaymentModal() {
+      document.getElementById("paymentModal").classList.remove("open");
+    }
+
+    function renderProduct() {
+      if (!product) {
+        document.body.innerHTML = '<div style="padding:40px;font-family:Arial"><h1>Produto não encontrado.</h1><p><a href="index.html">Voltar</a></p></div>';
+        return;
+      }
+
+      document.title = `${product.name} | Domínio Informática`;
+
+      document.getElementById("smallLine").textContent = product.sold > 0
+        ? `+${product.sold} vendidos`
+        : "Disponível na Domínio Informática";
+
+      const badges = [];
+      if (product.isNew) badges.push('<span class="badge badge-green">Novo</span>');
+      if (product.badge) badges.push(`<span class="badge badge-orange">${product.badge}</span>`);
+      badges.push('<span class="badge badge-blue">Oferta imperdível</span>');
+      document.getElementById("badges").innerHTML = badges.join("");
+
       document.getElementById("title").textContent = product.name;
-      document.getElementById("code").textContent = `Código: ${product.code} • Referência: ${product.ref}`;
+      document.getElementById("codeLine").textContent = `Código: ${product.code} • Referência: ${product.ref}`;
       document.getElementById("price").textContent = formatBRL(product.price);
-      document.getElementById("stock").textContent = `Estoque: ${product.stock} un`;
-      document.getElementById("sideStock").textContent = `${product.stock} unidade(s) disponível(is)`;
+      const seven = calcInstallment(product.price, 7);
+      document.getElementById("installmentLine").textContent = `até 7x sem juros de ${formatBRL(seven.perInstallment)}`;
+      document.getElementById("stockLine").textContent = `Estoque: ${product.stock} unidade(s)`;
       document.getElementById("desc").textContent = product.description;
       document.getElementById("longDescription").textContent = product.description;
 
+      const mainImageBox = document.getElementById("mainImageBox");
+      const zoomBox = document.getElementById("zoomBox");
       const thumbs = document.getElementById("thumbs");
+      const galleryBottom = document.getElementById("galleryBottom");
+
+      function setImage(src) {
+        mainImageBox.innerHTML = `<img id="mainImg" src="${src}" alt="${product.name}" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=placeholder>📦</div>';">`;
+        zoomBox.style.backgroundImage = `url('${src}')`;
+        zoomBox.classList.add("active");
+
+        const mainImg = document.getElementById("mainImg");
+        if (!mainImg) return;
+
+        mainImageBox.onmousemove = function(e) {
+          const rect = mainImageBox.getBoundingClientRect();
+          const x = ((e.clientX - rect.left) / rect.width) * 100;
+          const y = ((e.clientY - rect.top) / rect.height) * 100;
+          zoomBox.style.backgroundPosition = `${x}% ${y}%`;
+        };
+      }
+
       if (product.images && product.images.length) {
-        setMainImage(product.images[0], product.name);
+        setImage(product.images[0]);
+
         thumbs.innerHTML = product.images.map(src => `
-          <div class="thumb" onclick="setMainImage('${src}', '${product.name.replace(/'/g, "\\'")}')">
+          <div class="thumb" onclick="window.__setImage('${src.replace(/'/g, "\\'")}')">
             <img src="${src}" alt="${product.name}" onerror="this.parentElement.style.display='none'">
           </div>
         `).join("");
+
+        galleryBottom.innerHTML = product.images.map(src => `
+          <div class="mini">
+            <img src="${src}" alt="${product.name}" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=placeholder>📦</div>'">
+          </div>
+        `).join("");
       } else {
-        document.getElementById("mainImage").innerHTML = '<div class="placeholder">📦</div>';
+        galleryBottom.innerHTML = `<div class="mini"><div class="placeholder">📦</div></div>`;
       }
 
-      document.getElementById("buyBtn").addEventListener("click", () => {
-        const qty = Math.max(1, parseInt(document.getElementById("qty").value || "1", 10));
-        addToCart(product.code, qty);
-        openCartWhatsApp();
-      });
-
-      document.getElementById("cartBtn").addEventListener("click", () => {
-        const qty = Math.max(1, parseInt(document.getElementById("qty").value || "1", 10));
-        addToCart(product.code, qty);
-        alert("Produto adicionado ao carrinho.");
-      });
-
-      document.getElementById("waBtn").href =
-        `https://wa.me/5594992627580?text=Olá! Quero comprar ${encodeURIComponent(product.name)} - código ${product.code}.`;
+      window.__setImage = setImage;
 
       const specGrid = document.getElementById("specGrid");
-      specGrid.innerHTML = Object.entries(product.specs || {}).map(([key, value]) => `
+      specGrid.innerHTML = Object.entries(product.specs || {}).map(([k, v]) => `
         <div class="spec-item">
-          <strong>${key}</strong>
-          <span>${value}</span>
+          <strong>${k}</strong>
+          <span>${v}</span>
         </div>
       `).join("");
 
-      const related = PRODUCTS.filter(p => p.category === product.category && p.code !== product.code).slice(0, 4);
-      const relatedGrid = document.getElementById("relatedGrid");
-      relatedGrid.innerHTML = related.map(p => {
-        const img = (p.images && p.images.length)
+      document.getElementById("addCartBtn").onclick = () => {
+        const qty = Math.max(1, parseInt(document.getElementById("qty").value || "1", 10));
+        addToCart(product.code, qty);
+        alert("Produto adicionado ao carrinho.");
+      };
+
+      document.getElementById("buyNowBtn").onclick = () => {
+        const qty = Math.max(1, parseInt(document.getElementById("qty").value || "1", 10));
+        setBuyNow(product.code, qty);
+        location.href = "checkout.html?mode=buy_now";
+      };
+
+      document.getElementById("waBtn").onclick = () => {
+        const qty = Math.max(1, parseInt(document.getElementById("qty").value || "1", 10));
+        const msg =
+`Olá! Quero comprar este produto:
+Produto: ${product.name}
+Código: ${product.code}
+Quantidade: ${qty}
+Valor unitário: ${formatBRL(product.price)}`;
+        window.open(buildWhatsAppUrl(msg), "_blank");
+      };
+
+      const related = PRODUCTS.filter(p => p.category === product.category && p.code !== product.code).slice(0, 3);
+      document.getElementById("relatedGrid").innerHTML = related.map(p => {
+        const mainImage = (p.images && p.images.length)
           ? `<img src="${p.images[0]}" alt="${p.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="placeholder" style="display:none;">📦</div>`
           : `<div class="placeholder">📦</div>`;
 
         return `
           <a href="product.html?id=${p.code}" class="related-card">
-            <div class="related-thumb">${img}</div>
-            <div class="code">Código: ${p.code}</div>
-            <h3 style="font-size:18px;color:#12358f;line-height:1.3;margin:8px 0">${p.name}</h3>
-            <div class="mini-price">${formatBRL(p.price)}</div>
-            <div style="color:#66748d;font-size:14px">Estoque: ${p.stock} un</div>
+            <div class="related-thumb">${mainImage}</div>
+            <div style="font-size:12px;color:#7e8ba5;">Código: ${p.code}</div>
+            <div style="font-weight:bold;color:#12358f;line-height:1.3;margin-top:6px;">${p.name}</div>
+            <div class="related-price">${formatBRL(p.price)}</div>
           </a>
         `;
       }).join("");
     }
+
+    renderProduct();
   </script>
 </body>
 </html>
