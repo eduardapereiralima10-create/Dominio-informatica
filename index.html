@@ -1,196 +1,1057 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Domínio Informática</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Domínio Informática</title>
+  <meta name="description" content="Automação comercial e informática em Ourilândia do Norte.">
+  <style>
+    :root{
+      --azul:#12358f;
+      --azul-escuro:#0b1f66;
+      --laranja:#ff6f1a;
+      --cinza:#f4f6fb;
+      --texto:#23314d;
+      --texto-suave:#6c7b97;
+      --borda:#dbe3f1;
+      --sombra:0 10px 28px rgba(18,53,143,.08);
+      --raio:18px;
+    }
 
-<style>
-body{
-    margin:0;
-    font-family:Arial;
-    background:#f5f5f5;
-}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Arial,sans-serif;background:var(--cinza);color:var(--texto)}
+    a{text-decoration:none;color:inherit}
+    img{display:block;max-width:100%}
+    .container{width:min(1220px,92%);margin:0 auto}
 
-/* HEADER */
-header{
-    position:sticky;
-    top:0;
-    background:white;
-    display:flex;
-    align-items:center;
-    padding:10px;
-    gap:10px;
-    box-shadow:0 2px 5px rgba(0,0,0,0.1);
-    z-index:999;
-}
+    .topbar{
+      background:linear-gradient(90deg,var(--azul),var(--azul-escuro));
+      color:#fff;
+      font-size:13px;
+    }
+    .topbar .container{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      padding:8px 0;
+    }
 
-.logo{
-    height:45px;
-}
+    .header{
+      background:#fff;
+      border-bottom:1px solid #ebeff6;
+      position:sticky;
+      top:0;
+      z-index:999;
+    }
 
-.search{
-    flex:1;
-    padding:10px;
-    border-radius:8px;
-    border:1px solid #ccc;
-}
+    .header-main{
+      padding:10px 0;
+    }
 
-/* GRID */
-.produtos{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-    gap:10px;
-    padding:10px;
-}
+    .header-main .container{
+      display:grid;
+      grid-template-columns:220px 1fr auto auto auto auto;
+      gap:10px;
+      align-items:center;
+    }
 
-.card{
-    background:white;
-    border-radius:10px;
-    padding:10px;
-    text-align:center;
-}
+    .logo img{
+      max-height:68px;
+      width:auto;
+    }
 
-.card img{
-    width:100%;
-    height:120px;
-    object-fit:contain;
-}
+    .searchbar{
+      display:flex;
+      min-width:0;
+      border:2px solid var(--borda);
+      border-radius:14px;
+      overflow:hidden;
+      background:#f8fafe;
+    }
 
-.preco{
-    color:#0a7;
-    font-weight:bold;
-}
+    .searchbar input{
+      flex:1;
+      min-width:0;
+      border:none;
+      outline:none;
+      background:transparent;
+      padding:13px 14px;
+      font-size:14px;
+    }
 
-.btn{
-    margin-top:5px;
-    padding:8px;
-    border:none;
-    border-radius:8px;
-    width:100%;
-    cursor:pointer;
-}
+    .searchbar button{
+      border:none;
+      background:var(--laranja);
+      color:#fff;
+      font-weight:bold;
+      padding:0 18px;
+      cursor:pointer;
+    }
 
-.carrinho{
-    background:#007bff;
-    color:white;
-}
+    .header-link{
+      border:2px solid var(--borda);
+      background:#f8fafe;
+      border-radius:14px;
+      padding:12px 12px;
+      text-align:center;
+      font-weight:bold;
+      color:var(--azul);
+      cursor:pointer;
+      white-space:nowrap;
+      font-size:14px;
+    }
 
-.whatsapp{
-    background:#25D366;
-    color:white;
-}
+    .cart-count{
+      display:inline-block;
+      margin-left:6px;
+      background:var(--laranja);
+      color:#fff;
+      border-radius:999px;
+      padding:2px 7px;
+      font-size:11px;
+      vertical-align:middle;
+    }
 
-/* ENCOMENDA */
-.encomenda{
-    background:white;
-    margin:10px;
-    padding:15px;
-    border-radius:10px;
-}
+    .menu{
+      background:var(--azul);
+    }
 
-.encomenda input, .encomenda textarea{
-    width:100%;
-    padding:8px;
-    margin-top:5px;
-    border-radius:6px;
-    border:1px solid #ccc;
-}
+    .menu .container{
+      display:flex;
+      gap:18px;
+      overflow:auto;
+      padding:11px 0;
+      scrollbar-width:none;
+    }
+    .menu .container::-webkit-scrollbar{display:none}
 
-/* BOT */
-.bot{
-    position:fixed;
-    bottom:20px;
-    right:20px;
-    background:#007bff;
-    color:white;
-    padding:12px;
-    border-radius:50%;
-    cursor:pointer;
-}
-</style>
+    .menu a{
+      color:#fff;
+      font-weight:bold;
+      white-space:nowrap;
+      font-size:14px;
+    }
+
+    .hero{
+      background:linear-gradient(135deg,var(--azul),var(--azul-escuro));
+      color:#fff;
+      padding:34px 0;
+    }
+
+    .hero .container{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:20px;
+      align-items:center;
+    }
+
+    .hero h1{
+      font-size:42px;
+      line-height:1.1;
+      margin-bottom:12px;
+    }
+
+    .hero p{
+      font-size:17px;
+      line-height:1.6;
+    }
+
+    .hero-actions{
+      margin-top:18px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      display:inline-block;
+      border:none;
+      border-radius:12px;
+      padding:13px 18px;
+      font-weight:bold;
+      cursor:pointer;
+      text-align:center;
+    }
+
+    .btn-orange{background:var(--laranja);color:#fff}
+    .btn-white{background:#fff;color:var(--azul)}
+    .btn-blue{background:var(--azul);color:#fff}
+    .btn-green{background:#25d366;color:#fff}
+
+    .hero-card{
+      background:rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.16);
+      border-radius:22px;
+      padding:18px;
+      display:grid;
+      grid-template-columns:1fr 120px;
+      gap:14px;
+      align-items:center;
+    }
+
+    .hero-card img{
+      width:120px;
+      height:120px;
+      object-fit:contain;
+      background:#fff;
+      border-radius:16px;
+      padding:8px;
+    }
+
+    .section{
+      padding:26px 0;
+    }
+
+    .section-title{
+      margin-bottom:16px;
+    }
+
+    .section-title h2{
+      color:var(--azul);
+      font-size:30px;
+      margin-bottom:6px;
+    }
+
+    .section-title p{
+      color:var(--texto-suave);
+    }
+
+    .grid-systems{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+    }
+
+    .grid-products{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:14px;
+    }
+
+    .card{
+      background:#fff;
+      border:1px solid var(--borda);
+      border-radius:var(--raio);
+      box-shadow:var(--sombra);
+    }
+
+    .system-card, .product-card, .info-card{
+      padding:16px;
+    }
+
+    .system-badge, .stock-badge, .product-badge{
+      display:inline-block;
+      padding:7px 11px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:bold;
+      margin-bottom:10px;
+    }
+
+    .system-badge{
+      background:#eef3ff;
+      color:var(--azul);
+    }
+
+    .stock-badge{
+      background:#fff1e8;
+      color:var(--laranja);
+    }
+
+    .product-badge{
+      background:#eefcf4;
+      color:#198754;
+    }
+
+    .system-card h3, .product-card h3{
+      color:var(--azul);
+      font-size:20px;
+      margin-bottom:8px;
+      line-height:1.25;
+    }
+
+    .system-card p, .product-card p, .info-card p{
+      color:var(--texto-suave);
+      line-height:1.6;
+      font-size:14px;
+    }
+
+    .system-card ul{
+      list-style:none;
+      margin:12px 0 14px;
+      display:grid;
+      gap:7px;
+      font-size:14px;
+    }
+
+    .system-card li::before{
+      content:"✓ ";
+      color:var(--laranja);
+      font-weight:bold;
+    }
+
+    .product-card{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      padding:12px;
+    }
+
+    .product-thumb{
+      height:145px;
+      border:1px solid #ebeff6;
+      border-radius:14px;
+      background:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      padding:10px;
+    }
+
+    .product-thumb img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      object-position:center;
+    }
+
+    .placeholder{
+      font-size:40px;
+      color:var(--azul);
+    }
+
+    .product-code{
+      font-size:12px;
+      color:#7e8ba5;
+    }
+
+    .product-title{
+      color:var(--azul);
+      font-size:15px;
+      font-weight:bold;
+      line-height:1.3;
+      min-height:40px;
+    }
+
+    .product-price{
+      color:var(--azul);
+      font-size:22px;
+      font-weight:700;
+    }
+
+    .product-installments{
+      color:#198754;
+      font-size:12px;
+      font-weight:bold;
+    }
+
+    .product-actions{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:8px;
+      margin-top:4px;
+    }
+
+    .small-btn{
+      border:none;
+      border-radius:10px;
+      padding:10px 10px;
+      font-size:13px;
+      font-weight:bold;
+      cursor:pointer;
+      text-align:center;
+    }
+
+    .small-blue{background:var(--azul);color:#fff}
+    .small-orange{background:var(--laranja);color:#fff}
+
+    .encomenda-box{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:16px;
+    }
+
+    .field{
+      width:100%;
+      border:2px solid #dfe6f3;
+      background:#f8fafe;
+      border-radius:12px;
+      padding:12px 14px;
+      font-size:14px;
+      outline:none;
+    }
+
+    textarea.field{
+      min-height:110px;
+      resize:vertical;
+    }
+
+    .footer{
+      background:#091640;
+      color:#fff;
+      margin-top:18px;
+      padding:28px 0;
+    }
+
+    .footer-grid{
+      display:grid;
+      grid-template-columns:2fr 1fr 1fr 1fr;
+      gap:18px;
+    }
+
+    .footer h4{
+      margin-bottom:10px;
+      font-size:16px;
+    }
+
+    .footer p, .footer a{
+      color:#d6e0ff;
+      font-size:14px;
+      line-height:1.8;
+      display:block;
+    }
+
+    .az-footer{
+      border-top:1px solid rgba(255,255,255,.08);
+      margin-top:18px;
+      padding-top:14px;
+      color:#cbd5f2;
+      font-size:13px;
+    }
+
+    .drawer{
+      position:fixed;
+      top:0;
+      right:-420px;
+      width:390px;
+      max-width:92vw;
+      height:100vh;
+      background:#fff;
+      box-shadow:-10px 0 30px rgba(0,0,0,.12);
+      z-index:2000;
+      transition:.25s ease;
+      display:flex;
+      flex-direction:column;
+    }
+
+    .drawer.open{
+      right:0;
+    }
+
+    .drawer-header{
+      padding:16px;
+      border-bottom:1px solid #ebeff6;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+    }
+
+    .drawer-body{
+      padding:16px;
+      overflow:auto;
+      display:grid;
+      gap:12px;
+    }
+
+    .drawer-item{
+      border:1px solid var(--borda);
+      border-radius:14px;
+      padding:12px;
+      display:grid;
+      grid-template-columns:70px 1fr;
+      gap:10px;
+      align-items:center;
+    }
+
+    .drawer-item-thumb{
+      width:70px;
+      height:70px;
+      border:1px solid #ebeff6;
+      border-radius:12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      padding:6px;
+      background:#fff;
+    }
+
+    .drawer-item-thumb img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+    }
+
+    .drawer-footer{
+      margin-top:auto;
+      border-top:1px solid #ebeff6;
+      padding:16px;
+      display:grid;
+      gap:10px;
+    }
+
+    .assistant{
+      position:fixed;
+      right:12px;
+      bottom:12px;
+      z-index:1500;
+    }
+
+    .assistant-btn{
+      background:#fff;
+      border:2px solid var(--borda);
+      border-radius:999px;
+      box-shadow:0 12px 32px rgba(18,53,143,.14);
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 12px 8px 8px;
+      cursor:pointer;
+      max-width:240px;
+    }
+
+    .assistant-btn img{
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      object-fit:cover;
+      background:#fff;
+    }
+
+    .assistant-btn strong{
+      display:block;
+      color:var(--azul);
+      font-size:14px;
+    }
+
+    .assistant-btn span{
+      display:block;
+      color:#73829f;
+      font-size:12px;
+    }
+
+    .assistant-panel{
+      position:absolute;
+      right:0;
+      bottom:64px;
+      width:300px;
+      background:#fff;
+      border:1px solid #dfe6f3;
+      border-radius:20px;
+      box-shadow:0 20px 46px rgba(18,53,143,.18);
+      padding:16px;
+      display:none;
+    }
+
+    .assistant-panel.active{
+      display:block;
+    }
+
+    .assistant-panel h4{
+      color:var(--azul);
+      margin-bottom:10px;
+      font-size:18px;
+    }
+
+    .assistant-option{
+      width:100%;
+      text-align:left;
+      border:1px solid #e3e9f5;
+      background:#f8fafe;
+      border-radius:12px;
+      padding:11px 12px;
+      margin-bottom:8px;
+      color:#34425f;
+      font-weight:bold;
+      cursor:pointer;
+    }
+
+    @media (max-width:1100px){
+      .header-main .container{
+        grid-template-columns:180px 1fr auto auto auto auto;
+      }
+      .grid-products{
+        grid-template-columns:repeat(3,1fr);
+      }
+      .footer-grid{
+        grid-template-columns:1fr 1fr;
+      }
+    }
+
+    @media (max-width:860px){
+      .header-main .container{
+        grid-template-columns:1fr;
+      }
+      .logo img{
+        margin:0 auto;
+        max-height:60px;
+      }
+      .hero .container,
+      .encomenda-box{
+        grid-template-columns:1fr;
+      }
+      .grid-systems{
+        grid-template-columns:1fr;
+      }
+      .grid-products{
+        grid-template-columns:repeat(2,1fr);
+      }
+      .hero h1{
+        font-size:30px;
+      }
+      .hero-card{
+        grid-template-columns:1fr 110px;
+      }
+    }
+
+    @media (max-width:640px){
+      .topbar{
+        font-size:12px;
+      }
+      .topbar .container{
+        line-height:1.4;
+      }
+      .header-main{
+        padding:8px 0;
+      }
+      .logo img{
+        max-height:52px;
+      }
+      .searchbar input{
+        padding:12px 12px;
+        font-size:14px;
+      }
+      .searchbar button{
+        padding:0 14px;
+      }
+      .header-link{
+        padding:11px 10px;
+        font-size:13px;
+      }
+      .menu .container{
+        gap:14px;
+        padding:10px 0;
+      }
+      .hero{
+        padding:24px 0;
+      }
+      .hero h1{
+        font-size:26px;
+      }
+      .hero p{
+        font-size:15px;
+      }
+      .hero-card{
+        grid-template-columns:1fr;
+      }
+      .hero-card img{
+        width:100px;
+        height:100px;
+        margin:0 auto;
+      }
+      .section-title h2{
+        font-size:26px;
+      }
+      .grid-products{
+        grid-template-columns:1fr 1fr;
+        gap:12px;
+      }
+      .product-thumb{
+        height:120px;
+      }
+      .product-title{
+        font-size:14px;
+        min-height:36px;
+      }
+      .product-price{
+        font-size:18px;
+      }
+      .product-actions{
+        grid-template-columns:1fr;
+      }
+      .footer-grid{
+        grid-template-columns:1fr;
+      }
+      .assistant-btn{
+        max-width:170px;
+      }
+      .assistant-panel{
+        width:270px;
+      }
+    }
+
+    @media (max-width:430px){
+      .grid-products{
+        grid-template-columns:1fr;
+      }
+      .product-thumb{
+        height:150px;
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <div class="topbar">
+    <div class="container">
+      <div>Automação comercial e informática para sua empresa</div>
+      <div>WhatsApp: (94) 99262-7580 • Ourilândia do Norte - PA</div>
+    </div>
+  </div>
 
-<header>
-<img src="logo-dominio.png" class="logo">
-<input type="text" class="search" placeholder="Buscar produtos...">
-</header>
+  <header class="header">
+    <div class="header-main">
+      <div class="container">
+        <a href="index.html" class="logo">
+          <img src="logo-dominio.png" alt="Domínio Informática">
+        </a>
 
-<div class="produtos" id="produtos"></div>
+        <div class="searchbar">
+          <input type="text" id="searchInput" placeholder="Busque por produto, código ou referência...">
+          <button onclick="doSearch()">Buscar</button>
+        </div>
 
-<!-- ENCOMENDA -->
-<div class="encomenda">
-<h3>Não encontrou o que você queria?</h3>
-<p>Fazemos encomendas!</p>
+        <a class="header-link" href="#" onclick="alert('Área de conta em breve.')">Criar conta</a>
+        <a class="header-link" href="#" onclick="alert('Área de login em breve.')">Entrar</a>
+        <a class="header-link" href="cart.html">Carrinho <span class="cart-count" id="cartCount">0</span></a>
+        <a class="header-link" href="https://wa.me/5594992627580?text=Olá! Quero atendimento da Domínio Informática." target="_blank">Atendimento</a>
+      </div>
+    </div>
 
-<input id="produtoDesejado" placeholder="Digite o produto">
-<textarea id="obs" placeholder="Observação (opcional)"></textarea>
+    <nav class="menu">
+      <div class="container">
+        <a href="#inicio">Início</a>
+        <a href="#sistemas">Soluções</a>
+        <a href="#produtos">Produtos</a>
+        <a href="#encomenda">Encomenda</a>
+        <a href="#contato">Contato</a>
+      </div>
+    </nav>
+  </header>
 
-<button class="btn whatsapp" onclick="encomenda()">Solicitar no WhatsApp</button>
-</div>
+  <section class="hero" id="inicio">
+    <div class="container">
+      <div>
+        <h1>Domínio Informática</h1>
+        <p>Soluções em automação comercial, informática e acessórios para lojas, restaurantes, mercados e clientes finais.</p>
+        <div class="hero-actions">
+          <a class="btn btn-orange" href="#produtos">Ver produtos</a>
+          <a class="btn btn-white" href="#sistemas">Ver soluções</a>
+        </div>
+      </div>
 
-<!-- BOT -->
-<div class="bot" onclick="abrirBot()">💬</div>
+      <div class="hero-card">
+        <div>
+          <h2>DomBot chegou</h2>
+          <p>Seu assistente da Domínio Informática para tirar dúvidas, ver soluções e pedir encomendas.</p>
+          <span class="product-badge">Atendimento rápido</span>
+        </div>
+        <img src="dombot.png" alt="DomBot">
+      </div>
+    </div>
+  </section>
 
-<script>
-const lista = [
-{
-nome:"Mouse Bright USB 0106",
-preco:15,
-img:"mouse-brilhante-1.png"
-},
-{
-nome:"Teclado Fortrek SKL106",
-preco:50,
-img:"teclado-fortrek-1.png"
-},
-{
-nome:"Mouse Movitec 1000dpi",
-preco:18,
-img:"mouse-movitec-1.png"
-},
-{
-nome:"Mouse C3Tech MS-35BK",
-preco:25,
-img:"mouse-c3tech-35bk-1.jpg"
-}
-]
+  <section class="section" id="sistemas">
+    <div class="container">
+      <div class="section-title">
+        <h2>Soluções para o seu negócio</h2>
+        <p>Conheça os sistemas e encontre a solução ideal.</p>
+      </div>
 
-const div = document.getElementById("produtos")
+      <div class="grid-systems">
+        <div class="card system-card">
+          <span class="system-badge">Lojas</span>
+          <h3>EasySAC</h3>
+          <p>Automação comercial para lojas com foco em vendas, cadastro, atendimento e organização da operação.</p>
+          <ul>
+            <li>Controle de vendas</li>
+            <li>Cadastro de produtos</li>
+            <li>Cadastro de clientes</li>
+            <li>Relatórios e gestão</li>
+          </ul>
+          <a href="easysac.html" class="btn btn-blue">Saiba mais</a>
+        </div>
 
-lista.forEach(p=>{
-div.innerHTML += `
-<div class="card">
-<img src="${p.img}">
-<h4>${p.nome}</h4>
-<p class="preco">R$ ${p.preco}</p>
+        <div class="card system-card">
+          <span class="system-badge">Restaurantes</span>
+          <h3>EasyChef</h3>
+          <p>Solução para restaurantes, bares e lanchonetes com foco em pedidos, mesas e atendimento.</p>
+          <ul>
+            <li>Controle de mesas</li>
+            <li>Pedidos e comandas</li>
+            <li>Agilidade no atendimento</li>
+            <li>Relatórios de vendas</li>
+          </ul>
+          <a href="easychef.html" class="btn btn-blue">Saiba mais</a>
+        </div>
 
-<button class="btn carrinho">Adicionar</button>
-<button class="btn whatsapp" onclick="comprar('${p.nome}',${p.preco})">WhatsApp</button>
-</div>
-`
-})
+        <div class="card system-card">
+          <span class="system-badge">Mercados</span>
+          <h3>EasyPDV</h3>
+          <p>Solução para mercados com foco em frente de caixa, controle de estoque, produtos e rotina comercial.</p>
+          <ul>
+            <li>Frente de caixa</li>
+            <li>Controle de estoque</li>
+            <li>Cadastro de produtos</li>
+            <li>Relatórios e controle</li>
+          </ul>
+          <a href="easypdv.html" class="btn btn-blue">Saiba mais</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-function comprar(nome,preco){
-let msg = `Olá, quero comprar:\n${nome}\nValor: R$ ${preco}`
-window.open(`https://wa.me/5594991683307?text=${encodeURIComponent(msg)}`)
-}
+  <section class="section" id="produtos">
+    <div class="container">
+      <div class="section-title">
+        <h2>Produtos da loja</h2>
+        <p>Escolha o produto, veja detalhes e compre do seu jeito.</p>
+      </div>
+      <div class="grid-products" id="productsGrid"></div>
+    </div>
+  </section>
 
-function encomenda(){
-let prod = document.getElementById("produtoDesejado").value
-let obs = document.getElementById("obs").value
+  <section class="section" id="encomenda">
+    <div class="container">
+      <div class="section-title">
+        <h2>Não encontrou o que você queria?</h2>
+        <p>Nós também fazemos encomendas. Informe o produto que você procura.</p>
+      </div>
 
-let msg = `Olá, quero fazer uma encomenda:\nProduto: ${prod}\nObs: ${obs}`
+      <div class="encomenda-box">
+        <div class="card info-card">
+          <h3>Solicitar encomenda</h3>
+          <p>Informe qual produto você procura e fale com a nossa equipe.</p>
+          <br>
+          <input class="field" type="text" id="wantProduct" placeholder="Ex.: notebook, leitor, checkout, peça, acessório...">
+          <br><br>
+          <textarea class="field" id="wantObs" placeholder="Observação (opcional)"></textarea>
+          <br><br>
+          <button class="btn btn-orange" onclick="sendEncomenda()">Solicitar encomenda</button>
+        </div>
 
-window.open(`https://wa.me/5594991683307?text=${encodeURIComponent(msg)}`)
-}
+        <div class="card info-card">
+          <h3>Contato da loja</h3>
+          <p><strong>WhatsApp:</strong> (94) 99262-7580</p>
+          <p><strong>Instagram:</strong> @dominioinformatica2023</p>
+          <p><strong>Cidade:</strong> Ourilândia do Norte - PA</p>
+          <p><strong>Segunda a sexta:</strong> 08h às 18h</p>
+          <p><strong>Almoço:</strong> 11h às 13h</p>
+          <p><strong>Sábado:</strong> 08h às 12h</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-function abrirBot(){
-alert("Dúvidas frequentes:\n\n✔ Fazemos encomenda\n✔ Aceitamos Pix\n✔ Entregamos\n\nSe precisar, fale no WhatsApp")
-}
-</script>
+  <section class="section" id="contato">
+    <div class="container">
+      <div class="section-title">
+        <h2>Mais informações</h2>
+        <p>Atendimento para empresas e clientes finais.</p>
+      </div>
+      <div class="card info-card">
+        <p>Consulte disponibilidade, formas de pagamento e encomendas com a equipe da Domínio Informática.</p>
+      </div>
+    </div>
+  </section>
 
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4>Domínio Informática</h4>
+          <p>Automação comercial, informática, impressoras, periféricos, acessórios e soluções para negócios.</p>
+        </div>
+        <div>
+          <h4>Conta</h4>
+          <a href="#" onclick="alert('Área de conta em breve.')">Criar conta</a>
+          <a href="#" onclick="alert('Área de login em breve.')">Entrar</a>
+          <a href="cart.html">Carrinho</a>
+        </div>
+        <div>
+          <h4>Ajuda</h4>
+          <a href="#encomenda">Fazer encomenda</a>
+          <a href="#contato">Contato</a>
+          <a href="#" onclick="alert('Políticas em breve.')">Mais informações</a>
+        </div>
+        <div>
+          <h4>Contato</h4>
+          <p>WhatsApp: (94) 99262-7580</p>
+          <p>Ourilândia do Norte - PA</p>
+          <p>Instagram: @dominioinformatica2023</p>
+        </div>
+      </div>
+
+      <div class="az-footer">
+        Domínio Informática • Site em atualização contínua
+      </div>
+    </div>
+  </footer>
+
+  <div class="drawer" id="cartDrawer">
+    <div class="drawer-header">
+      <strong>Produto adicionado ao carrinho</strong>
+      <button class="small-btn small-orange" onclick="closeDrawer()">Fechar</button>
+    </div>
+    <div class="drawer-body" id="drawerBody"></div>
+    <div class="drawer-footer">
+      <a class="btn btn-blue" href="cart.html">Ir para o carrinho</a>
+      <button class="btn btn-orange" onclick="closeDrawer()">Continuar comprando</button>
+    </div>
+  </div>
+
+  <div class="assistant">
+    <div class="assistant-panel" id="assistantPanel">
+      <h4>Olá! Eu sou o DomBot</h4>
+      <button class="assistant-option" onclick="location.href='easysac.html'">Quero ver solução para loja</button>
+      <button class="assistant-option" onclick="location.href='easychef.html'">Quero ver solução para restaurante</button>
+      <button class="assistant-option" onclick="location.href='easypdv.html'">Quero ver solução para mercado</button>
+      <button class="assistant-option" onclick="document.getElementById('produtos').scrollIntoView()">Quero ver produtos</button>
+      <button class="assistant-option" onclick="sendFaqQuestion()">Tenho uma dúvida</button>
+      <button class="assistant-option" onclick="document.getElementById('encomenda').scrollIntoView()">Quero fazer encomenda</button>
+    </div>
+
+    <div class="assistant-btn" onclick="toggleAssistant()">
+      <img src="dombot.png" alt="DomBot">
+      <div>
+        <strong>Precisa de ajuda?</strong>
+        <span>Clique e fale com o DomBot</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="products.js"></script>
+  <script>
+    function renderProductCard(p) {
+      const mainImage = (p.images && p.images.length)
+        ? `<img src="${p.images[0]}" alt="${p.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="placeholder" style="display:none;">📦</div>`
+        : `<div class="placeholder">📦</div>`;
+
+      const installment = calcInstallment(p.price, 7);
+
+      return `
+        <div class="card product-card">
+          ${p.badge ? `<span class="product-badge">${p.badge}</span>` : ""}
+          <a href="product.html?id=${p.code}">
+            <div class="product-thumb">${mainImage}</div>
+          </a>
+          <span class="stock-badge">Estoque: ${p.stock} un</span>
+          <div class="product-code">Código: ${p.code}</div>
+          <a href="product.html?id=${p.code}" class="product-title">${p.name}</a>
+          <div class="product-price">${formatBRL(p.price)}</div>
+          <div class="product-installments">até 7x sem juros de ${formatBRL(installment.perInstallment)}</div>
+          <div class="product-actions">
+            <button class="small-btn small-blue" onclick="handleAddToCart('${p.code}')">Adicionar ao carrinho</button>
+            <button class="small-btn small-orange" onclick="handleBuyNow('${p.code}')">Comprar</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderProducts() {
+      document.getElementById("productsGrid").innerHTML = PRODUCTS.map(renderProductCard).join("");
+      document.getElementById("cartCount").textContent = cartCount();
+    }
+
+    function doSearch() {
+      const q = document.getElementById("searchInput").value;
+      const found = searchProduct(q);
+      if (found) {
+        location.href = `product.html?id=${found.code}`;
+      } else {
+        alert("Nenhum produto encontrado.");
+      }
+    }
+
+    function toggleAssistant() {
+      document.getElementById("assistantPanel").classList.toggle("active");
+    }
+
+    function sendFaqQuestion() {
+      const q = prompt("Digite sua dúvida:");
+      if (!q) return;
+      const msg = `Olá! Tenho esta dúvida no site:%0A%0A${q}`;
+      window.open(`https://wa.me/${STORE.whatsapp}?text=${msg}`, "_blank");
+    }
+
+    function sendEncomenda() {
+      const product = document.getElementById("wantProduct").value.trim();
+      const obs = document.getElementById("wantObs").value.trim();
+
+      if (!product) {
+        alert("Digite o produto que você procura.");
+        return;
+      }
+
+      const msg =
+`Olá! Não encontrei no site o produto que procuro.
+Produto: ${product}
+Observação: ${obs || "Sem observação"}
+Gostaria de fazer uma encomenda.`;
+
+      window.open(buildWhatsAppUrl(msg), "_blank");
+    }
+
+    function handleAddToCart(code) {
+      addToCart(code, 1);
+      document.getElementById("cartCount").textContent = cartCount();
+      openDrawer(code);
+    }
+
+    function handleBuyNow(code) {
+      setBuyNow(code, 1);
+      location.href = "checkout.html?mode=buy_now";
+    }
+
+    function openDrawer(code) {
+      const p = getProductByCode(code);
+      const related = PRODUCTS.filter(item => item.category === p.category && item.code !== p.code).slice(0, 3);
+
+      const main = (p.images && p.images.length)
+        ? `<img src="${p.images[0]}" alt="${p.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="placeholder" style="display:none;">📦</div>`
+        : `<div class="placeholder">📦</div>`;
+
+      let html = `
+        <div class="drawer-item">
+          <div class="drawer-item-thumb">${main}</div>
+          <div>
+            <strong style="display:block;color:#12358f;margin-bottom:6px;">${p.name}</strong>
+            <div style="font-size:13px;color:#73829f;">Código: ${p.code}</div>
+            <div style="font-size:18px;font-weight:700;color:#12358f;margin-top:6px;">${formatBRL(p.price)}</div>
+          </div>
+        </div>
+      `;
+
+      if (related.length) {
+        html += `<div style="margin-top:4px;font-weight:bold;color:#12358f;">Você também pode gostar</div>`;
+        html += related.map(item => {
+          const img = (item.images && item.images.length)
+            ? `<img src="${item.images[0]}" alt="${item.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="placeholder" style="display:none;">📦</div>`
+            : `<div class="placeholder">📦</div>`;
+          return `
+            <div class="drawer-item">
+              <div class="drawer-item-thumb">${img}</div>
+              <div>
+                <strong style="display:block;color:#12358f;margin-bottom:6px;">${item.name}</strong>
+                <div style="font-size:18px;font-weight:700;color:#12358f;">${formatBRL(item.price)}</div>
+                <button class="small-btn small-blue" style="margin-top:8px;" onclick="handleAddToCart('${item.code}')">Adicionar</button>
+              </div>
+            </div>
+          `;
+        }).join("");
+      }
+
+      document.getElementById("drawerBody").innerHTML = html;
+      document.getElementById("cartDrawer").classList.add("open");
+    }
+
+    function closeDrawer() {
+      document.getElementById("cartDrawer").classList.remove("open");
+    }
+
+    renderProducts();
+  </script>
 </body>
 </html>
