@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout | Domínio Informática</title>
+  <style>
+    :root{
+      --azul:#12358f;
+      --laranja:#ff6f1a;
+      --cinza:#f4f6fb;
+      --texto:#23314d;
+      --texto-suave:#6c7b97;
+      --borda:#dbe3f1;
+      --sombra:0 10px 28px rgba(18,53,143,.08);
+      --raio:18px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Arial,sans-serif;background:var(--cinza);color:var(--texto)}
+    .container{width:min(1180px,92%);margin:0 auto}
+    .header{background:#fff;border-bottom:1px solid #ebeff6;padding:12px 0}
+    .header .container{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+    .logo img{max-height:64px}
+    .btn{
+      display:inline-block;border:none;border-radius:12px;padding:12px 16px;font-weight:bold;cursor:pointer;text-align:center;
+    }
+    .btn-blue{background:var(--azul);color:#fff}
+    .btn-orange{background:var(--laranja);color:#fff}
+    .btn-green{background:#25d366;color:#fff}
+    .section{padding:24px 0}
+    .layout{display:grid;grid-template-columns:1fr 340px;gap:16px}
+    .card{background:#fff;border:1px solid var(--borda);border-radius:var(--raio);box-shadow:var(--sombra);padding:18px}
+    h1{color:var(--azul);font-size:30px;margin-bottom:12px}
+    h2{color:var(--azul);font-size:22px;margin-bottom:10px}
+    p{color:var(--texto-suave);line-height:1.7}
+    .step{display:none}
+    .step.active{display:block}
+    .field{
+      width:100%;
+      border:2px solid #dfe6f3;
+      background:#f8fafe;
+      border-radius:12px;
+      padding:12px 14px;
+      font-size:14px;
+      outline:none;
+      margin-top:8px;
+    }
+    .option{
+      border:1px solid var(--borda);
+      border-radius:14px;
+      padding:14px;
+      margin-top:10px;
+      cursor:pointer;
+      background:#fff;
+    }
+    .option.active{
+      border-color:var(--azul);
+      box-shadow:0 0 0 2px rgba(18,53,143,.08);
+    }
+    .sum-line{display:flex;justify-content:space-between;gap:10px;margin-bottom:10px;color:var(--texto-suave)}
+    .sum-total{font-size:22px;color:var(--azul);font-weight:700;margin-top:12px}
+    .qr{
+      border:1px dashed var(--borda);
+      border-radius:16px;
+      padding:18px;
+      text-align:center;
+      margin-top:12px;
+      background:#f8fafe;
+    }
+    .qr-code{
+      width:180px;height:180px;margin:0 auto 12px auto;
+      background:linear-gradient(45deg,#000 25%,transparent 25%,transparent 50%,#000 50%,#000 75%,transparent 75%,transparent);
+      background-size:24px 24px;
+      border-radius:10px;
+    }
+    @media (max-width:860px){
+      .layout{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo"><img src="logo-dominio.png" alt="Domínio Informática"></a>
+      <a class="btn btn-blue" href="cart.html">Voltar</a>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container layout">
+      <div class="card">
+        <h1>Finalizar compra</h1>
+
+        <div class="step active" id="step1">
+          <h2>Entrega</h2>
+          <div class="option active" data-delivery="retirada" onclick="selectDelivery('retirada', this)">
+            <strong>Retirada na loja</strong>
+            <p>Você retira o produto diretamente na loja.</p>
+          </div>
+
+          <div class="option" data-delivery="endereco" onclick="selectDelivery('endereco', this)">
+            <strong>Enviar no meu endereço</strong>
+            <p>Disponível para pedidos em grande quantidade.</p>
+          </div>
+
+          <div id="deliveryExtra" style="display:none;margin-top:12px;">
+            <label>Seu endereço</label>
+            <input class="field" id="addressField" placeholder="Rua, número, bairro, cidade">
+            <label style="display:block;margin-top:12px;">Tipo do local</label>
+            <select class="field" id="locationType" onchange="toggleWorkFields()">
+              <option value="residencia">Residência</option>
+              <option value="trabalho">Local de trabalho</option>
+            </select>
+
+            <div id="workFields" style="display:none;">
+              <label style="display:block;margin-top:12px;">Nome do lugar</label>
+              <input class="field" id="workName" placeholder="Nome da empresa ou local">
+              <label style="display:block;margin-top:12px;">Horário de atendimento</label>
+              <input class="field" id="workHours" placeholder="Ex.: 08h às 18h">
+            </div>
+          </div>
+
+          <div style="margin-top:16px;">
+            <button class="btn btn-orange" onclick="goStep(2)">Continuar</button>
+          </div>
+        </div>
+
+        <div class="step" id="step2">
+          <h2>Pagamento</h2>
+
+          <div class="option active" onclick="selectPayment('pix', this)">
+            <strong>Pix</strong>
+            <p>Pagamento à vista. Depois clique em “Já paguei” e envie o comprovante no WhatsApp.</p>
+          </div>
+
+          <div class="option" onclick="selectPayment('dinheiro', this)">
+            <strong>Dinheiro</strong>
+            <p>Pagamento presencial na retirada ou entrega.</p>
+          </div>
+
+          <div class="option" onclick="selectPayment('cartao', this)">
+            <strong>Cartão</strong>
+            <p>1x até 7x sem juros. 8x a 12x com taxa.</p>
+          </div>
+
+          <div class="option" onclick="selectPayment('combinar', this)">
+            <strong>Combinar 2 meios de pagamento</strong>
+            <p>Ex.: parte no Pix e parte no cartão.</p>
+          </div>
+
+          <div id="cardBox" style="display:none;margin-top:12px;">
+            <label>Parcelamento no cartão</label>
+            <select class="field" id="installmentsSelect" onchange="updateInstallmentPreview()"></select>
+            <p id="installmentPreview" style="margin-top:10px;"></p>
+          </div>
+
+          <div id="combineBox" style="display:none;margin-top:12px;">
+            <label>Descreva como quer pagar</label>
+            <input class="field" id="combineField" placeholder="Ex.: metade no Pix e metade no cartão">
+          </div>
+
+          <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;">
+            <button class="btn btn-blue" onclick="goStep(1)">Voltar</button>
+            <button class="btn btn-orange" onclick="finishCheckout()">Continuar</button>
+          </div>
+        </div>
+
+        <div class="step" id="step3">
+          <h2>Pagamento via Pix</h2>
+          <div class="qr">
+            <div class="qr-code"></div>
+            <p><strong>Chave Pix:</strong> <span id="pixKeyText"></span></p>
+            <p><strong>Recebedor:</strong> <span id="pixNameText"></span></p>
+            <p><strong>Valor:</strong> <span id="pixTotalText"></span></p>
+            <p style="margin-top:10px;">Após o pagamento, clique em <strong>Já paguei</strong> e envie o comprovante no WhatsApp para confirmação do pedido.</p>
+          </div>
+
+          <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;">
+            <button class="btn btn-blue" onclick="goStep(2)">Voltar</button>
+            <button class="btn btn-green" onclick="sendPixWhatsApp()">Já paguei</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Resumo</h2>
+        <div id="summaryItems"></div>
+        <hr style="margin:12px 0;border:none;border-top:1px solid #ebeff6;">
+        <div class="sum-line"><span>Total dos produtos</span><strong id="summaryTotal">R$ 0,00</strong></div>
+        <div class="sum-total" id="summaryFinal">R$ 0,00</div>
+      </div>
+    </div>
+  </section>
+
+  <script src="products.js"></script>
+  <script>
+    const params = new URLSearchParams(location.search);
+    const mode = params.get("mode") || "cart";
+
+    let deliveryType = "retirada";
+    let paymentType = "pix";
+
+    function getCheckoutItems() {
+      if (mode === "buy_now") {
+        const item = getBuyNow();
+        if (!item) return [];
+        return [item];
+      }
+      return cartGet();
+    }
+
+    function getOrderData() {
+      const items = getCheckoutItems();
+      let total = 0;
+
+      const parsed = items.map(item => {
+        const p = getProductByCode(item.code);
+        const subtotal = p ? p.price * item.qty : 0;
+        total += subtotal;
+        return { ...item, product: p, subtotal };
+      }).filter(i => i.product);
+
+      return { items: parsed, total };
+    }
+
+    function renderSummary() {
+      const data = getOrderData();
+      const box = document.getElementById("summaryItems");
+
+      if (!data.items.length) {
+        box.innerHTML = "<p>Sem itens no pedido.</p>";
+        document.getElementById("summaryTotal").textContent = "R$ 0,00";
+        document.getElementById("summaryFinal").textContent = "R$ 0,00";
+        return;
+      }
+
+      box.innerHTML = data.items.map(item => `
+        <div style="margin-bottom:12px;">
+          <strong style="color:#12358f;display:block;">${item.product.name}</strong>
+          <span style="color:#6c7b97;font-size:14px;">Qtd: ${item.qty}</span><br>
+          <span style="color:#6c7b97;font-size:14px;">${formatBRL(item.subtotal)}</span>
+        </div>
+      `).join("");
+
+      document.getElementById("summaryTotal").textContent = formatBRL(data.total);
+      document.getElementById("summaryFinal").textContent = formatBRL(data.total);
+      document.getElementById("pixTotalText").textContent = formatBRL(data.total);
+    }
+
+    function goStep(n) {
+      document.querySelectorAll(".step").forEach(step => step.classList.remove("active"));
+      document.getElementById("step" + n).classList.add("active");
+    }
+
+    function selectDelivery(type, el) {
+      deliveryType = type;
+      document.querySelectorAll("[data-delivery]").forEach(x => x.classList.remove("active"));
+      el.classList.add("active");
+      document.getElementById("deliveryExtra").style.display = type === "endereco" ? "block" : "none";
+    }
+
+    function toggleWorkFields() {
+      document.getElementById("workFields").style.display =
+        document.getElementById("locationType").value === "trabalho" ? "block" : "none";
+    }
+
+    function selectPayment(type, el) {
+      paymentType = type;
+      document.querySelectorAll("#step2 .option").forEach(x => x.classList.remove("active"));
+      el.classList.add("active");
+
+      document.getElementById("cardBox").style.display = type === "cartao" ? "block" : "none";
+      document.getElementById("combineBox").style.display = type === "combinar" ? "block" : "none";
+    }
+
+    function populateInstallments() {
+      const select = document.getElementById("installmentsSelect");
+      select.innerHTML = "";
+      for (let i = 1; i <= 12; i++) {
+        const option = document.createElement("option");
+        option.value = i;
+        option.textContent = `${i}x`;
+        select.appendChild(option);
+      }
+      updateInstallmentPreview();
+    }
+
+    function updateInstallmentPreview() {
+      const data = getOrderData();
+      const installments = Number(document.getElementById("installmentsSelect").value || 1);
+      const calc = calcInstallment(data.total, installments);
+
+      const text = calc.rate === 0
+        ? `${installments}x sem juros de ${formatBRL(calc.perInstallment)}`
+        : `${installments}x com taxa de ${calc.rate.toFixed(2).replace(".", ",")}% • ${formatBRL(calc.perInstallment)} por parcela • total ${formatBRL(calc.total)}`;
+
+      document.getElementById("installmentPreview").textContent = text;
+      document.getElementById("summaryFinal").textContent = formatBRL(calc.total);
+    }
+
+    function buildOrderMessage(isPixPaid = false) {
+      const data = getOrderData();
+      const lines = [];
+
+      lines.push("Olá! Quero finalizar este pedido pelo site.");
+      lines.push("");
+
+      lines.push("🛒 Pedido:");
+      data.items.forEach((item, idx) => {
+        lines.push(`${idx + 1}. ${item.product.name}`);
+        lines.push(`Código: ${item.product.code}`);
+        lines.push(`Quantidade: ${item.qty}`);
+        lines.push(`Subtotal: ${formatBRL(item.subtotal)}`);
+        lines.push("");
+      });
+
+      lines.push(`💰 Total dos produtos: ${formatBRL(data.total)}`);
+
+      if (paymentType === "cartao") {
+        const installments = Number(document.getElementById("installmentsSelect").value || 1);
+        const calc = calcInstallment(data.total, installments);
+        lines.push(`💳 Pagamento: Cartão em ${installments}x`);
+        lines.push(calc.rate === 0
+          ? `Sem juros`
+          : `Com taxa de ${calc.rate.toFixed(2).replace(".", ",")}%`);
+        lines.push(`Total final: ${formatBRL(calc.total)}`);
+      } else if (paymentType === "pix") {
+        lines.push(`💳 Pagamento: Pix`);
+        if (isPixPaid) {
+          lines.push(`✅ Já realizei o pagamento.`);
+          lines.push(`📎 Vou enviar o comprovante agora.`);
+        }
+      } else if (paymentType === "dinheiro") {
+        lines.push(`💳 Pagamento: Dinheiro`);
+      } else if (paymentType === "combinar") {
+        const combo = document.getElementById("combineField").value.trim() || "A combinar";
+        lines.push(`💳 Pagamento: Combinar 2 meios`);
+        lines.push(`Detalhe: ${combo}`);
+      }
+
+      if (deliveryType === "retirada") {
+        lines.push(`📦 Entrega: Retirada na loja`);
+      } else {
+        lines.push(`📦 Entrega: Enviar no endereço`);
+        lines.push(`Endereço: ${document.getElementById("addressField").value.trim() || "Não informado"}`);
+        const type = document.getElementById("locationType").value;
+        lines.push(`Tipo do local: ${type === "trabalho" ? "Local de trabalho" : "Residência"}`);
+        if (type === "trabalho") {
+          lines.push(`Nome do lugar: ${document.getElementById("workName").value.trim() || "Não informado"}`);
+          lines.push(`Horário de atendimento: ${document.getElementById("workHours").value.trim() || "Não informado"}`);
+        }
+      }
+
+      return lines.join("\n");
+    }
+
+    function finishCheckout() {
+      if (paymentType === "pix") {
+        goStep(3);
+        return;
+      }
+
+      window.open(buildWhatsAppUrl(buildOrderMessage(false)), "_blank");
+
+      if (mode === "buy_now") clearBuyNow();
+      else clearCart();
+    }
+
+    function sendPixWhatsApp() {
+      window.open(buildWhatsAppUrl(buildOrderMessage(true)), "_blank");
+
+      if (mode === "buy_now") clearBuyNow();
+      else clearCart();
+    }
+
+    document.getElementById("pixKeyText").textContent = STORE.pixKey;
+    document.getElementById("pixNameText").textContent = STORE.pixName;
+
+    populateInstallments();
+    renderSummary();
+  </script>
+</body>
+</html>
