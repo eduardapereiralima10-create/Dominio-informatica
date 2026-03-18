@@ -10,7 +10,6 @@
       --azul:#12358f;
       --azul-escuro:#0b1f66;
       --laranja:#ff6f1a;
-      --laranja-claro:#ff8f4d;
       --branco:#ffffff;
       --cinza:#f4f6fb;
       --texto:#23314d;
@@ -20,217 +19,321 @@
       --raio:18px;
     }
     *{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
     body{font-family:Arial,sans-serif;background:var(--cinza);color:var(--texto)}
     a{text-decoration:none;color:inherit}
     img{max-width:100%;display:block}
     .container{width:min(1200px,92%);margin:0 auto}
+    .topbar{background:linear-gradient(90deg,var(--azul),var(--azul-escuro));color:#fff;font-size:14px}
+    .topbar .container{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:8px 0}
 
-    .topbar{
-      background:linear-gradient(90deg,var(--azul),var(--azul-escuro));
-      color:#fff;
-      font-size:14px;
-    }
-    .topbar .container{
-      display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;
-      padding:10px 0;
-    }
-
-    .header{
-      background:#fff;
-      border-bottom:1px solid #e6ebf5;
-      position:sticky;top:0;z-index:999;
-    }
-    .header-main{padding:14px 0}
+    .header{background:#fff;border-bottom:1px solid #e7edf6}
+    .header-main{padding:12px 0}
     .header-main .container{
       display:grid;
-      grid-template-columns:380px minmax(0,1fr) 130px 130px;
+      grid-template-columns:300px 1fr 130px 130px;
       gap:14px;
       align-items:center;
     }
     .logo{display:flex;align-items:center}
-    .logo img{max-height:165px;width:auto}
+    .logo img{max-height:80px;width:auto}
 
     .searchbar{
-      display:flex;border:2px solid var(--borda);background:#f7f9fd;border-radius:14px;
-      overflow:hidden;min-width:0;
+      display:flex;
+      border:2px solid var(--borda);
+      background:#f7f9fd;
+      border-radius:14px;
+      overflow:hidden;
+      min-width:0;
     }
     .searchbar input{
-      flex:1;border:none;outline:none;background:transparent;padding:15px 16px;font-size:15px;min-width:0;
+      flex:1;
+      border:none;
+      outline:none;
+      background:transparent;
+      padding:14px 16px;
+      font-size:15px;
+      min-width:0;
     }
     .searchbar button{
-      border:none;background:var(--laranja);color:#fff;padding:0 18px;font-weight:bold;cursor:pointer;
+      border:none;
+      background:var(--laranja);
+      color:#fff;
+      padding:0 20px;
+      font-weight:bold;
+      cursor:pointer;
     }
-
     .header-btn{
-      border:2px solid var(--borda);background:#f7f9fd;color:var(--azul);
-      border-radius:14px;padding:14px 12px;font-weight:bold;text-align:center;cursor:pointer;min-width:0;
+      border:2px solid var(--borda);
+      background:#f7f9fd;
+      color:var(--azul);
+      border-radius:14px;
+      padding:14px 10px;
+      font-weight:bold;
+      text-align:center;
+      cursor:pointer;
     }
 
     .menu{background:var(--azul)}
-    .menu .container{
-      display:flex;gap:20px;overflow-x:auto;padding:13px 0;scrollbar-width:none;
-    }
-    .menu .container::-webkit-scrollbar{display:none}
-    .menu a{color:#fff;font-weight:bold;white-space:nowrap;font-size:15px;opacity:.96}
+    .menu .container{display:flex;gap:22px;overflow-x:auto;padding:12px 0}
+    .menu a{color:#fff;font-weight:bold;white-space:nowrap}
 
     .hero{
       background:linear-gradient(135deg,var(--azul),var(--azul-escuro));
-      color:#fff;padding:42px 0 34px;overflow:hidden;
+      color:#fff;
+      padding:34px 0;
     }
     .hero .container{
-      display:grid;grid-template-columns:minmax(0,1.1fr) minmax(300px,.9fr);
-      gap:24px;align-items:center;
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:24px;
+      align-items:center;
     }
     .badge{
-      display:inline-block;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.18);
-      padding:8px 12px;border-radius:999px;font-size:12px;font-weight:bold;margin-bottom:14px;
+      display:inline-block;
+      background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.18);
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:bold;
+      margin-bottom:14px;
     }
-    .hero h1{font-size:46px;line-height:1.08;margin-bottom:14px}
-    .hero p{font-size:18px;line-height:1.65;max-width:620px}
-    .hero-actions{margin-top:22px;display:flex;gap:12px;flex-wrap:wrap}
+    .hero h1{font-size:46px;line-height:1.1;margin-bottom:14px}
+    .hero p{font-size:18px;line-height:1.6}
+    .hero-actions{margin-top:20px;display:flex;gap:12px;flex-wrap:wrap}
     .btn{
-      display:inline-block;padding:14px 22px;border-radius:12px;font-weight:bold;transition:.2s ease;
+      display:inline-block;
+      padding:14px 22px;
+      border-radius:12px;
+      font-weight:bold;
     }
-    .btn:hover{transform:translateY(-2px)}
     .btn-orange{background:var(--laranja);color:#fff}
     .btn-white{background:#fff;color:var(--azul)}
 
     .hero-card{
-      background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.16);
-      border-radius:24px;padding:22px;display:grid;grid-template-columns:1fr 170px;
-      gap:14px;align-items:center;box-shadow:0 18px 42px rgba(0,0,0,.16);
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.16);
+      border-radius:24px;
+      padding:22px;
+      display:grid;
+      grid-template-columns:1fr 160px;
+      gap:14px;
+      align-items:center;
     }
     .hero-card h2{font-size:24px;margin-bottom:10px}
     .hero-card p{font-size:15px;line-height:1.6;margin-bottom:10px}
     .hero-card .tag{
-      display:inline-block;background:var(--laranja);padding:10px 12px;border-radius:10px;
-      font-size:13px;font-weight:bold;
+      display:inline-block;
+      background:var(--laranja);
+      padding:10px 12px;
+      border-radius:10px;
+      font-size:13px;
+      font-weight:bold;
     }
-    .hero-card .dombot-image{
-      width:170px;height:170px;border-radius:18px;background:#fff;padding:10px;object-fit:contain;
-      margin-left:auto;
+    .hero-card img{
+      width:160px;
+      height:160px;
+      object-fit:contain;
+      background:#fff;
+      border-radius:18px;
+      padding:10px;
     }
 
-    .section{padding:34px 0}
+    .section{padding:28px 0}
     .section-title{margin-bottom:18px}
-    .section-title h2{font-size:30px;color:var(--azul);margin-bottom:6px}
-    .section-title p{color:var(--texto-suave);font-size:15px}
+    .section-title h2{font-size:34px;color:var(--azul);margin-bottom:6px}
+    .section-title p{color:var(--texto-suave)}
 
-    .grid-systems,.grid-products{
-      display:grid;gap:18px;
-    }
-    .grid-systems{grid-template-columns:repeat(3,minmax(0,1fr))}
-    .grid-products{grid-template-columns:repeat(4,minmax(0,1fr));align-items:start}
+    .grid-systems{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .grid-products{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
 
     .card{
-      background:#fff;border:1px solid var(--borda);border-radius:var(--raio);box-shadow:var(--sombra);
+      background:#fff;
+      border:1px solid var(--borda);
+      border-radius:var(--raio);
+      box-shadow:var(--sombra);
     }
-
-    .system-card,.product-card,.info-card{padding:20px}
+    .system-card,.product-card{padding:16px}
     .system-badge,.stock-badge{
-      display:inline-block;font-size:12px;font-weight:bold;border-radius:999px;padding:8px 12px;margin-bottom:12px;
+      display:inline-block;
+      font-size:12px;
+      font-weight:bold;
+      border-radius:999px;
+      padding:8px 12px;
+      margin-bottom:12px;
     }
     .system-badge{background:#eef3ff;color:var(--azul)}
     .stock-badge{background:#fff1e8;color:var(--laranja)}
-    .system-card h3,.product-card h3,.info-card h3{color:var(--azul);margin-bottom:10px;font-size:22px}
-    .system-card p,.product-card p,.info-card p{color:var(--texto-suave);line-height:1.6;font-size:15px}
-
-    .system-card ul{
-      list-style:none;display:grid;gap:8px;margin:14px 0 18px;color:#34425f;font-size:14px;
-    }
+    .system-card h3,.product-card h3{color:var(--azul);margin-bottom:10px;font-size:22px}
+    .system-card p,.product-card p{color:var(--texto-suave);line-height:1.6}
+    .system-card ul{list-style:none;display:grid;gap:8px;margin:14px 0 18px}
     .system-card ul li::before{content:"✓ ";color:var(--laranja);font-weight:bold}
-
     .actions{display:flex;gap:10px;flex-wrap:wrap}
     .mini-btn{
-      border:none;border-radius:10px;padding:11px 14px;font-size:14px;font-weight:bold;cursor:pointer;display:inline-block;
+      border:none;
+      border-radius:10px;
+      padding:11px 14px;
+      font-size:14px;
+      font-weight:bold;
+      cursor:pointer;
+      display:inline-block;
     }
     .mini-blue{background:var(--azul);color:#fff}
     .mini-light{background:#fff1e8;color:var(--laranja);border:1px solid #ffd3bb}
 
-    .product-card{display:flex;flex-direction:column;gap:12px;padding:16px}
+    .product-card{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
     .product-thumb{
-      height:180px;border-radius:14px;background:linear-gradient(135deg,#eef4ff,#fff3eb);
-      display:grid;place-items:center;overflow:hidden;
+      height:180px;
+      border-radius:14px;
+      background:#fff;
+      border:1px solid #e7edf6;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      padding:14px;
     }
-    .product-thumb img{max-height:100%;max-width:100%;object-fit:contain}
+    .product-thumb img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      object-position:center;
+      display:block;
+    }
     .placeholder{
-      font-size:42px;color:var(--azul);
+      font-size:42px;
+      color:var(--azul);
     }
-    .price{font-size:22px;font-weight:700;color:var(--azul)}
+    .price{font-size:24px;font-weight:700;color:var(--azul)}
     .code{font-size:13px;color:#7182a3}
     .product-link{display:block}
-    .cart-badge{font-size:12px;color:#fff;background:var(--laranja);padding:4px 8px;border-radius:999px;margin-left:6px}
+    .cart-badge{
+      display:inline-block;
+      background:var(--laranja);
+      color:#fff;
+      font-size:12px;
+      border-radius:999px;
+      padding:4px 8px;
+      margin-left:6px;
+    }
 
-    .request-box{
-      display:grid;grid-template-columns:1fr 1fr;gap:18px;
-    }
-    select,input[type="text"],textarea{
-      width:100%;border:2px solid #dfe6f3;background:#f8fafe;border-radius:12px;padding:12px 14px;font-size:14px;outline:none;
-    }
-    textarea{min-height:110px;resize:vertical}
-
-    footer{
-      background:#091640;color:#fff;padding:28px 0;margin-top:26px;
-    }
-    footer .container{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-
-    .assistant{
-      position:fixed;right:16px;bottom:16px;z-index:1000;
-    }
+    .assistant{position:fixed;right:12px;bottom:12px;z-index:1000}
     .assistant-btn{
-      background:#fff;border:2px solid var(--borda);border-radius:999px;
+      background:#fff;
+      border:2px solid var(--borda);
+      border-radius:999px;
       box-shadow:0 12px 32px rgba(18,53,143,.16);
-      display:flex;align-items:center;gap:12px;padding:10px 15px 10px 10px;
-      cursor:pointer;max-width:260px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px 10px 10px;
+      cursor:pointer;
+      max-width:240px;
     }
     .assistant-btn img{
-      width:54px;height:54px;border-radius:50%;object-fit:cover;background:#fff;
+      width:48px;
+      height:48px;
+      border-radius:50%;
+      object-fit:cover;
+      background:#fff;
     }
     .assistant-btn strong{display:block;color:var(--azul);font-size:15px}
     .assistant-btn span{display:block;color:#68748d;font-size:13px}
     .assistant-panel{
-      position:absolute;right:0;bottom:80px;width:320px;background:#fff;border:1px solid #dfe6f3;
-      border-radius:20px;box-shadow:0 20px 46px rgba(18,53,143,.18);padding:18px;display:none;
+      position:absolute;
+      right:0;
+      bottom:76px;
+      width:310px;
+      background:#fff;
+      border:1px solid #dfe6f3;
+      border-radius:20px;
+      box-shadow:0 20px 46px rgba(18,53,143,.18);
+      padding:18px;
+      display:none;
     }
     .assistant-panel.active{display:block}
     .assistant-panel h4{color:var(--azul);margin-bottom:12px;font-size:20px}
     .assistant-option{
-      display:block;width:100%;text-align:left;border:1px solid #e3e9f5;background:#f8fafe;
-      border-radius:12px;padding:12px 14px;margin-bottom:10px;color:#34425f;font-weight:bold;cursor:pointer;
+      display:block;
+      width:100%;
+      text-align:left;
+      border:1px solid #e3e9f5;
+      background:#f8fafe;
+      border-radius:12px;
+      padding:12px 14px;
+      margin-bottom:10px;
+      color:#34425f;
+      font-weight:bold;
+      cursor:pointer;
     }
 
-    @media (max-width:1100px){
-      .header-main .container{grid-template-columns:300px minmax(0,1fr) 120px 120px}
-      .logo img{max-height:145px}
-      .grid-products{grid-template-columns:repeat(3,minmax(0,1fr))}
+    footer{
+      background:#091640;
+      color:#fff;
+      padding:24px 0;
+      margin-top:20px;
     }
-    @media (max-width:900px){
-      .header-main .container{grid-template-columns:1fr;gap:12px}
-      .logo{justify-content:center}
-      .logo img{max-height:130px}
-      .hero .container,.request-box{grid-template-columns:1fr}
-      .grid-systems,.grid-products{grid-template-columns:1fr}
-      .hero h1{font-size:34px}
-      .hero-card{grid-template-columns:1fr 150px}
-      .header-btn{min-width:0}
+    footer .container{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+    @media (max-width: 1024px){
+      .header-main .container{grid-template-columns:220px 1fr 120px 120px}
+      .grid-products{grid-template-columns:repeat(3,1fr)}
     }
-    @media (max-width:640px){
-      .topbar .container{font-size:13px;line-height:1.5}
+
+    @media (max-width: 860px){
+      .header-main .container{
+        grid-template-columns:1fr;
+        gap:10px;
+      }
       .logo{justify-content:center}
-      .logo img{max-height:140px}
-      .searchbar input{padding:13px 14px;font-size:14px}
+      .logo img{max-height:70px}
+      .hero .container{grid-template-columns:1fr}
+      .grid-systems{grid-template-columns:1fr}
+      .grid-products{grid-template-columns:repeat(2,1fr)}
+      .hero h1{font-size:30px}
+      .hero-card{grid-template-columns:1fr}
+      .hero-card img{margin:0 auto}
+    }
+
+    @media (max-width: 640px){
+      .topbar{font-size:12px}
+      .topbar .container{padding:8px 0;line-height:1.4}
+      .header-main{padding:10px 0}
+      .logo img{max-height:56px}
+      .searchbar input{padding:12px 12px;font-size:14px}
       .searchbar button{padding:0 16px}
-      .header-main .container{gap:10px}
-      .header-btn{width:100%;padding:13px 14px}
-      .menu .container{gap:18px;padding:12px 0}
-      .hero{padding-top:28px}
-      .hero h1{font-size:29px;line-height:1.12}
-      .hero p{font-size:16px}
-      .hero-card{grid-template-columns:1fr;text-align:left;padding:18px}
-      .hero-card .dombot-image{margin:0 auto;width:130px;height:130px}
-      .assistant-panel{width:290px}
-      .assistant-btn{max-width:230px}
+      .header-btn{padding:12px 10px;font-size:14px}
+      .menu .container{gap:16px;padding:10px 0}
+      .hero{padding:24px 0}
+      .hero h1{font-size:28px}
+      .hero p{font-size:15px}
+      .hero-card{padding:16px}
+      .hero-card img{width:110px;height:110px}
+      .section-title h2{font-size:28px}
+      .grid-products{grid-template-columns:1fr 1fr;gap:12px}
+      .product-card{padding:12px}
+      .product-thumb{height:120px;padding:10px}
+      .product-card h3{font-size:15px;line-height:1.3}
+      .product-card p{font-size:13px}
+      .price{font-size:18px}
+      .assistant-btn{
+        max-width:180px;
+        padding:8px 10px 8px 8px;
+      }
+      .assistant-btn img{width:38px;height:38px}
+      .assistant-btn strong{font-size:13px}
+      .assistant-btn span{font-size:11px}
+      .assistant-panel{width:270px}
+    }
+
+    @media (max-width: 430px){
+      .grid-products{grid-template-columns:1fr}
+      .product-thumb{height:150px}
+      .header-btn{width:100%}
     }
   </style>
 </head>
@@ -257,7 +360,10 @@
         <div class="header-btn" onclick="openCartWhatsApp()">
           🛒 Carrinho <span class="cart-badge" id="cartCount">0</span>
         </div>
-        <a class="header-btn" href="https://wa.me/5594992627580?text=Olá! Quero atendimento da Domínio Informática." target="_blank">💬 Atendimento</a>
+
+        <a class="header-btn" href="https://wa.me/5594992627580?text=Olá! Quero atendimento da Domínio Informática." target="_blank">
+          💬 Atendimento
+        </a>
       </div>
     </div>
 
@@ -266,7 +372,6 @@
         <a href="#inicio">Início</a>
         <a href="#sistemas">Soluções</a>
         <a href="#produtos">Produtos</a>
-        <a href="#encomenda">Encomenda</a>
         <a href="#contato">Contato</a>
       </div>
     </nav>
@@ -277,10 +382,7 @@
       <div>
         <span class="badge">Tecnologia • Automação • Estoque local</span>
         <h1>Automação comercial e informática para sua empresa</h1>
-        <p>
-          Soluções para lojas, restaurantes e mercados, além de produtos de informática,
-          impressão, automação comercial e acessórios para o dia a dia.
-        </p>
+        <p>Soluções para lojas, restaurantes e mercados, além de produtos de informática, impressão, automação comercial e acessórios para o dia a dia.</p>
         <div class="hero-actions">
           <a href="#sistemas" class="btn btn-orange">Ver soluções</a>
           <a href="#produtos" class="btn btn-white">Ver produtos</a>
@@ -293,7 +395,7 @@
           <p>Seu assistente da Domínio Informática. Tire dúvidas, encontre produtos e fale com a loja com mais rapidez.</p>
           <span class="tag">Clique no DomBot no canto para começar</span>
         </div>
-        <img src="dombot.png" alt="DomBot" class="dombot-image" />
+        <img src="dombot.png" alt="DomBot">
       </div>
     </div>
   </section>
@@ -302,7 +404,7 @@
     <div class="container">
       <div class="section-title">
         <h2>Soluções para o seu negócio</h2>
-        <p>Clique e saiba mais sobre cada sistema na mesma aba</p>
+        <p>Clique e saiba mais sobre cada sistema</p>
       </div>
 
       <div class="grid-systems">
@@ -318,7 +420,6 @@
           </ul>
           <div class="actions">
             <a href="easysac.html" class="mini-btn mini-blue">Saiba mais</a>
-            <a href="https://wa.me/5594992627580?text=Olá! Quero saber mais sobre o EasySAC." target="_blank" class="mini-btn mini-light">Solicitar atendimento</a>
           </div>
         </div>
 
@@ -334,7 +435,6 @@
           </ul>
           <div class="actions">
             <a href="easychef.html" class="mini-btn mini-blue">Saiba mais</a>
-            <a href="https://wa.me/5594992627580?text=Olá! Quero saber mais sobre o EasyChef." target="_blank" class="mini-btn mini-light">Solicitar atendimento</a>
           </div>
         </div>
 
@@ -350,7 +450,6 @@
           </ul>
           <div class="actions">
             <a href="easypdv.html" class="mini-btn mini-blue">Saiba mais</a>
-            <a href="https://wa.me/5594992627580?text=Olá! Quero saber mais sobre o EasyPDV." target="_blank" class="mini-btn mini-light">Solicitar atendimento</a>
           </div>
         </div>
       </div>
@@ -363,42 +462,7 @@
         <h2>Produtos da loja</h2>
         <p>Clique no produto para abrir a página dele</p>
       </div>
-
       <div class="grid-products" id="productsGrid"></div>
-    </div>
-  </section>
-
-  <section class="section" id="encomenda">
-    <div class="container">
-      <div class="section-title">
-        <h2>Não encontrou o que queria?</h2>
-        <p>Peça aqui sua encomenda ou informe o produto que você procura</p>
-      </div>
-
-      <div class="request-box">
-        <div class="card info-card">
-          <h3>Faça sua encomenda</h3>
-          <p>Você pode informar o produto desejado e falar com a nossa equipe.</p>
-          <br>
-          <input type="text" id="produto-encomenda" placeholder="Ex.: notebook, checkout de mercado, leitor..." />
-          <br><br>
-          <textarea id="obs-encomenda" placeholder="Descreva melhor o que você precisa"></textarea>
-          <br>
-          <div class="actions">
-            <button class="mini-btn mini-blue" onclick="enviarEncomenda()">Enviar encomenda</button>
-          </div>
-        </div>
-
-        <div class="card info-card">
-          <h3>Atendimento da loja</h3>
-          <p><strong>WhatsApp:</strong> (94) 99262-7580</p>
-          <p><strong>Instagram:</strong> @dominioinformatica2023</p>
-          <p><strong>Cidade:</strong> Ourilândia do Norte - PA</p>
-          <p><strong>Segunda a sexta:</strong> 08h às 18h</p>
-          <p><strong>Almoço:</strong> 11h às 13h</p>
-          <p><strong>Sábado:</strong> 08h às 12h</p>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -408,26 +472,10 @@
         <h2>Fale com a Domínio Informática</h2>
         <p>Atendimento para empresas e clientes finais</p>
       </div>
-
-      <div class="request-box">
-        <div class="card info-card">
-          <h3>Contato rápido</h3>
-          <p>Se você precisar de ajuda com automação comercial, produtos ou orçamento, fale com a gente.</p>
-          <br>
-          <div class="actions">
-            <a class="mini-btn mini-blue" href="https://wa.me/5594992627580?text=Olá! Quero atendimento da Domínio Informática." target="_blank">Chamar no WhatsApp</a>
-            <a class="mini-btn mini-light" href="https://www.instagram.com/dominioinformatica2023" target="_blank">Abrir Instagram</a>
-          </div>
-        </div>
-
-        <div class="card info-card">
-          <h3>Segmentos atendidos</h3>
-          <p>✅ Mercados</p>
-          <p>✅ Restaurantes</p>
-          <p>✅ Lojas em geral</p>
-          <p>✅ Empresas</p>
-          <p>✅ Clientes finais</p>
-        </div>
+      <div class="card system-card">
+        <p><strong>WhatsApp:</strong> (94) 99262-7580</p>
+        <p><strong>Instagram:</strong> @dominioinformatica2023</p>
+        <p><strong>Cidade:</strong> Ourilândia do Norte - PA</p>
       </div>
     </div>
   </section>
@@ -446,12 +494,11 @@
       <button class="assistant-option" onclick="window.location.href='easychef.html'">Quero ver solução para restaurante</button>
       <button class="assistant-option" onclick="window.location.href='easypdv.html'">Quero ver solução para mercado</button>
       <button class="assistant-option" onclick="document.getElementById('produtos').scrollIntoView()">Quero ver produtos</button>
-      <button class="assistant-option" onclick="document.getElementById('encomenda').scrollIntoView()">Quero fazer encomenda</button>
       <button class="assistant-option" onclick="window.open('https://wa.me/5594992627580?text=Olá! Preciso de ajuda da Domínio Informática.','_blank')">Quero falar no WhatsApp</button>
     </div>
 
     <div class="assistant-btn" onclick="toggleAssistant()">
-      <img src="dombot.png" alt="DomBot" />
+      <img src="dombot.png" alt="DomBot">
       <div>
         <strong>Precisa de ajuda?</strong>
         <span>Clique e fale com o DomBot</span>
@@ -465,25 +512,8 @@
       document.getElementById("assistantPanel").classList.toggle("active");
     }
 
-    function enviarEncomenda() {
-      const produto = document.getElementById("produto-encomenda").value.trim();
-      const obs = document.getElementById("obs-encomenda").value.trim();
-
-      if (!produto) {
-        alert("Digite o produto que você procura.");
-        return;
-      }
-
-      let mensagem = "Olá! Quero fazer uma encomenda.%0A%0A";
-      mensagem += "Produto desejado: " + produto + "%0A";
-      if (obs) mensagem += "Observações: " + obs + "%0A";
-
-      window.open("https://wa.me/5594992627580?text=" + mensagem, "_blank");
-    }
-
     function searchProducts() {
       const term = document.getElementById("searchInput").value.trim().toLowerCase();
-
       if (!term) return;
 
       const found = PRODUCTS.find(p =>
@@ -513,14 +543,23 @@
       alert("Nenhum resultado encontrado.");
     }
 
+    function handleAdd(code) {
+      addToCart(code, 1);
+      document.getElementById("cartCount").textContent = cartCount();
+      alert("Produto adicionado ao carrinho.");
+    }
+
     function renderProducts() {
       const grid = document.getElementById("productsGrid");
       grid.innerHTML = PRODUCTS.map(p => {
-        const mainImage = p.images && p.images.length ? `<img src="${p.images[0]}" alt="${p.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"><div class='placeholder' style='display:none'>📦</div>` : `<div class="placeholder">📦</div>`;
+        const img = (p.images && p.images.length)
+          ? `<img src="${p.images[0]}" alt="${p.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="placeholder" style="display:none;">📦</div>`
+          : `<div class="placeholder">📦</div>`;
+
         return `
           <div class="card product-card">
             <a class="product-link" href="product.html?id=${p.code}">
-              <div class="product-thumb">${mainImage}</div>
+              <div class="product-thumb">${img}</div>
             </a>
             <span class="stock-badge">Estoque: ${p.stock} un</span>
             <div class="code">Código: ${p.code}</div>
@@ -538,12 +577,6 @@
       }).join("");
 
       document.getElementById("cartCount").textContent = cartCount();
-    }
-
-    function handleAdd(code) {
-      addToCart(code, 1);
-      document.getElementById("cartCount").textContent = cartCount();
-      alert("Produto adicionado ao carrinho.");
     }
 
     renderProducts();
