@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrinho | Domínio Informática</title>
+  <style>
+    :root{
+      --azul:#12358f;
+      --laranja:#ff6f1a;
+      --cinza:#f4f6fb;
+      --texto:#23314d;
+      --texto-suave:#6c7b97;
+      --borda:#dbe3f1;
+      --sombra:0 10px 28px rgba(18,53,143,.08);
+      --raio:18px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Arial,sans-serif;background:var(--cinza);color:var(--texto)}
+    a{text-decoration:none;color:inherit}
+    img{display:block;max-width:100%}
+    .container{width:min(1220px,92%);margin:0 auto}
+    .header{background:#fff;border-bottom:1px solid #ebeff6;padding:12px 0}
+    .header .container{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+    .logo img{max-height:64px}
+    .btn{
+      display:inline-block;border:none;border-radius:12px;padding:12px 16px;font-weight:bold;cursor:pointer;text-align:center;
+    }
+    .btn-blue{background:var(--azul);color:#fff}
+    .btn-orange{background:var(--laranja);color:#fff}
+    .section{padding:24px 0}
+    .layout{display:grid;grid-template-columns:1fr 340px;gap:16px}
+    .card{background:#fff;border:1px solid var(--borda);border-radius:var(--raio);box-shadow:var(--sombra)}
+    .list{padding:16px;display:grid;gap:12px}
+    .item{
+      border:1px solid var(--borda);
+      border-radius:16px;
+      padding:12px;
+      display:grid;
+      grid-template-columns:90px 1fr auto;
+      gap:12px;
+      align-items:center;
+    }
+    .thumb{
+      width:90px;height:90px;border:1px solid #ebeff6;border-radius:14px;background:#fff;padding:8px;display:flex;align-items:center;justify-content:center;
+    }
+    .thumb img{width:100%;height:100%;object-fit:contain}
+    .placeholder{font-size:34px;color:var(--azul)}
+    .title{font-weight:bold;color:var(--azul);line-height:1.3;margin-bottom:6px}
+    .code{font-size:12px;color:#7e8ba5;margin-bottom:6px}
+    .price{font-size:18px;color:var(--azul);font-weight:700}
+    .right{text-align:right}
+    .qty{
+      width:80px;border:2px solid #dfe6f3;background:#f8fafe;border-radius:12px;padding:10px 12px;font-size:14px;
+    }
+    .summary{padding:16px}
+    .summary h2{color:var(--azul);font-size:24px;margin-bottom:12px}
+    .sum-line{display:flex;justify-content:space-between;gap:10px;margin-bottom:10px;color:var(--texto-suave)}
+    .sum-total{font-size:22px;color:var(--azul);font-weight:700;margin:12px 0}
+    @media (max-width:860px){
+      .layout{grid-template-columns:1fr}
+      .item{grid-template-columns:70px 1fr}
+      .right{text-align:left}
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo"><img src="logo-dominio.png" alt="Domínio Informática"></a>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn btn-blue" href="index.html">Continuar comprando</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container layout">
+      <div class="card list" id="cartList"></div>
+
+      <div class="card summary">
+        <h2>Resumo da compra</h2>
+        <div class="sum-line"><span>Produtos</span><strong id="productsCount">0</strong></div>
+        <div class="sum-line"><span>Total dos produtos</span><strong id="productsTotal">R$ 0,00</strong></div>
+        <div class="sum-total" id="finalTotal">R$ 0,00</div>
+        <button class="btn btn-orange" style="width:100%;" onclick="goCheckout()">Continuar compra</button>
+      </div>
+    </div>
+  </section>
+
+  <script src="products.js"></script>
+  <script>
+    function renderCart() {
+      const cart = cartGet();
+      const list = document.getElementById("cartList");
+
+      if (!cart.length) {
+        list.innerHTML = `
+          <div style="padding:18px;">
+            <h2 style="color:#12358f;margin-bottom:8px;">Seu carrinho está vazio</h2>
+            <p style="color:#6c7b97;">Adicione produtos para continuar.</p>
+          </div>
+        `;
+        document.getElementById("productsCount").textContent = "0";
+        document.getElementById("productsTotal").textContent = "R$ 0,00";
+        document.getElementById("finalTotal").textContent = "R$ 0,00";
+        return;
+      }
+
+      let total = 0;
+      let totalItems = 0;
+
+      list.innerHTML = cart.map(item => {
+        const p = getProductByCode(item.code);
+        if (!p) return "";
+        total += p.price * item.qty;
+        totalItems += item.qty;
+
+        const mainImage = (p.images && p.images.length)
+          ? `<img src="${p.images[0]}" alt="${p.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="placeholder" style="display:none;">📦</div>`
+          : `<div class="placeholder">📦</div>`;
+
+        return `
+          <div class="item">
+            <div class="thumb">${mainImage}</div>
+            <div>
+              <div class="title">${p.name}</div>
+              <div class="code">Código: ${p.code}</div>
+              <div class="price">${formatBRL(p.price)}</div>
+            </div>
+            <div class="right">
+              <input class="qty" type="number" min="1" value="${item.qty}" onchange="changeQty('${p.code}', this.value)">
+              <div style="height:8px"></div>
+              <button class="btn btn-blue" style="padding:8px 12px;" onclick="removeItem('${p.code}')">Remover</button>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      document.getElementById("productsCount").textContent = totalItems;
+      document.getElementById("productsTotal").textContent = formatBRL(total);
+      document.getElementById("finalTotal").textContent = formatBRL(total);
+    }
+
+    function changeQty(code, qty) {
+      updateCartQty(code, qty);
+      renderCart();
+    }
+
+    function removeItem(code) {
+      removeFromCart(code);
+      renderCart();
+    }
+
+    function goCheckout() {
+      location.href = "checkout.html?mode=cart";
+    }
+
+    renderCart();
+  </script>
+</body>
+</html>
