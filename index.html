@@ -1,585 +1,196 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Domínio Informática</title>
-  <meta name="description" content="Automação comercial e informática para sua empresa em Ourilândia do Norte." />
-  <style>
-    :root{
-      --azul:#12358f;
-      --azul-escuro:#0b1f66;
-      --laranja:#ff6f1a;
-      --branco:#ffffff;
-      --cinza:#f4f6fb;
-      --texto:#23314d;
-      --texto-suave:#66748d;
-      --borda:#dbe3f1;
-      --sombra:0 10px 28px rgba(18,53,143,.10);
-      --raio:18px;
-    }
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:Arial,sans-serif;background:var(--cinza);color:var(--texto)}
-    a{text-decoration:none;color:inherit}
-    img{max-width:100%;display:block}
-    .container{width:min(1200px,92%);margin:0 auto}
-    .topbar{background:linear-gradient(90deg,var(--azul),var(--azul-escuro));color:#fff;font-size:14px}
-    .topbar .container{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:8px 0}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Domínio Informática</title>
 
-    .header{background:#fff;border-bottom:1px solid #e7edf6}
-    .header-main{padding:12px 0}
-    .header-main .container{
-      display:grid;
-      grid-template-columns:300px 1fr 130px 130px;
-      gap:14px;
-      align-items:center;
-    }
-    .logo{display:flex;align-items:center}
-    .logo img{max-height:80px;width:auto}
+<style>
+body{
+    margin:0;
+    font-family:Arial;
+    background:#f5f5f5;
+}
 
-    .searchbar{
-      display:flex;
-      border:2px solid var(--borda);
-      background:#f7f9fd;
-      border-radius:14px;
-      overflow:hidden;
-      min-width:0;
-    }
-    .searchbar input{
-      flex:1;
-      border:none;
-      outline:none;
-      background:transparent;
-      padding:14px 16px;
-      font-size:15px;
-      min-width:0;
-    }
-    .searchbar button{
-      border:none;
-      background:var(--laranja);
-      color:#fff;
-      padding:0 20px;
-      font-weight:bold;
-      cursor:pointer;
-    }
-    .header-btn{
-      border:2px solid var(--borda);
-      background:#f7f9fd;
-      color:var(--azul);
-      border-radius:14px;
-      padding:14px 10px;
-      font-weight:bold;
-      text-align:center;
-      cursor:pointer;
-    }
+/* HEADER */
+header{
+    position:sticky;
+    top:0;
+    background:white;
+    display:flex;
+    align-items:center;
+    padding:10px;
+    gap:10px;
+    box-shadow:0 2px 5px rgba(0,0,0,0.1);
+    z-index:999;
+}
 
-    .menu{background:var(--azul)}
-    .menu .container{display:flex;gap:22px;overflow-x:auto;padding:12px 0}
-    .menu a{color:#fff;font-weight:bold;white-space:nowrap}
+.logo{
+    height:45px;
+}
 
-    .hero{
-      background:linear-gradient(135deg,var(--azul),var(--azul-escuro));
-      color:#fff;
-      padding:34px 0;
-    }
-    .hero .container{
-      display:grid;
-      grid-template-columns:1.1fr .9fr;
-      gap:24px;
-      align-items:center;
-    }
-    .badge{
-      display:inline-block;
-      background:rgba(255,255,255,.12);
-      border:1px solid rgba(255,255,255,.18);
-      padding:8px 12px;
-      border-radius:999px;
-      font-size:12px;
-      font-weight:bold;
-      margin-bottom:14px;
-    }
-    .hero h1{font-size:46px;line-height:1.1;margin-bottom:14px}
-    .hero p{font-size:18px;line-height:1.6}
-    .hero-actions{margin-top:20px;display:flex;gap:12px;flex-wrap:wrap}
-    .btn{
-      display:inline-block;
-      padding:14px 22px;
-      border-radius:12px;
-      font-weight:bold;
-    }
-    .btn-orange{background:var(--laranja);color:#fff}
-    .btn-white{background:#fff;color:var(--azul)}
+.search{
+    flex:1;
+    padding:10px;
+    border-radius:8px;
+    border:1px solid #ccc;
+}
 
-    .hero-card{
-      background:rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.16);
-      border-radius:24px;
-      padding:22px;
-      display:grid;
-      grid-template-columns:1fr 160px;
-      gap:14px;
-      align-items:center;
-    }
-    .hero-card h2{font-size:24px;margin-bottom:10px}
-    .hero-card p{font-size:15px;line-height:1.6;margin-bottom:10px}
-    .hero-card .tag{
-      display:inline-block;
-      background:var(--laranja);
-      padding:10px 12px;
-      border-radius:10px;
-      font-size:13px;
-      font-weight:bold;
-    }
-    .hero-card img{
-      width:160px;
-      height:160px;
-      object-fit:contain;
-      background:#fff;
-      border-radius:18px;
-      padding:10px;
-    }
+/* GRID */
+.produtos{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+    gap:10px;
+    padding:10px;
+}
 
-    .section{padding:28px 0}
-    .section-title{margin-bottom:18px}
-    .section-title h2{font-size:34px;color:var(--azul);margin-bottom:6px}
-    .section-title p{color:var(--texto-suave)}
+.card{
+    background:white;
+    border-radius:10px;
+    padding:10px;
+    text-align:center;
+}
 
-    .grid-systems{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .grid-products{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.card img{
+    width:100%;
+    height:120px;
+    object-fit:contain;
+}
 
-    .card{
-      background:#fff;
-      border:1px solid var(--borda);
-      border-radius:var(--raio);
-      box-shadow:var(--sombra);
-    }
-    .system-card,.product-card{padding:16px}
-    .system-badge,.stock-badge{
-      display:inline-block;
-      font-size:12px;
-      font-weight:bold;
-      border-radius:999px;
-      padding:8px 12px;
-      margin-bottom:12px;
-    }
-    .system-badge{background:#eef3ff;color:var(--azul)}
-    .stock-badge{background:#fff1e8;color:var(--laranja)}
-    .system-card h3,.product-card h3{color:var(--azul);margin-bottom:10px;font-size:22px}
-    .system-card p,.product-card p{color:var(--texto-suave);line-height:1.6}
-    .system-card ul{list-style:none;display:grid;gap:8px;margin:14px 0 18px}
-    .system-card ul li::before{content:"✓ ";color:var(--laranja);font-weight:bold}
-    .actions{display:flex;gap:10px;flex-wrap:wrap}
-    .mini-btn{
-      border:none;
-      border-radius:10px;
-      padding:11px 14px;
-      font-size:14px;
-      font-weight:bold;
-      cursor:pointer;
-      display:inline-block;
-    }
-    .mini-blue{background:var(--azul);color:#fff}
-    .mini-light{background:#fff1e8;color:var(--laranja);border:1px solid #ffd3bb}
+.preco{
+    color:#0a7;
+    font-weight:bold;
+}
 
-    .product-card{
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-    }
-    .product-thumb{
-      height:180px;
-      border-radius:14px;
-      background:#fff;
-      border:1px solid #e7edf6;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      overflow:hidden;
-      padding:14px;
-    }
-    .product-thumb img{
-      width:100%;
-      height:100%;
-      object-fit:contain;
-      object-position:center;
-      display:block;
-    }
-    .placeholder{
-      font-size:42px;
-      color:var(--azul);
-    }
-    .price{font-size:24px;font-weight:700;color:var(--azul)}
-    .code{font-size:13px;color:#7182a3}
-    .product-link{display:block}
-    .cart-badge{
-      display:inline-block;
-      background:var(--laranja);
-      color:#fff;
-      font-size:12px;
-      border-radius:999px;
-      padding:4px 8px;
-      margin-left:6px;
-    }
+.btn{
+    margin-top:5px;
+    padding:8px;
+    border:none;
+    border-radius:8px;
+    width:100%;
+    cursor:pointer;
+}
 
-    .assistant{position:fixed;right:12px;bottom:12px;z-index:1000}
-    .assistant-btn{
-      background:#fff;
-      border:2px solid var(--borda);
-      border-radius:999px;
-      box-shadow:0 12px 32px rgba(18,53,143,.16);
-      display:flex;
-      align-items:center;
-      gap:10px;
-      padding:10px 14px 10px 10px;
-      cursor:pointer;
-      max-width:240px;
-    }
-    .assistant-btn img{
-      width:48px;
-      height:48px;
-      border-radius:50%;
-      object-fit:cover;
-      background:#fff;
-    }
-    .assistant-btn strong{display:block;color:var(--azul);font-size:15px}
-    .assistant-btn span{display:block;color:#68748d;font-size:13px}
-    .assistant-panel{
-      position:absolute;
-      right:0;
-      bottom:76px;
-      width:310px;
-      background:#fff;
-      border:1px solid #dfe6f3;
-      border-radius:20px;
-      box-shadow:0 20px 46px rgba(18,53,143,.18);
-      padding:18px;
-      display:none;
-    }
-    .assistant-panel.active{display:block}
-    .assistant-panel h4{color:var(--azul);margin-bottom:12px;font-size:20px}
-    .assistant-option{
-      display:block;
-      width:100%;
-      text-align:left;
-      border:1px solid #e3e9f5;
-      background:#f8fafe;
-      border-radius:12px;
-      padding:12px 14px;
-      margin-bottom:10px;
-      color:#34425f;
-      font-weight:bold;
-      cursor:pointer;
-    }
+.carrinho{
+    background:#007bff;
+    color:white;
+}
 
-    footer{
-      background:#091640;
-      color:#fff;
-      padding:24px 0;
-      margin-top:20px;
-    }
-    footer .container{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.whatsapp{
+    background:#25D366;
+    color:white;
+}
 
-    @media (max-width: 1024px){
-      .header-main .container{grid-template-columns:220px 1fr 120px 120px}
-      .grid-products{grid-template-columns:repeat(3,1fr)}
-    }
+/* ENCOMENDA */
+.encomenda{
+    background:white;
+    margin:10px;
+    padding:15px;
+    border-radius:10px;
+}
 
-    @media (max-width: 860px){
-      .header-main .container{
-        grid-template-columns:1fr;
-        gap:10px;
-      }
-      .logo{justify-content:center}
-      .logo img{max-height:70px}
-      .hero .container{grid-template-columns:1fr}
-      .grid-systems{grid-template-columns:1fr}
-      .grid-products{grid-template-columns:repeat(2,1fr)}
-      .hero h1{font-size:30px}
-      .hero-card{grid-template-columns:1fr}
-      .hero-card img{margin:0 auto}
-    }
+.encomenda input, .encomenda textarea{
+    width:100%;
+    padding:8px;
+    margin-top:5px;
+    border-radius:6px;
+    border:1px solid #ccc;
+}
 
-    @media (max-width: 640px){
-      .topbar{font-size:12px}
-      .topbar .container{padding:8px 0;line-height:1.4}
-      .header-main{padding:10px 0}
-      .logo img{max-height:56px}
-      .searchbar input{padding:12px 12px;font-size:14px}
-      .searchbar button{padding:0 16px}
-      .header-btn{padding:12px 10px;font-size:14px}
-      .menu .container{gap:16px;padding:10px 0}
-      .hero{padding:24px 0}
-      .hero h1{font-size:28px}
-      .hero p{font-size:15px}
-      .hero-card{padding:16px}
-      .hero-card img{width:110px;height:110px}
-      .section-title h2{font-size:28px}
-      .grid-products{grid-template-columns:1fr 1fr;gap:12px}
-      .product-card{padding:12px}
-      .product-thumb{height:120px;padding:10px}
-      .product-card h3{font-size:15px;line-height:1.3}
-      .product-card p{font-size:13px}
-      .price{font-size:18px}
-      .assistant-btn{
-        max-width:180px;
-        padding:8px 10px 8px 8px;
-      }
-      .assistant-btn img{width:38px;height:38px}
-      .assistant-btn strong{font-size:13px}
-      .assistant-btn span{font-size:11px}
-      .assistant-panel{width:270px}
-    }
-
-    @media (max-width: 430px){
-      .grid-products{grid-template-columns:1fr}
-      .product-thumb{height:150px}
-      .header-btn{width:100%}
-    }
-  </style>
+/* BOT */
+.bot{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:#007bff;
+    color:white;
+    padding:12px;
+    border-radius:50%;
+    cursor:pointer;
+}
+</style>
 </head>
+
 <body>
-  <div class="topbar">
-    <div class="container">
-      <div>Automação comercial e informática para sua empresa</div>
-      <div>WhatsApp: (94) 99262-7580 • Ourilândia do Norte - PA</div>
-    </div>
-  </div>
 
-  <header class="header">
-    <div class="header-main">
-      <div class="container">
-        <a href="index.html" class="logo">
-          <img src="logo-dominio.png" alt="Domínio Informática" />
-        </a>
+<header>
+<img src="logo-dominio.png" class="logo">
+<input type="text" class="search" placeholder="Buscar produtos...">
+</header>
 
-        <div class="searchbar">
-          <input type="text" id="searchInput" placeholder="Busque por mouse, teclado, impressora, EasySAC..." />
-          <button onclick="searchProducts()">Buscar</button>
-        </div>
+<div class="produtos" id="produtos"></div>
 
-        <div class="header-btn" onclick="openCartWhatsApp()">
-          🛒 Carrinho <span class="cart-badge" id="cartCount">0</span>
-        </div>
+<!-- ENCOMENDA -->
+<div class="encomenda">
+<h3>Não encontrou o que você queria?</h3>
+<p>Fazemos encomendas!</p>
 
-        <a class="header-btn" href="https://wa.me/5594992627580?text=Olá! Quero atendimento da Domínio Informática." target="_blank">
-          💬 Atendimento
-        </a>
-      </div>
-    </div>
+<input id="produtoDesejado" placeholder="Digite o produto">
+<textarea id="obs" placeholder="Observação (opcional)"></textarea>
 
-    <nav class="menu">
-      <div class="container">
-        <a href="#inicio">Início</a>
-        <a href="#sistemas">Soluções</a>
-        <a href="#produtos">Produtos</a>
-        <a href="#contato">Contato</a>
-      </div>
-    </nav>
-  </header>
+<button class="btn whatsapp" onclick="encomenda()">Solicitar no WhatsApp</button>
+</div>
 
-  <section class="hero" id="inicio">
-    <div class="container">
-      <div>
-        <span class="badge">Tecnologia • Automação • Estoque local</span>
-        <h1>Automação comercial e informática para sua empresa</h1>
-        <p>Soluções para lojas, restaurantes e mercados, além de produtos de informática, impressão, automação comercial e acessórios para o dia a dia.</p>
-        <div class="hero-actions">
-          <a href="#sistemas" class="btn btn-orange">Ver soluções</a>
-          <a href="#produtos" class="btn btn-white">Ver produtos</a>
-        </div>
-      </div>
+<!-- BOT -->
+<div class="bot" onclick="abrirBot()">💬</div>
 
-      <div class="hero-card">
-        <div>
-          <h2>DomBot chegou</h2>
-          <p>Seu assistente da Domínio Informática. Tire dúvidas, encontre produtos e fale com a loja com mais rapidez.</p>
-          <span class="tag">Clique no DomBot no canto para começar</span>
-        </div>
-        <img src="dombot.png" alt="DomBot">
-      </div>
-    </div>
-  </section>
+<script>
+const lista = [
+{
+nome:"Mouse Bright USB 0106",
+preco:15,
+img:"mouse-brilhante-1.png"
+},
+{
+nome:"Teclado Fortrek SKL106",
+preco:50,
+img:"teclado-fortrek-1.png"
+},
+{
+nome:"Mouse Movitec 1000dpi",
+preco:18,
+img:"mouse-movitec-1.png"
+},
+{
+nome:"Mouse C3Tech MS-35BK",
+preco:25,
+img:"mouse-c3tech-35bk-1.jpg"
+}
+]
 
-  <section class="section" id="sistemas">
-    <div class="container">
-      <div class="section-title">
-        <h2>Soluções para o seu negócio</h2>
-        <p>Clique e saiba mais sobre cada sistema</p>
-      </div>
+const div = document.getElementById("produtos")
 
-      <div class="grid-systems">
-        <div class="card system-card">
-          <span class="system-badge">Lojas</span>
-          <h3>EasySAC</h3>
-          <p>Automação comercial para lojas com foco em vendas, cadastro, atendimento e organização da operação.</p>
-          <ul>
-            <li>Controle de vendas</li>
-            <li>Cadastro de produtos</li>
-            <li>Cadastro de clientes</li>
-            <li>Relatórios e gestão</li>
-          </ul>
-          <div class="actions">
-            <a href="easysac.html" class="mini-btn mini-blue">Saiba mais</a>
-          </div>
-        </div>
+lista.forEach(p=>{
+div.innerHTML += `
+<div class="card">
+<img src="${p.img}">
+<h4>${p.nome}</h4>
+<p class="preco">R$ ${p.preco}</p>
 
-        <div class="card system-card">
-          <span class="system-badge">Restaurantes</span>
-          <h3>EasyChef</h3>
-          <p>Solução para restaurantes, bares e lanchonetes com foco em pedidos, mesas e atendimento.</p>
-          <ul>
-            <li>Controle de mesas</li>
-            <li>Pedidos e comandas</li>
-            <li>Agilidade no atendimento</li>
-            <li>Relatórios de vendas</li>
-          </ul>
-          <div class="actions">
-            <a href="easychef.html" class="mini-btn mini-blue">Saiba mais</a>
-          </div>
-        </div>
+<button class="btn carrinho">Adicionar</button>
+<button class="btn whatsapp" onclick="comprar('${p.nome}',${p.preco})">WhatsApp</button>
+</div>
+`
+})
 
-        <div class="card system-card">
-          <span class="system-badge">Mercados</span>
-          <h3>EasyPDV</h3>
-          <p>Solução para mercados com foco em frente de caixa, controle de estoque, produtos e rotina comercial.</p>
-          <ul>
-            <li>Frente de caixa</li>
-            <li>Controle de estoque</li>
-            <li>Cadastro de produtos</li>
-            <li>Relatórios e controle</li>
-          </ul>
-          <div class="actions">
-            <a href="easypdv.html" class="mini-btn mini-blue">Saiba mais</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+function comprar(nome,preco){
+let msg = `Olá, quero comprar:\n${nome}\nValor: R$ ${preco}`
+window.open(`https://wa.me/5594991683307?text=${encodeURIComponent(msg)}`)
+}
 
-  <section class="section" id="produtos">
-    <div class="container">
-      <div class="section-title">
-        <h2>Produtos da loja</h2>
-        <p>Clique no produto para abrir a página dele</p>
-      </div>
-      <div class="grid-products" id="productsGrid"></div>
-    </div>
-  </section>
+function encomenda(){
+let prod = document.getElementById("produtoDesejado").value
+let obs = document.getElementById("obs").value
 
-  <section class="section" id="contato">
-    <div class="container">
-      <div class="section-title">
-        <h2>Fale com a Domínio Informática</h2>
-        <p>Atendimento para empresas e clientes finais</p>
-      </div>
-      <div class="card system-card">
-        <p><strong>WhatsApp:</strong> (94) 99262-7580</p>
-        <p><strong>Instagram:</strong> @dominioinformatica2023</p>
-        <p><strong>Cidade:</strong> Ourilândia do Norte - PA</p>
-      </div>
-    </div>
-  </section>
+let msg = `Olá, quero fazer uma encomenda:\nProduto: ${prod}\nObs: ${obs}`
 
-  <footer>
-    <div class="container">
-      <div>Domínio Informática • Automação comercial e informática</div>
-      <div>Ourilândia do Norte - PA</div>
-    </div>
-  </footer>
+window.open(`https://wa.me/5594991683307?text=${encodeURIComponent(msg)}`)
+}
 
-  <div class="assistant">
-    <div class="assistant-panel" id="assistantPanel">
-      <h4>Olá! Eu sou o DomBot</h4>
-      <button class="assistant-option" onclick="window.location.href='easysac.html'">Quero ver solução para loja</button>
-      <button class="assistant-option" onclick="window.location.href='easychef.html'">Quero ver solução para restaurante</button>
-      <button class="assistant-option" onclick="window.location.href='easypdv.html'">Quero ver solução para mercado</button>
-      <button class="assistant-option" onclick="document.getElementById('produtos').scrollIntoView()">Quero ver produtos</button>
-      <button class="assistant-option" onclick="window.open('https://wa.me/5594992627580?text=Olá! Preciso de ajuda da Domínio Informática.','_blank')">Quero falar no WhatsApp</button>
-    </div>
+function abrirBot(){
+alert("Dúvidas frequentes:\n\n✔ Fazemos encomenda\n✔ Aceitamos Pix\n✔ Entregamos\n\nSe precisar, fale no WhatsApp")
+}
+</script>
 
-    <div class="assistant-btn" onclick="toggleAssistant()">
-      <img src="dombot.png" alt="DomBot">
-      <div>
-        <strong>Precisa de ajuda?</strong>
-        <span>Clique e fale com o DomBot</span>
-      </div>
-    </div>
-  </div>
-
-  <script src="products.js"></script>
-  <script>
-    function toggleAssistant() {
-      document.getElementById("assistantPanel").classList.toggle("active");
-    }
-
-    function searchProducts() {
-      const term = document.getElementById("searchInput").value.trim().toLowerCase();
-      if (!term) return;
-
-      const found = PRODUCTS.find(p =>
-        p.name.toLowerCase().includes(term) ||
-        p.code.includes(term) ||
-        p.ref.toLowerCase().includes(term)
-      );
-
-      if (found) {
-        window.location.href = "product.html?id=" + found.code;
-        return;
-      }
-
-      if (term.includes("easysac") || term.includes("loja")) {
-        window.location.href = "easysac.html";
-        return;
-      }
-      if (term.includes("easychef") || term.includes("restaurante")) {
-        window.location.href = "easychef.html";
-        return;
-      }
-      if (term.includes("easypdv") || term.includes("mercado")) {
-        window.location.href = "easypdv.html";
-        return;
-      }
-
-      alert("Nenhum resultado encontrado.");
-    }
-
-    function handleAdd(code) {
-      addToCart(code, 1);
-      document.getElementById("cartCount").textContent = cartCount();
-      alert("Produto adicionado ao carrinho.");
-    }
-
-    function renderProducts() {
-      const grid = document.getElementById("productsGrid");
-      grid.innerHTML = PRODUCTS.map(p => {
-        const img = (p.images && p.images.length)
-          ? `<img src="${p.images[0]}" alt="${p.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="placeholder" style="display:none;">📦</div>`
-          : `<div class="placeholder">📦</div>`;
-
-        return `
-          <div class="card product-card">
-            <a class="product-link" href="product.html?id=${p.code}">
-              <div class="product-thumb">${img}</div>
-            </a>
-            <span class="stock-badge">Estoque: ${p.stock} un</span>
-            <div class="code">Código: ${p.code}</div>
-            <a class="product-link" href="product.html?id=${p.code}">
-              <h3>${p.name}</h3>
-            </a>
-            <p>${p.description}</p>
-            <div class="price">${formatBRL(p.price)}</div>
-            <div class="actions">
-              <button class="mini-btn mini-blue" onclick="handleAdd('${p.code}')">Adicionar ao carrinho</button>
-              <a class="mini-btn mini-light" href="https://wa.me/5594992627580?text=Olá! Quero comprar ${encodeURIComponent(p.name)} - código ${p.code}." target="_blank">Comprar WhatsApp</a>
-            </div>
-          </div>
-        `;
-      }).join("");
-
-      document.getElementById("cartCount").textContent = cartCount();
-    }
-
-    renderProducts();
-  </script>
 </body>
 </html>
