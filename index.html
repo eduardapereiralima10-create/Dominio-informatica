@@ -14,27 +14,31 @@
       --texto:#23314d;
       --texto-suave:#6c7b97;
       --borda:#dbe3f1;
-      --sombra:0 10px 28px rgba(18,53,143,.08);
+      --sombra:0 8px 24px rgba(18,53,143,.08);
       --raio:18px;
+      --verde:#198754;
+      --vermelho:#dc3545;
     }
 
     *{box-sizing:border-box;margin:0;padding:0}
     body{font-family:Arial,sans-serif;background:var(--cinza);color:var(--texto)}
     a{text-decoration:none;color:inherit}
     img{display:block;max-width:100%}
-    .container{width:min(1220px,92%);margin:0 auto}
+    button,input,textarea{font:inherit}
+    .container{width:min(1240px,94%);margin:0 auto}
 
     .topbar{
       background:linear-gradient(90deg,var(--azul),var(--azul-escuro));
       color:#fff;
-      font-size:13px;
+      font-size:12px;
     }
     .topbar .container{
       display:flex;
       justify-content:space-between;
-      gap:12px;
+      gap:10px;
       flex-wrap:wrap;
-      padding:8px 0;
+      padding:7px 0;
+      line-height:1.4;
     }
 
     .header{
@@ -45,29 +49,31 @@
       z-index:999;
     }
 
-    .header-main{
-      padding:10px 0;
-    }
+    .header-main{padding:10px 0 8px}
 
     .header-main .container{
       display:grid;
-      grid-template-columns:220px 1fr auto auto auto auto;
-      gap:10px;
+      grid-template-columns:190px minmax(0,1fr) auto;
+      gap:12px;
       align-items:center;
     }
 
+    .logo{display:flex;align-items:center}
     .logo img{
-      max-height:68px;
+      height:74px;
       width:auto;
+      max-width:100%;
+      object-fit:contain;
     }
 
     .searchbar{
       display:flex;
       min-width:0;
-      border:2px solid var(--borda);
-      border-radius:14px;
+      border:1.5px solid var(--borda);
+      border-radius:12px;
       overflow:hidden;
       background:#f8fafe;
+      height:42px;
     }
 
     .searchbar input{
@@ -76,7 +82,7 @@
       border:none;
       outline:none;
       background:transparent;
-      padding:13px 14px;
+      padding:0 12px;
       font-size:14px;
     }
 
@@ -85,21 +91,41 @@
       background:var(--laranja);
       color:#fff;
       font-weight:bold;
-      padding:0 18px;
+      padding:0 16px;
       cursor:pointer;
+      white-space:nowrap;
+    }
+
+    .header-actions{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
     }
 
     .header-link{
-      border:2px solid var(--borda);
+      border:1.5px solid var(--borda);
       background:#f8fafe;
-      border-radius:14px;
-      padding:12px 12px;
+      border-radius:12px;
+      padding:10px 12px;
       text-align:center;
       font-weight:bold;
       color:var(--azul);
       cursor:pointer;
       white-space:nowrap;
-      font-size:14px;
+      font-size:13px;
+      line-height:1.1;
+    }
+
+    .header-user{
+      display:none;
+      font-size:12px;
+      font-weight:bold;
+      color:var(--azul);
+      padding:8px 10px;
+      border-radius:12px;
+      background:#eef3ff;
     }
 
     .cart-count{
@@ -113,19 +139,15 @@
       vertical-align:middle;
     }
 
-    .menu{
-      background:var(--azul);
-    }
-
+    .menu{background:var(--azul)}
     .menu .container{
       display:flex;
-      gap:18px;
+      gap:16px;
       overflow:auto;
-      padding:11px 0;
+      padding:10px 0;
       scrollbar-width:none;
     }
     .menu .container::-webkit-scrollbar{display:none}
-
     .menu a{
       color:#fff;
       font-weight:bold;
@@ -136,29 +158,30 @@
     .hero{
       background:linear-gradient(135deg,var(--azul),var(--azul-escuro));
       color:#fff;
-      padding:34px 0;
+      padding:26px 0;
     }
 
     .hero .container{
       display:grid;
-      grid-template-columns:1.1fr .9fr;
-      gap:20px;
+      grid-template-columns:1.15fr .85fr;
+      gap:18px;
       align-items:center;
     }
 
     .hero h1{
-      font-size:42px;
-      line-height:1.1;
-      margin-bottom:12px;
+      font-size:38px;
+      line-height:1.08;
+      margin-bottom:10px;
     }
 
     .hero p{
-      font-size:17px;
+      font-size:16px;
       line-height:1.6;
+      max-width:620px;
     }
 
     .hero-actions{
-      margin-top:18px;
+      margin-top:16px;
       display:flex;
       gap:10px;
       flex-wrap:wrap;
@@ -168,65 +191,51 @@
       display:inline-block;
       border:none;
       border-radius:12px;
-      padding:13px 18px;
+      padding:12px 16px;
       font-weight:bold;
       cursor:pointer;
       text-align:center;
+      font-size:14px;
     }
 
     .btn-orange{background:var(--laranja);color:#fff}
     .btn-white{background:#fff;color:var(--azul)}
     .btn-blue{background:var(--azul);color:#fff}
     .btn-green{background:#25d366;color:#fff}
+    .btn-gray{background:#dfe5f1;color:#6b7893;cursor:not-allowed}
 
     .hero-card{
       background:rgba(255,255,255,.10);
       border:1px solid rgba(255,255,255,.16);
-      border-radius:22px;
-      padding:18px;
+      border-radius:20px;
+      padding:16px;
       display:grid;
-      grid-template-columns:1fr 120px;
-      gap:14px;
+      grid-template-columns:1fr 110px;
+      gap:12px;
       align-items:center;
     }
 
     .hero-card img{
-      width:120px;
-      height:120px;
+      width:110px;
+      height:110px;
       object-fit:contain;
       background:#fff;
       border-radius:16px;
       padding:8px;
+      justify-self:end;
     }
 
-    .section{
-      padding:26px 0;
-    }
-
-    .section-title{
-      margin-bottom:16px;
-    }
-
+    .section{padding:24px 0}
+    .section-title{margin-bottom:14px}
     .section-title h2{
       color:var(--azul);
-      font-size:30px;
+      font-size:28px;
       margin-bottom:6px;
     }
-
     .section-title p{
       color:var(--texto-suave);
-    }
-
-    .grid-systems{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:16px;
-    }
-
-    .grid-products{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:14px;
+      font-size:14px;
+      line-height:1.5;
     }
 
     .card{
@@ -236,42 +245,39 @@
       box-shadow:var(--sombra);
     }
 
-    .system-card, .product-card, .info-card{
+    .grid-systems{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+    }
+
+    .system-card{
       padding:16px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
     }
 
-    .system-badge, .stock-badge, .product-badge{
+    .system-badge,.stock-badge,.product-badge,.out-badge{
       display:inline-block;
-      padding:7px 11px;
+      padding:6px 10px;
       border-radius:999px;
-      font-size:12px;
+      font-size:11px;
       font-weight:bold;
-      margin-bottom:10px;
     }
 
-    .system-badge{
-      background:#eef3ff;
-      color:var(--azul);
-    }
+    .system-badge{background:#eef3ff;color:var(--azul)}
+    .stock-badge{background:#fff1e8;color:var(--laranja)}
+    .product-badge{background:#eefcf4;color:var(--verde)}
+    .out-badge{background:#fdecec;color:var(--vermelho)}
 
-    .stock-badge{
-      background:#fff1e8;
-      color:var(--laranja);
-    }
-
-    .product-badge{
-      background:#eefcf4;
-      color:#198754;
-    }
-
-    .system-card h3, .product-card h3{
+    .system-card h3{
       color:var(--azul);
       font-size:20px;
-      margin-bottom:8px;
-      line-height:1.25;
+      line-height:1.2;
     }
 
-    .system-card p, .product-card p, .info-card p{
+    .system-card p,.info-card p{
       color:var(--texto-suave);
       line-height:1.6;
       font-size:14px;
@@ -279,10 +285,11 @@
 
     .system-card ul{
       list-style:none;
-      margin:12px 0 14px;
       display:grid;
-      gap:7px;
+      gap:6px;
       font-size:14px;
+      color:var(--texto);
+      margin-top:2px;
     }
 
     .system-card li::before{
@@ -291,23 +298,33 @@
       font-weight:bold;
     }
 
-    .product-card{
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      padding:12px;
+    .grid-products{
+      display:grid;
+      grid-template-columns:repeat(5,minmax(0,1fr));
+      gap:14px;
     }
 
+    .product-card{
+      padding:12px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      min-height:325px;
+      position:relative;
+    }
+
+    .product-card.out-of-stock{opacity:.78}
+
     .product-thumb{
-      height:145px;
+      height:140px;
       border:1px solid #ebeff6;
-      border-radius:14px;
+      border-radius:12px;
       background:#fff;
       display:flex;
       align-items:center;
       justify-content:center;
       overflow:hidden;
-      padding:10px;
+      padding:8px;
     }
 
     .product-thumb img{
@@ -318,54 +335,72 @@
     }
 
     .placeholder{
-      font-size:40px;
+      font-size:34px;
       color:var(--azul);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:100%;
+      height:100%;
     }
 
     .product-code{
-      font-size:12px;
+      font-size:11px;
       color:#7e8ba5;
+      line-height:1.3;
     }
 
     .product-title{
       color:var(--azul);
-      font-size:15px;
+      font-size:14px;
       font-weight:bold;
       line-height:1.3;
-      min-height:40px;
+      min-height:36px;
+      display:block;
     }
 
     .product-price{
       color:var(--azul);
-      font-size:22px;
+      font-size:20px;
       font-weight:700;
+      line-height:1.1;
     }
 
     .product-installments{
-      color:#198754;
-      font-size:12px;
+      color:var(--verde);
+      font-size:11px;
       font-weight:bold;
+      line-height:1.4;
     }
 
     .product-actions{
+      margin-top:auto;
       display:grid;
       grid-template-columns:1fr 1fr;
       gap:8px;
-      margin-top:4px;
     }
 
     .small-btn{
       border:none;
       border-radius:10px;
-      padding:10px 10px;
-      font-size:13px;
+      padding:9px 8px;
+      font-size:12px;
       font-weight:bold;
       cursor:pointer;
       text-align:center;
+      min-height:38px;
     }
 
     .small-blue{background:var(--azul);color:#fff}
     .small-orange{background:var(--laranja);color:#fff}
+    .small-gray{background:#dfe5f1;color:#6b7893;cursor:not-allowed}
+
+    .info-card{padding:16px}
+    .info-card h3{
+      color:var(--azul);
+      margin-bottom:8px;
+      font-size:20px;
+    }
 
     .encomenda-box{
       display:grid;
@@ -375,7 +410,7 @@
 
     .field{
       width:100%;
-      border:2px solid #dfe6f3;
+      border:1.5px solid #dfe6f3;
       background:#f8fafe;
       border-radius:12px;
       padding:12px 14px;
@@ -392,7 +427,7 @@
       background:#091640;
       color:#fff;
       margin-top:18px;
-      padding:28px 0;
+      padding:26px 0;
     }
 
     .footer-grid{
@@ -406,7 +441,7 @@
       font-size:16px;
     }
 
-    .footer p, .footer a{
+    .footer p,.footer a{
       color:#d6e0ff;
       font-size:14px;
       line-height:1.8;
@@ -436,10 +471,7 @@
       flex-direction:column;
     }
 
-    .drawer.open{
-      right:0;
-    }
-
+    .drawer.open{right:0}
     .drawer-header{
       padding:16px;
       border-bottom:1px solid #ebeff6;
@@ -461,14 +493,14 @@
       border-radius:14px;
       padding:12px;
       display:grid;
-      grid-template-columns:70px 1fr;
+      grid-template-columns:64px 1fr;
       gap:10px;
       align-items:center;
     }
 
     .drawer-item-thumb{
-      width:70px;
-      height:70px;
+      width:64px;
+      height:64px;
       border:1px solid #ebeff6;
       border-radius:12px;
       display:flex;
@@ -502,7 +534,7 @@
 
     .assistant-btn{
       background:#fff;
-      border:2px solid var(--borda);
+      border:1.5px solid var(--borda);
       border-radius:999px;
       box-shadow:0 12px 32px rgba(18,53,143,.14);
       display:flex;
@@ -546,9 +578,7 @@
       display:none;
     }
 
-    .assistant-panel.active{
-      display:block;
-    }
+    .assistant-panel.active{display:block}
 
     .assistant-panel h4{
       color:var(--azul);
@@ -569,127 +599,194 @@
       cursor:pointer;
     }
 
-    @media (max-width:1100px){
-      .header-main .container{
-        grid-template-columns:180px 1fr auto auto auto auto;
-      }
-      .grid-products{
-        grid-template-columns:repeat(3,1fr);
-      }
-      .footer-grid{
-        grid-template-columns:1fr 1fr;
-      }
+    .auth-modal-backdrop{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.38);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:4000;
+      padding:16px;
     }
 
-    @media (max-width:860px){
+    .auth-modal-backdrop.active{display:flex}
+
+    .auth-modal{
+      position:relative;
+      width:min(640px,100%);
+      background:#fff;
+      border-radius:22px;
+      padding:22px;
+      box-shadow:0 25px 60px rgba(0,0,0,.18);
+    }
+
+    .auth-close{
+      position:absolute;
+      top:10px;
+      right:12px;
+      border:none;
+      background:none;
+      font-size:30px;
+      line-height:1;
+      cursor:pointer;
+      color:#667085;
+    }
+
+    .auth-title{
+      color:var(--azul);
+      font-size:28px;
+      margin-bottom:14px;
+    }
+
+    .auth-tabs{
+      display:flex;
+      gap:10px;
+      margin-bottom:14px;
+      flex-wrap:wrap;
+    }
+
+    .auth-tab{
+      border:none;
+      border-radius:12px;
+      padding:10px 14px;
+      font-weight:bold;
+      cursor:pointer;
+      background:#eef3ff;
+      color:var(--azul);
+    }
+
+    .auth-tab.active{
+      background:var(--azul);
+      color:#fff;
+    }
+
+    .auth-message{
+      border-radius:12px;
+      padding:12px 14px;
+      margin-bottom:14px;
+      font-size:14px;
+      line-height:1.5;
+      display:none;
+    }
+
+    .auth-message.error{
+      background:#fdecec;
+      color:#b42318;
+    }
+
+    .auth-message.success{
+      background:#eefcf4;
+      color:#198754;
+    }
+
+    .auth-grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:12px;
+      margin-bottom:12px;
+    }
+
+    .auth-field{
+      width:100%;
+      border:1.5px solid #dfe6f3;
+      background:#f8fafe;
+      border-radius:12px;
+      padding:13px 14px;
+      font-size:14px;
+      outline:none;
+    }
+
+    .auth-check{
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+      font-size:14px;
+      color:var(--texto-suave);
+      line-height:1.5;
+      margin-bottom:14px;
+    }
+
+    .auth-primary-btn{
+      width:100%;
+      border:none;
+      border-radius:12px;
+      padding:13px 16px;
+      background:var(--laranja);
+      color:#fff;
+      font-weight:bold;
+      font-size:15px;
+      cursor:pointer;
+    }
+
+    @media (max-width:1180px){
+      .grid-products{grid-template-columns:repeat(4,minmax(0,1fr))}
+      .footer-grid{grid-template-columns:1fr 1fr}
+    }
+
+    @media (max-width:980px){
       .header-main .container{
-        grid-template-columns:1fr;
+        grid-template-columns:170px minmax(0,1fr);
       }
-      .logo img{
-        margin:0 auto;
-        max-height:60px;
+
+      .header-actions{
+        grid-column:1 / -1;
+        justify-content:stretch;
+        display:grid;
+        grid-template-columns:repeat(4,1fr);
       }
-      .hero .container,
-      .encomenda-box{
-        grid-template-columns:1fr;
-      }
-      .grid-systems{
-        grid-template-columns:1fr;
-      }
-      .grid-products{
+
+      .grid-systems{grid-template-columns:1fr}
+      .grid-products{grid-template-columns:repeat(3,minmax(0,1fr))}
+      .hero .container,.encomenda-box{grid-template-columns:1fr}
+    }
+
+    @media (max-width:720px){
+      .topbar{font-size:11px}
+      .header-main{padding:8px 0}
+      .header-main .container{grid-template-columns:1fr;gap:10px}
+      .logo{justify-content:center}
+      .logo img{height:86px}
+      .searchbar{height:40px}
+      .searchbar input{font-size:13px}
+      .searchbar button{padding:0 14px;font-size:13px}
+      .header-actions{
+        display:grid;
         grid-template-columns:repeat(2,1fr);
+        gap:8px;
       }
-      .hero h1{
-        font-size:30px;
-      }
-      .hero-card{
-        grid-template-columns:1fr 110px;
-      }
-    }
-
-    @media (max-width:640px){
-      .topbar{
-        font-size:12px;
-      }
-      .topbar .container{
-        line-height:1.4;
-      }
-      .header-main{
-        padding:8px 0;
-      }
-      .logo img{
-        max-height:52px;
-      }
-      .searchbar input{
-        padding:12px 12px;
-        font-size:14px;
-      }
-      .searchbar button{
-        padding:0 14px;
-      }
-      .header-link{
-        padding:11px 10px;
-        font-size:13px;
-      }
-      .menu .container{
-        gap:14px;
-        padding:10px 0;
-      }
-      .hero{
-        padding:24px 0;
-      }
-      .hero h1{
-        font-size:26px;
-      }
-      .hero p{
-        font-size:15px;
-      }
-      .hero-card{
-        grid-template-columns:1fr;
-      }
-      .hero-card img{
-        width:100px;
-        height:100px;
-        margin:0 auto;
-      }
-      .section-title h2{
-        font-size:26px;
-      }
-      .grid-products{
-        grid-template-columns:1fr 1fr;
-        gap:12px;
-      }
-      .product-thumb{
-        height:120px;
-      }
-      .product-title{
-        font-size:14px;
-        min-height:36px;
-      }
-      .product-price{
-        font-size:18px;
-      }
-      .product-actions{
-        grid-template-columns:1fr;
-      }
-      .footer-grid{
-        grid-template-columns:1fr;
-      }
-      .assistant-btn{
-        max-width:170px;
-      }
-      .assistant-panel{
-        width:270px;
-      }
+      .header-link{padding:10px 8px;font-size:12px}
+      .menu .container{gap:14px;padding:9px 0}
+      .menu a{font-size:13px}
+      .hero{padding:22px 0}
+      .hero h1{font-size:28px}
+      .hero p{font-size:14px}
+      .hero-card{grid-template-columns:1fr 95px;padding:14px}
+      .hero-card img{width:95px;height:95px}
+      .section{padding:20px 0}
+      .section-title h2{font-size:24px}
+      .grid-products{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+      .product-card{min-height:290px;padding:10px}
+      .product-thumb{height:105px}
+      .product-title{font-size:12px;min-height:32px}
+      .product-price{font-size:17px}
+      .product-installments{font-size:10px}
+      .product-actions{grid-template-columns:1fr}
+      .footer-grid{grid-template-columns:1fr}
+      .assistant-btn{max-width:178px}
+      .assistant-panel{width:270px}
+      .auth-title{font-size:24px}
     }
 
     @media (max-width:430px){
-      .grid-products{
-        grid-template-columns:1fr;
-      }
-      .product-thumb{
-        height:150px;
-      }
+      .logo img{height:82px}
+      .hero-card{grid-template-columns:1fr}
+      .hero-card img{margin:0 auto;justify-self:center}
+      .grid-products{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+      .product-card{min-height:276px;padding:8px}
+      .product-thumb{height:95px}
+      .product-title{font-size:11px}
+      .product-price{font-size:16px}
     }
   </style>
 </head>
@@ -713,10 +810,13 @@
           <button onclick="doSearch()">Buscar</button>
         </div>
 
-        <a class="header-link" href="#" onclick="alert('Área de conta em breve.')">Criar conta</a>
-        <a class="header-link" href="#" onclick="alert('Área de login em breve.')">Entrar</a>
-        <a class="header-link" href="cart.html">Carrinho <span class="cart-count" id="cartCount">0</span></a>
-        <a class="header-link" href="https://wa.me/5594992627580?text=Olá! Quero atendimento da Domínio Informática." target="_blank">Atendimento</a>
+        <div class="header-actions">
+          <a class="header-link" href="#" id="registerBtnHeader">Criar conta</a>
+          <a class="header-link" href="#" id="loginBtnHeader">Entrar</a>
+          <a class="header-link" href="carrinho.html">Carrinho <span class="cart-count" id="cartCount">0</span></a>
+          <a class="header-link" href="https://wa.me/5594992627580?text=Olá! Quero atendimento da Domínio Informática." target="_blank">Atendimento</a>
+          <span class="header-user" id="accountNameHeader"></span>
+        </div>
       </div>
     </div>
 
@@ -866,9 +966,9 @@
         </div>
         <div>
           <h4>Conta</h4>
-          <a href="#" onclick="alert('Área de conta em breve.')">Criar conta</a>
-          <a href="#" onclick="alert('Área de login em breve.')">Entrar</a>
-          <a href="cart.html">Carrinho</a>
+          <a href="#" id="footerRegisterLink">Criar conta</a>
+          <a href="#" id="footerLoginLink">Entrar</a>
+          <a href="carrinho.html">Carrinho</a>
         </div>
         <div>
           <h4>Ajuda</h4>
@@ -897,7 +997,7 @@
     </div>
     <div class="drawer-body" id="drawerBody"></div>
     <div class="drawer-footer">
-      <a class="btn btn-blue" href="cart.html">Ir para o carrinho</a>
+      <a class="btn btn-blue" href="carrinho.html">Ir para o carrinho</a>
       <button class="btn btn-orange" onclick="closeDrawer()">Continuar comprando</button>
     </div>
   </div>
@@ -922,9 +1022,167 @@
     </div>
   </div>
 
+  <div class="auth-modal-backdrop" id="authModal">
+    <div class="auth-modal">
+      <button class="auth-close" onclick="closeAuthModal()">×</button>
+      <h3 class="auth-title">Acesse sua conta ou cadastre-se</h3>
+
+      <div id="authMessage" class="auth-message error"></div>
+
+      <div class="auth-tabs">
+        <button id="authTabLogin" class="auth-tab active" type="button">Entrar</button>
+        <button id="authTabRegister" class="auth-tab" type="button">Cadastrar</button>
+      </div>
+
+      <div id="authLoginBox">
+        <div class="auth-grid">
+          <input class="auth-field" id="loginEmail" type="email" placeholder="Seu e-mail">
+          <input class="auth-field" id="loginPassword" type="password" placeholder="Sua senha">
+        </div>
+        <button class="auth-primary-btn" id="loginSubmitBtn" type="button">Entrar</button>
+      </div>
+
+      <div id="authRegisterBox" style="display:none;">
+        <div class="auth-grid">
+          <input class="auth-field" id="registerEmail" type="email" placeholder="Seu e-mail">
+          <input class="auth-field" id="registerPassword" type="password" placeholder="Crie uma senha">
+        </div>
+
+        <label class="auth-check">
+          <input type="checkbox" id="registerTerms">
+          <span>Li e estou de acordo com os termos e políticas de privacidade.</span>
+        </label>
+
+        <button class="auth-primary-btn" id="registerSubmitBtn" type="button">Criar conta</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="products.js"></script>
   <script>
+    let authMode = "login";
+
+    function setAuthMessage(message = "", type = "error") {
+      const box = document.getElementById("authMessage");
+      if (!message) {
+        box.style.display = "none";
+        box.textContent = "";
+        box.className = "auth-message error";
+        return;
+      }
+
+      box.style.display = "block";
+      box.textContent = message;
+      box.className = `auth-message ${type}`;
+    }
+
+    function openAuthModal(mode = "login") {
+      authMode = mode;
+      document.getElementById("authModal").classList.add("active");
+      switchAuthMode(mode);
+      setAuthMessage("");
+    }
+
+    function closeAuthModal() {
+      document.getElementById("authModal").classList.remove("active");
+      setAuthMessage("");
+    }
+
+    function switchAuthMode(mode) {
+      authMode = mode;
+
+      const loginTab = document.getElementById("authTabLogin");
+      const registerTab = document.getElementById("authTabRegister");
+      const loginBox = document.getElementById("authLoginBox");
+      const registerBox = document.getElementById("authRegisterBox");
+
+      loginTab.classList.toggle("active", mode === "login");
+      registerTab.classList.toggle("active", mode === "register");
+      loginBox.style.display = mode === "login" ? "block" : "none";
+      registerBox.style.display = mode === "register" ? "block" : "none";
+      setAuthMessage("");
+    }
+
+    async function updateAuthUI() {
+      const user = await authGetUser();
+
+      const registerBtn = document.getElementById("registerBtnHeader");
+      const loginBtn = document.getElementById("loginBtnHeader");
+      const accountName = document.getElementById("accountNameHeader");
+      const footerRegister = document.getElementById("footerRegisterLink");
+      const footerLogin = document.getElementById("footerLoginLink");
+
+      if (user) {
+        const name = user.email ? user.email.split("@")[0] : "Cliente";
+
+        registerBtn.textContent = "Minha conta";
+        registerBtn.onclick = (e) => {
+          e.preventDefault();
+          alert(`Conta ativa: ${user.email}`);
+        };
+
+        loginBtn.textContent = "Sair";
+        loginBtn.onclick = async (e) => {
+          e.preventDefault();
+          await authSignOut();
+          updateAuthUI();
+        };
+
+        footerRegister.textContent = "Minha conta";
+        footerRegister.onclick = (e) => {
+          e.preventDefault();
+          alert(`Conta ativa: ${user.email}`);
+        };
+
+        footerLogin.textContent = "Sair";
+        footerLogin.onclick = async (e) => {
+          e.preventDefault();
+          await authSignOut();
+          updateAuthUI();
+        };
+
+        accountName.style.display = "inline-block";
+        accountName.textContent = `Olá, ${name}`;
+      } else {
+        registerBtn.textContent = "Criar conta";
+        registerBtn.onclick = (e) => {
+          e.preventDefault();
+          openAuthModal("register");
+        };
+
+        loginBtn.textContent = "Entrar";
+        loginBtn.onclick = (e) => {
+          e.preventDefault();
+          openAuthModal("login");
+        };
+
+        footerRegister.textContent = "Criar conta";
+        footerRegister.onclick = (e) => {
+          e.preventDefault();
+          openAuthModal("register");
+        };
+
+        footerLogin.textContent = "Entrar";
+        footerLogin.onclick = (e) => {
+          e.preventDefault();
+          openAuthModal("login");
+        };
+
+        accountName.style.display = "none";
+        accountName.textContent = "";
+      }
+    }
+
+    function getSafeStock(p) {
+      const available = getAvailableStock(p.code);
+      return Number.isFinite(available) ? available : Math.max(0, Number(p.stock || 0));
+    }
+
     function renderProductCard(p) {
+      const stock = getSafeStock(p);
+      const isOut = stock <= 0;
+
       const mainImage = (p.images && p.images.length)
         ? `<img src="${p.images[0]}" alt="${p.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="placeholder" style="display:none;">📦</div>`
         : `<div class="placeholder">📦</div>`;
@@ -932,19 +1190,35 @@
       const installment = calcInstallment(p.price, 7);
 
       return `
-        <div class="card product-card">
+        <div class="card product-card ${isOut ? 'out-of-stock' : ''}">
           ${p.badge ? `<span class="product-badge">${p.badge}</span>` : ""}
-          <a href="product.html?id=${p.code}">
+          <a href="produto.html?id=${p.code}">
             <div class="product-thumb">${mainImage}</div>
           </a>
-          <span class="stock-badge">Estoque: ${p.stock} un</span>
+
+          ${
+            isOut
+              ? `<span class="out-badge">Sem estoque</span>`
+              : `<span class="stock-badge">Estoque: ${stock} un</span>`
+          }
+
           <div class="product-code">Código: ${p.code}</div>
-          <a href="product.html?id=${p.code}" class="product-title">${p.name}</a>
+          <a href="produto.html?id=${p.code}" class="product-title">${p.name}</a>
           <div class="product-price">${formatBRL(p.price)}</div>
           <div class="product-installments">até 7x sem juros de ${formatBRL(installment.perInstallment)}</div>
+
           <div class="product-actions">
-            <button class="small-btn small-blue" onclick="handleAddToCart('${p.code}')">Adicionar ao carrinho</button>
-            <button class="small-btn small-orange" onclick="handleBuyNow('${p.code}')">Comprar</button>
+            ${
+              isOut
+                ? `
+                  <button class="small-btn small-gray" disabled>Sem estoque</button>
+                  <button class="small-btn small-gray" disabled>Indisponível</button>
+                `
+                : `
+                  <button class="small-btn small-blue" onclick="handleAddToCart('${p.code}')">Adicionar ao carrinho</button>
+                  <button class="small-btn small-orange" onclick="handleBuyNow('${p.code}')">Comprar</button>
+                `
+            }
           </div>
         </div>
       `;
@@ -956,10 +1230,12 @@
     }
 
     function doSearch() {
-      const q = document.getElementById("searchInput").value;
+      const q = document.getElementById("searchInput").value.trim();
+      if (!q) return;
+
       const found = searchProduct(q);
       if (found) {
-        location.href = `product.html?id=${found.code}`;
+        location.href = `produto.html?id=${found.code}`;
       } else {
         alert("Nenhum produto encontrado.");
       }
@@ -995,18 +1271,35 @@ Gostaria de fazer uma encomenda.`;
     }
 
     function handleAddToCart(code) {
-      addToCart(code, 1);
+      const result = addToCart(code, 1);
+
+      if (!result.ok) {
+        alert(result.message || "Não foi possível adicionar.");
+        renderProducts();
+        return;
+      }
+
       document.getElementById("cartCount").textContent = cartCount();
       openDrawer(code);
+      renderProducts();
     }
 
     function handleBuyNow(code) {
-      setBuyNow(code, 1);
+      const result = setBuyNow(code, 1);
+
+      if (!result.ok && result.message && result.message.toLowerCase().includes("sem estoque")) {
+        alert(result.message);
+        renderProducts();
+        return;
+      }
+
       location.href = "checkout.html?mode=buy_now";
     }
 
     function openDrawer(code) {
       const p = getProductByCode(code);
+      if (!p) return;
+
       const related = PRODUCTS.filter(item => item.category === p.category && item.code !== p.code).slice(0, 3);
 
       const main = (p.images && p.images.length)
@@ -1026,17 +1319,25 @@ Gostaria de fazer uma encomenda.`;
 
       if (related.length) {
         html += `<div style="margin-top:4px;font-weight:bold;color:#12358f;">Você também pode gostar</div>`;
+
         html += related.map(item => {
+          const stock = getSafeStock(item);
+
           const img = (item.images && item.images.length)
             ? `<img src="${item.images[0]}" alt="${item.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="placeholder" style="display:none;">📦</div>`
             : `<div class="placeholder">📦</div>`;
+
           return `
             <div class="drawer-item">
               <div class="drawer-item-thumb">${img}</div>
               <div>
                 <strong style="display:block;color:#12358f;margin-bottom:6px;">${item.name}</strong>
                 <div style="font-size:18px;font-weight:700;color:#12358f;">${formatBRL(item.price)}</div>
-                <button class="small-btn small-blue" style="margin-top:8px;" onclick="handleAddToCart('${item.code}')">Adicionar</button>
+                ${
+                  stock > 0
+                    ? `<button class="small-btn small-blue" style="margin-top:8px;" onclick="handleAddToCart('${item.code}')">Adicionar</button>`
+                    : `<button class="small-btn small-gray" style="margin-top:8px;" disabled>Sem estoque</button>`
+                }
               </div>
             </div>
           `;
@@ -1051,6 +1352,60 @@ Gostaria de fazer uma encomenda.`;
       document.getElementById("cartDrawer").classList.remove("open");
     }
 
+    document.getElementById("authTabLogin").addEventListener("click", () => switchAuthMode("login"));
+    document.getElementById("authTabRegister").addEventListener("click", () => switchAuthMode("register"));
+
+    document.getElementById("registerSubmitBtn").addEventListener("click", async () => {
+      const email = document.getElementById("registerEmail").value.trim();
+      const password = document.getElementById("registerPassword").value.trim();
+      const accepted = document.getElementById("registerTerms").checked;
+
+      if (!accepted) {
+        setAuthMessage("Você precisa aceitar os termos para continuar.", "error");
+        return;
+      }
+
+      const result = await authSignUp(email, password);
+
+      if (!result.ok) {
+        setAuthMessage(result.message || "Não foi possível criar a conta.", "error");
+        return;
+      }
+
+      setAuthMessage("Conta criada com sucesso. Agora faça seu login.", "success");
+      document.getElementById("loginEmail").value = email;
+      document.getElementById("loginPassword").value = password;
+      setTimeout(() => switchAuthMode("login"), 700);
+    });
+
+    document.getElementById("loginSubmitBtn").addEventListener("click", async () => {
+      const email = document.getElementById("loginEmail").value.trim();
+      const password = document.getElementById("loginPassword").value.trim();
+
+      const result = await authSignIn(email, password);
+
+      if (!result.ok) {
+        setAuthMessage(result.message || "Não foi possível entrar.", "error");
+        return;
+      }
+
+      setAuthMessage("Login realizado com sucesso.", "success");
+      await updateAuthUI();
+      setTimeout(() => closeAuthModal(), 500);
+    });
+
+    document.getElementById("searchInput").addEventListener("keydown", function(e) {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        doSearch();
+      }
+    });
+
+    authOnStateChange(() => {
+      updateAuthUI();
+    });
+
+    updateAuthUI();
     renderProducts();
   </script>
 </body>
