@@ -655,3 +655,133 @@ function calcInstallment(price, installments) {
 function buildWhatsAppUrl(message) {
   return `https://wa.me/${STORE.whatsapp}?text=${encodeURIComponent(message)}`;
 }
+/* =========================
+   SUPABASE AUTH
+========================= */
+
+const SUPABASE_URL = "https://subabcflhskfvurqrxda.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_W_xGsojZApie66xGAlS-nA_w23uWwYO";
+
+let supabaseAuthClient = null;
+
+function getSupabaseClient() {
+  if (supabaseAuthClient) return supabaseAuthClient;
+
+  if (!window.supabase || !window.supabase.createClient) {
+    console.error("Supabase JS não carregado.");
+    return null;
+  }
+
+  supabaseAuthClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY,
+    {
+      auth: {
+        persistSession: true,
+        autoRefreshToken: true
+      }
+    }
+  );
+
+  return supabaseAuthClient;
+}
+
+async function authSignUp(email, password) {
+  const client = getSupabaseClient();
+  if (!client) {
+    return { ok: false, message: "Erro ao conectar com o serviço de login." };
+  }
+
+  const safeEmail = String(email || "").trim().toLowerCase();
+  const safePassword = String(password || "");
+
+  if (!safeEmail) {
+    return { ok: false, message: "Informe seu e-mail." };
+  }
+
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(safeEmail)) {
+    return { ok: false, message: "Informe um e-mail válido." };
+  }
+
+  if (safePassword.length < 6) {
+    return { ok: false, message: "A senha deve ter pelo menos 6 caracteres." };
+  }
+
+  const { data, error } = await client.auth.signUp({
+    email: safeEmail,
+    password: safePassword
+  });
+
+  if (error) {
+    return { ok: false, message: error.message || "Não foi possível criar a conta." };
+  }
+
+  return {
+    ok: true,
+    data,
+    message: "Conta criada com sucesso. Agora você já pode entrar."
+  };
+}
+
+async function authSignIn(email, password) {
+  const client = getSupabaseClient();
+  if (!client) {
+    return { ok: false, message: "Erro ao conectar com o serviço de login." };
+  }
+
+  const safeEmail = String(email || "").trim().toLowerCase();
+  const safePassword = String(password || "");
+
+  if (!safeEmail || !safePassword) {
+    return { ok: false, message: "Informe seu e-mail e sua senha." };
+  }
+
+  const { data, error } = await client.auth.signInWithPassword({
+    email: safeEmail,
+    password: safePassword
+  });
+
+  if (error) {
+    return { ok: false, message: error.message || "Não foi possível entrar." };
+  }
+
+  return {
+    ok: true,
+    data,
+    message: "Login realizado com sucesso."
+  };
+}
+
+async function authSignOut() {
+  const client = getSupabaseClient();
+  if (!client) return;
+
+  await client.auth.signOut();
+}
+
+async function authGetUser() {
+  const client = getSupabaseClient();
+  if (!client) return null;
+
+  const { data, error } = await client.auth.getUser();
+  if (error) return null;
+  return data.user || null;
+}
+
+async function authIsLoggedIn() {
+  const user = await authGetUser();
+  return !!user;
+}
+
+function authOnStateChange(callback) {
+  const client = getSupabaseClient();
+  if (!client) return null;
+
+  const { data } = client.auth.onAuthStateChange((_event, session) => {
+    if (typeof callback === "function") {
+      callback(session?.user || null);
+    }
+  });
+
+  return data?.subscription || null;
+}
