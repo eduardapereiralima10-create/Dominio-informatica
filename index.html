@@ -3,37 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Domínio Informática</title>
-  <meta name="description" content="Automação comercial e informática em Ourilândia do Norte.">
+  <title>Carrinho | Domínio Informática</title>
   <style>
     :root{
       --azul:#12358f;
       --azul-escuro:#0b1f66;
       --laranja:#ff6f1a;
-      --amarelo:#ffe600;
       --cinza:#f4f6fb;
-      --cinza-2:#eef2f7;
       --texto:#23314d;
       --texto-suave:#6c7b97;
       --borda:#dbe3f1;
-      --sombra:0 8px 24px rgba(18,53,143,.08);
+      --sombra:0 10px 28px rgba(18,53,143,.08);
       --raio:18px;
       --verde:#198754;
       --vermelho:#dc3545;
     }
 
     *{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
     body{font-family:Arial,sans-serif;background:var(--cinza);color:var(--texto)}
     a{text-decoration:none;color:inherit}
     img{display:block;max-width:100%}
-    button,input,textarea{font:inherit}
-    .container{width:min(1280px,94%);margin:0 auto}
+    button,input{font:inherit}
+    .container{width:min(1220px,92%);margin:0 auto}
 
     .topbar{
-      background:#0f1b3d;
+      background:linear-gradient(90deg,var(--azul),var(--azul-escuro));
       color:#fff;
-      font-size:12px;
+      font-size:13px;
     }
 
     .topbar .container{
@@ -41,1103 +37,278 @@
       justify-content:space-between;
       gap:12px;
       flex-wrap:wrap;
-      padding:7px 0;
-      line-height:1.4;
+      padding:8px 0;
     }
 
     .header{
-      background:var(--amarelo);
-      border-bottom:1px solid rgba(0,0,0,.08);
-      position:relative;
-      z-index:20;
+      background:#fff;
+      border-bottom:1px solid #ebeff6;
+      padding:12px 0;
     }
 
-    .header-main{
-      padding:14px 0 10px;
-    }
-
-    .header-main .container{
-      display:grid;
-      grid-template-columns:180px minmax(0,1fr) auto;
-      gap:14px;
-      align-items:center;
-    }
-
-    .logo{
+    .header .container{
       display:flex;
+      justify-content:space-between;
       align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
     }
 
     .logo img{
-      height:60px;
+      max-height:72px;
       width:auto;
-      object-fit:contain;
-      max-width:100%;
-    }
-
-    .searchbar{
-      display:flex;
-      min-width:0;
-      background:#fff;
-      border-radius:12px;
-      overflow:hidden;
-      border:1px solid rgba(0,0,0,.08);
-      box-shadow:0 2px 8px rgba(0,0,0,.06);
-      height:48px;
-    }
-
-    .searchbar input{
-      flex:1;
-      min-width:0;
-      border:none;
-      outline:none;
-      background:transparent;
-      padding:0 16px;
-      font-size:15px;
-    }
-
-    .searchbar button{
-      border:none;
-      background:#fff;
-      color:#666;
-      width:58px;
-      cursor:pointer;
-      font-size:18px;
-      border-left:1px solid #eee;
     }
 
     .header-actions{
       display:flex;
-      align-items:center;
-      gap:14px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-    }
-
-    .header-link{
-      font-size:14px;
-      font-weight:bold;
-      color:#1f1f1f;
-      cursor:pointer;
-    }
-
-    .header-icon{
-      width:38px;
-      height:38px;
-      border:none;
-      background:transparent;
-      cursor:pointer;
-      border-radius:999px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      position:relative;
-      font-size:18px;
-    }
-
-    .header-icon:hover{
-      background:rgba(0,0,0,.06);
-    }
-
-    .cart-count,
-    .bell-count{
-      position:absolute;
-      top:1px;
-      right:0;
-      min-width:18px;
-      height:18px;
-      padding:0 5px;
-      border-radius:999px;
-      background:var(--laranja);
-      color:#fff;
-      font-size:10px;
-      font-weight:bold;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-
-    .delivery-line{
-      font-size:13px;
-      color:#2c2c2c;
-      display:flex;
-      align-items:center;
-      gap:8px;
-      margin-top:8px;
-    }
-
-    .delivery-line strong{
-      font-weight:700;
-    }
-
-    .market-menu{
-      background:var(--amarelo);
-      border-top:1px solid rgba(0,0,0,.05);
-    }
-
-    .market-menu .container{
-      display:flex;
-      justify-content:space-between;
-      gap:16px;
-      align-items:center;
-      padding:8px 0 12px;
-      flex-wrap:wrap;
-    }
-
-    .menu-left,
-    .menu-right{
-      display:flex;
-      gap:18px;
-      align-items:center;
-      flex-wrap:wrap;
-    }
-
-    .menu-item{
-      font-size:15px;
-      color:#333;
-      position:relative;
-      cursor:pointer;
-    }
-
-    .menu-item:hover{
-      color:#000;
-    }
-
-    .menu-item.has-dropdown::after{
-      content:"▾";
-      font-size:11px;
-      margin-left:5px;
-    }
-
-    .account-area{
-      position:relative;
-    }
-
-    .account-trigger{
-      display:flex;
-      align-items:center;
-      gap:8px;
-      cursor:pointer;
-      border:none;
-      background:transparent;
-      font-size:14px;
-      color:#222;
-      padding:6px 8px;
-      border-radius:12px;
-    }
-
-    .account-trigger:hover{
-      background:rgba(0,0,0,.06);
-    }
-
-    .account-badge{
-      width:30px;
-      height:30px;
-      border-radius:50%;
-      background:#e8ecf5;
-      color:#12358f;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-weight:bold;
-      font-size:12px;
-      overflow:hidden;
-    }
-
-    .account-badge img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-    }
-
-    .account-name{
-      font-weight:bold;
-      max-width:110px;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      white-space:nowrap;
-    }
-
-    .dropdown-panel{
-      position:absolute;
-      top:110%;
-      right:0;
-      width:300px;
-      background:#fff;
-      border:1px solid #e7ebf3;
-      border-radius:18px;
-      box-shadow:0 20px 46px rgba(18,53,143,.14);
-      padding:14px;
-      display:none;
-      z-index:50;
-    }
-
-    .dropdown-panel.active{
-      display:block;
-    }
-
-    .dropdown-head{
-      display:flex;
-      gap:12px;
-      align-items:center;
-      padding-bottom:12px;
-      border-bottom:1px solid #edf1f7;
-      margin-bottom:10px;
-    }
-
-    .dropdown-big-badge{
-      width:54px;
-      height:54px;
-      border-radius:50%;
-      background:#eef2fb;
-      color:#12358f;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-weight:bold;
-      font-size:18px;
-      overflow:hidden;
-      flex-shrink:0;
-    }
-
-    .dropdown-big-badge img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-    }
-
-    .dropdown-head strong{
-      display:block;
-      color:#16274f;
-      font-size:18px;
-      line-height:1.2;
-    }
-
-    .dropdown-head span{
-      display:block;
-      color:#6c7b97;
-      font-size:13px;
-      margin-top:3px;
-      word-break:break-word;
-    }
-
-    .dropdown-list a,
-    .dropdown-list button{
-      display:flex;
-      width:100%;
-      text-align:left;
-      align-items:center;
-      justify-content:space-between;
       gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .btn{
+      display:inline-block;
       border:none;
-      background:#fff;
-      padding:11px 10px;
       border-radius:12px;
-      color:#26324d;
-      font-size:14px;
+      padding:12px 16px;
+      font-weight:bold;
       cursor:pointer;
-    }
-
-    .dropdown-list a:hover,
-    .dropdown-list button:hover{
-      background:#f5f8fd;
-    }
-
-    .hero{
-      padding:16px 0 8px;
-      background:var(--cinza);
-    }
-
-    .hero-grid{
-      display:grid;
-      grid-template-columns:minmax(0,1fr) 300px;
-      gap:16px;
-      align-items:start;
-    }
-
-    .banner-wrap{
-      background:#fff;
-      border-radius:20px;
-      overflow:hidden;
-      box-shadow:var(--sombra);
-      border:1px solid #e8edf6;
-    }
-
-    .banner-stage{
-      position:relative;
-      height:320px;
-      overflow:hidden;
-    }
-
-    .banner-slide{
-      position:absolute;
-      inset:0;
-      opacity:0;
-      transition:.35s ease;
-      pointer-events:none;
-    }
-
-    .banner-slide.active{
-      opacity:1;
-      pointer-events:auto;
-    }
-
-    .banner-slide img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-    }
-
-    .banner-overlay{
-      position:absolute;
-      inset:0;
-      background:linear-gradient(90deg,rgba(9,22,64,.72),rgba(9,22,64,.18));
-      display:flex;
-      align-items:center;
-      padding:28px;
-      color:#fff;
-    }
-
-    .banner-content{
-      max-width:420px;
-    }
-
-    .banner-content h1{
-      font-size:38px;
-      line-height:1.08;
-      margin-bottom:10px;
-    }
-
-    .banner-content p{
-      font-size:16px;
-      line-height:1.6;
-      margin-bottom:16px;
-    }
-
-    .banner-dots{
-      position:absolute;
-      left:50%;
-      transform:translateX(-50%);
-      bottom:16px;
-      display:flex;
-      gap:8px;
-      z-index:3;
-    }
-
-    .banner-dot{
-      width:10px;
-      height:10px;
-      border-radius:50%;
-      background:rgba(255,255,255,.55);
-      border:none;
-      cursor:pointer;
-    }
-
-    .banner-dot.active{
-      background:#fff;
-    }
-
-    .hero-side{
-      display:grid;
-      gap:12px;
-    }
-
-    .side-box{
-      background:#fff;
-      border-radius:18px;
-      padding:16px;
-      border:1px solid #e8edf6;
-      box-shadow:var(--sombra);
-    }
-
-    .side-box h3{
-      color:var(--azul);
-      font-size:18px;
-      margin-bottom:8px;
-    }
-
-    .side-box p{
-      color:var(--texto-suave);
-      line-height:1.6;
+      text-align:center;
       font-size:14px;
     }
 
-    .quick-grid{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:12px;
-      margin-top:18px;
-    }
-
-    .quick-card{
-      background:#fff;
-      border:1px solid #e8edf6;
-      border-radius:18px;
-      box-shadow:var(--sombra);
-      padding:16px;
-      min-height:118px;
-    }
-
-    .quick-card strong{
-      display:block;
-      color:#1d2d55;
-      margin-top:8px;
-      font-size:15px;
-      line-height:1.35;
-    }
-
-    .quick-card span{
-      display:block;
-      color:#6c7b97;
-      margin-top:6px;
-      font-size:13px;
-      line-height:1.5;
-    }
-
-    .quick-icon{
-      width:44px;
-      height:44px;
-      border-radius:14px;
-      background:#eef3ff;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:20px;
-    }
+    .btn-blue{background:var(--azul);color:#fff}
+    .btn-orange{background:var(--laranja);color:#fff}
+    .btn-gray{background:#dfe5f1;color:#7b879e;cursor:not-allowed}
 
     .section{
       padding:24px 0;
     }
 
-    .section-head{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:12px;
-      margin-bottom:14px;
-      flex-wrap:wrap;
+    .page-head{
+      margin-bottom:16px;
     }
 
-    .section-head h2{
+    .page-head h1{
       color:var(--azul);
-      font-size:28px;
+      font-size:30px;
+      margin-bottom:6px;
     }
 
-    .section-head p{
+    .page-head p{
       color:var(--texto-suave);
-      font-size:14px;
-      line-height:1.5;
-    }
-
-    .section-link{
-      color:#2a5bd7;
-      font-size:14px;
-      font-weight:bold;
-    }
-
-    .card{
-      background:#fff;
-      border:1px solid #e7edf8;
-      border-radius:18px;
-      box-shadow:var(--sombra);
-    }
-
-    .category-grid{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:12px;
-    }
-
-    .category-card{
-      background:#fff;
-      border:1px solid #e7edf8;
-      border-radius:18px;
-      box-shadow:var(--sombra);
-      padding:16px;
-      min-height:114px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-    }
-
-    .category-card strong{
-      color:#1d2d55;
-      font-size:16px;
-      line-height:1.35;
-    }
-
-    .category-card span{
-      color:#6c7b97;
-      font-size:13px;
-      margin-top:6px;
-      line-height:1.45;
-    }
-
-    .category-badge{
-      width:46px;
-      height:46px;
-      border-radius:14px;
-      background:#f3f6fb;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:20px;
-    }
-
-    .products-grid{
-      display:grid;
-      grid-template-columns:repeat(6,minmax(0,1fr));
-      gap:12px;
-    }
-
-    .product-card{
-      background:#fff;
-      border:1px solid #e7edf8;
-      border-radius:18px;
-      box-shadow:var(--sombra);
-      padding:12px;
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-      min-height:320px;
-      transition:.18s ease;
-    }
-
-    .product-card:hover{
-      transform:translateY(-2px);
-    }
-
-    .product-card.out-of-stock{
-      opacity:.78;
-    }
-
-    .product-thumb{
-      height:124px;
-      border:1px solid #edf1f7;
-      border-radius:14px;
-      background:#fff;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      overflow:hidden;
-      padding:8px;
-    }
-
-    .product-thumb img{
-      width:100%;
-      height:100%;
-      object-fit:contain;
-    }
-
-    .product-badge,
-    .stock-badge,
-    .out-badge{
-      display:inline-block;
-      padding:5px 8px;
-      border-radius:999px;
-      font-size:10px;
-      font-weight:bold;
-    }
-
-    .product-badge{
-      background:#eefcf4;
-      color:#198754;
-    }
-
-    .stock-badge{
-      background:#fff3e8;
-      color:#d55f00;
-    }
-
-    .out-badge{
-      background:#fdecec;
-      color:#b42318;
-    }
-
-    .product-code{
-      font-size:11px;
-      color:#7e8ba5;
-      line-height:1.3;
-    }
-
-    .product-title{
-      color:#12358f;
-      font-size:13px;
-      font-weight:bold;
-      line-height:1.35;
-      min-height:36px;
-      display:block;
-    }
-
-    .product-price{
-      color:#16274f;
-      font-size:24px;
-      font-weight:700;
-      line-height:1;
-    }
-
-    .product-old{
-      color:#7a859d;
-      text-decoration:line-through;
-      font-size:12px;
-      min-height:14px;
-    }
-
-    .product-installments{
-      color:#198754;
-      font-size:11px;
-      line-height:1.45;
-      font-weight:bold;
-    }
-
-    .product-actions{
-      margin-top:auto;
-      display:grid;
-      gap:8px;
-    }
-
-    .small-btn{
-      border:none;
-      border-radius:10px;
-      padding:10px 10px;
-      font-size:12px;
-      font-weight:bold;
-      cursor:pointer;
-      text-align:center;
-      min-height:38px;
-    }
-
-    .small-blue{background:#2968ff;color:#fff}
-    .small-orange{background:var(--laranja);color:#fff}
-    .small-gray{background:#dfe5f1;color:#6b7893;cursor:not-allowed}
-
-    .solucoes-grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:14px;
-    }
-
-    .system-card{
-      padding:16px;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-    }
-
-    .system-badge{
-      display:inline-block;
-      background:#eef3ff;
-      color:#12358f;
-      border-radius:999px;
-      font-size:11px;
-      padding:6px 10px;
-      font-weight:bold;
-      width:max-content;
-    }
-
-    .system-card h3{
-      color:#12358f;
-      font-size:20px;
-      line-height:1.2;
-    }
-
-    .system-card p{
-      color:#6c7b97;
       line-height:1.6;
       font-size:14px;
     }
 
-    .system-card ul{
-      list-style:none;
+    .layout{
       display:grid;
-      gap:6px;
-      font-size:14px;
-      color:#23314d;
-    }
-
-    .system-card li::before{
-      content:"✓ ";
-      color:var(--laranja);
-      font-weight:bold;
-    }
-
-    .encomenda-box{
-      display:grid;
-      grid-template-columns:1.1fr .9fr;
+      grid-template-columns:1fr 340px;
       gap:16px;
+      align-items:start;
     }
 
-    .info-card{
-      padding:16px;
-    }
-
-    .info-card h3{
-      color:#12358f;
-      margin-bottom:8px;
-      font-size:20px;
-    }
-
-    .info-card p{
-      color:#6c7b97;
-      line-height:1.7;
-      font-size:14px;
-    }
-
-    .field{
-      width:100%;
-      border:1.5px solid #dfe6f3;
-      background:#f8fafe;
-      border-radius:12px;
-      padding:12px 14px;
-      font-size:14px;
-      outline:none;
-    }
-
-    textarea.field{
-      min-height:110px;
-      resize:vertical;
-    }
-
-    .footer{
+    .card{
       background:#fff;
-      border-top:1px solid #e7edf8;
-      margin-top:24px;
-      padding:28px 0;
+      border:1px solid var(--borda);
+      border-radius:var(--raio);
+      box-shadow:var(--sombra);
     }
 
-    .footer-grid{
-      display:grid;
-      grid-template-columns:2fr 1fr 1fr 1fr;
-      gap:18px;
-    }
-
-    .footer h4{
-      color:#16274f;
-      margin-bottom:10px;
-      font-size:16px;
-    }
-
-    .footer p,.footer a{
-      color:#6c7b97;
-      font-size:14px;
-      line-height:1.8;
-      display:block;
-    }
-
-    .footer-copy{
-      border-top:1px solid #edf1f7;
-      margin-top:18px;
-      padding-top:14px;
-      color:#7a859d;
-      font-size:13px;
-    }
-
-    .drawer{
-      position:fixed;
-      top:0;
-      right:-420px;
-      width:390px;
-      max-width:92vw;
-      height:100vh;
-      background:#fff;
-      box-shadow:-10px 0 30px rgba(0,0,0,.12);
-      z-index:2000;
-      transition:.25s ease;
-      display:flex;
-      flex-direction:column;
-    }
-
-    .drawer.open{right:0}
-
-    .drawer-header{
+    .list{
       padding:16px;
-      border-bottom:1px solid #ebeff6;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:12px;
-    }
-
-    .drawer-body{
-      padding:16px;
-      overflow:auto;
       display:grid;
       gap:12px;
     }
 
-    .drawer-item{
-      border:1px solid #e7edf8;
-      border-radius:14px;
+    .item{
+      border:1px solid var(--borda);
+      border-radius:16px;
       padding:12px;
       display:grid;
-      grid-template-columns:64px 1fr;
-      gap:10px;
+      grid-template-columns:90px 1fr auto;
+      gap:12px;
       align-items:center;
     }
 
-    .drawer-item-thumb{
-      width:64px;
-      height:64px;
+    .item.out{
+      opacity:.82;
+      border-color:#f1c7cd;
+      background:#fffafb;
+    }
+
+    .thumb{
+      width:90px;
+      height:90px;
       border:1px solid #ebeff6;
-      border-radius:12px;
+      border-radius:14px;
+      background:#fff;
+      padding:8px;
       display:flex;
       align-items:center;
       justify-content:center;
       overflow:hidden;
-      padding:6px;
-      background:#fff;
     }
 
-    .drawer-item-thumb img{
+    .thumb img{
       width:100%;
       height:100%;
       object-fit:contain;
     }
 
-    .drawer-footer{
-      margin-top:auto;
-      border-top:1px solid #ebeff6;
-      padding:16px;
-      display:grid;
-      gap:10px;
-    }
-
-    .auth-modal-backdrop{
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,.38);
-      display:none;
+    .placeholder{
+      font-size:34px;
+      color:var(--azul);
+      display:flex;
       align-items:center;
       justify-content:center;
-      z-index:4000;
+      width:100%;
+      height:100%;
+    }
+
+    .title{
+      font-weight:bold;
+      color:var(--azul);
+      line-height:1.3;
+      margin-bottom:6px;
+      font-size:15px;
+    }
+
+    .code{
+      font-size:12px;
+      color:#7e8ba5;
+      margin-bottom:6px;
+    }
+
+    .price{
+      font-size:18px;
+      color:var(--azul);
+      font-weight:700;
+      margin-bottom:6px;
+    }
+
+    .stock{
+      font-size:12px;
+      font-weight:bold;
+      line-height:1.4;
+    }
+
+    .stock.ok{
+      color:var(--laranja);
+    }
+
+    .stock.out{
+      color:var(--vermelho);
+    }
+
+    .subtotal{
+      margin-top:8px;
+      font-size:13px;
+      color:var(--texto-suave);
+    }
+
+    .subtotal strong{
+      color:var(--azul);
+    }
+
+    .right{
+      text-align:right;
+      min-width:130px;
+    }
+
+    .qty{
+      width:86px;
+      border:2px solid #dfe6f3;
+      background:#f8fafe;
+      border-radius:12px;
+      padding:10px 12px;
+      font-size:14px;
+      text-align:center;
+    }
+
+    .mini-btn{
+      border:none;
+      border-radius:10px;
+      padding:8px 12px;
+      font-size:12px;
+      font-weight:bold;
+      cursor:pointer;
+      text-align:center;
+    }
+
+    .summary{
       padding:16px;
     }
 
-    .auth-modal-backdrop.active{display:flex}
-
-    .auth-modal{
-      position:relative;
-      width:min(560px,100%);
-      background:#fff;
-      border-radius:22px;
-      padding:22px;
-      box-shadow:0 25px 60px rgba(0,0,0,.18);
-    }
-
-    .auth-close{
-      position:absolute;
-      top:10px;
-      right:12px;
-      border:none;
-      background:none;
-      font-size:30px;
-      line-height:1;
-      cursor:pointer;
-      color:#667085;
-    }
-
-    .auth-title{
-      color:#12358f;
-      font-size:28px;
-      margin-bottom:14px;
-    }
-
-    .auth-tabs{
-      display:flex;
-      gap:10px;
-      margin-bottom:14px;
-      flex-wrap:wrap;
-    }
-
-    .auth-tab{
-      border:none;
-      border-radius:12px;
-      padding:10px 14px;
-      font-weight:bold;
-      cursor:pointer;
-      background:#eef3ff;
-      color:#12358f;
-    }
-
-    .auth-tab.active{
-      background:#12358f;
-      color:#fff;
-    }
-
-    .auth-message{
-      border-radius:12px;
-      padding:12px 14px;
-      margin-bottom:14px;
-      font-size:14px;
-      line-height:1.5;
-      display:none;
-    }
-
-    .auth-message.error{
-      background:#fdecec;
-      color:#b42318;
-    }
-
-    .auth-message.success{
-      background:#eefcf4;
-      color:#198754;
-    }
-
-    .auth-grid{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:12px;
+    .summary h2{
+      color:var(--azul);
+      font-size:24px;
       margin-bottom:12px;
     }
 
-    .auth-field{
-      width:100%;
-      border:1.5px solid #dfe6f3;
-      background:#f8fafe;
-      border-radius:12px;
-      padding:13px 14px;
+    .sum-line{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:10px;
+      color:var(--texto-suave);
       font-size:14px;
-      outline:none;
     }
 
-    .auth-check{
-      display:flex;
-      align-items:flex-start;
-      gap:10px;
+    .sum-total{
+      font-size:24px;
+      color:var(--azul);
+      font-weight:700;
+      margin:12px 0;
+    }
+
+    .summary-note{
+      margin-top:12px;
+      padding:12px;
+      border-radius:14px;
+      background:#f8fafe;
+      border:1px solid #e7edf8;
+      color:var(--texto-suave);
+      font-size:13px;
+      line-height:1.6;
+    }
+
+    .empty{
+      padding:22px;
+    }
+
+    .empty h2{
+      color:var(--azul);
+      margin-bottom:8px;
+      font-size:24px;
+    }
+
+    .empty p{
+      color:var(--texto-suave);
+      line-height:1.7;
       font-size:14px;
-      color:#6c7b97;
-      line-height:1.5;
       margin-bottom:14px;
     }
 
-    .auth-primary-btn{
-      width:100%;
-      border:none;
-      border-radius:12px;
-      padding:13px 16px;
-      background:#ff6f1a;
-      color:#fff;
-      font-weight:bold;
-      font-size:15px;
-      cursor:pointer;
-    }
-
-    @media (max-width:1200px){
-      .products-grid{grid-template-columns:repeat(5,minmax(0,1fr))}
-      .quick-grid{grid-template-columns:repeat(2,1fr)}
-      .footer-grid{grid-template-columns:1fr 1fr}
-    }
-
-    @media (max-width:980px){
-      .header-main .container{
-        grid-template-columns:160px minmax(0,1fr);
+    @media (max-width:860px){
+      .layout{
+        grid-template-columns:1fr;
       }
 
-      .header-actions{
+      .item{
+        grid-template-columns:70px 1fr;
+      }
+
+      .thumb{
+        width:70px;
+        height:70px;
+      }
+
+      .right{
         grid-column:1 / -1;
-        justify-content:space-between;
+        text-align:left;
+        min-width:0;
       }
-
-      .hero-grid{
-        grid-template-columns:1fr;
-      }
-
-      .category-grid{
-        grid-template-columns:repeat(2,1fr);
-      }
-
-      .products-grid{
-        grid-template-columns:repeat(4,minmax(0,1fr));
-      }
-
-      .solucoes-grid{
-        grid-template-columns:1fr;
-      }
-
-      .encomenda-box{
-        grid-template-columns:1fr;
-      }
-    }
-
-    @media (max-width:720px){
-      .topbar{font-size:11px}
-      .header-main .container{
-        grid-template-columns:1fr;
-        gap:10px;
-      }
-
-      .logo{justify-content:center}
-      .logo img{height:72px}
-
-      .header-actions{
-        gap:10px;
-        justify-content:space-between;
-      }
-
-      .market-menu .container{
-        gap:10px;
-      }
-
-      .menu-left,
-      .menu-right{
-        gap:12px;
-      }
-
-      .menu-item{
-        font-size:13px;
-      }
-
-      .banner-stage{
-        height:260px;
-      }
-
-      .banner-content h1{
-        font-size:28px;
-      }
-
-      .banner-content p{
-        font-size:14px;
-      }
-
-      .quick-grid{
-        grid-template-columns:1fr 1fr;
-      }
-
-      .products-grid{
-        grid-template-columns:repeat(2,minmax(0,1fr));
-        gap:10px;
-      }
-
-      .product-card{
-        min-height:290px;
-      }
-
-      .product-thumb{
-        height:108px;
-      }
-
-      .product-title{
-        font-size:12px;
-      }
-
-      .product-price{
-        font-size:19px;
-      }
-
-      .footer-grid{
-        grid-template-columns:1fr;
-      }
-    }
-
-    @media (max-width:430px){
-      .container{width:min(1280px,95%)}
-      .quick-grid{grid-template-columns:1fr}
-      .category-grid{grid-template-columns:1fr}
-      .products-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-      .product-card{padding:10px;min-height:280px}
-      .product-thumb{height:96px}
-      .banner-stage{height:220px}
-      .banner-content h1{font-size:24px}
     }
   </style>
 </head>
@@ -1150,777 +321,152 @@
   </div>
 
   <header class="header">
-    <div class="header-main">
-      <div class="container">
-        <a href="index.html" class="logo">
-          <img src="logo-dominio.png" alt="Domínio Informática">
-        </a>
+    <div class="container">
+      <a href="index.html" class="logo">
+        <img src="logo-dominio.png" alt="Domínio Informática">
+      </a>
 
-        <div>
-          <div class="searchbar">
-            <input type="text" id="searchInput" placeholder="Buscar por produtos, marcas e muito mais...">
-            <button onclick="doSearch()">⌕</button>
-          </div>
-          <div class="delivery-line" id="deliveryLine">
-            <span>📍</span>
-            <span>Enviar para <strong id="deliveryName">você</strong> • <span id="deliveryAddress">cadastre seu endereço</span></span>
-          </div>
-        </div>
-
-        <div class="header-actions">
-          <div class="account-area">
-            <button class="account-trigger" id="accountTrigger" type="button">
-              <span class="account-badge" id="accountBadge">DI</span>
-              <span class="account-name" id="accountName">Entrar</span>
-            </button>
-
-            <div class="dropdown-panel" id="accountDropdown">
-              <div class="dropdown-head">
-                <div class="dropdown-big-badge" id="dropdownBigBadge">DI</div>
-                <div>
-                  <strong id="dropdownUserName">Sua conta</strong>
-                  <span id="dropdownUserEmail">Entre para continuar</span>
-                </div>
-              </div>
-
-              <div class="dropdown-list" id="accountDropdownList">
-                <button type="button" onclick="openAuthModal('login')">Entrar</button>
-                <button type="button" onclick="openAuthModal('register')">Criar conta</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="account-area">
-            <button class="header-icon" id="bellTrigger" type="button" aria-label="Avisos">
-              🔔
-              <span class="bell-count" id="bellCount" style="display:none;">1</span>
-            </button>
-
-            <div class="dropdown-panel" id="bellDropdown" style="width:340px;">
-              <div class="dropdown-head" style="padding-bottom:10px;">
-                <div>
-                  <strong style="font-size:18px;">Avisos</strong>
-                  <span id="bellSubtitle">Entre na sua conta para ver notificações.</span>
-                </div>
-              </div>
-
-              <div class="dropdown-list" id="bellList">
-                <button type="button" onclick="openAuthModal('login')">Entre para acompanhar seus avisos</button>
-              </div>
-            </div>
-          </div>
-
-          <a class="header-icon" href="carrinho.html" aria-label="Carrinho" style="text-decoration:none;">
-            🛒
-            <span class="cart-count" id="cartCount">0</span>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <div class="market-menu">
-      <div class="container">
-        <div class="menu-left">
-          <a class="menu-item has-dropdown" href="#categorias">Categorias</a>
-          <a class="menu-item" href="#ofertas">Ofertas</a>
-          <a class="menu-item" href="#sistemas">Soluções</a>
-          <a class="menu-item" href="#produtos">Informática</a>
-          <a class="menu-item" href="#contato">Contato</a>
-        </div>
-
-        <div class="menu-right">
-          <a class="menu-item" href="#encomenda">Encomenda</a>
-          <a class="menu-item" href="https://wa.me/5594992627580?text=Olá! Quero atendimento da Domínio Informática." target="_blank">Atendimento</a>
-        </div>
+      <div class="header-actions">
+        <a class="btn btn-blue" href="index.html">Continuar comprando</a>
       </div>
     </div>
   </header>
 
-  <section class="hero">
+  <section class="section">
     <div class="container">
-      <div class="hero-grid">
-        <div>
-          <div class="banner-wrap">
-            <div class="banner-stage" id="bannerStage">
-              <div class="banner-slide active">
-                <img src="logo-dominio.png" alt="Domínio Informática">
-                <div class="banner-overlay">
-                  <div class="banner-content">
-                    <h1>Automação e informática para o seu negócio</h1>
-                    <p>Soluções completas para lojas, mercados, restaurantes e clientes finais com atendimento rápido e produtos selecionados.</p>
-                    <a class="btn btn-orange" href="#produtos">Ver produtos</a>
-                  </div>
-                </div>
-              </div>
+      <div class="page-head">
+        <h1>Seu carrinho</h1>
+        <p>Revise os produtos antes de continuar para o checkout.</p>
+      </div>
 
-              <div class="banner-slide">
-                <img src="dombot.png" alt="DomBot">
-                <div class="banner-overlay">
-                  <div class="banner-content">
-                    <h1>Atendimento com DomBot</h1>
-                    <p>Tire dúvidas, peça orientações e solicite encomendas com praticidade.</p>
-                    <a class="btn btn-white" href="#encomenda">Quero encomendar</a>
-                  </div>
-                </div>
-              </div>
+      <div class="layout">
+        <div class="card list" id="cartList"></div>
 
-              <div class="banner-slide">
-                <img src="logo-dominio.png" alt="Ofertas Domínio Informática">
-                <div class="banner-overlay">
-                  <div class="banner-content">
-                    <h1>Ofertas e equipamentos para automação</h1>
-                    <p>Impressoras, teclados, mouses, kits, leitores e muito mais para sua operação.</p>
-                    <a class="btn btn-white" href="#ofertas">Ver ofertas</a>
-                  </div>
-                </div>
-              </div>
+        <div class="card summary">
+          <h2>Resumo da compra</h2>
+          <div class="sum-line"><span>Produtos</span><strong id="productsCount">0</strong></div>
+          <div class="sum-line"><span>Total dos produtos</span><strong id="productsTotal">R$ 0,00</strong></div>
+          <div class="sum-total" id="finalTotal">R$ 0,00</div>
 
-              <div class="banner-dots" id="bannerDots">
-                <button class="banner-dot active" type="button" onclick="goBanner(0)"></button>
-                <button class="banner-dot" type="button" onclick="goBanner(1)"></button>
-                <button class="banner-dot" type="button" onclick="goBanner(2)"></button>
-              </div>
-            </div>
-          </div>
+          <button class="btn btn-orange" id="checkoutBtn" style="width:100%;" onclick="goCheckout()">Continuar compra</button>
+          <a class="btn btn-blue" href="index.html" style="width:100%;margin-top:10px;">Continuar comprando</a>
 
-          <div class="quick-grid">
-            <div class="quick-card">
-              <div class="quick-icon">⚡</div>
-              <strong>Entrega e retirada</strong>
-              <span>Retire na loja ou consulte envio para pedidos maiores.</span>
-            </div>
-
-            <div class="quick-card">
-              <div class="quick-icon">💳</div>
-              <strong>Pix e cartão</strong>
-              <span>Pague no Pix, dinheiro, cartão ou combinando 2 meios.</span>
-            </div>
-
-            <div class="quick-card">
-              <div class="quick-icon">🤖</div>
-              <strong>DomBot</strong>
-              <span>Use os atalhos rápidos para dúvidas e encomendas.</span>
-            </div>
-
-            <div class="quick-card">
-              <div class="quick-icon">🏪</div>
-              <strong>Automação comercial</strong>
-              <span>Equipamentos e sistemas para sua empresa crescer.</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="hero-side">
-          <div class="side-box">
-            <h3>Atalhos personalizados</h3>
-            <p>Use os atalhos abaixo para encontrar ajuda mais rápido.</p>
-            <div style="display:grid;gap:8px;margin-top:12px;">
-              <a class="btn btn-blue" href="#produtos">Ver produtos</a>
-              <a class="btn btn-orange" href="#ofertas">Ofertas do dia</a>
-              <a class="btn btn-white" style="border:1px solid #d9e2f0;" href="#sistemas">Soluções para negócios</a>
-            </div>
-          </div>
-
-          <div class="side-box">
-            <h3>DomBot</h3>
-            <p>Como podemos te ajudar?</p>
-            <div style="display:grid;gap:8px;margin-top:12px;">
-              <button class="assistant-option" onclick="sendFaqQuestion('Quais formas de pagamento vocês aceitam?')">Formas de pagamento</button>
-              <button class="assistant-option" onclick="sendFaqQuestion('Vocês fazem encomenda de produto?')">Encomendas</button>
-              <button class="assistant-option" onclick="sendFaqQuestion('Como funciona a retirada na loja?')">Retirada na loja</button>
-              <button class="assistant-option" onclick="sendFaqQuestion('Como funciona a garantia dos produtos?')">Garantia</button>
-            </div>
+          <div class="summary-note">
+            As quantidades respeitam o estoque disponível. Se algum item ultrapassar o estoque, ele será ajustado automaticamente.
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section" id="categorias">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <h2>Categorias</h2>
-          <p>Encontre os principais grupos de produtos da loja.</p>
-        </div>
-      </div>
-
-      <div class="category-grid">
-        <div class="category-card">
-          <div class="category-badge">🖥️</div>
-          <div>
-            <strong>Informática</strong>
-            <span>Teclados, mouses, kits e acessórios para uso diário.</span>
-          </div>
-        </div>
-
-        <div class="category-card">
-          <div class="category-badge">🧾</div>
-          <div>
-            <strong>Automação</strong>
-            <span>Impressoras, equipamentos e produtos para operação comercial.</span>
-          </div>
-        </div>
-
-        <div class="category-card">
-          <div class="category-badge">🎮</div>
-          <div>
-            <strong>Gaming</strong>
-            <span>Combos e periféricos com visual e desempenho gamer.</span>
-          </div>
-        </div>
-
-        <div class="category-card">
-          <div class="category-badge">🔊</div>
-          <div>
-            <strong>Áudio e vídeo</strong>
-            <span>Produtos que podem entrar futuramente no catálogo da loja.</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="ofertas">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <h2>Ofertas</h2>
-          <p>Produtos em destaque e oportunidades da loja.</p>
-        </div>
-      </div>
-      <div class="products-grid" id="offersGrid"></div>
-    </div>
-  </section>
-
-  <section class="section" id="produtos">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <h2>Produtos</h2>
-          <p>Escolha o produto, veja detalhes e compre do seu jeito.</p>
-        </div>
-        <a class="section-link" href="#categorias">Ver categorias</a>
-      </div>
-      <div class="products-grid" id="productsGrid"></div>
-    </div>
-  </section>
-
-  <section class="section" id="sistemas">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <h2>Soluções para negócios</h2>
-          <p>Conheça os sistemas e encontre a solução ideal para sua operação.</p>
-        </div>
-      </div>
-
-      <div class="solucoes-grid">
-        <div class="card system-card">
-          <span class="system-badge">Lojas</span>
-          <h3>EasySAC</h3>
-          <p>Automação comercial para lojas com foco em vendas, cadastro, atendimento e organização da operação.</p>
-          <ul>
-            <li>Controle de vendas</li>
-            <li>Cadastro de produtos</li>
-            <li>Cadastro de clientes</li>
-            <li>Relatórios e gestão</li>
-          </ul>
-          <a href="easysac.html" class="btn btn-blue">Saiba mais</a>
-        </div>
-
-        <div class="card system-card">
-          <span class="system-badge">Restaurantes</span>
-          <h3>EasyChef</h3>
-          <p>Solução para restaurantes, bares e lanchonetes com foco em pedidos, mesas e atendimento.</p>
-          <ul>
-            <li>Controle de mesas</li>
-            <li>Pedidos e comandas</li>
-            <li>Agilidade no atendimento</li>
-            <li>Relatórios de vendas</li>
-          </ul>
-          <a href="easychef.html" class="btn btn-blue">Saiba mais</a>
-        </div>
-
-        <div class="card system-card">
-          <span class="system-badge">Mercados</span>
-          <h3>EasyPDV</h3>
-          <p>Solução para mercados com foco em frente de caixa, controle de estoque, produtos e rotina comercial.</p>
-          <ul>
-            <li>Frente de caixa</li>
-            <li>Controle de estoque</li>
-            <li>Cadastro de produtos</li>
-            <li>Relatórios e controle</li>
-          </ul>
-          <a href="easypdv.html" class="btn btn-blue">Saiba mais</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="encomenda">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <h2>Não encontrou o que você queria?</h2>
-          <p>Nós também fazemos encomendas. Informe o produto que você procura.</p>
-        </div>
-      </div>
-
-      <div class="encomenda-box">
-        <div class="card info-card">
-          <h3>Solicitar encomenda</h3>
-          <p>Informe qual produto você procura e fale com a nossa equipe.</p>
-          <br>
-          <input class="field" type="text" id="wantProduct" placeholder="Ex.: notebook, leitor, checkout, peça, acessório...">
-          <br><br>
-          <textarea class="field" id="wantObs" placeholder="Observação (opcional)"></textarea>
-          <br><br>
-          <button class="btn btn-orange" onclick="sendEncomenda()">Solicitar encomenda</button>
-        </div>
-
-        <div class="card info-card" id="contato">
-          <h3>Contato da loja</h3>
-          <p><strong>WhatsApp:</strong> (94) 99262-7580</p>
-          <p><strong>Instagram:</strong> @dominioinformatica2023</p>
-          <p><strong>Cidade:</strong> Ourilândia do Norte - PA</p>
-          <p><strong>Segunda a sexta:</strong> 08h às 18h</p>
-          <p><strong>Almoço:</strong> 11h às 13h</p>
-          <p><strong>Sábado:</strong> 08h às 12h</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div>
-          <h4>Domínio Informática</h4>
-          <p>Automação comercial, informática, impressoras, periféricos, acessórios e soluções para negócios.</p>
-        </div>
-
-        <div>
-          <h4>Conta</h4>
-          <a href="#" id="footerProfileLink">Minha conta</a>
-          <a href="#" id="footerPrivacyLink">Privacidade</a>
-          <a href="carrinho.html">Carrinho</a>
-        </div>
-
-        <div>
-          <h4>Ajuda</h4>
-          <a href="#encomenda">Fazer encomenda</a>
-          <a href="#contato">Contato</a>
-          <a href="#" onclick="openFaqPanel()">Perguntas frequentes</a>
-        </div>
-
-        <div>
-          <h4>Contato</h4>
-          <p>WhatsApp: (94) 99262-7580</p>
-          <p>Ourilândia do Norte - PA</p>
-          <p>Instagram: @dominioinformatica2023</p>
-        </div>
-      </div>
-
-      <div class="footer-copy">
-        Domínio Informática • Site em atualização contínua
-      </div>
-    </div>
-  </footer>
-
-  <div class="drawer" id="cartDrawer">
-    <div class="drawer-header">
-      <strong>Produto adicionado ao carrinho</strong>
-      <button class="small-btn small-orange" onclick="closeDrawer()">Fechar</button>
-    </div>
-    <div class="drawer-body" id="drawerBody"></div>
-    <div class="drawer-footer">
-      <a class="btn btn-blue" href="carrinho.html">Ir para o carrinho</a>
-      <button class="btn btn-orange" onclick="closeDrawer()">Continuar comprando</button>
-    </div>
-  </div>
-
-  <div class="auth-modal-backdrop" id="authModal">
-    <div class="auth-modal">
-      <button class="auth-close" onclick="closeAuthModal()">×</button>
-      <h3 class="auth-title">Acesse sua conta ou cadastre-se</h3>
-
-      <div id="authMessage" class="auth-message error"></div>
-
-      <div class="auth-tabs">
-        <button id="authTabLogin" class="auth-tab active" type="button">Entrar</button>
-        <button id="authTabRegister" class="auth-tab" type="button">Cadastrar</button>
-      </div>
-
-      <div id="authLoginBox">
-        <div class="auth-grid">
-          <input class="auth-field" id="loginEmail" type="email" placeholder="Seu e-mail">
-          <input class="auth-field" id="loginPassword" type="password" placeholder="Sua senha">
-        </div>
-        <button class="auth-primary-btn" id="loginSubmitBtn" type="button">Entrar</button>
-      </div>
-
-      <div id="authRegisterBox" style="display:none;">
-        <div class="auth-grid">
-          <input class="auth-field" id="registerName" type="text" placeholder="Seu nome completo">
-          <input class="auth-field" id="registerPhone" type="text" placeholder="Seu telefone">
-          <input class="auth-field" id="registerEmail" type="email" placeholder="Seu e-mail">
-          <input class="auth-field" id="registerPassword" type="password" placeholder="Crie uma senha">
-          <input class="auth-field" id="registerAddress" type="text" placeholder="Seu endereço principal">
-          <input class="auth-field" id="registerPhoto" type="url" placeholder="Link da sua foto (opcional)">
-        </div>
-
-        <label class="auth-check">
-          <input type="checkbox" id="registerTerms">
-          <span>Li e estou de acordo com os termos de uso e com a política de privacidade do site.</span>
-        </label>
-
-        <button class="auth-primary-btn" id="registerSubmitBtn" type="button">Criar conta</button>
-      </div>
-    </div>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="products.js"></script>
   <script>
-    const BANNERS = [0,1,2];
-    let currentBanner = 0;
-    let bannerTimer = null;
-    let userProfile = null;
+    function renderCart() {
+      const cart = cartGet();
+      const list = document.getElementById("cartList");
+      const checkoutBtn = document.getElementById("checkoutBtn");
 
-    function getLocalProfileKey(email) {
-      return `dominio_profile_${String(email || "").toLowerCase()}`;
-    }
-
-    function saveLocalProfile(email, data) {
-      localStorage.setItem(getLocalProfileKey(email), JSON.stringify(data || {}));
-    }
-
-    function getLocalProfile(email) {
-      try {
-        return JSON.parse(localStorage.getItem(getLocalProfileKey(email)) || "{}");
-      } catch {
-        return {};
-      }
-    }
-
-    function initialsFromName(name, email = "") {
-      const source = String(name || "").trim();
-      if (source) {
-        const parts = source.split(" ").filter(Boolean);
-        if (parts.length === 1) return parts[0].slice(0,2).toUpperCase();
-        return (parts[0][0] + parts[1][0]).toUpperCase();
-      }
-
-      const fallback = String(email || "").trim();
-      return fallback ? fallback.slice(0,2).toUpperCase() : "DI";
-    }
-
-    function setAuthMessage(message = "", type = "error") {
-      const box = document.getElementById("authMessage");
-      if (!message) {
-        box.style.display = "none";
-        box.textContent = "";
-        box.className = "auth-message error";
-        return;
-      }
-
-      box.style.display = "block";
-      box.textContent = message;
-      box.className = `auth-message ${type}`;
-    }
-
-    function openAuthModal(mode = "login") {
-      document.getElementById("authModal").classList.add("active");
-      switchAuthMode(mode);
-      setAuthMessage("");
-    }
-
-    function closeAuthModal() {
-      document.getElementById("authModal").classList.remove("active");
-      setAuthMessage("");
-    }
-
-    function switchAuthMode(mode) {
-      const loginTab = document.getElementById("authTabLogin");
-      const registerTab = document.getElementById("authTabRegister");
-      const loginBox = document.getElementById("authLoginBox");
-      const registerBox = document.getElementById("authRegisterBox");
-
-      loginTab.classList.toggle("active", mode === "login");
-      registerTab.classList.toggle("active", mode === "register");
-      loginBox.style.display = mode === "login" ? "block" : "none";
-      registerBox.style.display = mode === "register" ? "block" : "none";
-      setAuthMessage("");
-    }
-
-    function toggleDropdown(panelId, triggerId) {
-      const panel = document.getElementById(panelId);
-      const trigger = document.getElementById(triggerId);
-
-      const isActive = panel.classList.contains("active");
-      document.querySelectorAll(".dropdown-panel").forEach(el => el.classList.remove("active"));
-
-      if (!isActive) {
-        panel.classList.add("active");
-      }
-    }
-
-    function closeAllDropdowns() {
-      document.querySelectorAll(".dropdown-panel").forEach(el => el.classList.remove("active"));
-    }
-
-    function getSafeStock(p) {
-      const available = getAvailableStock(p.code);
-      return Number.isFinite(available) ? available : Math.max(0, Number(p.stock || 0));
-    }
-
-    async function updateAuthUI() {
-      const user = await authGetUser();
-
-      const accountName = document.getElementById("accountName");
-      const accountBadge = document.getElementById("accountBadge");
-      const dropdownUserName = document.getElementById("dropdownUserName");
-      const dropdownUserEmail = document.getElementById("dropdownUserEmail");
-      const dropdownList = document.getElementById("accountDropdownList");
-      const dropdownBigBadge = document.getElementById("dropdownBigBadge");
-      const bellSubtitle = document.getElementById("bellSubtitle");
-      const bellList = document.getElementById("bellList");
-      const bellCount = document.getElementById("bellCount");
-
-      if (user) {
-        const profile = getLocalProfile(user.email);
-        userProfile = profile;
-
-        const fullName = profile.name || (user.email ? user.email.split("@")[0] : "Cliente");
-        const initials = initialsFromName(fullName, user.email);
-
-        accountName.textContent = fullName.split(" ")[0];
-        accountBadge.innerHTML = profile.photo ? `<img src="${profile.photo}" alt="${fullName}">` : initials;
-        dropdownBigBadge.innerHTML = profile.photo ? `<img src="${profile.photo}" alt="${fullName}">` : initials;
-
-        dropdownUserName.textContent = fullName;
-        dropdownUserEmail.textContent = user.email || "";
-
-        document.getElementById("deliveryName").textContent = fullName.split(" ")[0];
-        document.getElementById("deliveryAddress").textContent = profile.address || "cadastre seu endereço";
-
-        dropdownList.innerHTML = `
-          <a href="#" onclick="event.preventDefault(); openProfileAlert();">Meu perfil</a>
-          <a href="#" onclick="event.preventDefault(); openAddressAlert();">Endereços</a>
-          <a href="#" onclick="event.preventDefault(); openPrivacyAlert();">Privacidade</a>
-          <a href="#" onclick="event.preventDefault(); openNotificationsAlert();">Comunicações</a>
-          <button type="button" onclick="handleLogout()">Sair</button>
-        `;
-
-        if (user.email_confirmed_at) {
-          bellCount.style.display = "none";
-          bellSubtitle.textContent = "Tudo certo com sua conta.";
-          bellList.innerHTML = `
-            <button type="button" onclick="openNotificationsAlert()">Sua conta está ativa e confirmada</button>
-          `;
-        } else {
-          bellCount.style.display = "flex";
-          bellCount.textContent = "1";
-          bellSubtitle.textContent = "Você tem 1 aviso importante.";
-          bellList.innerHTML = `
-            <button type="button" onclick="showEmailConfirmationHelp()">
-              Por favor, confirme seu e-mail para manter sua conta segura
-            </button>
-          `;
-        }
-      } else {
-        userProfile = null;
-        accountName.textContent = "Entrar";
-        accountBadge.textContent = "DI";
-        dropdownBigBadge.textContent = "DI";
-        dropdownUserName.textContent = "Sua conta";
-        dropdownUserEmail.textContent = "Entre para continuar";
-        document.getElementById("deliveryName").textContent = "você";
-        document.getElementById("deliveryAddress").textContent = "cadastre seu endereço";
-
-        dropdownList.innerHTML = `
-          <button type="button" onclick="openAuthModal('login')">Entrar</button>
-          <button type="button" onclick="openAuthModal('register')">Criar conta</button>
-        `;
-
-        bellCount.style.display = "none";
-        bellSubtitle.textContent = "Entre na sua conta para ver notificações.";
-        bellList.innerHTML = `
-          <button type="button" onclick="openAuthModal('login')">Entre para acompanhar seus avisos</button>
-        `;
-      }
-    }
-
-    function showEmailConfirmationHelp() {
-      alert("Por favor, confirme seu e-mail. Verifique sua caixa de entrada e também o spam. Depois disso, seu acesso ficará completo.");
-    }
-
-    function openProfileAlert() {
-      if (!userProfile) return;
-      alert(
-`Informações do seu perfil
-
-Nome: ${userProfile.name || "Não informado"}
-E-mail: ${userProfile.email || "Não informado"}
-Telefone: ${userProfile.phone || "Não informado"}
-Endereço: ${userProfile.address || "Não informado"}`
-      );
-    }
-
-    function openAddressAlert() {
-      if (!userProfile) return;
-      alert(`Endereço salvo:\n${userProfile.address || "Nenhum endereço cadastrado ainda."}`);
-    }
-
-    function openPrivacyAlert() {
-      alert("Privacidade:\n\n- Cookies para manter sua sessão\n- Dados da conta para login e atendimento\n- Você poderá solicitar exclusão da conta futuramente");
-    }
-
-    function openNotificationsAlert() {
-      alert("Comunicações:\n\nAqui ficarão seus avisos, atualizações da conta e lembretes importantes.");
-    }
-
-    function openFaqPanel() {
-      alert("Perguntas frequentes:\n\n- Formas de pagamento\n- Encomendas\n- Retirada na loja\n- Garantia\n- Atendimento");
-    }
-
-    async function handleLogout() {
-      await authSignOut();
-      closeAllDropdowns();
-      await updateAuthUI();
-    }
-
-    function renderProductCard(p) {
-      const stock = getSafeStock(p);
-      const isOut = stock <= 0;
-
-      const mainImage = (p.images && p.images.length)
-        ? `<img src="${p.images[0]}" alt="${p.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="placeholder" style="display:none;">📦</div>`
-        : `<div class="placeholder">📦</div>`;
-
-      const installment = calcInstallment(p.price, 7);
-      const oldPrice = p.badge === "Oferta" || p.badge === "Mais procurado"
-        ? formatBRL(p.price * 1.18)
-        : "";
-
-      return `
-        <div class="product-card ${isOut ? 'out-of-stock' : ''}">
-          ${p.badge ? `<span class="product-badge">${p.badge}</span>` : ""}
-          <a href="produto.html?id=${p.code}">
-            <div class="product-thumb">${mainImage}</div>
-          </a>
-
-          ${
-            isOut
-              ? `<span class="out-badge">Sem estoque</span>`
-              : `<span class="stock-badge">Estoque: ${stock} un</span>`
-          }
-
-          <div class="product-code">Código: ${p.code}</div>
-          <a href="produto.html?id=${p.code}" class="product-title">${p.name}</a>
-          <div class="product-old">${oldPrice}</div>
-          <div class="product-price">${formatBRL(p.price)}</div>
-          <div class="product-installments">até 7x sem juros de ${formatBRL(installment.perInstallment)}</div>
-
-          <div class="product-actions">
-            ${
-              isOut
-                ? `<button class="small-btn small-gray" disabled>Indisponível</button>`
-                : `
-                  <button class="small-btn small-orange" onclick="handleBuyNow('${p.code}')">Comprar agora</button>
-                  <button class="small-btn small-blue" onclick="handleAddToCart('${p.code}')">Adicionar ao carrinho</button>
-                `
-            }
+      if (!cart.length) {
+        list.innerHTML = `
+          <div class="empty">
+            <h2>Seu carrinho está vazio</h2>
+            <p>Adicione produtos para continuar sua compra.</p>
+            <a class="btn btn-blue" href="index.html">Voltar para a loja</a>
           </div>
-        </div>
-      `;
-    }
+        `;
 
-    function renderProducts() {
-      const productsGrid = document.getElementById("productsGrid");
-      const offersGrid = document.getElementById("offersGrid");
-      const productCards = PRODUCTS.map(renderProductCard).join("");
-
-      productsGrid.innerHTML = productCards;
-
-      const offers = PRODUCTS
-        .filter(p => ["Oferta", "Mais procurado", "Novo", "Gaming", "Sem fio"].includes(p.badge))
-        .slice(0, 6);
-
-      offersGrid.innerHTML = offers.map(renderProductCard).join("");
-
-      document.getElementById("cartCount").textContent = cartCount();
-    }
-
-    function doSearch() {
-      const q = document.getElementById("searchInput").value.trim();
-      if (!q) return;
-
-      const found = searchProduct(q);
-      if (found) {
-        location.href = `produto.html?id=${found.code}`;
-      } else {
-        alert("Nenhum produto encontrado.");
-      }
-    }
-
-    function sendFaqQuestion(text = "") {
-      const q = text || prompt("Digite sua dúvida:");
-      if (!q) return;
-      const msg = `Olá! Tenho esta dúvida no site:%0A%0A${q}`;
-      window.open(`https://wa.me/${STORE.whatsapp}?text=${msg}`, "_blank");
-    }
-
-    function sendEncomenda() {
-      const product = document.getElementById("wantProduct").value.trim();
-      const obs = document.getElementById("wantObs").value.trim();
-
-      if (!product) {
-        alert("Digite o produto que você procura.");
+        document.getElementById("productsCount").textContent = "0";
+        document.getElementById("productsTotal").textContent = "R$ 0,00";
+        document.getElementById("finalTotal").textContent = "R$ 0,00";
+        checkoutBtn.disabled = true;
+        checkoutBtn.className = "btn btn-gray";
         return;
       }
 
-      const msg =
-`Olá! Não encontrei no site o produto que procuro.
-Produto: ${product}
-Observação: ${obs || "Sem observação"}
-Gostaria de fazer uma encomenda.`;
+      let total = 0;
+      let totalItems = 0;
 
-      window.open(buildWhatsAppUrl(msg), "_blank");
+      list.innerHTML = cart.map(item => {
+        const p = getProductByCode(item.code);
+        if (!p) return "";
+
+        const stock = Number(p.stock || 0);
+        const isOut = stock <= 0;
+        const qty = Math.min(Number(item.qty || 1), Math.max(stock, 1));
+        const subtotal = p.price * qty;
+
+        total += subtotal;
+        totalItems += isOut ? 0 : qty;
+
+        const mainImage = (p.images && p.images.length)
+          ? `<img src="${p.images[0]}" alt="${p.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="placeholder" style="display:none;">📦</div>`
+          : `<div class="placeholder">📦</div>`;
+
+        return `
+          <div class="item ${isOut ? 'out' : ''}">
+            <div class="thumb">${mainImage}</div>
+
+            <div>
+              <div class="title">${p.name}</div>
+              <div class="code">Código: ${p.code}</div>
+              <div class="price">${formatBRL(p.price)}</div>
+              <div class="stock ${isOut ? 'out' : 'ok'}">
+                ${isOut ? 'Produto sem estoque no momento' : `Estoque disponível: ${stock}`}
+              </div>
+              <div class="subtotal">Subtotal: <strong>${formatBRL(subtotal)}</strong></div>
+            </div>
+
+            <div class="right">
+              <input
+                class="qty"
+                type="number"
+                min="1"
+                max="${Math.max(stock, 1)}"
+                value="${qty}"
+                ${isOut ? 'disabled' : ''}
+                onchange="changeQty('${p.code}', this.value)"
+              >
+              <div style="height:8px"></div>
+              <button class="mini-btn btn-blue" onclick="removeItem('${p.code}')">Remover</button>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      document.getElementById("productsCount").textContent = totalItems;
+      document.getElementById("productsTotal").textContent = formatBRL(total);
+      document.getElementById("finalTotal").textContent = formatBRL(total);
+
+      checkoutBtn.disabled = totalItems <= 0;
+      checkoutBtn.className = totalItems > 0 ? "btn btn-orange" : "btn btn-gray";
     }
 
-    function handleAddToCart(code) {
-      const result = addToCart(code, 1);
+    function changeQty(code, qty) {
+      const result = updateCartQty(code, qty);
 
-      if (!result.ok) {
-        alert(result.message || "Não foi possível adicionar.");
-        renderProducts();
-        return;
-      }
-
-      document.getElementById("cartCount").textContent = cartCount();
-      openDrawer(code);
-      renderProducts();
-    }
-
-    function handleBuyNow(code) {
-      const result = setBuyNow(code, 1);
-
-      if (!result.ok && result.message && result.message.toLowerCase().includes("sem estoque")) {
+      if (!result.ok && result.message) {
         alert(result.message);
-        renderProducts();
+      }
+
+      renderCart();
+    }
+
+    function removeItem(code) {
+      removeFromCart(code);
+      renderCart();
+    }
+
+    function goCheckout() {
+      const cart = cartGet();
+      if (!cart.length) {
+        alert("Seu carrinho está vazio.");
         return;
       }
 
-      location.href = "checkout.html?mode=buy_now";
+      location.href = "checkout.html?mode=cart";
     }
 
-    function openDrawer(code) {
-      const p = getProductByCode(code);
-      if (!p) return;
-
-      const related = PRODUCTS.filter(item => item.category === p.category && item.code !== p.code).slice(0, 3);
-
-      const main = (p.images && p.images.length)
-        ? `<img src="${p.images[0]}" alt="${p.name}" onerror="this.style.display='none';
+    renderCart();
+  </script>
+</body>
+</html>
