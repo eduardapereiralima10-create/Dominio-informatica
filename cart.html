@@ -7,6 +7,7 @@
   <style>
     :root{
       --azul:#12358f;
+      --azul-escuro:#0b1f66;
       --laranja:#ff6f1a;
       --cinza:#f4f6fb;
       --texto:#23314d;
@@ -14,24 +15,112 @@
       --borda:#dbe3f1;
       --sombra:0 10px 28px rgba(18,53,143,.08);
       --raio:18px;
+      --verde:#198754;
+      --vermelho:#dc3545;
     }
+
     *{box-sizing:border-box;margin:0;padding:0}
     body{font-family:Arial,sans-serif;background:var(--cinza);color:var(--texto)}
     a{text-decoration:none;color:inherit}
     img{display:block;max-width:100%}
+    button,input{font:inherit}
     .container{width:min(1220px,92%);margin:0 auto}
-    .header{background:#fff;border-bottom:1px solid #ebeff6;padding:12px 0}
-    .header .container{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-    .logo img{max-height:64px}
-    .btn{
-      display:inline-block;border:none;border-radius:12px;padding:12px 16px;font-weight:bold;cursor:pointer;text-align:center;
+
+    .topbar{
+      background:linear-gradient(90deg,var(--azul),var(--azul-escuro));
+      color:#fff;
+      font-size:13px;
     }
+
+    .topbar .container{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      padding:8px 0;
+    }
+
+    .header{
+      background:#fff;
+      border-bottom:1px solid #ebeff6;
+      padding:12px 0;
+    }
+
+    .header .container{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .logo img{
+      max-height:72px;
+      width:auto;
+    }
+
+    .header-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .btn{
+      display:inline-block;
+      border:none;
+      border-radius:12px;
+      padding:12px 16px;
+      font-weight:bold;
+      cursor:pointer;
+      text-align:center;
+      font-size:14px;
+    }
+
     .btn-blue{background:var(--azul);color:#fff}
     .btn-orange{background:var(--laranja);color:#fff}
-    .section{padding:24px 0}
-    .layout{display:grid;grid-template-columns:1fr 340px;gap:16px}
-    .card{background:#fff;border:1px solid var(--borda);border-radius:var(--raio);box-shadow:var(--sombra)}
-    .list{padding:16px;display:grid;gap:12px}
+    .btn-gray{background:#dfe5f1;color:#7b879e;cursor:not-allowed}
+
+    .section{
+      padding:24px 0;
+    }
+
+    .page-head{
+      margin-bottom:16px;
+    }
+
+    .page-head h1{
+      color:var(--azul);
+      font-size:30px;
+      margin-bottom:6px;
+    }
+
+    .page-head p{
+      color:var(--texto-suave);
+      line-height:1.6;
+      font-size:14px;
+    }
+
+    .layout{
+      display:grid;
+      grid-template-columns:1fr 340px;
+      gap:16px;
+      align-items:start;
+    }
+
+    .card{
+      background:#fff;
+      border:1px solid var(--borda);
+      border-radius:var(--raio);
+      box-shadow:var(--sombra);
+    }
+
+    .list{
+      padding:16px;
+      display:grid;
+      gap:12px;
+    }
+
     .item{
       border:1px solid var(--borda);
       border-radius:16px;
@@ -41,49 +130,231 @@
       gap:12px;
       align-items:center;
     }
+
+    .item.out{
+      opacity:.82;
+      border-color:#f1c7cd;
+      background:#fffafb;
+    }
+
     .thumb{
-      width:90px;height:90px;border:1px solid #ebeff6;border-radius:14px;background:#fff;padding:8px;display:flex;align-items:center;justify-content:center;
+      width:90px;
+      height:90px;
+      border:1px solid #ebeff6;
+      border-radius:14px;
+      background:#fff;
+      padding:8px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
     }
-    .thumb img{width:100%;height:100%;object-fit:contain}
-    .placeholder{font-size:34px;color:var(--azul)}
-    .title{font-weight:bold;color:var(--azul);line-height:1.3;margin-bottom:6px}
-    .code{font-size:12px;color:#7e8ba5;margin-bottom:6px}
-    .price{font-size:18px;color:var(--azul);font-weight:700}
-    .right{text-align:right}
+
+    .thumb img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+    }
+
+    .placeholder{
+      font-size:34px;
+      color:var(--azul);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:100%;
+      height:100%;
+    }
+
+    .title{
+      font-weight:bold;
+      color:var(--azul);
+      line-height:1.3;
+      margin-bottom:6px;
+      font-size:15px;
+    }
+
+    .code{
+      font-size:12px;
+      color:#7e8ba5;
+      margin-bottom:6px;
+    }
+
+    .price{
+      font-size:18px;
+      color:var(--azul);
+      font-weight:700;
+      margin-bottom:6px;
+    }
+
+    .stock{
+      font-size:12px;
+      font-weight:bold;
+      line-height:1.4;
+    }
+
+    .stock.ok{
+      color:var(--laranja);
+    }
+
+    .stock.out{
+      color:var(--vermelho);
+    }
+
+    .subtotal{
+      margin-top:8px;
+      font-size:13px;
+      color:var(--texto-suave);
+    }
+
+    .subtotal strong{
+      color:var(--azul);
+    }
+
+    .right{
+      text-align:right;
+      min-width:130px;
+    }
+
     .qty{
-      width:80px;border:2px solid #dfe6f3;background:#f8fafe;border-radius:12px;padding:10px 12px;font-size:14px;
+      width:86px;
+      border:2px solid #dfe6f3;
+      background:#f8fafe;
+      border-radius:12px;
+      padding:10px 12px;
+      font-size:14px;
+      text-align:center;
     }
-    .summary{padding:16px}
-    .summary h2{color:var(--azul);font-size:24px;margin-bottom:12px}
-    .sum-line{display:flex;justify-content:space-between;gap:10px;margin-bottom:10px;color:var(--texto-suave)}
-    .sum-total{font-size:22px;color:var(--azul);font-weight:700;margin:12px 0}
+
+    .mini-btn{
+      border:none;
+      border-radius:10px;
+      padding:8px 12px;
+      font-size:12px;
+      font-weight:bold;
+      cursor:pointer;
+      text-align:center;
+    }
+
+    .summary{
+      padding:16px;
+    }
+
+    .summary h2{
+      color:var(--azul);
+      font-size:24px;
+      margin-bottom:12px;
+    }
+
+    .sum-line{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:10px;
+      color:var(--texto-suave);
+      font-size:14px;
+    }
+
+    .sum-total{
+      font-size:24px;
+      color:var(--azul);
+      font-weight:700;
+      margin:12px 0;
+    }
+
+    .summary-note{
+      margin-top:12px;
+      padding:12px;
+      border-radius:14px;
+      background:#f8fafe;
+      border:1px solid #e7edf8;
+      color:var(--texto-suave);
+      font-size:13px;
+      line-height:1.6;
+    }
+
+    .empty{
+      padding:22px;
+    }
+
+    .empty h2{
+      color:var(--azul);
+      margin-bottom:8px;
+      font-size:24px;
+    }
+
+    .empty p{
+      color:var(--texto-suave);
+      line-height:1.7;
+      font-size:14px;
+      margin-bottom:14px;
+    }
+
     @media (max-width:860px){
-      .layout{grid-template-columns:1fr}
-      .item{grid-template-columns:70px 1fr}
-      .right{text-align:left}
+      .layout{
+        grid-template-columns:1fr;
+      }
+
+      .item{
+        grid-template-columns:70px 1fr;
+      }
+
+      .thumb{
+        width:70px;
+        height:70px;
+      }
+
+      .right{
+        grid-column:1 / -1;
+        text-align:left;
+        min-width:0;
+      }
     }
   </style>
 </head>
 <body>
+  <div class="topbar">
+    <div class="container">
+      <div>Automação comercial e informática para sua empresa</div>
+      <div>WhatsApp: (94) 99262-7580 • Ourilândia do Norte - PA</div>
+    </div>
+  </div>
+
   <header class="header">
     <div class="container">
-      <a href="index.html" class="logo"><img src="logo-dominio.png" alt="Domínio Informática"></a>
-      <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <a href="index.html" class="logo">
+        <img src="logo-dominio.png" alt="Domínio Informática">
+      </a>
+
+      <div class="header-actions">
         <a class="btn btn-blue" href="index.html">Continuar comprando</a>
       </div>
     </div>
   </header>
 
   <section class="section">
-    <div class="container layout">
-      <div class="card list" id="cartList"></div>
+    <div class="container">
+      <div class="page-head">
+        <h1>Seu carrinho</h1>
+        <p>Revise os produtos antes de continuar para o checkout.</p>
+      </div>
 
-      <div class="card summary">
-        <h2>Resumo da compra</h2>
-        <div class="sum-line"><span>Produtos</span><strong id="productsCount">0</strong></div>
-        <div class="sum-line"><span>Total dos produtos</span><strong id="productsTotal">R$ 0,00</strong></div>
-        <div class="sum-total" id="finalTotal">R$ 0,00</div>
-        <button class="btn btn-orange" style="width:100%;" onclick="goCheckout()">Continuar compra</button>
+      <div class="layout">
+        <div class="card list" id="cartList"></div>
+
+        <div class="card summary">
+          <h2>Resumo da compra</h2>
+          <div class="sum-line"><span>Produtos</span><strong id="productsCount">0</strong></div>
+          <div class="sum-line"><span>Total dos produtos</span><strong id="productsTotal">R$ 0,00</strong></div>
+          <div class="sum-total" id="finalTotal">R$ 0,00</div>
+
+          <button class="btn btn-orange" id="checkoutBtn" style="width:100%;" onclick="goCheckout()">Continuar compra</button>
+          <a class="btn btn-blue" href="index.html" style="width:100%;margin-top:10px;">Continuar comprando</a>
+
+          <div class="summary-note">
+            As quantidades respeitam o estoque disponível. Se algum item ultrapassar o estoque, ele será ajustado automaticamente.
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -93,17 +364,22 @@
     function renderCart() {
       const cart = cartGet();
       const list = document.getElementById("cartList");
+      const checkoutBtn = document.getElementById("checkoutBtn");
 
       if (!cart.length) {
         list.innerHTML = `
-          <div style="padding:18px;">
-            <h2 style="color:#12358f;margin-bottom:8px;">Seu carrinho está vazio</h2>
-            <p style="color:#6c7b97;">Adicione produtos para continuar.</p>
+          <div class="empty">
+            <h2>Seu carrinho está vazio</h2>
+            <p>Adicione produtos para continuar sua compra.</p>
+            <a class="btn btn-blue" href="index.html">Voltar para a loja</a>
           </div>
         `;
+
         document.getElementById("productsCount").textContent = "0";
         document.getElementById("productsTotal").textContent = "R$ 0,00";
         document.getElementById("finalTotal").textContent = "R$ 0,00";
+        checkoutBtn.disabled = true;
+        checkoutBtn.className = "btn btn-gray";
         return;
       }
 
@@ -113,25 +389,45 @@
       list.innerHTML = cart.map(item => {
         const p = getProductByCode(item.code);
         if (!p) return "";
-        total += p.price * item.qty;
-        totalItems += item.qty;
+
+        const stock = Number(p.stock || 0);
+        const isOut = stock <= 0;
+        const qty = Math.min(Number(item.qty || 1), Math.max(stock, 1));
+        const subtotal = p.price * qty;
+
+        total += subtotal;
+        totalItems += isOut ? 0 : qty;
 
         const mainImage = (p.images && p.images.length)
           ? `<img src="${p.images[0]}" alt="${p.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="placeholder" style="display:none;">📦</div>`
           : `<div class="placeholder">📦</div>`;
 
         return `
-          <div class="item">
+          <div class="item ${isOut ? 'out' : ''}">
             <div class="thumb">${mainImage}</div>
+
             <div>
               <div class="title">${p.name}</div>
               <div class="code">Código: ${p.code}</div>
               <div class="price">${formatBRL(p.price)}</div>
+              <div class="stock ${isOut ? 'out' : 'ok'}">
+                ${isOut ? 'Produto sem estoque no momento' : `Estoque disponível: ${stock}`}
+              </div>
+              <div class="subtotal">Subtotal: <strong>${formatBRL(subtotal)}</strong></div>
             </div>
+
             <div class="right">
-              <input class="qty" type="number" min="1" value="${item.qty}" onchange="changeQty('${p.code}', this.value)">
+              <input
+                class="qty"
+                type="number"
+                min="1"
+                max="${Math.max(stock, 1)}"
+                value="${qty}"
+                ${isOut ? 'disabled' : ''}
+                onchange="changeQty('${p.code}', this.value)"
+              >
               <div style="height:8px"></div>
-              <button class="btn btn-blue" style="padding:8px 12px;" onclick="removeItem('${p.code}')">Remover</button>
+              <button class="mini-btn btn-blue" onclick="removeItem('${p.code}')">Remover</button>
             </div>
           </div>
         `;
@@ -140,10 +436,18 @@
       document.getElementById("productsCount").textContent = totalItems;
       document.getElementById("productsTotal").textContent = formatBRL(total);
       document.getElementById("finalTotal").textContent = formatBRL(total);
+
+      checkoutBtn.disabled = totalItems <= 0;
+      checkoutBtn.className = totalItems > 0 ? "btn btn-orange" : "btn btn-gray";
     }
 
     function changeQty(code, qty) {
-      updateCartQty(code, qty);
+      const result = updateCartQty(code, qty);
+
+      if (!result.ok && result.message) {
+        alert(result.message);
+      }
+
       renderCart();
     }
 
@@ -153,6 +457,12 @@
     }
 
     function goCheckout() {
+      const cart = cartGet();
+      if (!cart.length) {
+        alert("Seu carrinho está vazio.");
+        return;
+      }
+
       location.href = "checkout.html?mode=cart";
     }
 
