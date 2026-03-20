@@ -1,7 +1,7 @@
 const STORE = {
   whatsapp: "5594992627580",
-  pixKey: "SUA-CHAVE-PIX-AQUI",
-  pixName: "Domínio Informática",
+  pixKey: "b476bb76-75e0-4b0d-85e8-621710f271a2",
+  pixName: "A de S Pereira ltda",
   cardRates: {
     1: 0,
     2: 0,
@@ -16,6 +16,12 @@ const STORE = {
     11: 18.39,
     12: 18.79
   }
+};
+
+const STORAGE_KEYS = {
+  cart: "dominio_cart",
+  buyNow: "dominio_buy_now",
+  checkoutMode: "dominio_checkout_mode"
 };
 
 const PRODUCTS = [
@@ -561,8 +567,12 @@ const PRODUCTS = [
   }
 ];
 
+/* =========================
+   PRODUTOS / UTILITÁRIOS
+========================= */
+
 function getProductByCode(code) {
-  return PRODUCTS.find(p => p.code === code);
+  return PRODUCTS.find(p => String(p.code) === String(code));
 }
 
 function formatBRL(value) {
@@ -572,78 +582,22 @@ function formatBRL(value) {
   });
 }
 
-function cartGet() {
-  return JSON.parse(localStorage.getItem("dominio_cart") || "[]");
-}
-
-function cartSet(items) {
-  localStorage.setItem("dominio_cart", JSON.stringify(items));
-}
-
-function cartCount() {
-  return cartGet().reduce((acc, item) => acc + Number(item.qty || 0), 0);
-}
-
-function addToCart(code, qty = 1) {
-  const product = getProductByCode(code);
-  if (!product) return;
-
-  const cart = cartGet();
-  const found = cart.find(i => i.code === code);
-
-  if (found) {
-    found.qty += qty;
-  } else {
-    cart.push({ code, qty });
-  }
-
-  cartSet(cart);
-}
-
-function removeFromCart(code) {
-  const cart = cartGet().filter(item => item.code !== code);
-  cartSet(cart);
-}
-
-function updateCartQty(code, qty) {
-  const cart = cartGet();
-  const item = cart.find(i => i.code === code);
-  if (!item) return;
-
-  item.qty = Math.max(1, Number(qty || 1));
-  cartSet(cart);
-}
-
-function clearCart() {
-  localStorage.removeItem("dominio_cart");
-}
-
-function setBuyNow(code, qty = 1) {
-  localStorage.setItem("dominio_buy_now", JSON.stringify({ code, qty }));
-}
-
-function getBuyNow() {
-  return JSON.parse(localStorage.getItem("dominio_buy_now") || "null");
-}
-
-function clearBuyNow() {
-  localStorage.removeItem("dominio_buy_now");
-}
-
 function searchProduct(term) {
   const q = String(term || "").trim().toLowerCase();
   if (!q) return null;
+
   return PRODUCTS.find(p =>
-    p.name.toLowerCase().includes(q) ||
-    p.code.includes(q) ||
-    p.ref.toLowerCase().includes(q) ||
-    p.category.toLowerCase().includes(q)
+    String(p.name || "").toLowerCase().includes(q) ||
+    String(p.code || "").includes(q) ||
+    String(p.ref || "").toLowerCase().includes(q) ||
+    String(p.category || "").toLowerCase().includes(q)
   );
 }
 
 function calcInstallment(price, installments) {
   const rate = STORE.cardRates[installments] || 0;
-  const total = price * (1 + rate / 100);
+  const total = Number(price || 0) * (1 + rate / 100);
+
   return {
     installments,
     rate,
@@ -655,6 +609,194 @@ function calcInstallment(price, installments) {
 function buildWhatsAppUrl(message) {
   return `https://wa.me/${STORE.whatsapp}?text=${encodeURIComponent(message)}`;
 }
+
+/* =========================
+   CARRINHO / ESTOQUE
+========================= */
+
+function cartGet() {
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEYS.cart) || "[]");
+  } catch {
+    return [];
+  }
+}
+
+function cartSet(items) {
+  localStorage.setItem(STORAGE_KEYS.cart, JSON.stringify(items));
+}
+
+function cartCount() {
+  return cartGet().reduce((acc, item) => acc + Number(item.qty || 0), 0);
+}
+
+function getCartQtyByCode(code) {
+  const cart = cartGet();
+  const item = cart.find(i => String(i.code) === String(code));
+  return item ? Number(item.qty || 0) : 0;
+}
+
+function getRemainingStock(code) {
+  const product = getProductByCode(code);
+  if (!product) return 0;
+
+  const cartQty = getCartQtyByCode(code);
+  return Math.max(0, Number(product.stock || 0) - cartQty);
+}
+
+function isOutOfStock(code) {
+  return getRemainingStock(code) <= 0;
+}
+
+function addToCart(code, qty = 1) {
+  const product = getProductByCode(code);
+  if (!product) {
+    return { ok: false, message: "Produto não encontrado." };
+  }
+
+  const quantity = Math.max(1, Number(qty || 1));
+  const cart = cartGet();
+  const found = cart.find(i => String(i.code) === String(code));
+  const currentQty = found ? Number(found.qty || 0) : 0;
+  const totalDesired = currentQty + quantity;
+  const stock = Number(product.stock || 0);
+
+  if (stock <= 0) {
+    return { ok: false, message: "Esse produto está sem estoque." };
+  }
+
+  if (totalDesired > stock) {
+    return {
+      ok: false,
+      message: `Quantidade indisponível. Estoque disponível: ${stock - currentQty > 0 ? stock - currentQty : 0}.`
+    };
+  }
+
+  if (found) {
+    found.qty = totalDesired;
+  } else {
+    cart.push({ code: String(code), qty: quantity });
+  }
+
+  cartSet(cart);
+  return { ok: true };
+}
+
+function removeFromCart(code) {
+  const cart = cartGet().filter(item => String(item.code) !== String(code));
+  cartSet(cart);
+}
+
+function updateCartQty(code, qty) {
+  const product = getProductByCode(code);
+  if (!product) {
+    return { ok: false, message: "Produto não encontrado." };
+  }
+
+  const stock = Number(product.stock || 0);
+  let safeQty = Number(qty || 1);
+
+  if (!Number.isFinite(safeQty) || safeQty < 1) {
+    safeQty = 1;
+  }
+
+  if (stock <= 0) {
+    removeFromCart(code);
+    return { ok: false, message: "Esse produto ficou sem estoque." };
+  }
+
+  if (safeQty > stock) {
+    safeQty = stock;
+  }
+
+  const cart = cartGet();
+  const item = cart.find(i => String(i.code) === String(code));
+
+  if (!item) {
+    return { ok: false, message: "Item não encontrado no carrinho." };
+  }
+
+  item.qty = safeQty;
+  cartSet(cart);
+
+  if (Number(qty || 1) > stock) {
+    return {
+      ok: false,
+      message: `Quantidade ajustada para ${stock}, que é o estoque disponível.`
+    };
+  }
+
+  return { ok: true };
+}
+
+function clearCart() {
+  localStorage.removeItem(STORAGE_KEYS.cart);
+}
+
+/* =========================
+   COMPRAR AGORA
+========================= */
+
+function setBuyNow(code, qty = 1) {
+  const product = getProductByCode(code);
+  if (!product) {
+    return { ok: false, message: "Produto não encontrado." };
+  }
+
+  let quantity = Math.max(1, Number(qty || 1));
+  const stock = Number(product.stock || 0);
+
+  if (stock <= 0) {
+    return { ok: false, message: "Esse produto está sem estoque." };
+  }
+
+  if (quantity > stock) {
+    quantity = stock;
+  }
+
+  localStorage.setItem(STORAGE_KEYS.buyNow, JSON.stringify({
+    code: String(code),
+    qty: quantity
+  }));
+
+  if (Number(qty || 1) > stock) {
+    return {
+      ok: false,
+      message: `Quantidade ajustada para ${stock}, que é o estoque disponível.`
+    };
+  }
+
+  return { ok: true };
+}
+
+function getBuyNow() {
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEYS.buyNow) || "null");
+  } catch {
+    return null;
+  }
+}
+
+function clearBuyNow() {
+  localStorage.removeItem(STORAGE_KEYS.buyNow);
+}
+
+/* =========================
+   CHECKOUT
+========================= */
+
+function setCheckoutMode(mode) {
+  localStorage.setItem(STORAGE_KEYS.checkoutMode, String(mode || ""));
+}
+
+function getCheckoutMode() {
+  return localStorage.getItem(STORAGE_KEYS.checkoutMode) || "";
+}
+
+function clearCheckoutMode() {
+  localStorage.removeItem(STORAGE_KEYS.checkoutMode);
+}
+
 /* =========================
    SUPABASE AUTH
 ========================= */
@@ -719,7 +861,7 @@ async function authSignUp(email, password) {
   return {
     ok: true,
     data,
-    message: "Conta criada com sucesso. Agora você já pode entrar."
+    message: "Conta criada! Verifique seu e-mail para ativar sua conta."
   };
 }
 
@@ -742,7 +884,17 @@ async function authSignIn(email, password) {
   });
 
   if (error) {
-    return { ok: false, message: error.message || "Não foi possível entrar." };
+    if (String(error.message || "").toLowerCase().includes("email not confirmed")) {
+      return {
+        ok: false,
+        message: "Por favor, confirme seu e-mail antes de entrar."
+      };
+    }
+
+    return {
+      ok: false,
+      message: error.message || "Não foi possível entrar."
+    };
   }
 
   return {
@@ -755,7 +907,6 @@ async function authSignIn(email, password) {
 async function authSignOut() {
   const client = getSupabaseClient();
   if (!client) return;
-
   await client.auth.signOut();
 }
 
