@@ -40,6 +40,7 @@
 
         <div class="checkout-step active">
           <h2>2. Recebimento</h2>
+
           <div class="option-grid">
             <label class="option-card selected">
               <input type="radio" name="deliveryType" value="retirada" checked />
@@ -97,23 +98,28 @@
 
           <div id="pixBox" class="payment-box">
             <h3>Pagamento via Pix</h3>
+
             <div class="pix-layout">
               <div class="pix-qr">
-                <img
-                  src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><rect width='100%25' height='100%25' fill='%23ffffff'/><rect x='10' y='10' width='240' height='240' fill='%230a4ea3'/><rect x='25' y='25' width='60' height='60' fill='%23fff'/><rect x='175' y='25' width='60' height='60' fill='%23fff'/><rect x='25' y='175' width='60' height='60' fill='%23fff'/><rect x='110' y='110' width='25' height='25' fill='%23fff'/><rect x='140' y='110' width='15' height='15' fill='%23fff'/><rect x='110' y='145' width='35' height='20' fill='%23fff'/><rect x='155' y='145' width='30' height='30' fill='%23fff'/><rect x='105' y='180' width='20' height='20' fill='%23fff'/><rect x='135' y='180' width='50' height='20' fill='%23fff'/></svg>"
-                  alt="QR Code Pix"
-                />
+                <img src="pix-qrcode.png" alt="QR Code Pix" />
               </div>
 
               <div class="pix-info">
                 <p><strong>Chave Pix:</strong></p>
+
                 <div class="pix-key-wrap">
-                  <input type="text" id="pixKey" value="sasystema12@gmail.com" readonly />
+                  <input
+                    type="text"
+                    id="pixKey"
+                    value="b476bb76-75e0-4b0d-85e8-621710f271a2"
+                    readonly
+                  />
                   <button type="button" id="copyPixKeyBtn" class="btn-secondary">Copiar</button>
                 </div>
 
                 <p class="pix-note">
-                  Depois do pagamento, clique em <strong>Já paguei</strong> e envie o comprovante no WhatsApp.
+                  Escaneie o QR Code ou copie a chave Pix. Depois do pagamento,
+                  clique em <strong>Já paguei</strong> e envie o comprovante no WhatsApp.
                 </p>
 
                 <button type="button" id="alreadyPaidBtn" class="btn-primary">Já paguei</button>
@@ -162,9 +168,16 @@
         <div class="checkout-summary-card">
           <h3>Resumo do pedido</h3>
           <div id="checkoutItems"></div>
+
           <div class="checkout-totals">
-            <div><span>Subtotal</span><strong id="checkoutSubtotal">R$ 0,00</strong></div>
-            <div><span>Total</span><strong id="checkoutTotal">R$ 0,00</strong></div>
+            <div>
+              <span>Subtotal</span>
+              <strong id="checkoutSubtotal">R$ 0,00</strong>
+            </div>
+            <div>
+              <span>Total</span>
+              <strong id="checkoutTotal">R$ 0,00</strong>
+            </div>
           </div>
         </div>
       </aside>
