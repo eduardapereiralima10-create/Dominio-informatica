@@ -4,28 +4,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Checkout | Domínio Informática</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="estilo.css" />
 </head>
 <body>
   <header class="site-header">
-    <div class="topbar">
-      <div class="container topbar-content">
-        <p>Checkout seguro e rápido</p>
-        <a class="topbar-link" href="login.html">Minha conta</a>
+    <div class="header-top">
+      <div class="container header-top-content">
+        <div class="ship-to" id="shipToText">Enviar para Maria • Avenida das Nações</div>
       </div>
     </div>
 
-    <div class="container header-main">
-      <a href="index.html" class="logo-wrap">
-        <div class="logo-mark">DI</div>
-        <div class="logo-text">
-          <strong>Domínio Informática</strong>
-          <span>Informática e automação comercial</span>
-        </div>
-      </a>
+    <div class="header-main">
+      <div class="container header-main-content">
+        <a href="index.html" class="logo-area">
+          <img src="logo-dominio.png" alt="Domínio Informática" class="site-logo" />
+        </a>
 
-      <div class="header-actions">
-        <a href="index.html" class="header-action">Continuar comprando</a>
+        <div class="checkout-header-actions">
+          <a href="index.html" class="btn-secondary">Continuar comprando</a>
+        </div>
       </div>
     </div>
   </header>
@@ -33,107 +30,84 @@
   <main class="container section">
     <div class="checkout-layout">
       <section class="checkout-main">
-        <div class="checkout-step active">
-          <h2>1. Identificação</h2>
-          <div id="checkoutLoginStatus"></div>
+        <div class="checkout-box">
+          <h2>1. Seus dados</h2>
+          <div id="checkoutUserData"></div>
         </div>
 
-        <div class="checkout-step active">
+        <div class="checkout-box">
           <h2>2. Recebimento</h2>
 
-          <div class="option-grid">
-            <label class="option-card selected">
+          <div class="checkout-options">
+            <label class="checkout-option selected">
               <input type="radio" name="deliveryType" value="retirada" checked />
               <strong>Retirada na loja</strong>
-              <span>Você busca no local.</span>
+              <span>Buscar no local</span>
             </label>
 
-            <label class="option-card">
+            <label class="checkout-option">
               <input type="radio" name="deliveryType" value="entrega" />
-              <strong>Enviar no endereço</strong>
-              <span>Para pedidos em grande quantidade.</span>
+              <strong>Entrega</strong>
+              <span>Enviar no endereço</span>
             </label>
           </div>
 
           <div id="deliveryFields" class="hidden">
-            <div class="form-grid">
-              <input type="text" id="addressStreet" placeholder="Rua / Avenida" />
-              <input type="text" id="addressNumber" placeholder="Número" />
-              <input type="text" id="addressNeighborhood" placeholder="Bairro" />
-              <input type="text" id="addressReference" placeholder="Referência" />
-              <input type="text" id="workplace" placeholder="Local de trabalho (opcional)" />
-              <input type="text" id="deliveryTime" placeholder="Horário de atendimento / recebimento" />
+            <input type="text" id="checkoutStreet" placeholder="Rua / Avenida" />
+            <div class="form-grid-two">
+              <input type="text" id="checkoutNumber" placeholder="Número" />
+              <input type="text" id="checkoutNeighborhood" placeholder="Bairro" />
             </div>
+            <input type="text" id="checkoutReference" placeholder="Referência" />
+            <input type="text" id="checkoutWorkplace" placeholder="Local de trabalho (opcional)" />
           </div>
         </div>
 
-        <div class="checkout-step active">
+        <div class="checkout-box">
           <h2>3. Pagamento</h2>
 
-          <div class="payment-options">
-            <label class="payment-card selected">
+          <div class="checkout-options">
+            <label class="checkout-option selected">
               <input type="radio" name="paymentMethod" value="pix" checked />
               <strong>Pix</strong>
               <span>Pagamento instantâneo</span>
             </label>
 
-            <label class="payment-card">
+            <label class="checkout-option">
               <input type="radio" name="paymentMethod" value="dinheiro" />
               <strong>Dinheiro</strong>
-              <span>Pagar na retirada/entrega</span>
+              <span>Na entrega ou retirada</span>
             </label>
 
-            <label class="payment-card">
+            <label class="checkout-option">
               <input type="radio" name="paymentMethod" value="cartao" />
               <strong>Cartão</strong>
-              <span>Até 12x</span>
-            </label>
-
-            <label class="payment-card">
-              <input type="radio" name="paymentMethod" value="combinar" />
-              <strong>Combinar 2 meios</strong>
-              <span>Ex.: parte Pix + parte cartão</span>
+              <span>Parcelamento</span>
             </label>
           </div>
 
-          <div id="pixBox" class="payment-box">
-            <h3>Pagamento via Pix</h3>
-
+          <div id="pixBox" class="checkout-payment-box">
             <div class="pix-layout">
-              <div class="pix-qr">
+              <div class="pix-image-box">
                 <img src="pix-qrcode.png" alt="QR Code Pix" />
               </div>
 
               <div class="pix-info">
-                <p><strong>Chave Pix:</strong></p>
-
-                <div class="pix-key-wrap">
-                  <input
-                    type="text"
-                    id="pixKey"
-                    value="b476bb76-75e0-4b0d-85e8-621710f271a2"
-                    readonly
-                  />
+                <p><strong>Chave Pix</strong></p>
+                <div class="pix-copy-box">
+                  <input type="text" id="pixKey" value="b476bb76-75e0-4b0d-85e8-621710f271a2" readonly />
                   <button type="button" id="copyPixKeyBtn" class="btn-secondary">Copiar</button>
                 </div>
-
-                <p class="pix-note">
-                  Escaneie o QR Code ou copie a chave Pix. Depois do pagamento,
-                  clique em <strong>Já paguei</strong> e envie o comprovante no WhatsApp.
-                </p>
-
                 <button type="button" id="alreadyPaidBtn" class="btn-primary">Já paguei</button>
               </div>
             </div>
           </div>
 
-          <div id="cashBox" class="payment-box hidden">
-            <h3>Pagamento em dinheiro</h3>
-            <input type="text" id="cashChange" placeholder="Troco para quanto? (opcional)" />
+          <div id="cashBox" class="checkout-payment-box hidden">
+            <input type="text" id="cashChange" placeholder="Troco para quanto?" />
           </div>
 
-          <div id="cardBox" class="payment-box hidden">
-            <h3>Pagamento em cartão</h3>
+          <div id="cardBox" class="checkout-payment-box hidden">
             <select id="installments">
               <option value="1">1x sem juros</option>
               <option value="2">2x sem juros</option>
@@ -148,19 +122,14 @@
               <option value="11">11x com taxa de 18,39%</option>
               <option value="12">12x com taxa de 18,79%</option>
             </select>
-            <p id="installmentResult" class="installment-result"></p>
-          </div>
-
-          <div id="combineBox" class="payment-box hidden">
-            <h3>Combinar 2 meios</h3>
-            <textarea id="combineDetails" placeholder="Ex.: R$ 300 no Pix e o restante no cartão"></textarea>
+            <p id="installmentResult"></p>
           </div>
         </div>
 
-        <div class="checkout-step active">
-          <h2>4. Confirmar pedido</h2>
-          <textarea id="checkoutNotes" placeholder="Observações do pedido"></textarea>
-          <button class="btn-primary" id="finishOrderBtn" type="button">Enviar pedido no WhatsApp</button>
+        <div class="checkout-box">
+          <h2>4. Observações</h2>
+          <textarea id="checkoutNotes" placeholder="Escreva alguma observação sobre seu pedido"></textarea>
+          <button type="button" id="finishOrderBtn" class="btn-primary">Enviar pedido no WhatsApp</button>
         </div>
       </section>
 
@@ -168,23 +137,16 @@
         <div class="checkout-summary-card">
           <h3>Resumo do pedido</h3>
           <div id="checkoutItems"></div>
-
-          <div class="checkout-totals">
-            <div>
-              <span>Subtotal</span>
-              <strong id="checkoutSubtotal">R$ 0,00</strong>
-            </div>
-            <div>
-              <span>Total</span>
-              <strong id="checkoutTotal">R$ 0,00</strong>
-            </div>
+          <div class="checkout-summary-total">
+            <div><span>Subtotal</span><strong id="checkoutSubtotal">R$ 0,00</strong></div>
+            <div><span>Total</span><strong id="checkoutTotal">R$ 0,00</strong></div>
           </div>
         </div>
       </aside>
     </div>
   </main>
 
-  <script src="products.js"></script>
+  <script src="produtos.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
