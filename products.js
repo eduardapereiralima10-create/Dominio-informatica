@@ -1,5 +1,6 @@
 const WHATSAPP_NUMBER = "5594992627580";
 const PIX_KEY = "b476bb76-75e0-4b0d-85e8-621710f271a2";
+
 const PRODUCTS = [
   {
     id: 1,
