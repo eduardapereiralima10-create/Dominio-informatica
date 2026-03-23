@@ -2,152 +2,225 @@ const WHATSAPP_NUMBER = "5594992627580";
 const PIX_KEY = "b476bb76-75e0-4b0d-85e8-621710f271a2";
 
 const PRODUCTS = [
+
+  // ===== MOUSE =====
   {
     id: 1,
-    code: "NB001",
-    name: "Notebook Lenovo IdeaPad 3",
+    code: "MOU001",
+    name: "Mouse C3Tech 31BK",
     category: "informática",
-    brand: "Lenovo",
-    price: 2899.90,
-    oldPrice: 3199.90,
-    stock: 8,
-    image: "notebook-lenovo-ideapad-3.png",
-    description: "Notebook para trabalho, estudos e uso diário com ótimo desempenho.",
-    shortDescription: "Notebook para uso diário, estudos e escritório.",
-    specs: [
-      "Tela de 15,6 polegadas",
-      "SSD rápido",
-      "Ideal para escritório e estudos"
-    ]
+    brand: "C3Tech",
+    price: 49.90,
+    stock: 15,
+    image: "mouse-c3tech-31bk-1.jpeg",
+    images: [
+      "mouse-c3tech-31bk-1.jpeg",
+      "mouse-c3tech-31bk-2.jpeg",
+      "mouse-c3tech-31bk-3.jpeg",
+      "mouse-c3tech-31bk-4.jpeg"
+    ],
+    description: "Mouse com excelente precisão e conforto para uso diário.",
+    shortDescription: "Mouse confortável e preciso.",
+    specs: ["USB", "Plug and Play", "Alta precisão"]
   },
+
   {
     id: 2,
-    code: "MON002",
-    name: "Monitor 24 Polegadas Full HD",
+    code: "MOU002",
+    name: "Mouse C3Tech 35BK",
     category: "informática",
-    brand: "LG",
-    price: 799.90,
-    oldPrice: 899.90,
-    stock: 10,
-    image: "monitor-24-full-hd.png",
-    description: "Monitor Full HD ideal para escritório, loja e uso doméstico.",
-    shortDescription: "Imagem nítida e ótimo custo-benefício.",
-    specs: [
-      "24 polegadas",
-      "Resolução Full HD",
-      "Conexão HDMI"
-    ]
+    brand: "C3Tech",
+    price: 59.90,
+    stock: 15,
+    image: "mouse-c3tech-35bk-1.jpg",
+    images: [
+      "mouse-c3tech-35bk-1.jpg",
+      "mouse-c3tech-35bk-2.jpg",
+      "mouse-c3tech-35bk-3.jpg"
+    ],
+    description: "Mouse resistente com ótimo desempenho.",
+    shortDescription: "Mouse custo-benefício.",
+    specs: ["USB", "Ergonômico"]
   },
+
   {
     id: 3,
-    code: "LEI003",
-    name: "Leitor de Código de Barras",
-    category: "automação",
-    brand: "C3Tech",
-    price: 249.90,
-    oldPrice: 279.90,
-    stock: 15,
-    image: "leitor-codigo-barras.png",
-    description: "Leitor rápido e preciso para uso em caixa e balcão.",
-    shortDescription: "Leitura rápida para automação comercial.",
-    specs: [
-      "Leitura 1D",
-      "USB Plug and Play",
-      "Uso em PDV"
-    ]
+    code: "MOU003",
+    name: "Mouse Kross",
+    category: "informática",
+    brand: "Kross",
+    price: 39.90,
+    stock: 20,
+    image: "mouse-kross-1.png",
+    images: [
+      "mouse-kross-1.png",
+      "mouse-kross-2.png",
+      "mouse-kross-3.png"
+    ],
+    description: "Mouse simples, funcional e resistente.",
+    shortDescription: "Mouse básico.",
+    specs: ["USB"]
   },
+
   {
     id: 4,
-    code: "BOB004",
-    name: "Bobina Térmica 80x40",
-    category: "automação",
-    brand: "Genérica",
-    price: 9.90,
-    oldPrice: 12.90,
-    stock: 120,
-    image: "bobina-termica-80x40.png",
-    description: "Bobina para impressora térmica, ideal para mercados e comércios.",
-    shortDescription: "Bobina térmica para cupom e comprovante.",
-    specs: [
-      "80x40",
-      "Térmica",
-      "Alta qualidade"
-    ]
+    code: "MOU004",
+    name: "Mouse Maxprint",
+    category: "informática",
+    brand: "Maxprint",
+    price: 35.90,
+    stock: 20,
+    image: "mouse-maxprint-1.png",
+    images: [
+      "mouse-maxprint-1.png",
+      "mouse-maxprint-2.png",
+      "mouse-maxprint-3.png"
+    ],
+    description: "Mouse econômico para uso diário.",
+    shortDescription: "Mouse barato e funcional.",
+    specs: ["USB"]
   },
+
   {
     id: 5,
-    code: "TON005",
-    name: "Toner Compatível HP 107A",
-    category: "impressão",
-    brand: "HP",
-    price: 129.90,
-    oldPrice: 149.90,
-    stock: 18,
-    image: "toner-hp-107a.png",
-    description: "Toner compatível com ótimo rendimento para impressoras HP.",
-    shortDescription: "Impressão econômica e de qualidade.",
-    specs: [
-      "Compatível HP",
-      "Ótimo rendimento",
-      "Preto"
-    ]
+    code: "MOU005",
+    name: "Mouse Movitec",
+    category: "informática",
+    brand: "Movitec",
+    price: 29.90,
+    stock: 20,
+    image: "mouse-movitec-1.png",
+    images: [
+      "mouse-movitec-1.png",
+      "mouse-movitec-2.png",
+      "mouse-movitec-3.png"
+    ],
+    description: "Mouse simples para uso básico.",
+    shortDescription: "Mouse econômico.",
+    specs: ["USB"]
   },
+
+  // ===== KITS =====
   {
     id: 6,
-    code: "MOU006",
-    name: "Mouse Gamer RGB",
+    code: "KIT001",
+    name: "Kit Gamer C3Tech",
     category: "gamer",
-    brand: "Redragon",
-    price: 89.90,
-    oldPrice: 109.90,
-    stock: 12,
-    image: "mouse-gamer-rgb.png",
-    description: "Mouse gamer com pegada confortável e iluminação RGB.",
-    shortDescription: "Performance e estilo para jogos.",
-    specs: [
-      "RGB",
-      "Alta precisão",
-      "Conexão USB"
-    ]
+    brand: "C3Tech",
+    price: 149.90,
+    stock: 10,
+    image: "kit-c3tech-gamer-1.jpeg",
+    images: [
+      "kit-c3tech-gamer-1.jpeg",
+      "kit-c3tech-gamer-2.jpeg",
+      "kit-c3tech-gamer-3.jpeg",
+      "kit-c3tech-gamer-4.jpeg"
+    ],
+    description: "Kit gamer completo com iluminação e desempenho.",
+    shortDescription: "Kit gamer completo.",
+    specs: ["RGB", "Teclado + Mouse"]
   },
+
   {
     id: 7,
-    code: "FON007",
-    name: "Headset Gamer com Microfone",
-    category: "gamer",
-    brand: "Fortrek",
-    price: 139.90,
-    oldPrice: 169.90,
-    stock: 9,
-    image: "headset-gamer-microfone.png",
-    description: "Headset com bom áudio e microfone para jogos e chamadas.",
-    shortDescription: "Áudio confortável para jogar e conversar.",
-    specs: [
-      "Com microfone",
-      "Conector P2/USB",
-      "Espuma confortável"
-    ]
+    code: "KIT002",
+    name: "Kit C3Tech Sem Fio",
+    category: "informática",
+    brand: "C3Tech",
+    price: 129.90,
+    stock: 12,
+    image: "kit-c3tech-sem-fio-1.jpeg",
+    images: [
+      "kit-c3tech-sem-fio-1.jpeg",
+      "kit-c3tech-sem-fio-2.jpeg",
+      "kit-c3tech-sem-fio-3.jpeg",
+      "kit-c3tech-sem-fio-4.jpeg"
+    ],
+    description: "Kit teclado e mouse sem fio prático.",
+    shortDescription: "Kit sem fio.",
+    specs: ["Wireless"]
   },
+
   {
     id: 8,
-    code: "ROT008",
-    name: "Roteador Dual Band",
-    category: "redes",
-    brand: "TP-Link",
-    price: 229.90,
-    oldPrice: 259.90,
-    stock: 11,
-    image: "roteador-dual-band.png",
-    description: "Roteador para casa ou empresa com sinal estável.",
-    shortDescription: "Internet estável para seu ambiente.",
-    specs: [
-      "Dual Band",
-      "Boa cobertura",
-      "Fácil configuração"
-    ]
+    code: "KIT003",
+    name: "Kit HP GK1100",
+    category: "informática",
+    brand: "HP",
+    price: 139.90,
+    stock: 10,
+    image: "kit-hp-gk1100-1.jpeg",
+    images: [
+      "kit-hp-gk1100-1.jpeg",
+      "kit-hp-gk1100-2.jpeg",
+      "kit-hp-gk1100-3.jpeg"
+    ],
+    description: "Kit HP confiável e durável.",
+    shortDescription: "Kit HP.",
+    specs: ["USB"]
+  },
+
+  // ===== IMPRESSORAS =====
+  {
+    id: 9,
+    code: "IMP001",
+    name: "Impressora Elgin",
+    category: "automação",
+    brand: "Elgin",
+    price: 899.90,
+    stock: 5,
+    image: "impressora-elgin-1.jpeg",
+    images: [
+      "impressora-elgin-1.jpeg",
+      "impressora-elgin-2.jpeg",
+      "impressora-elgin-3.jpeg",
+      "impressora-elgin-4.jpeg"
+    ],
+    description: "Impressora térmica ideal para PDV.",
+    shortDescription: "Impressora térmica.",
+    specs: ["USB", "Térmica"]
+  },
+
+  {
+    id: 10,
+    code: "IMP002",
+    name: "Impressora Epson T20X",
+    category: "automação",
+    brand: "Epson",
+    price: 1099.90,
+    stock: 5,
+    image: "impressora-epson-t20x-1.jpg",
+    images: [
+      "impressora-epson-t20x-1.jpg",
+      "impressora-epson-t20x-2.jpg",
+      "impressora-epson-t20x-3.jpg",
+      "impressora-epson-t20x-4.jpg"
+    ],
+    description: "Impressora Epson de alta performance.",
+    shortDescription: "Epson profissional.",
+    specs: ["USB", "Ethernet"]
+  },
+
+  {
+    id: 11,
+    code: "IMP003",
+    name: "Impressora Tanca",
+    category: "automação",
+    brand: "Tanca",
+    price: 799.90,
+    stock: 5,
+    image: "impressora-tanca-1.webp",
+    images: [
+      "impressora-tanca-1.webp",
+      "impressora-tanca-2.jpeg"
+    ],
+    description: "Impressora econômica para comércio.",
+    shortDescription: "Custo-benefício.",
+    specs: ["USB"]
   }
+
 ];
 
 function getProductById(id) {
-  return PRODUCTS.find(product => product.id === Number(id));
+  return PRODUCTS.find(p => p.id === Number(id));
 }
