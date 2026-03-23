@@ -4,176 +4,189 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Domínio Informática | Loja</title>
-  <meta name="description" content="Domínio Informática - Informática, automação comercial, periféricos e suprimentos." />
-  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="Loja de informática, automação comercial, sistemas, impressoras, redes e gamer." />
+  <link rel="stylesheet" href="estilo.css" />
 </head>
 <body>
   <header class="site-header">
-    <div class="topbar">
-      <div class="container topbar-content">
-        <p>Atendimento rápido pelo WhatsApp • Pix • Cartão • Dinheiro</p>
-        <a class="topbar-link" href="login.html">Criar conta / Entrar</a>
+    <div class="header-top">
+      <div class="container header-top-content">
+        <div class="ship-to" id="shipToText">Enviar para Maria • Avenida das Nações</div>
+
+        <div class="header-top-right">
+          <button class="notif-btn" type="button" id="openNotificationsBtn" aria-label="Notificações">
+            🔔
+          </button>
+
+          <a href="checkout.html" class="cart-icon-link" aria-label="Carrinho">
+            <span class="cart-icon">🛒</span>
+            <span class="cart-count" id="cartCount">0</span>
+          </a>
+
+          <div class="account-menu" id="accountMenu">
+            <button class="account-trigger" id="accountTrigger" type="button">
+              <span class="account-avatar" id="accountAvatar">DI</span>
+              <span class="account-name" id="accountName">Entrar</span>
+            </button>
+
+            <div class="account-dropdown" id="accountDropdown">
+              <div class="account-dropdown-header">
+                <strong id="dropdownUserName">Visitante</strong>
+                <span id="dropdownUserEmail">Faça login para continuar</span>
+              </div>
+
+              <a href="login.html">Meu perfil</a>
+              <a href="#" id="myOrdersLink">Minhas compras</a>
+              <a href="#" id="myHistoryLink">Histórico</a>
+              <button type="button" id="logoutBtn">Sair</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="container header-main">
-      <a href="index.html" class="logo-wrap" aria-label="Ir para a página inicial">
-        <div class="logo-mark">DI</div>
-        <div class="logo-text">
-          <strong>Domínio Informática</strong>
-          <span>Informática e automação comercial</span>
-        </div>
-      </a>
+    <div class="header-main">
+      <div class="container header-main-content">
+        <a href="index.html" class="logo-area">
+          <img src="logo-dominio.png" alt="Domínio Informática" class="site-logo" />
+        </a>
 
-      <form class="search-bar" id="searchForm">
-        <input type="text" id="searchInput" placeholder="Busque por produtos, códigos, marcas..." />
-        <button type="submit">Buscar</button>
-      </form>
+        <form class="search-form" id="searchForm">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Buscar produtos, sistemas, impressoras, redes..."
+          />
+          <button type="submit">Buscar</button>
+        </form>
 
-      <div class="header-actions">
-        <a href="#nao-encontrou" class="header-action">Encomendas</a>
-        <button class="header-action cart-btn" id="openCartBtn" type="button">
-          Carrinho
-          <span class="cart-count" id="cartCount">0</span>
-        </button>
+        <a href="checkout.html" class="header-cart-desktop" aria-label="Carrinho">
+          <span class="header-cart-icon">🛒</span>
+          <span class="header-cart-text">Carrinho</span>
+          <span class="cart-count" id="cartCountDesktop">0</span>
+        </a>
       </div>
     </div>
 
     <nav class="main-nav">
-      <div class="container nav-links">
-        <button class="nav-chip active" data-category="todos">Todos</button>
-        <button class="nav-chip" data-category="informática">Informática</button>
-        <button class="nav-chip" data-category="automação">Automação</button>
-        <button class="nav-chip" data-category="impressão">Impressão</button>
-        <button class="nav-chip" data-category="redes">Redes</button>
-        <button class="nav-chip" data-category="gamer">Gamer</button>
+      <div class="container nav-list">
+        <button class="nav-chip active" data-category="todos" data-target="produtosSection">Todos</button>
+        <button class="nav-chip" data-category="informática" data-target="produtosSection">Informática</button>
+        <button class="nav-chip" data-category="automação comercial" data-target="sistemasSection">Automação comercial</button>
+        <button class="nav-chip" data-category="impressão" data-target="produtosSection">Impressão</button>
+        <button class="nav-chip" data-category="redes" data-target="produtosSection">Redes</button>
+        <button class="nav-chip" data-category="gamer" data-target="produtosSection">Gamer</button>
       </div>
     </nav>
   </header>
 
   <main>
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-text">
-          <span class="hero-badge">Loja online da Domínio Informática</span>
-          <h1>Seu site de informática e automação com compra fácil, rápida e organizada</h1>
-          <p>
-            Produtos, periféricos, suprimentos e itens de automação comercial com pedido direto,
-            carrinho dentro do site, Pix, cartão, retirada ou entrega.
-          </p>
-
-          <div class="hero-actions">
-            <a href="#mais-procurados" class="btn-primary">Ver produtos</a>
-            <a href="#nao-encontrou" class="btn-secondary">Pedir encomenda</a>
+    <section class="hero-slider-section">
+      <div class="container">
+        <div class="hero-slider" id="heroSlider">
+          <div class="hero-slide active" style="background-image: linear-gradient(90deg, rgba(5,12,48,.85), rgba(9,36,122,.45)), url('logo-dominio.png');">
+            <div class="hero-slide-content">
+              <span class="hero-badge">Domínio Informática</span>
+              <h1>Informática, automação comercial e sistemas completos para sua empresa</h1>
+              <p>
+                Loja com produtos, impressoras, periféricos, redes e os sistemas EasySAC,
+                EasyChef e EasyPDV em destaque.
+              </p>
+              <div class="hero-slide-actions">
+                <a href="#produtosSection" class="btn-primary">Ver produtos</a>
+                <a href="#sistemasSection" class="btn-secondary">Ver sistemas</a>
+              </div>
+            </div>
           </div>
 
-          <div class="hero-points">
-            <span>✅ Compra rápida</span>
-            <span>✅ Atendimento no WhatsApp</span>
-            <span>✅ Checkout simples</span>
+          <div class="hero-slide" style="background-image: linear-gradient(90deg, rgba(5,12,48,.85), rgba(9,36,122,.45)), url('impressora-elgin-1.jpeg');">
+            <div class="hero-slide-content">
+              <span class="hero-badge">Impressão</span>
+              <h1>Impressoras e equipamentos para automação comercial</h1>
+              <p>Produtos ideais para caixa, emissão e operação comercial.</p>
+              <div class="hero-slide-actions">
+                <button class="btn-primary" type="button" onclick="window.DI.goToCategory('impressão', 'produtosSection')">Ver impressoras</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-slide" style="background-image: linear-gradient(90deg, rgba(5,12,48,.85), rgba(9,36,122,.45)), url('kit-c3tech-gamer-1.jpeg');">
+            <div class="hero-slide-content">
+              <span class="hero-badge">Gamer</span>
+              <h1>Produtos gamer com visual moderno e ótimo custo-benefício</h1>
+              <p>Monte seu setup com kits, mouses e periféricos.</p>
+              <div class="hero-slide-actions">
+                <button class="btn-primary" type="button" onclick="window.DI.goToCategory('gamer', 'produtosSection')">Ver gamer</button>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="hero-banner-card">
-          <div class="hero-mini-card">
-            <small>Oferta da semana</small>
-            <strong>Automação, informática e periféricos</strong>
-            <p>Monte seu pedido e finalize sem sair do site.</p>
-          </div>
-          <div class="hero-mini-grid">
-            <div class="mini-box">Bobinas</div>
-            <div class="mini-box">Leitores</div>
-            <div class="mini-box">Monitores</div>
-            <div class="mini-box">Headsets</div>
-          </div>
+        <div class="slider-controls">
+          <button type="button" id="prevSlideBtn">‹</button>
+          <div class="slider-dots" id="sliderDots"></div>
+          <button type="button" id="nextSlideBtn">›</button>
         </div>
       </div>
     </section>
 
-    <section class="container section">
-      <div class="section-head">
-        <h2>Mais procurados</h2>
-        <p>Produtos organizados com card menor, limpo e fácil de navegar.</p>
-      </div>
-      <div class="product-grid" id="featuredProducts"></div>
+    <section class="container quick-cards">
+      <div class="quick-card">Frete e entrega</div>
+      <div class="quick-card">Retirada na loja</div>
+      <div class="quick-card">Pagamento via Pix</div>
+      <div class="quick-card">Parcelamento no cartão</div>
+      <div class="quick-card">Atendimento rápido</div>
     </section>
 
-    <section class="container section" id="mais-procurados">
+    <section class="container section" id="sistemasSection">
       <div class="section-head">
-        <h2>Todos os produtos</h2>
-        <p>Pesquise por nome, código ou categoria.</p>
+        <h2>Automação comercial e sistemas</h2>
+        <p>Clique para saber mais sobre os sistemas da Domínio Informática.</p>
       </div>
+
+      <div class="system-grid" id="systemGrid"></div>
+    </section>
+
+    <section class="container section" id="produtosSection">
+      <div class="section-head">
+        <h2 id="productsSectionTitle">Todos os produtos</h2>
+        <p id="productsSectionSubtitle">Escolha sua categoria e veja os produtos filtrados aqui embaixo.</p>
+      </div>
+
       <div class="product-grid" id="allProducts"></div>
-    </section>
-
-    <section class="container section special-section" id="nao-encontrou">
-      <div class="special-box">
-        <div>
-          <h2>Não encontrou o que você queria?</h2>
-          <p>
-            Peça sua encomenda pelo WhatsApp. Você pode informar produto, marca, quantidade
-            e até mandar uma dúvida para nossa equipe.
-          </p>
-        </div>
-
-        <form id="requestForm" class="request-form">
-          <input type="text" id="requestName" placeholder="Seu nome" required />
-          <input type="text" id="requestProduct" placeholder="O que você procura?" required />
-          <textarea id="requestDetails" placeholder="Detalhes, marca, quantidade, observações"></textarea>
-          <button type="submit" class="btn-primary">Enviar pedido de encomenda</button>
-        </form>
-      </div>
     </section>
   </main>
 
-  <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
-    <div class="cart-header">
-      <h3>Seu carrinho</h3>
-      <button class="icon-btn" id="closeCartBtn" type="button">✕</button>
+  <aside class="notification-panel" id="notificationPanel">
+    <div class="notification-header">
+      <h3>Avisos</h3>
+      <button type="button" id="closeNotificationsBtn">✕</button>
     </div>
-
-    <div class="cart-items" id="cartItems"></div>
-
-    <div class="cart-footer">
-      <div class="cart-summary">
-        <div>
-          <span>Subtotal</span>
-          <strong id="cartSubtotal">R$ 0,00</strong>
-        </div>
-        <div>
-          <span>Total</span>
-          <strong id="cartTotal">R$ 0,00</strong>
-        </div>
-      </div>
-
-      <div class="cart-actions">
-        <a href="checkout.html" class="btn-primary full">Finalizar compra</a>
-        <button class="btn-secondary full" id="clearCartBtn" type="button">Limpar carrinho</button>
-      </div>
+    <div class="notification-body">
+      <div class="notification-item">Confirme seu e-mail para melhorar sua conta.</div>
+      <div class="notification-item">Veja produtos em promoção na loja.</div>
+      <div class="notification-item">Acompanhe novidades da Domínio Informática.</div>
     </div>
   </aside>
-
-  <div class="drawer-overlay" id="drawerOverlay"></div>
 
   <button class="dombot-toggle" id="domBotToggle" type="button">DomBot</button>
 
   <div class="dombot-panel" id="domBotPanel">
     <div class="dombot-header">
       <strong>DomBot</strong>
-      <button id="closeDomBot" type="button">✕</button>
+      <button type="button" id="closeDomBot">✕</button>
     </div>
     <div class="dombot-body">
-      <p>Oi! Posso te ajudar com:</p>
-      <button class="dombot-option" data-message="Olá! Quero tirar uma dúvida sobre um produto.">Dúvida sobre produto</button>
-      <button class="dombot-option" data-message="Olá! Quero pedir uma encomenda.">Pedir encomenda</button>
-      <button class="dombot-option" data-message="Olá! Quero atendimento sobre automação comercial.">Automação comercial</button>
-      <button class="dombot-option" data-message="Olá! Quero falar sobre pagamento e entrega.">Pagamento e entrega</button>
-      <textarea id="domBotCustomMessage" placeholder="Ou escreva sua dúvida..."></textarea>
+      <p>Oi! Posso te ajudar com produtos, sistemas e encomendas.</p>
+      <button class="dombot-option" data-message="Olá! Quero saber mais sobre os sistemas da Domínio Informática.">Sistemas</button>
+      <button class="dombot-option" data-message="Olá! Quero tirar uma dúvida sobre um produto.">Produto</button>
+      <button class="dombot-option" data-message="Olá! Quero fazer uma encomenda.">Encomenda</button>
+      <textarea id="domBotCustomMessage" placeholder="Escreva sua dúvida..."></textarea>
       <button class="btn-primary full" id="sendDomBotMessage" type="button">Enviar no WhatsApp</button>
     </div>
   </div>
 
-  <script src="products.js"></script>
+  <script src="produtos.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
