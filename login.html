@@ -4,29 +4,47 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Entrar | Domínio Informática</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="estilo.css" />
 </head>
-<body class="auth-body">
-  <main class="auth-page">
-    <div class="auth-card">
-      <a href="index.html" class="auth-back">← Voltar para a loja</a>
-      <h1>Entrar ou criar conta</h1>
-      <p>Para finalizar pedidos, é necessário estar logado.</p>
+<body class="login-page-body">
+  <main class="login-page">
+    <div class="login-card">
+      <a href="index.html" class="back-link">← Voltar para a loja</a>
+      <img src="logo-dominio.png" alt="Domínio Informática" class="login-logo" />
 
-      <form id="loginForm" class="auth-form">
-        <input type="text" id="loginName" placeholder="Seu nome" required />
-        <input type="email" id="loginEmail" placeholder="Seu e-mail" required />
-        <input type="tel" id="loginPhone" placeholder="Seu WhatsApp" required />
-        <button type="submit" class="btn-primary full">Entrar</button>
+      <h1>Criar conta / Entrar</h1>
+      <p>Preencha seus dados para continuar comprando.</p>
+
+      <form id="loginForm" class="login-form">
+        <div class="form-grid-two">
+          <input type="text" id="loginName" placeholder="Seu nome" required />
+          <input type="email" id="loginEmail" placeholder="Seu e-mail" required />
+        </div>
+
+        <div class="form-grid-two">
+          <input type="tel" id="loginPhone" placeholder="Seu WhatsApp" required />
+          <input type="text" id="loginCpf" placeholder="CPF (opcional)" />
+        </div>
+
+        <input type="text" id="loginStreet" placeholder="Rua / Avenida" required />
+        <div class="form-grid-two">
+          <input type="text" id="loginNumber" placeholder="Número" required />
+          <input type="text" id="loginNeighborhood" placeholder="Bairro" required />
+        </div>
+
+        <div class="form-grid-two">
+          <input type="text" id="loginCity" placeholder="Cidade" required />
+          <input type="text" id="loginState" placeholder="Estado" required />
+        </div>
+
+        <input type="text" id="loginReference" placeholder="Referência (opcional)" />
+
+        <button type="submit" class="btn-primary full">Salvar cadastro</button>
       </form>
-
-      <p class="auth-note">
-        Este modelo usa login simples em navegador para já deixar seu fluxo funcionando.
-      </p>
     </div>
   </main>
 
-  <script src="products.js"></script>
+  <script src="produtos.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
