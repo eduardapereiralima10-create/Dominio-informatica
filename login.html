@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Entrar | Domínio Informática</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="auth-body">
+  <main class="auth-page">
+    <div class="auth-card">
+      <a href="index.html" class="auth-back">← Voltar para a loja</a>
+      <h1>Entrar ou criar conta</h1>
+      <p>Para finalizar pedidos, é necessário estar logado.</p>
+
+      <form id="loginForm" class="auth-form">
+        <input type="text" id="loginName" placeholder="Seu nome" required />
+        <input type="email" id="loginEmail" placeholder="Seu e-mail" required />
+        <input type="tel" id="loginPhone" placeholder="Seu WhatsApp" required />
+        <button type="submit" class="btn-primary full">Entrar</button>
+      </form>
+
+      <p class="auth-note">
+        Este modelo usa login simples em navegador para já deixar seu fluxo funcionando.
+      </p>
+    </div>
+  </main>
+
+  <script src="products.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
