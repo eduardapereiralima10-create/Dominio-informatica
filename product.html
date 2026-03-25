@@ -10,17 +10,12 @@
   <header class="site-header">
     <div class="header-top">
       <div class="container header-top-content">
-        <div class="ship-to" id="shipToText">Enviar para Maria • Avenida das Nações</div>
+        <div class="ship-to" id="shipToText">Enviar para MARIA •</div>
 
         <div class="header-top-right">
           <button class="notif-btn" type="button" id="openNotificationsBtn">🔔</button>
 
-          <a href="checkout.html" class="cart-icon-link">
-            <span class="cart-icon">🛒</span>
-            <span class="cart-count" id="cartCount">0</span>
-          </a>
-
-          <div class="account-menu" id="accountMenu">
+          <div class="account-menu">
             <button class="account-trigger" id="accountTrigger" type="button">
               <span class="account-avatar" id="accountAvatar">DI</span>
               <span class="account-name" id="accountName">Entrar</span>
@@ -31,9 +26,9 @@
                 <strong id="dropdownUserName">Visitante</strong>
                 <span id="dropdownUserEmail">Faça login para continuar</span>
               </div>
-              <a href="login.html">Meu perfil</a>
-              <a href="#">Minhas compras</a>
-              <a href="#">Histórico</a>
+
+              <a href="login.html" id="profileLink">Meu perfil</a>
+              <button type="button" id="myOrdersBtn">Compras</button>
               <button type="button" id="logoutBtn">Sair</button>
             </div>
           </div>
@@ -48,14 +43,14 @@
         </a>
 
         <form class="search-form" id="searchForm">
-          <input type="text" id="searchInput" placeholder="Buscar produto..." />
+          <input type="search" id="searchInput" placeholder="Buscar produto..." />
           <button type="submit">Buscar</button>
         </form>
 
-        <a href="checkout.html" class="header-cart-desktop">
+        <a href="checkout.html" class="header-cart" aria-label="Carrinho">
           <span class="header-cart-icon">🛒</span>
           <span class="header-cart-text">Carrinho</span>
-          <span class="cart-count" id="cartCountDesktop">0</span>
+          <span class="cart-count" id="cartCount">0</span>
         </a>
       </div>
     </div>
@@ -71,9 +66,17 @@
       <button type="button" id="closeNotificationsBtn">✕</button>
     </div>
     <div class="notification-body">
-      <div class="notification-item">Confirme seu e-mail para melhorar sua conta.</div>
-      <div class="notification-item">Veja novidades da Domínio Informática.</div>
+      <div class="notification-item">Confirme seu e-mail para deixar sua conta mais segura.</div>
+      <div class="notification-item">Veja novidades e promoções da Domínio Informática.</div>
     </div>
+  </aside>
+
+  <aside class="orders-panel" id="ordersPanel">
+    <div class="notification-header">
+      <h3>Minhas compras</h3>
+      <button type="button" id="closeOrdersBtn">✕</button>
+    </div>
+    <div class="notification-body" id="ordersContent"></div>
   </aside>
 
   <script src="products.js"></script>
