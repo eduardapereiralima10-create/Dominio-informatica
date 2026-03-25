@@ -11,17 +11,12 @@
   <header class="site-header">
     <div class="header-top">
       <div class="container header-top-content">
-        <div class="ship-to" id="shipToText">Enviar para Maria • Avenida das Nações</div>
+        <div class="ship-to" id="shipToText">Enviar para MARIA •</div>
 
         <div class="header-top-right">
           <button class="notif-btn" type="button" id="openNotificationsBtn" aria-label="Notificações">🔔</button>
 
-          <a href="checkout.html" class="cart-icon-link" aria-label="Carrinho">
-            <span class="cart-icon">🛒</span>
-            <span class="cart-count" id="cartCount">0</span>
-          </a>
-
-          <div class="account-menu" id="accountMenu">
+          <div class="account-menu">
             <button class="account-trigger" id="accountTrigger" type="button">
               <span class="account-avatar" id="accountAvatar">DI</span>
               <span class="account-name" id="accountName">Entrar</span>
@@ -33,9 +28,8 @@
                 <span id="dropdownUserEmail">Faça login para continuar</span>
               </div>
 
-              <a href="login.html">Meu perfil</a>
-              <a href="#">Minhas compras</a>
-              <a href="#">Histórico</a>
+              <a href="login.html" id="profileLink">Meu perfil</a>
+              <button type="button" id="myOrdersBtn">Compras</button>
               <button type="button" id="logoutBtn">Sair</button>
             </div>
           </div>
@@ -51,17 +45,18 @@
 
         <form class="search-form" id="searchForm">
           <input
-            type="text"
+            type="search"
             id="searchInput"
             placeholder="Buscar produtos, sistemas, impressoras, redes..."
+            autocomplete="off"
           />
           <button type="submit">Buscar</button>
         </form>
 
-        <a href="checkout.html" class="header-cart-desktop" aria-label="Carrinho">
+        <a href="checkout.html" class="header-cart" aria-label="Carrinho">
           <span class="header-cart-icon">🛒</span>
           <span class="header-cart-text">Carrinho</span>
-          <span class="cart-count" id="cartCountDesktop">0</span>
+          <span class="cart-count" id="cartCount">0</span>
         </a>
       </div>
     </div>
@@ -83,33 +78,39 @@
       <div class="container">
         <div class="hero-slider" id="heroSlider">
           <div class="hero-slide active">
-            <div class="hero-slide-bg" style="background-image:linear-gradient(90deg, rgba(5,12,48,.82), rgba(9,36,122,.35)), url('logo-dominio.png.png');"></div>
+            <div class="hero-slide-bg" style="background-image: linear-gradient(90deg, rgba(5,12,48,.85), rgba(9,36,122,.40)), url('logo-dominio.png.png');"></div>
             <div class="hero-slide-content">
               <span class="hero-badge">Domínio Informática</span>
               <h1>Informática, automação comercial e sistemas completos para sua empresa</h1>
-              <p>Loja com produtos, impressoras, periféricos, redes e os sistemas EasySAC, EasyChef e EasyPDV em destaque.</p>
+              <p>Produtos, sistemas e soluções para sua loja, restaurante, mercado e escritório.</p>
               <div class="hero-slide-actions">
-                <a href="#productsSection" class="btn-primary">Ver produtos</a>
-                <a href="#systemsSection" class="btn-secondary">Ver sistemas</a>
+                <button type="button" class="btn-primary" onclick="window.DI.scrollToSection('productsSection')">Ver produtos</button>
+                <button type="button" class="btn-secondary" onclick="window.DI.scrollToSection('systemsSection')">Ver sistemas</button>
               </div>
             </div>
           </div>
 
           <div class="hero-slide">
-            <div class="hero-slide-bg" style="background-image:linear-gradient(90deg, rgba(5,12,48,.82), rgba(9,36,122,.35)), url('impressora-elgin-1.jpeg');"></div>
+            <div class="hero-slide-bg" style="background-image: linear-gradient(90deg, rgba(5,12,48,.85), rgba(9,36,122,.40)), url('impressora-elgin-1.jpeg');"></div>
             <div class="hero-slide-content">
               <span class="hero-badge">Impressão</span>
               <h1>Impressoras e equipamentos para automação comercial</h1>
               <p>Produtos ideais para caixa, emissão e operação comercial.</p>
+              <div class="hero-slide-actions">
+                <button type="button" class="btn-primary" onclick="window.DI.applyCategoryFilter('impressão')">Ver impressoras</button>
+              </div>
             </div>
           </div>
 
           <div class="hero-slide">
-            <div class="hero-slide-bg" style="background-image:linear-gradient(90deg, rgba(5,12,48,.82), rgba(9,36,122,.35)), url('kit-c3tech-gamer-1.jpeg');"></div>
+            <div class="hero-slide-bg" style="background-image: linear-gradient(90deg, rgba(5,12,48,.85), rgba(9,36,122,.40)), url('kit-c3tech-gamer-1.jpeg');"></div>
             <div class="hero-slide-content">
               <span class="hero-badge">Gamer</span>
               <h1>Produtos gamer com visual moderno e ótimo custo-benefício</h1>
               <p>Monte seu setup com kits, mouses e periféricos.</p>
+              <div class="hero-slide-actions">
+                <button type="button" class="btn-primary" onclick="window.DI.applyCategoryFilter('gamer')">Ver gamer</button>
+              </div>
             </div>
           </div>
         </div>
@@ -122,18 +123,10 @@
       </div>
     </section>
 
-    <section class="container quick-cards">
-      <div class="quick-card">Frete e entrega</div>
-      <div class="quick-card">Retirada na loja</div>
-      <div class="quick-card">Pagamento via Pix</div>
-      <div class="quick-card">Parcelamento no cartão</div>
-      <div class="quick-card">Atendimento rápido</div>
-    </section>
-
     <section class="container section" id="systemsSection">
       <div class="section-head">
         <h2>Automação comercial e sistemas</h2>
-        <p>Clique para saber mais sobre os sistemas da Domínio Informática.</p>
+        <p>Clique para abrir a página de cada sistema.</p>
       </div>
       <div class="system-grid" id="systemGrid"></div>
     </section>
@@ -141,7 +134,7 @@
     <section class="container section" id="productsSection">
       <div class="section-head">
         <h2 id="productsSectionTitle">Todos os produtos</h2>
-        <p id="productsSectionSubtitle">Escolha sua categoria e veja os produtos filtrados aqui embaixo.</p>
+        <p id="productsSectionSubtitle">Mostrando todos os itens cadastrados.</p>
       </div>
       <div class="product-grid" id="allProducts"></div>
     </section>
@@ -153,19 +146,34 @@
       <button type="button" id="closeNotificationsBtn">✕</button>
     </div>
     <div class="notification-body">
-      <div class="notification-item">Confirme seu e-mail para melhorar sua conta.</div>
-      <div class="notification-item">Veja produtos em promoção na loja.</div>
-      <div class="notification-item">Acompanhe novidades da Domínio Informática.</div>
+      <div class="notification-item">Confirme seu e-mail para deixar sua conta mais segura.</div>
+      <div class="notification-item">Acompanhe novidades e promoções da Domínio Informática.</div>
+      <div class="notification-item">Veja suas compras pelo menu da conta.</div>
     </div>
   </aside>
 
-  <button class="dombot-toggle" id="domBotToggle" type="button">DomBot</button>
+  <aside class="orders-panel" id="ordersPanel">
+    <div class="notification-header">
+      <h3>Minhas compras</h3>
+      <button type="button" id="closeOrdersBtn">✕</button>
+    </div>
+    <div class="notification-body" id="ordersContent"></div>
+  </aside>
+
+  <button class="dombot-toggle" id="domBotToggle" type="button">
+    <img src="dombot.png" alt="DomBot" />
+    <span>DomBot</span>
+  </button>
 
   <div class="dombot-panel" id="domBotPanel">
     <div class="dombot-header">
-      <strong>DomBot</strong>
+      <div class="dombot-header-left">
+        <img src="dombot.png" alt="DomBot" class="dombot-avatar" />
+        <strong>DomBot</strong>
+      </div>
       <button type="button" id="closeDomBot">✕</button>
     </div>
+
     <div class="dombot-body">
       <p>Oi! Posso te ajudar com produtos, sistemas e encomendas.</p>
       <button class="dombot-option" data-message="Olá! Quero saber mais sobre os sistemas da Domínio Informática.">Sistemas</button>
