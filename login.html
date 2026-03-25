@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Entrar | Domínio Informática</title>
+  <title>Entrar ou cadastrar | Domínio Informática</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body class="login-page-body">
@@ -12,35 +12,54 @@
       <a href="index.html" class="back-link">← Voltar para a loja</a>
       <img src="logo-dominio.png.png" alt="Domínio Informática" class="login-logo" />
 
-      <h1>Criar conta / Entrar</h1>
-      <p>Preencha seus dados para continuar comprando.</p>
+      <div class="auth-tabs">
+        <button type="button" class="auth-tab active" data-auth-tab="register">Cadastro</button>
+        <button type="button" class="auth-tab" data-auth-tab="login">Entrar</button>
+      </div>
 
-      <form id="loginForm" class="login-form">
-        <div class="form-grid-two">
-          <input type="text" id="loginName" placeholder="Seu nome" required />
-          <input type="email" id="loginEmail" placeholder="Seu e-mail" required />
-        </div>
+      <section class="auth-section active" id="registerSection">
+        <h1>Crie sua conta</h1>
+        <p>Cadastro com nome, e-mail, telefone, senha e endereço.</p>
 
-        <div class="form-grid-two">
-          <input type="tel" id="loginPhone" placeholder="Seu WhatsApp" required />
-          <input type="text" id="loginCpf" placeholder="CPF (opcional)" />
-        </div>
+        <form id="registerForm" class="login-form">
+          <div class="form-grid-two">
+            <input type="text" id="registerName" placeholder="Nome e sobrenome" required />
+            <input type="email" id="registerEmail" placeholder="E-mail" required />
+          </div>
 
-        <input type="text" id="loginStreet" placeholder="Rua / Avenida" required />
-        <div class="form-grid-two">
-          <input type="text" id="loginNumber" placeholder="Número" required />
-          <input type="text" id="loginNeighborhood" placeholder="Bairro" required />
-        </div>
+          <div class="form-grid-two">
+            <input type="tel" id="registerPhone" placeholder="Telefone" required />
+            <input type="password" id="registerPassword" placeholder="Senha" required />
+          </div>
 
-        <div class="form-grid-two">
-          <input type="text" id="loginCity" placeholder="Cidade" required />
-          <input type="text" id="loginState" placeholder="Estado" required />
-        </div>
+          <input type="text" id="registerStreet" placeholder="Rua / Avenida" required />
 
-        <input type="text" id="loginReference" placeholder="Referência (opcional)" />
+          <div class="form-grid-two">
+            <input type="text" id="registerNumber" placeholder="Número" required />
+            <input type="text" id="registerNeighborhood" placeholder="Bairro" required />
+          </div>
 
-        <button type="submit" class="btn-primary full">Salvar cadastro</button>
-      </form>
+          <div class="form-grid-two">
+            <input type="text" id="registerCity" placeholder="Cidade" required />
+            <input type="text" id="registerState" placeholder="Estado" required />
+          </div>
+
+          <input type="text" id="registerReference" placeholder="Referência (opcional)" />
+
+          <button type="submit" class="btn-primary full">Salvar cadastro</button>
+        </form>
+      </section>
+
+      <section class="auth-section" id="loginSection">
+        <h1>Entrar</h1>
+        <p>Entre usando e-mail e senha.</p>
+
+        <form id="loginForm" class="login-form">
+          <input type="email" id="loginEmail" placeholder="E-mail" required />
+          <input type="password" id="loginPassword" placeholder="Senha" required />
+          <button type="submit" class="btn-primary full">Entrar</button>
+        </form>
+      </section>
     </div>
   </main>
 
