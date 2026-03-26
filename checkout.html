@@ -4,55 +4,106 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Checkout | Domínio Informática</title>
-<link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header class="site-header">
     <div class="header-top">
       <div class="container header-top-content">
-        <div class="ship-to" id="shipToText">Enviar para Maria • Avenida das Nações</div>
+        <button class="ship-to ship-to-btn" id="shipToBtn" type="button">
+          Enviar para •
+        </button>
+
+        <div class="header-top-right">
+          <button class="notif-btn" type="button" id="openNotificationsBtn" aria-label="Notificações">🔔</button>
+
+          <div class="account-menu">
+            <button class="account-trigger" id="accountTrigger" type="button">
+              <span class="account-avatar" id="accountAvatar">DI</span>
+              <span class="account-name" id="accountName">Entrar</span>
+            </button>
+
+            <div class="account-dropdown" id="accountDropdown">
+              <div class="account-dropdown-header">
+                <strong id="dropdownUserName">Visitante</strong>
+                <span id="dropdownUserEmail">Faça login para continuar</span>
+              </div>
+
+              <a href="login.html" id="profileLink">Entrar / Cadastro</a>
+              <button type="button" id="myOrdersBtn">Compras</button>
+              <button type="button" id="logoutBtn">Sair</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="header-main">
       <div class="container header-main-content">
-        <a href="index.html" class="logo-area">
-          <img src="logo-dominio.png" alt="Domínio Informática" class="site-logo" />
+        <a href="index.html" class="logo-area" aria-label="Domínio Informática">
+          <img src="logo-dominio.png.png" alt="Domínio Informática" class="site-logo" />
         </a>
 
-        <div class="checkout-header-actions">
-          <a href="index.html" class="btn-secondary">Continuar comprando</a>
-        </div>
+        <form class="search-form" id="searchForm">
+          <input
+            type="search"
+            id="searchInput"
+            placeholder="Buscar produtos, sistemas, impressoras, redes..."
+            autocomplete="off"
+          />
+          <button type="submit">Buscar</button>
+        </form>
+
+        <a href="checkout.html" class="header-cart" aria-label="Carrinho">
+          <span class="header-cart-icon">🛒</span>
+          <span class="header-cart-text">Carrinho</span>
+          <span class="cart-count" id="cartCount">0</span>
+        </a>
       </div>
     </div>
+
+    <nav class="main-nav">
+      <div class="container nav-list">
+        <a class="nav-chip" href="index.html">Todos</a>
+        <a class="nav-chip" href="index.html?cat=informática">Informática</a>
+        <a class="nav-chip" href="index.html?cat=automação comercial">Automação comercial</a>
+        <a class="nav-chip" href="index.html?cat=impressão">Impressão</a>
+        <a class="nav-chip" href="index.html?cat=redes">Redes</a>
+        <a class="nav-chip" href="index.html?cat=gamer">Gamer</a>
+      </div>
+    </nav>
   </header>
 
   <main class="container section">
-    <div class="checkout-layout">
-      <section class="checkout-main">
-        <div class="checkout-box">
-          <h2>1. Seus dados</h2>
+    <div class="checkout-layout-modern">
+      <section class="checkout-main-modern">
+        <div class="checkout-card">
+          <div class="checkout-card-header">
+            <h2>1. Seus dados</h2>
+          </div>
           <div id="checkoutUserData"></div>
         </div>
 
-        <div class="checkout-box">
-          <h2>2. Recebimento</h2>
+        <div class="checkout-card">
+          <div class="checkout-card-header">
+            <h2>2. Recebimento</h2>
+          </div>
 
-          <div class="checkout-options">
-            <label class="checkout-option selected">
+          <div class="checkout-options-grid">
+            <label class="checkout-option-card selected">
               <input type="radio" name="deliveryType" value="retirada" checked />
               <strong>Retirada na loja</strong>
               <span>Buscar no local</span>
             </label>
 
-            <label class="checkout-option">
+            <label class="checkout-option-card">
               <input type="radio" name="deliveryType" value="entrega" />
               <strong>Entrega</strong>
               <span>Enviar no endereço</span>
             </label>
           </div>
 
-          <div id="deliveryFields" class="hidden">
+          <div id="deliveryFields" class="hidden delivery-fields-grid">
             <input type="text" id="checkoutStreet" placeholder="Rua / Avenida" />
             <div class="form-grid-two">
               <input type="text" id="checkoutNumber" placeholder="Número" />
@@ -63,51 +114,53 @@
           </div>
         </div>
 
-        <div class="checkout-box">
-          <h2>3. Pagamento</h2>
+        <div class="checkout-card">
+          <div class="checkout-card-header">
+            <h2>3. Pagamento</h2>
+          </div>
 
-          <div class="checkout-options">
-            <label class="checkout-option selected">
+          <div class="checkout-options-grid">
+            <label class="checkout-option-card selected">
               <input type="radio" name="paymentMethod" value="pix" checked />
               <strong>Pix</strong>
               <span>Pagamento instantâneo</span>
             </label>
 
-            <label class="checkout-option">
+            <label class="checkout-option-card">
               <input type="radio" name="paymentMethod" value="dinheiro" />
               <strong>Dinheiro</strong>
-              <span>Na entrega ou retirada</span>
+              <span>Na retirada ou entrega</span>
             </label>
 
-            <label class="checkout-option">
+            <label class="checkout-option-card">
               <input type="radio" name="paymentMethod" value="cartao" />
               <strong>Cartão</strong>
               <span>Parcelamento</span>
             </label>
           </div>
 
-          <div id="pixBox" class="checkout-payment-box">
-            <div class="pix-layout">
-              <div class="pix-image-box">
+          <div id="pixBox" class="checkout-payment-box-modern">
+            <div class="pix-layout-modern">
+              <div class="pix-qr-box">
                 <img src="pix-qrcode.png" alt="QR Code Pix" />
               </div>
 
-              <div class="pix-info">
-                <p><strong>Chave Pix</strong></p>
-                <div class="pix-copy-box">
+              <div class="pix-side-info">
+                <h3>Chave Pix</h3>
+                <div class="pix-copy-line">
                   <input type="text" id="pixKey" value="b476bb76-75e0-4b0d-85e8-621710f271a2" readonly />
-                  <button type="button" id="copyPixKeyBtn" class="btn-secondary">Copiar</button>
+                  <button type="button" class="btn-secondary" id="copyPixKeyBtn">Copiar</button>
                 </div>
-                <button type="button" id="alreadyPaidBtn" class="btn-primary">Já paguei</button>
+                <button type="button" class="btn-primary" id="alreadyPaidBtn">Já paguei</button>
               </div>
             </div>
           </div>
 
-          <div id="cashBox" class="checkout-payment-box hidden">
+          <div id="cashBox" class="checkout-payment-box-modern hidden">
             <input type="text" id="cashChange" placeholder="Troco para quanto?" />
           </div>
 
-          <div id="cardBox" class="checkout-payment-box hidden">
+          <div id="cardBox" class="checkout-payment-box-modern hidden">
             <select id="installments">
               <option value="1">1x sem juros</option>
               <option value="2">2x sem juros</option>
@@ -126,18 +179,22 @@
           </div>
         </div>
 
-        <div class="checkout-box">
-          <h2>4. Observações</h2>
+        <div class="checkout-card">
+          <div class="checkout-card-header">
+            <h2>4. Observações</h2>
+          </div>
           <textarea id="checkoutNotes" placeholder="Escreva alguma observação sobre seu pedido"></textarea>
-          <button type="button" id="finishOrderBtn" class="btn-primary">Enviar pedido no WhatsApp</button>
+          <button type="button" class="btn-primary" id="finishOrderBtn">Enviar pedido no WhatsApp</button>
         </div>
       </section>
 
-      <aside class="checkout-sidebar">
-        <div class="checkout-summary-card">
-          <h3>Resumo do pedido</h3>
+      <aside class="checkout-summary-modern">
+        <div class="checkout-card sticky-summary">
+          <div class="checkout-card-header">
+            <h2>Resumo do pedido</h2>
+          </div>
           <div id="checkoutItems"></div>
-          <div class="checkout-summary-total">
+          <div class="checkout-summary-total-modern">
             <div><span>Subtotal</span><strong id="checkoutSubtotal">R$ 0,00</strong></div>
             <div><span>Total</span><strong id="checkoutTotal">R$ 0,00</strong></div>
           </div>
@@ -146,7 +203,26 @@
     </div>
   </main>
 
-  <script src="produtos.js"></script>
+  <aside class="notification-panel" id="notificationPanel">
+    <div class="notification-header">
+      <h3>Avisos</h3>
+      <button type="button" id="closeNotificationsBtn">✕</button>
+    </div>
+    <div class="notification-body">
+      <div class="notification-item">Confirme seu e-mail para deixar sua conta mais segura.</div>
+      <div class="notification-item">Acompanhe novidades e promoções da Domínio Informática.</div>
+    </div>
+  </aside>
+
+  <aside class="orders-panel" id="ordersPanel">
+    <div class="notification-header">
+      <h3>Minhas compras</h3>
+      <button type="button" id="closeOrdersBtn">✕</button>
+    </div>
+    <div class="notification-body" id="ordersContent"></div>
+  </aside>
+
+  <script src="products.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
