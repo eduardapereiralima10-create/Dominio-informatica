@@ -10,10 +10,12 @@
   <header class="site-header">
     <div class="header-top">
       <div class="container header-top-content">
-        <div class="ship-to" id="shipToText">Enviar para MARIA •</div>
+        <button class="ship-to ship-to-btn" id="shipToBtn" type="button">
+          Enviar para •
+        </button>
 
         <div class="header-top-right">
-          <button class="notif-btn" type="button" id="openNotificationsBtn">🔔</button>
+          <button class="notif-btn" type="button" id="openNotificationsBtn" aria-label="Notificações">🔔</button>
 
           <div class="account-menu">
             <button class="account-trigger" id="accountTrigger" type="button">
@@ -27,7 +29,7 @@
                 <span id="dropdownUserEmail">Faça login para continuar</span>
               </div>
 
-              <a href="login.html" id="profileLink">Meu perfil</a>
+              <a href="login.html" id="profileLink">Entrar / Cadastro</a>
               <button type="button" id="myOrdersBtn">Compras</button>
               <button type="button" id="logoutBtn">Sair</button>
             </div>
@@ -38,12 +40,17 @@
 
     <div class="header-main">
       <div class="container header-main-content">
-        <a href="index.html" class="logo-area">
+        <a href="index.html" class="logo-area" aria-label="Domínio Informática">
           <img src="logo-dominio.png.png" alt="Domínio Informática" class="site-logo" />
         </a>
 
         <form class="search-form" id="searchForm">
-          <input type="search" id="searchInput" placeholder="Buscar produto..." />
+          <input
+            type="search"
+            id="searchInput"
+            placeholder="Buscar produtos, sistemas, impressoras, redes..."
+            autocomplete="off"
+          />
           <button type="submit">Buscar</button>
         </form>
 
@@ -54,6 +61,17 @@
         </a>
       </div>
     </div>
+
+    <nav class="main-nav">
+      <div class="container nav-list">
+        <a class="nav-chip" href="index.html">Todos</a>
+        <a class="nav-chip" href="index.html?cat=informática">Informática</a>
+        <a class="nav-chip" href="index.html?cat=automação comercial">Automação comercial</a>
+        <a class="nav-chip" href="index.html?cat=impressão">Impressão</a>
+        <a class="nav-chip" href="index.html?cat=redes">Redes</a>
+        <a class="nav-chip" href="index.html?cat=gamer">Gamer</a>
+      </div>
+    </nav>
   </header>
 
   <main class="container section">
@@ -67,7 +85,7 @@
     </div>
     <div class="notification-body">
       <div class="notification-item">Confirme seu e-mail para deixar sua conta mais segura.</div>
-      <div class="notification-item">Veja novidades e promoções da Domínio Informática.</div>
+      <div class="notification-item">Acompanhe novidades e promoções da Domínio Informática.</div>
     </div>
   </aside>
 
