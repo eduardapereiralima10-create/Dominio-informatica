@@ -4,67 +4,168 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EasyPDV | Domínio Informática</title>
-  <style>
-    :root { --azul:#12358f; --azul-escuro:#0b1f66; --laranja:#ff6f1a; --cinza:#f4f6fb; --texto:#23314d; --texto-suave:#5f6e8a; --borda:#dbe3f1; --raio:18px; --sombra:0 10px 28px rgba(18,53,143,.10);}
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:Arial,sans-serif;background:var(--cinza);color:var(--texto)}
-    a{text-decoration:none;color:inherit}
-    .container{width:min(1100px,92%);margin:0 auto}
-    .top{background:#fff;border-bottom:1px solid #e7edf6}
-    .top .container{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 0;flex-wrap:wrap}
-    .logo img{max-height:120px;width:auto}
-    .btn{display:inline-block;padding:12px 18px;border-radius:12px;font-weight:bold}
-    .btn-blue{background:var(--azul);color:#fff}
-    .btn-orange{background:var(--laranja);color:#fff}
-    .hero{background:linear-gradient(135deg,var(--azul),var(--azul-escuro));color:#fff;padding:42px 0}
-    .hero h1{font-size:42px;margin-bottom:12px}
-    .hero p{font-size:18px;line-height:1.6;max-width:760px}
-    .section{padding:28px 0}
-    .card{background:#fff;border:1px solid var(--borda);border-radius:var(--raio);box-shadow:var(--sombra);padding:24px}
-    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
-    h2{color:var(--azul);font-size:28px;margin-bottom:14px}
-    p{line-height:1.7;color:var(--texto-suave)}
-    ul{margin-top:12px;display:grid;gap:8px;list-style:none;color:#334260}
-    li::before{content:"✓ ";color:var(--laranja);font-weight:bold}
-    @media (max-width:800px){.grid{grid-template-columns:1fr}.hero h1{font-size:32px}.logo img{max-height:100px}}
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="top">
-    <div class="container">
-      <a href="index.html" class="logo"><img src="logo-dominio.png" alt="Domínio Informática"></a>
-      <div style="display:flex;gap:10px;flex-wrap:wrap">
-        <a href="index.html" class="btn btn-blue">Voltar ao site</a>
-        <a href="https://wa.me/5594992627580?text=Olá! Quero saber mais sobre o EasyPDV." target="_blank" class="btn btn-orange">Solicitar atendimento</a>
+  <header class="site-header">
+    <div class="header-top">
+      <div class="container header-top-content">
+        <button class="ship-to ship-to-btn" id="shipToBtn" type="button">
+          Enviar para •
+        </button>
+
+        <div class="header-top-right">
+          <button class="notif-btn" type="button" id="openNotificationsBtn" aria-label="Notificações">🔔</button>
+
+          <div class="account-menu">
+            <button class="account-trigger" id="accountTrigger" type="button">
+              <span class="account-avatar" id="accountAvatar">DI</span>
+              <span class="account-name" id="accountName">Entrar</span>
+            </button>
+
+            <div class="account-dropdown" id="accountDropdown">
+              <div class="account-dropdown-header">
+                <strong id="dropdownUserName">Visitante</strong>
+                <span id="dropdownUserEmail">Faça login para continuar</span>
+              </div>
+
+              <a href="login.html" id="profileLink">Entrar / Cadastro</a>
+              <button type="button" id="myOrdersBtn">Compras</button>
+              <button type="button" id="logoutBtn">Sair</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+
+    <div class="header-main">
+      <div class="container header-main-content">
+        <a href="index.html" class="logo-area" aria-label="Domínio Informática">
+          <img src="logo-dominio.png.png" alt="Domínio Informática" class="site-logo" />
+        </a>
+
+        <form class="search-form" id="searchForm">
+          <input
+            type="search"
+            id="searchInput"
+            placeholder="Buscar produtos, sistemas, impressoras, redes..."
+            autocomplete="off"
+          />
+          <button type="submit">Buscar</button>
+        </form>
+
+        <a href="cart.html" class="header-cart" aria-label="Carrinho">
+          <span class="header-cart-icon">🛒</span>
+          <span class="header-cart-text">Carrinho</span>
+          <span class="cart-count" id="cartCount">0</span>
+        </a>
+      </div>
+    </div>
+
+    <nav class="main-nav">
+      <div class="container nav-list">
+        <a class="nav-chip" href="index.html">Todos</a>
+        <a class="nav-chip" href="index.html?cat=informática">Informática</a>
+        <a class="nav-chip active" href="index.html?cat=automação comercial">Automação comercial</a>
+        <a class="nav-chip" href="index.html?cat=impressão">Impressão</a>
+        <a class="nav-chip" href="index.html?cat=redes">Redes</a>
+        <a class="nav-chip" href="index.html?cat=gamer">Gamer</a>
+      </div>
+    </nav>
   </header>
 
-  <section class="hero"><div class="container">
-    <h1>EasyPDV</h1>
-    <p>Solução para mercados com foco em frente de caixa, controle de estoque, produtos, atendimento e organização da rotina comercial.</p>
-  </div></section>
+  <main class="container section">
+    <section class="system-page">
+      <div class="system-hero">
+        <div class="system-hero-text">
+          <span class="hero-badge">EasyPDV</span>
+          <h1>Frente de caixa ágil para mercados e operação diária</h1>
+          <p>
+            O EasyPDV foi pensado para dar velocidade e organização no caixa,
+            ajudando no atendimento, controle de vendas, integração com a retaguarda
+            e operação comercial do dia a dia.
+          </p>
 
-  <section class="section"><div class="container"><div class="card">
-    <h2>Sobre o EasyPDV</h2>
-    <p>O EasyPDV é ideal para mercados que precisam de mais controle do caixa, dos produtos, do estoque e do atendimento, com uma rotina mais organizada.</p>
-  </div></div></section>
+          <div class="hero-slide-actions">
+            <a href="index.html?cat=automação%20comercial#systemsSection" class="btn-secondary">Voltar para sistemas</a>
+            <a href="https://wa.me/5594992627580?text=Olá! Quero saber mais sobre o EasyPDV." class="btn-primary">Pedir informações</a>
+          </div>
+        </div>
 
-  <section class="section"><div class="container grid">
-    <div class="card"><h2>Principais recursos</h2><ul>
-      <li>Frente de caixa</li>
-      <li>Controle de estoque</li>
-      <li>Cadastro de produtos</li>
-      <li>Relatórios e controle</li>
-      <li>Mais organização da operação</li>
-    </ul></div>
-    <div class="card"><h2>Benefícios</h2><ul>
-      <li>Mais agilidade no atendimento</li>
-      <li>Mais controle do estoque</li>
-      <li>Mais organização da rotina</li>
-      <li>Mais clareza da operação</li>
-      <li>Mais segurança na gestão</li>
-    </ul></div>
-  </div></section>
+        <div class="system-hero-card">
+          <h3>Ideal para</h3>
+          <ul>
+            <li>Mercados</li>
+            <li>Mercearias</li>
+            <li>Supermercados</li>
+            <li>Frente de caixa com rapidez</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="system-content-grid">
+        <article class="system-info-card">
+          <h2>O que o EasyPDV ajuda a fazer</h2>
+          <ul>
+            <li>Atendimento rápido no caixa</li>
+            <li>Registro de vendas com mais agilidade</li>
+            <li>Organização da operação da loja</li>
+            <li>Integração com processos internos</li>
+            <li>Mais praticidade para a equipe</li>
+          </ul>
+        </article>
+
+        <article class="system-info-card">
+          <h2>Benefícios</h2>
+          <ul>
+            <li>Mais produtividade</li>
+            <li>Melhor controle operacional</li>
+            <li>Atendimento mais rápido ao cliente</li>
+            <li>Redução de erros no dia a dia</li>
+            <li>Fluxo de caixa mais organizado</li>
+          </ul>
+        </article>
+
+        <article class="system-info-card">
+          <h2>Para sua empresa</h2>
+          <p>
+            O EasyPDV é uma solução voltada para empresas que precisam de
+            desempenho no caixa e uma rotina mais prática na operação comercial.
+          </p>
+        </article>
+
+        <article class="system-info-card">
+          <h2>Quer saber mais?</h2>
+          <p>
+            Fale com a Domínio Informática e veja como o EasyPDV pode atender
+            sua necessidade.
+          </p>
+          <a href="https://wa.me/5594992627580?text=Olá! Quero atendimento sobre o EasyPDV." class="btn-primary">Chamar no WhatsApp</a>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <aside class="notification-panel" id="notificationPanel">
+    <div class="notification-header">
+      <h3>Avisos</h3>
+      <button type="button" id="closeNotificationsBtn">✕</button>
+    </div>
+    <div class="notification-body">
+      <div class="notification-item">Confirme seu e-mail para deixar sua conta mais segura.</div>
+      <div class="notification-item">Acompanhe novidades e promoções da Domínio Informática.</div>
+    </div>
+  </aside>
+
+  <aside class="orders-panel" id="ordersPanel">
+    <div class="notification-header">
+      <h3>Minhas compras</h3>
+      <button type="button" id="closeOrdersBtn">✕</button>
+    </div>
+    <div class="notification-body" id="ordersContent"></div>
+  </aside>
+
+  <script src="products.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
