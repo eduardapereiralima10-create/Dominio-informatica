@@ -86,7 +86,7 @@
     if (existing) {
       existing.qty += qty;
     } else {
-      cart.push({ productId, qty });
+      cart.push({ productId, qty, selected: true });
     }
 
     saveCart(cart);
@@ -95,7 +95,7 @@
   };
 
   const buyNow = (productId, qty = 1) => {
-    saveCart([{ productId, qty }]);
+    saveCart([{ productId, qty, selected: true }]);
     updateCartCount();
     window.location.href = "checkout.html";
   };
@@ -251,7 +251,7 @@
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       const value = input.value.trim();
-      window.location.href = `index.html?busca=${encodeURIComponent(value)}`;
+      window.location.href = `index.html?busca=${encodeURIComponent(value)}#productsSection`;
     });
   };
 
@@ -276,6 +276,10 @@
       `Resultados para "${search}"`,
       "Busca feita por nome, marca, código ou categoria."
     );
+
+    setTimeout(() => {
+      scrollToSection("productsSection");
+    }, 120);
   };
 
   const setupSlider = () => {
@@ -330,6 +334,183 @@
     restartAuto();
   };
 
+  const setupNotifications = () => {
+    const openBtn = document.getElementById("openNotificationsBtn");
+    const closeBtn = document.getElementById("closeNotificationsBtn");
+    const panel = document.getElementById("notificationPanel");
+
+    if (!panel) return;
+
+    if (openBtn) openBtn.addEventListener("click", () => panel.classList.toggle("open"));
+    if (closeBtn) closeBtn.addEventListener("click", () => panel.classList.remove("open"));
+
+    if (localStorage.getItem("di_show_verify_notice") === "1") {
+      panel.classList.add("open");
+      localStorage.removeItem("di_show_verify_notice");
+    }
+  };
+
+  const setupOrdersPanel = () => {
+    const openBtn = document.getElementById("myOrdersBtn");
+    const closeBtn = document.getElementById("closeOrdersBtn");
+    const panel = document.getElementById("ordersPanel");
+    const content = document.getElementById("ordersContent");
+
+    if (!panel || !content) return;
+
+    const renderOrders = () => {
+      const orders = getOrders();
+
+      if (!orders.length) {
+        content.innerHTML = `<div class="notification-item">Você ainda não tem compras registradas.</div>`;
+        return;
+      }
+
+      content.innerHTML = orders
+        .slice()
+        .reverse()
+        .map((order) => `
+          <div class="notification-item">
+            <strong>Pedido ${order.id}</strong>
+            <div>${order.date}</div>
+            <div>Total: ${money(order.total)}</div>
+            <div>${order.items.map((item) => `${item.name} (${item.qty})`).join(", ")}</div>
+          </div>
+        `)
+        .join("");
+    };
+
+    if (openBtn) {
+      openBtn.addEventListener("click", () => {
+        renderOrders();
+        panel.classList.add("open");
+      });
+    }
+
+    if (closeBtn) {
+      closeBtn.addEventListener("click", () => panel.classList.remove("open"));
+    }
+  };
+
+  const setupDomBot = () => {
+    const toggle = document.getElementById("domBotToggle");
+    const panel = document.getElementById("domBotPanel");
+    const close = document.getElementById("closeDomBot");
+    const options = document.querySelectorAll(".dombot-option");
+    const customMessage = document.getElementById("domBotCustomMessage");
+    const send = document.getElementById("sendDomBotMessage");
+
+    if (toggle && panel) {
+      toggle.addEventListener("click", () => panel.classList.toggle("open"));
+    }
+
+    if (close && panel) {
+      close.addEventListener("click", () => panel.classList.remove("open"));
+    }
+
+    options.forEach((button) => {
+      button.addEventListener("click", () => {
+        const message = button.dataset.message || "Olá!";
+        window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, "_blank");
+      });
+    });
+
+    if (send && customMessage) {
+      send.addEventListener("click", () => {
+        const message = customMessage.value.trim() || "Olá! Quero tirar uma dúvida.";
+        window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, "_blank");
+      });
+    }
+  };
+
+  const setupCustomOrder = () => {
+    const btn = document.getElementById("sendCustomOrderBtn");
+    const textarea = document.getElementById("customOrderMessage");
+
+    if (!btn || !textarea) return;
+
+    btn.addEventListener("click", () => {
+      const text = textarea.value.trim() || "Olá! Quero fazer uma encomenda.";
+      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`, "_blank");
+    });
+  };
+
+  const setupShipTo = () => {
+    const btn = document.getElementById("shipToBtn");
+    if (!btn) return;
+
+    btn.addEventListener("click", () => {
+      window.location.href = "login.html";
+    });
+  };
+
+  const setupLogout = () => {
+    const btn = document.getElementById("logoutBtn");
+    if (!btn) return;
+
+    btn.addEventListener("click", () => {
+      localStorage.removeItem("di_user");
+      alert("Você saiu da conta.");
+      window.location.href = "index.html";
+    });
+  };
+
+  const changeMainImage = (src, alt) => {
+    const image = document.getElementById("mainProductImage");
+    const zoomImage = document.getElementById("zoomImage");
+    if (image) {
+      image.src = src;
+      image.alt = alt;
+    }
+    if (zoomImage) {
+      zoomImage.src = src;
+      zoomImage.alt = alt;
+    }
+  };
+
+  const changePageProductQty = (delta) => {
+    const qtyEl = document.getElementById("productQtyValue");
+    if (!qtyEl) return;
+    let qty = Number(qtyEl.textContent || 1) + delta;
+    if (qty < 1) qty = 1;
+    qtyEl.textContent = qty;
+  };
+
+  const addCurrentProductToCart = (productId) => {
+    const qty = Number(document.getElementById("productQtyValue")?.textContent || 1);
+    addToCart(productId, qty);
+  };
+
+  const buyCurrentProductNow = (productId) => {
+    const qty = Number(document.getElementById("productQtyValue")?.textContent || 1);
+    buyNow(productId, qty);
+  };
+
+  const setupImageZoom = () => {
+    const box = document.getElementById("productMainImageBox");
+    const image = document.getElementById("mainProductImage");
+    const zoomPane = document.getElementById("productZoomPane");
+    const zoomImage = document.getElementById("zoomImage");
+
+    if (!box || !image || !zoomPane || !zoomImage) return;
+
+    box.addEventListener("mouseenter", () => {
+      zoomPane.classList.add("active");
+    });
+
+    box.addEventListener("mousemove", (e) => {
+      const rect = box.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      zoomImage.style.transformOrigin = `${x}% ${y}%`;
+    });
+
+    box.addEventListener("mouseleave", () => {
+      zoomPane.classList.remove("active");
+      zoomImage.style.transformOrigin = "center center";
+    });
+  };
+
   const renderProductPage = () => {
     const wrap = document.getElementById("productPage");
     if (!wrap) return;
@@ -362,6 +543,15 @@
               <div class="product-main-image-box" id="productMainImageBox">
                 <img
                   id="mainProductImage"
+                  src="${gallery[0]}"
+                  alt="${product.name}"
+                  onerror="this.onerror=null;this.src='${fallbackImage(product.name)}';"
+                />
+              </div>
+
+              <div class="product-zoom-pane" id="productZoomPane">
+                <img
+                  id="zoomImage"
                   src="${gallery[0]}"
                   alt="${product.name}"
                   onerror="this.onerror=null;this.src='${fallbackImage(product.name)}';"
@@ -472,48 +662,93 @@
     setupImageZoom();
   };
 
-  const setupImageZoom = () => {
-    const box = document.getElementById("productMainImageBox");
-    const image = document.getElementById("mainProductImage");
-    if (!box || !image) return;
+  const renderCartPage = () => {
+    const wrap = document.getElementById("cartItemsPage");
+    const productsEl = document.getElementById("cartSummaryProducts");
+    const totalEl = document.getElementById("cartSummaryTotal");
+    if (!wrap) return;
 
-    box.addEventListener("mousemove", (e) => {
-      const rect = box.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width) * 100;
-      const y = ((e.clientY - rect.top) / rect.height) * 100;
-      image.style.transformOrigin = `${x}% ${y}%`;
-      box.classList.add("zooming");
-    });
+    const items = getCartDetailed();
 
-    box.addEventListener("mouseleave", () => {
-      box.classList.remove("zooming");
-      image.style.transformOrigin = "center center";
-    });
+    if (!items.length) {
+      wrap.innerHTML = `<p class="empty-message">Seu carrinho está vazio.</p>`;
+      if (productsEl) productsEl.textContent = money(0);
+      if (totalEl) totalEl.textContent = money(0);
+      return;
+    }
+
+    wrap.innerHTML = items.map((item) => `
+      <div class="cart-item-row">
+        <label class="cart-check-wrap">
+          <input type="checkbox" ${item.selected !== false ? "checked" : ""} onchange="window.DI.toggleCartItem(${item.product.id}, this.checked)" />
+        </label>
+
+        <div class="cart-item-image">
+          <img src="${item.product.image}" alt="${item.product.name}" onerror="this.onerror=null;this.src='${fallbackImage(item.product.name)}';" />
+        </div>
+
+        <div class="cart-item-info">
+          <strong>${item.product.name}</strong>
+          <p>${item.product.shortDescription || ""}</p>
+        </div>
+
+        <div class="cart-item-qty">
+          <button type="button" class="qty-btn" onclick="window.DI.changeCartQty(${item.product.id}, -1)">−</button>
+          <span>${item.qty}</span>
+          <button type="button" class="qty-btn" onclick="window.DI.changeCartQty(${item.product.id}, 1)">+</button>
+        </div>
+
+        <div class="cart-item-price">${money(item.total)}</div>
+
+        <button type="button" class="cart-delete-btn" onclick="window.DI.removeCartItem(${item.product.id})">🗑️</button>
+      </div>
+    `).join("");
+
+    const selectedItems = items.filter(item => item.selected !== false);
+    const total = selectedItems.reduce((sum, item) => sum + item.total, 0);
+
+    if (productsEl) productsEl.textContent = money(total);
+    if (totalEl) totalEl.textContent = money(total);
   };
 
-  const changeMainImage = (src, alt) => {
-    const image = document.getElementById("mainProductImage");
-    if (!image) return;
-    image.src = src;
-    image.alt = alt;
+  const changeCartQty = (productId, delta) => {
+    const cart = getCart();
+    const item = cart.find((i) => i.productId === productId);
+    if (!item) return;
+
+    item.qty += delta;
+    if (item.qty < 1) item.qty = 1;
+
+    saveCart(cart);
+    updateCartCount();
+    renderCartPage();
+    renderCheckoutSummary();
   };
 
-  const changePageProductQty = (delta) => {
-    const qtyEl = document.getElementById("productQtyValue");
-    if (!qtyEl) return;
-    let qty = Number(qtyEl.textContent || 1) + delta;
-    if (qty < 1) qty = 1;
-    qtyEl.textContent = qty;
+  const removeCartItem = (productId) => {
+    const cart = getCart().filter((i) => i.productId !== productId);
+    saveCart(cart);
+    updateCartCount();
+    renderCartPage();
+    renderCheckoutSummary();
   };
 
-  const addCurrentProductToCart = (productId) => {
-    const qty = Number(document.getElementById("productQtyValue")?.textContent || 1);
-    addToCart(productId, qty);
+  const toggleCartItem = (productId, checked) => {
+    const cart = getCart();
+    const item = cart.find((i) => i.productId === productId);
+    if (!item) return;
+
+    item.selected = checked;
+    saveCart(cart);
+    renderCartPage();
   };
 
-  const buyCurrentProductNow = (productId) => {
-    const qty = Number(document.getElementById("productQtyValue")?.textContent || 1);
-    buyNow(productId, qty);
+  const getSelectedCartDetailed = () => {
+    return getCartDetailed().filter(item => item.selected !== false);
+  };
+
+  const getSelectedCartTotal = () => {
+    return getSelectedCartDetailed().reduce((sum, item) => sum + item.total, 0);
   };
 
   const renderCheckoutUserData = () => {
@@ -548,10 +783,10 @@
     const totalEl = document.getElementById("checkoutTotal");
     if (!itemsWrap) return;
 
-    const items = getCartDetailed();
+    const items = getSelectedCartDetailed();
 
     if (!items.length) {
-      itemsWrap.innerHTML = `<p class="empty-message">Seu carrinho está vazio.</p>`;
+      itemsWrap.innerHTML = `<p class="empty-message">Nenhum item selecionado no carrinho.</p>`;
       if (subtotalEl) subtotalEl.textContent = money(0);
       if (totalEl) totalEl.textContent = money(0);
       return;
@@ -568,7 +803,7 @@
       </div>
     `).join("");
 
-    const total = getCartTotal();
+    const total = getSelectedCartTotal();
     if (subtotalEl) subtotalEl.textContent = money(total);
     if (totalEl) totalEl.textContent = money(total);
 
@@ -634,7 +869,7 @@
     const result = document.getElementById("installmentResult");
     if (!select || !result) return;
 
-    const total = getCartTotal();
+    const total = getSelectedCartTotal();
     const installments = Number(select.value || 1);
     const fee = getCardFee(installments);
     const totalWithFee = fee > 0 ? total * (1 + fee / 100) : total;
@@ -671,7 +906,7 @@
 
   const finishOrder = () => {
     const user = getUser();
-    const cartItems = getCartDetailed();
+    const cartItems = getSelectedCartDetailed();
 
     if (!user) {
       alert("Você precisa entrar ou fazer cadastro antes de finalizar.");
@@ -680,7 +915,7 @@
     }
 
     if (!cartItems.length) {
-      alert("Seu carrinho está vazio.");
+      alert("Nenhum item selecionado no carrinho.");
       return;
     }
 
@@ -712,7 +947,7 @@
       `• ${item.product.name} | Qtd: ${item.qty} | Total: ${money(item.total)}`
     ).join("\n");
 
-    const total = getCartTotal();
+    const total = getSelectedCartTotal();
 
     const order = {
       id: `#${Date.now()}`,
@@ -742,175 +977,6 @@
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, "_blank");
   };
 
-  const setupNotifications = () => {
-    const openBtn = document.getElementById("openNotificationsBtn");
-    const closeBtn = document.getElementById("closeNotificationsBtn");
-    const panel = document.getElementById("notificationPanel");
-
-    if (!panel) return;
-    if (openBtn) openBtn.addEventListener("click", () => panel.classList.toggle("open"));
-    if (closeBtn) closeBtn.addEventListener("click", () => panel.classList.remove("open"));
-  };
-
-  const setupOrdersPanel = () => {
-    const openBtn = document.getElementById("myOrdersBtn");
-    const closeBtn = document.getElementById("closeOrdersBtn");
-    const panel = document.getElementById("ordersPanel");
-    const content = document.getElementById("ordersContent");
-
-    if (!panel || !content) return;
-
-    const renderOrders = () => {
-      const orders = getOrders();
-
-      if (!orders.length) {
-        content.innerHTML = `<div class="notification-item">Você ainda não tem compras registradas.</div>`;
-        return;
-      }
-
-      content.innerHTML = orders
-        .slice()
-        .reverse()
-        .map((order) => `
-          <div class="notification-item">
-            <strong>Pedido ${order.id}</strong>
-            <div>${order.date}</div>
-            <div>Total: ${money(order.total)}</div>
-            <div>${order.items.map((item) => `${item.name} (${item.qty})`).join(", ")}</div>
-          </div>
-        `)
-        .join("");
-    };
-
-    if (openBtn) {
-      openBtn.addEventListener("click", () => {
-        renderOrders();
-        panel.classList.add("open");
-      });
-    }
-
-    if (closeBtn) closeBtn.addEventListener("click", () => panel.classList.remove("open"));
-  };
-
-  const setupShipTo = () => {
-    const btn = document.getElementById("shipToBtn");
-    if (!btn) return;
-    btn.addEventListener("click", () => {
-      window.location.href = "login.html";
-    });
-  };
-
-  const setupLogout = () => {
-    const btn = document.getElementById("logoutBtn");
-    if (!btn) return;
-
-    btn.addEventListener("click", () => {
-      localStorage.removeItem("di_user");
-      alert("Você saiu da conta.");
-      window.location.href = "index.html";
-    });
-  };
-
-  const setupAuthTabs = () => {
-    const tabs = document.querySelectorAll(".auth-tab");
-    if (!tabs.length) return;
-
-    tabs.forEach((tab) => {
-      tab.addEventListener("click", () => {
-        tabs.forEach((item) => item.classList.remove("active"));
-        document.querySelectorAll(".auth-section").forEach((section) => section.classList.remove("active"));
-        tab.classList.add("active");
-        const target = tab.dataset.authTab;
-        document.getElementById(target === "register" ? "registerSection" : "loginSection")?.classList.add("active");
-      });
-    });
-  };
-
-  const fillRegisterFormIfLogged = () => {
-    const user = getUser();
-    if (!user) return;
-
-    const setValue = (id, value) => {
-      const el = document.getElementById(id);
-      if (el) el.value = value || "";
-    };
-
-    setValue("registerName", user.name);
-    setValue("registerEmail", user.email);
-    setValue("registerPhone", user.phone);
-    setValue("registerPassword", user.password);
-    setValue("registerStreet", user.street);
-    setValue("registerNumber", user.number);
-    setValue("registerNeighborhood", user.neighborhood);
-    setValue("registerCity", user.city);
-    setValue("registerState", user.state);
-    setValue("registerReference", user.reference);
-  };
-
-  const setupRegister = () => {
-    const form = document.getElementById("registerForm");
-    if (!form) return;
-
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-
-      const user = {
-        name: document.getElementById("registerName")?.value.trim() || "",
-        email: document.getElementById("registerEmail")?.value.trim() || "",
-        phone: document.getElementById("registerPhone")?.value.trim() || "",
-        password: document.getElementById("registerPassword")?.value || "",
-        street: document.getElementById("registerStreet")?.value.trim() || "",
-        number: document.getElementById("registerNumber")?.value.trim() || "",
-        neighborhood: document.getElementById("registerNeighborhood")?.value.trim() || "",
-        city: document.getElementById("registerCity")?.value.trim() || "",
-        state: document.getElementById("registerState")?.value.trim() || "",
-        reference: document.getElementById("registerReference")?.value.trim() || ""
-      };
-
-      saveUser(user);
-      alert("Cadastro salvo com sucesso.");
-      window.location.href = "index.html";
-    });
-  };
-
-  const setupLogin = () => {
-    const form = document.getElementById("loginForm");
-    if (!form) return;
-
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-
-      const savedUser = getUser();
-      const email = document.getElementById("loginEmail")?.value.trim() || "";
-      const password = document.getElementById("loginPassword")?.value || "";
-
-      if (!savedUser) {
-        alert("Nenhum cadastro encontrado. Faça o cadastro primeiro.");
-        return;
-      }
-
-      if (savedUser.email !== email || savedUser.password !== password) {
-        alert("E-mail ou senha incorretos.");
-        return;
-      }
-
-      alert("Login realizado com sucesso.");
-      window.location.href = "index.html";
-    });
-  };
-
-  const setupCustomOrder = () => {
-    const btn = document.getElementById("sendCustomOrderBtn");
-    const textarea = document.getElementById("customOrderMessage");
-
-    if (!btn || !textarea) return;
-
-    btn.addEventListener("click", () => {
-      const text = textarea.value.trim() || "Olá! Quero fazer uma encomenda.";
-      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`, "_blank");
-    });
-  };
-
   window.DI = {
     addToCart,
     buyNow,
@@ -919,31 +985,31 @@
     changeMainImage,
     changePageProductQty,
     addCurrentProductToCart,
-    buyCurrentProductNow
+    buyCurrentProductNow,
+    changeCartQty,
+    removeCartItem,
+    toggleCartItem
   };
 
   document.addEventListener("DOMContentLoaded", () => {
     updateHeaderUser();
     updateCartCount();
     renderSystems();
-    if (typeof PRODUCTS !== "undefined") {
+    if (typeof PRODUCTS !== "undefined" && document.getElementById("allProducts")) {
       renderHomeProducts(PRODUCTS, "Todos os produtos", "Mostrando todos os itens cadastrados.");
     }
+    renderProductPage();
+    renderCartPage();
     setupNavButtons();
     setupSearch();
     applySearchFromUrl();
     setupSlider();
     setupNotifications();
     setupOrdersPanel();
+    setupDomBot();
+    setupCustomOrder();
     setupShipTo();
     setupLogout();
-    setupAuthTabs();
-    fillRegisterFormIfLogged();
-    setupRegister();
-    setupLogin();
-    setupCustomOrder();
-
-    renderProductPage();
 
     renderCheckoutUserData();
     renderCheckoutSummary();
