@@ -17,14 +17,25 @@
         <button class="notif-btn">🔔</button>
 
         <div class="account-menu">
-          <button class="account-trigger">
-            <span class="account-avatar">DI</span>
-            <span class="account-name">Entrar</span>
-          </button>
+            <button class="account-trigger" id="accountTrigger" type="button">
+              <span class="account-avatar" id="accountAvatar">DI</span>
+              <span class="account-name" id="accountName">Entrar</span>
+            </button>
+
+            <div class="account-dropdown" id="accountDropdown">
+              <div class="account-dropdown-header">
+                <strong id="dropdownUserName">Visitante</strong>
+                <span id="dropdownUserEmail">Faça login para continuar</span>
+              </div>
+
+              <a href="login.html" id="profileLink">Entrar / Cadastro</a>
+              <button type="button" id="myOrdersBtn">Compras</button>
+              <button type="button" id="logoutBtn">Sair</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
   <div class="header-main">
     <div class="container header-main-content">
