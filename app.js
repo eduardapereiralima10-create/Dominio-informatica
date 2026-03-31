@@ -23,9 +23,9 @@
   const getOrders = () => JSON.parse(localStorage.getItem("di_orders") || "[]");
   const saveOrders = (orders) => localStorage.setItem("di_orders", JSON.stringify(orders));
 
-  let currentCategory = "todos";
+ let currentCategory = "todos";
 
-  const updateHeaderUser = () => {
+const updateHeaderUser = () => {
   const user = getUser();
   const accountName = document.getElementById("accountName");
   const accountAvatar = document.getElementById("accountAvatar");
@@ -75,26 +75,25 @@
   }
 };
 
-    if (user) {
-      const firstName = (user.name || "Cliente").split(" ")[0];
-      if (accountName) accountName.textContent = firstName.toUpperCase();
-      if (accountAvatar) accountAvatar.textContent = firstName.slice(0, 2).toUpperCase();
-      if (dropdownUserName) dropdownUserName.textContent = user.name || "Cliente";
-      if (dropdownUserEmail) dropdownUserEmail.textContent = user.email || "";
-      if (profileLink) profileLink.textContent = "Meu perfil";
+const setupAccountDropdown = () => {
+  const trigger = document.getElementById("accountTrigger");
+  const dropdown = document.getElementById("accountDropdown");
 
-      const addressText = [user.street, user.number, user.neighborhood].filter(Boolean).join(", ");
-      if (shipToBtn) shipToBtn.textContent = addressText ? `Enviar para • ${addressText}` : "Enviar para •";
-    } else {
-      if (accountName) accountName.textContent = "Entrar";
-      if (accountAvatar) accountAvatar.textContent = "DI";
-      if (dropdownUserName) dropdownUserName.textContent = "Visitante";
-      if (dropdownUserEmail) dropdownUserEmail.textContent = "Faça login para continuar";
-      if (shipToBtn) shipToBtn.textContent = "Enviar para •";
-      if (profileLink) profileLink.textContent = "Entrar / Cadastro";
-    }
-  };
+  if (!trigger || !dropdown) return;
 
+  trigger.addEventListener("click", (event) => {
+    event.stopPropagation();
+    dropdown.classList.toggle("open");
+  });
+
+  dropdown.addEventListener("click", (event) => {
+    event.stopPropagation();
+  });
+
+  document.addEventListener("click", () => {
+    dropdown.classList.remove("open");
+  });
+};
   const updateCartCount = () => {
     const count = getCart().reduce((sum, item) => sum + Number(item.qty || 0), 0);
     document.querySelectorAll("#cartCount, .cart-count").forEach((node) => {
@@ -1032,10 +1031,11 @@
     toggleCartItem
   };
 
-  document.addEventListener("DOMContentLoaded", () => {
-    updateHeaderUser();
-    updateCartCount();
-    renderSystems();
+ document.addEventListener("DOMContentLoaded", () => {
+  updateHeaderUser();
+  updateCartCount();
+  setupAccountDropdown();
+  renderSystems();
     if (typeof PRODUCTS !== "undefined" && document.getElementById("allProducts")) {
       renderHomeProducts(PRODUCTS, "Todos os produtos", "Mostrando todos os itens cadastrados.");
     }
