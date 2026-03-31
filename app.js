@@ -26,13 +26,54 @@
   let currentCategory = "todos";
 
   const updateHeaderUser = () => {
-    const user = getUser();
-    const accountName = document.getElementById("accountName");
-    const accountAvatar = document.getElementById("accountAvatar");
-    const dropdownUserName = document.getElementById("dropdownUserName");
-    const dropdownUserEmail = document.getElementById("dropdownUserEmail");
-    const shipToBtn = document.getElementById("shipToBtn");
-    const profileLink = document.getElementById("profileLink");
+  const user = getUser();
+  const accountName = document.getElementById("accountName");
+  const accountAvatar = document.getElementById("accountAvatar");
+  const dropdownUserName = document.getElementById("dropdownUserName");
+  const dropdownUserEmail = document.getElementById("dropdownUserEmail");
+  const shipToBtn = document.getElementById("shipToBtn");
+  const profileLink = document.getElementById("profileLink");
+  const myOrdersBtn = document.getElementById("myOrdersBtn");
+  const logoutBtn = document.getElementById("logoutBtn");
+
+  if (user) {
+    const firstName = (user.name || "Cliente").split(" ")[0];
+
+    if (accountName) accountName.textContent = firstName.toUpperCase();
+    if (accountAvatar) accountAvatar.textContent = firstName.slice(0, 2).toUpperCase();
+    if (dropdownUserName) dropdownUserName.textContent = user.name || "Cliente";
+    if (dropdownUserEmail) dropdownUserEmail.textContent = user.email || "";
+
+    if (profileLink) {
+      profileLink.textContent = "Meu perfil";
+      profileLink.style.display = "none";
+    }
+
+    if (myOrdersBtn) myOrdersBtn.style.display = "block";
+    if (logoutBtn) logoutBtn.style.display = "block";
+
+    const addressText = [user.street, user.number, user.neighborhood].filter(Boolean).join(", ");
+    if (shipToBtn) {
+      shipToBtn.textContent = addressText ? `Enviar para • ${addressText}` : "Enviar para •";
+    }
+  } else {
+    if (accountName) accountName.textContent = "Entrar";
+    if (accountAvatar) accountAvatar.textContent = "DI";
+    if (dropdownUserName) dropdownUserName.textContent = "Visitante";
+    if (dropdownUserEmail) dropdownUserEmail.textContent = "Faça login para continuar";
+
+    if (profileLink) {
+      profileLink.textContent = "Entrar / Cadastro";
+      profileLink.style.display = "block";
+      profileLink.href = "login.html";
+    }
+
+    if (myOrdersBtn) myOrdersBtn.style.display = "none";
+    if (logoutBtn) logoutBtn.style.display = "none";
+
+    if (shipToBtn) shipToBtn.textContent = "Enviar para •";
+  }
+};
 
     if (user) {
       const firstName = (user.name || "Cliente").split(" ")[0];
