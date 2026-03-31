@@ -3,37 +3,94 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Entrar ou cadastrar | Domínio Informática</title>
+  <title>Entrar | Domínio Informática</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body class="login-page-body">
-  <main class="login-page">
-    <div class="login-card">
-      <a href="index.html" class="back-link">← Voltar para a loja</a>
-      <img src="logo-dominio.png.png" alt="Domínio Informática" class="login-logo" />
+<body>
+  <header class="site-header">
+    <div class="header-top">
+      <div class="container header-top-content">
+        <button class="ship-to ship-to-btn" id="shipToBtn" type="button">
+          Enviar para •
+        </button>
 
-      <div class="auth-tabs">
-        <button type="button" class="auth-tab active" data-auth-tab="register">Cadastro</button>
-        <button type="button" class="auth-tab" data-auth-tab="login">Entrar</button>
+        <div class="header-top-right">
+          <button class="notif-btn" type="button" id="openNotificationsBtn" aria-label="Notificações">🔔</button>
+
+          <div class="account-menu">
+            <button class="account-trigger" id="accountTrigger" type="button">
+              <span class="account-avatar" id="accountAvatar">DI</span>
+              <span class="account-name" id="accountName">Entrar</span>
+            </button>
+          </div>
+        </div>
       </div>
+    </div>
 
-      <section class="auth-section active" id="registerSection">
-        <h1>Crie sua conta</h1>
-        <p>Cadastro com nome, e-mail, telefone, senha e endereço.</p>
+    <div class="header-main">
+      <div class="container header-main-content">
+        <a href="index.html" class="logo-area" aria-label="Domínio Informática">
+          <img src="logo-dominio.png.png" alt="Domínio Informática" class="site-logo" />
+        </a>
 
-        <form id="registerForm" class="login-form">
-          <div class="form-grid-two">
-            <input type="text" id="registerName" placeholder="Nome e sobrenome" required />
-            <input type="email" id="registerEmail" placeholder="E-mail" required />
-          </div>
+        <form class="search-form" id="searchForm">
+          <input
+            type="search"
+            id="searchInput"
+            placeholder="Buscar produtos, sistemas, impressoras, redes..."
+            autocomplete="off"
+          />
+          <button type="submit">Buscar</button>
+        </form>
 
-          <div class="form-grid-two">
-            <input type="tel" id="registerPhone" placeholder="Telefone" required />
-            <input type="password" id="registerPassword" placeholder="Senha" required />
-          </div>
+        <a href="cart.html" class="header-cart" aria-label="Carrinho">
+          <span class="header-cart-icon">🛒</span>
+          <span class="header-cart-text">Carrinho</span>
+          <span class="cart-count" id="cartCount">0</span>
+        </a>
+      </div>
+    </div>
+
+    <nav class="main-nav">
+      <div class="container nav-list">
+        <a class="nav-chip" href="index.html">Todos</a>
+        <a class="nav-chip" href="index.html?cat=informática">Informática</a>
+        <a class="nav-chip" href="index.html?cat=automação comercial">Automação comercial</a>
+        <a class="nav-chip" href="index.html?cat=impressão">Impressão</a>
+        <a class="nav-chip" href="index.html?cat=redes">Redes</a>
+        <a class="nav-chip" href="index.html?cat=gamer">Gamer</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container section">
+    <div class="auth-page-grid">
+      <section class="checkout-card auth-card">
+        <div class="checkout-card-header">
+          <h2>Entrar</h2>
+        </div>
+
+        <form id="loginForm" class="auth-form">
+          <input type="email" id="loginEmail" placeholder="Seu e-mail" required />
+          <input type="password" id="loginPassword" placeholder="Sua senha" required />
+
+          <button type="submit" class="btn-primary full">Entrar</button>
+          <button type="button" class="btn-secondary full" id="forgotPasswordBtn">Esqueci minha senha</button>
+        </form>
+      </section>
+
+      <section class="checkout-card auth-card">
+        <div class="checkout-card-header">
+          <h2>Criar conta</h2>
+        </div>
+
+        <form id="registerForm" class="auth-form">
+          <input type="text" id="registerName" placeholder="Nome e sobrenome" required />
+          <input type="email" id="registerEmail" placeholder="Seu e-mail" required />
+          <input type="text" id="registerPhone" placeholder="Telefone" required />
+          <input type="password" id="registerPassword" placeholder="Crie uma senha" required />
 
           <input type="text" id="registerStreet" placeholder="Rua / Avenida" required />
-
           <div class="form-grid-two">
             <input type="text" id="registerNumber" placeholder="Número" required />
             <input type="text" id="registerNeighborhood" placeholder="Bairro" required />
@@ -44,26 +101,124 @@
             <input type="text" id="registerState" placeholder="Estado" required />
           </div>
 
-          <input type="text" id="registerReference" placeholder="Referência (opcional)" />
-
-          <button type="submit" class="btn-primary full">Salvar cadastro</button>
-        </form>
-      </section>
-
-      <section class="auth-section" id="loginSection">
-        <h1>Entrar</h1>
-        <p>Entre usando e-mail e senha.</p>
-
-        <form id="loginForm" class="login-form">
-          <input type="email" id="loginEmail" placeholder="E-mail" required />
-          <input type="password" id="loginPassword" placeholder="Senha" required />
-          <button type="submit" class="btn-primary full">Entrar</button>
+          <button type="submit" class="btn-primary full">Criar conta</button>
         </form>
       </section>
     </div>
   </main>
 
+  <aside class="notification-panel" id="notificationPanel">
+    <div class="notification-header">
+      <h3>Avisos</h3>
+      <button type="button" id="closeNotificationsBtn">✕</button>
+    </div>
+    <div class="notification-body">
+      <div class="notification-item">Confirme seu e-mail para deixar sua conta mais segura.</div>
+      <div class="notification-item">Depois da confirmação, entre normalmente no site.</div>
+    </div>
+  </aside>
+
   <script src="products.js"></script>
   <script src="app.js"></script>
+
+  <script type="module">
+    import { supabase } from './supabase.js';
+
+    const loginForm = document.getElementById('loginForm');
+    const registerForm = document.getElementById('registerForm');
+    const forgotPasswordBtn = document.getElementById('forgotPasswordBtn');
+
+    loginForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const email = document.getElementById('loginEmail').value.trim();
+      const password = document.getElementById('loginPassword').value.trim();
+
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password
+      });
+
+      if (error) {
+        alert(error.message);
+        return;
+      }
+
+      const user = data.user;
+      const meta = user.user_metadata || {};
+
+      localStorage.setItem('di_user', JSON.stringify({
+        id: user.id,
+        name: meta.name || '',
+        email: user.email || '',
+        phone: meta.phone || '',
+        street: meta.street || '',
+        number: meta.number || '',
+        neighborhood: meta.neighborhood || '',
+        city: meta.city || '',
+        state: meta.state || ''
+      }));
+
+      alert('Login realizado com sucesso.');
+      window.location.href = 'index.html';
+    });
+
+    registerForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const name = document.getElementById('registerName').value.trim();
+      const email = document.getElementById('registerEmail').value.trim();
+      const phone = document.getElementById('registerPhone').value.trim();
+      const password = document.getElementById('registerPassword').value.trim();
+      const street = document.getElementById('registerStreet').value.trim();
+      const number = document.getElementById('registerNumber').value.trim();
+      const neighborhood = document.getElementById('registerNeighborhood').value.trim();
+      const city = document.getElementById('registerCity').value.trim();
+      const state = document.getElementById('registerState').value.trim();
+
+      const { error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          emailRedirectTo: 'https://eduardapereiralima10-create.github.io/Dominio-informatica/login.html',
+          data: {
+            name,
+            phone,
+            street,
+            number,
+            neighborhood,
+            city,
+            state
+          }
+        }
+      });
+
+      if (error) {
+        alert(error.message);
+        return;
+      }
+
+      localStorage.setItem('di_show_verify_notice', '1');
+      alert('Conta criada. Agora confira seu e-mail e confirme sua conta.');
+      window.location.href = 'login.html';
+    });
+
+    forgotPasswordBtn.addEventListener('click', async () => {
+      const email = prompt('Digite seu e-mail para recuperar sua senha:');
+
+      if (!email) return;
+
+      const { error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: 'https://eduardapereiralima10-create.github.io/Dominio-informatica/nova-senha.html'
+      });
+
+      if (error) {
+        alert(error.message);
+        return;
+      }
+
+      alert('Enviamos um link para redefinir sua senha no seu e-mail.');
+    });
+  </script>
 </body>
 </html>
