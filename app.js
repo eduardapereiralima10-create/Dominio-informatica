@@ -495,18 +495,27 @@ const setupAccountDropdown = () => {
     });
   };
 
-  const changeMainImage = (src, alt) => {
-    const image = document.getElementById("mainProductImage");
-    const zoomImage = document.getElementById("zoomImage");
-    if (image) {
-      image.src = src;
-      image.alt = alt;
-    }
-    if (zoomImage) {
-      zoomImage.src = src;
-      zoomImage.alt = alt;
-    }
-  };
+ const changeMainImage = (src, alt) => {
+  const image = document.getElementById("mainProductImage");
+  const zoomImage = document.getElementById("zoomImage");
+  const zoomPane = document.getElementById("productZoomPane");
+
+  if (image) {
+    image.src = src;
+    image.alt = alt;
+  }
+
+  if (zoomImage) {
+    zoomImage.src = src;
+    zoomImage.alt = alt;
+    zoomImage.style.transformOrigin = "center center";
+    zoomImage.style.transform = "scale(1)";
+  }
+
+  if (zoomPane) {
+    zoomPane.classList.remove("active");
+  }
+};
 
   const changePageProductQty = (delta) => {
     const qtyEl = document.getElementById("productQtyValue");
@@ -526,30 +535,37 @@ const setupAccountDropdown = () => {
     buyNow(productId, qty);
   };
 
-  const setupImageZoom = () => {
-    const box = document.getElementById("productMainImageBox");
-    const image = document.getElementById("mainProductImage");
-    const zoomPane = document.getElementById("productZoomPane");
-    const zoomImage = document.getElementById("zoomImage");
+ const setupImageZoom = () => {
+  const box = document.getElementById("productMainImageBox");
+  const zoomPane = document.getElementById("productZoomPane");
+  const zoomImage = document.getElementById("zoomImage");
+  const mainImage = document.getElementById("mainProductImage");
 
-    if (!box || !image || !zoomPane || !zoomImage) return;
+  if (!box || !zoomPane || !zoomImage || !mainImage) return;
 
-    box.addEventListener("mouseenter", () => {
+  box.addEventListener("mouseenter", () => {
+    if (window.innerWidth > 980) {
       zoomPane.classList.add("active");
-    });
+    }
+  });
 
-    box.addEventListener("mousemove", (e) => {
-      const rect = box.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width) * 100;
-      const y = ((e.clientY - rect.top) / rect.height) * 100;
-      zoomImage.style.transformOrigin = `${x}% ${y}%`;
-    });
+  box.addEventListener("mousemove", (e) => {
+    if (window.innerWidth <= 980) return;
 
-    box.addEventListener("mouseleave", () => {
-      zoomPane.classList.remove("active");
-      zoomImage.style.transformOrigin = "center center";
-    });
-  };
+    const rect = box.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+    zoomImage.style.transformOrigin = `${x}% ${y}%`;
+    zoomImage.style.transform = "scale(2.2)";
+  });
+
+  box.addEventListener("mouseleave", () => {
+    zoomPane.classList.remove("active");
+    zoomImage.style.transformOrigin = "center center";
+    zoomImage.style.transform = "scale(1)";
+  });
+};
 
   const renderProductPage = () => {
     const wrap = document.getElementById("productPage");
