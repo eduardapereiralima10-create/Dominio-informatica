@@ -580,14 +580,23 @@ const setupAccountDropdown = () => {
                 `).join("")}
               </div>
 
-              <div class="product-main-image-box" id="productMainImageBox">
-                <img
-                  id="mainProductImage"
-                  src="${gallery[0]}"
-                  alt="${product.name}"
-                  onerror="this.onerror=null;this.src='${fallbackImage(product.name)}';"
-                />
-              </div>
+           <div class="product-main-image-box" id="productMainImageBox">
+  <img
+    id="mainProductImage"
+    src="${gallery[0]}"
+    alt="${product.name}"
+    onerror="this.onerror=null;this.src='${fallbackImage(product.name)}';"
+  />
+
+  <div class="product-zoom-float" id="productZoomPane">
+    <img
+      id="zoomImage"
+      src="${gallery[0]}"
+      alt="${product.name}"
+      onerror="this.onerror=null;this.src='${fallbackImage(product.name)}';"
+    />
+  </div>
+</div>
 
               <div class="product-zoom-pane" id="productZoomPane">
                 <img
